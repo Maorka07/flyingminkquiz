@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Flying Mink — שיעור אחד על אחד</title>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0a0b16;--bg2:#111827;--bg3:#1a2332;
+  --blue:#2563eb;--blue-l:#60a5fa;--blue-g:rgba(37,99,235,0.15);
+  --purple:#6d28d9;--purple-l:#a78bfa;
+  --border:rgba(96,165,250,0.2);--border-h:rgba(96,165,250,0.5);
+  --t1:#f1f5f9;--t2:#94a3b8;--t3:#64748b;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{
+  font-family:'Heebo',sans-serif;background:var(--bg);color:var(--t1);
+  min-height:100vh;overflow-x:hidden;
+}
+
+/* BACK + PROFILE + INSTA */
+.top-bar{
+position:fixed;top:0;right:0;left:0;z-index:90;
+display:flex;justify-content:space-between;align-items:center;
+padding:12px 16px;
+background:rgba(10,11,22,0.85);backdrop-filter:blur(10px);
+border-bottom:1px solid rgba(96,165,250,0.1);
+}
+.back-btn{
+display:flex;align-items:center;gap:6px;
+padding:8px 16px;border-radius:10px;
+background:rgba(255,255,255,0.05);border:1px solid var(--border);
+color:var(--t2);font-size:13px;font-weight:500;
+text-decoration:none;transition:all 0.3s;
+}
+.back-btn:hover{border-color:var(--border-h);color:var(--t1);}
+.top-right{display:flex;gap:8px;align-items:center;}
+.icon-btn{
+width:38px;height:38px;border-radius:50%;
+background:rgba(37,99,235,0.25);border:1.5px solid rgba(96,165,250,0.4);
+display:flex;align-items:center;justify-content:center;
+cursor:pointer;transition:all 0.3s;text-decoration:none;
+}
+.icon-btn:hover{background:rgba(37,99,235,0.5);transform:scale(1.08);}
+.icon-btn svg{width:18px;height:18px;}
+
+/* BACKGROUND IMAGE WITH BLUE TINT */
+.full-bg{
+position:fixed;inset:0;z-index:0;
+/* כאן אתה מכניס את נתיב התמונה שלך */
+background-image: url('image.png'); 
+background-size:cover;
+background-position:center;
+}
+.carousel-overlay{
+position:fixed;inset:0;z-index:1;
+/* שכבת הצבע הכחולה שביקשת שתשאר */
+background:linear-gradient(135deg,rgba(10, 31, 75, 0.85),rgba(29, 78, 216, 0.75));
+}
+
+/* MAIN CONTENT */
+.main{
+position:relative;z-index:2;
+min-height:100vh;display:flex;align-items:center;justify-content:center;
+padding:80px 1.5rem 2rem;
+}
+.content-card{
+background:rgba(10,11,22,0.7);
+border:1px solid var(--border);border-radius:24px;
+backdrop-filter:blur(20px);
+padding:2.5rem 2rem;max-width:520px;width:100%;
+box-shadow:0 20px 60px rgba(0,0,0,0.4);
+}
+
+/* HEADER */
+.form-header{text-align:center;margin-bottom:2rem;}
+.form-logo{width:80px;margin-bottom:10px;filter:drop-shadow(0 4px 15px rgba(96,165,250,0.3));}
+.form-header h1{font-size:1.8rem;font-weight:800;margin-bottom:6px;}
+.form-header h1 span{color:var(--blue-l);}
+.form-header p{font-size:14px;color:var(--t2);}
+
+/* FORM */
+.form-group{margin-bottom:16px;}
+.form-label{
+display:block;font-size:13px;font-weight:600;color:var(--t2);
+margin-bottom:6px;
+}
+.form-input,.form-select{
+width:100%;background:rgba(255,255,255,0.06);
+border:1px solid var(--border);border-radius:12px;
+padding:12px 16px;font-size:14px;color:var(--t1);
+font-family:'Heebo',sans-serif;outline:none;
+transition:border-color 0.2s;
+}
+.form-input:focus,.form-select:focus{
+border-color:var(--blue-l);
+}
+.form-select{cursor:pointer;appearance:none;
+background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%2394a3b8' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+background-repeat:no-repeat;background-position:left 14px center;
+}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+@media(max-width:480px){.form-row{grid-template-columns:1fr;}}
+
+.submit-btn{
+width:100%;padding:15px;border:none;border-radius:14px;
+background:linear-gradient(135deg,var(--blue),#1d4ed8);
+color:#fff;font-size:16px;font-weight:700;
+font-family:'Heebo',sans-serif;cursor:pointer;
+transition:all 0.3s;margin-top:8px;
+}
+.submit-btn:hover{
+transform:translateY(-2px);
+box-shadow:0 8px 30px rgba(37,99,235,0.4);
+}
+.form-msg{text-align:center;margin-top:12px;font-size:14px;}
+.form-msg.success{color:#34d399;}
+.form-msg.error{color:#fbbf24;}
+
+/* BOT FAB */
+.bot-fab{
+position:fixed;bottom:24px;left:24px;z-index:80;
+width:56px;height:56px;border-radius:50%;
+background:linear-gradient(135deg,var(--blue),#1d4ed8);
+border:none;cursor:pointer;
+display:flex;align-items:center;justify-content:center;
+box-shadow:0 4px 20px rgba(37,99,235,0.4);
+transition:all 0.3s;
+animation:botPulse 3s ease-in-out infinite;
+}
+@keyframes botPulse{
+0%,100%{box-shadow:0 4px 20px rgba(37,99,235,0.4);}
+50%{box-shadow:0 4px 30px rgba(37,99,235,0.6),0 0 0 8px rgba(37,99,235,0.1);}
+}
+.bot-panel{
+position:fixed;bottom:92px;left:24px;z-index:80;
+width:340px;max-width:calc(100vw - 48px);max-height:65vh;
+background:var(--bg2);border:1px solid var(--border);border-radius:20px;
+box-shadow:0 20px 60px rgba(0,0,0,0.5);
+display:none;flex-direction:column;overflow:hidden;
+}
+.bot-panel.open{display:flex;animation:slideUp 0.3s ease;}
+@keyframes slideUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+.bot-header{display:flex;align-items:center;justify-content:space-between;padding:14px 18px;border-bottom:1px solid var(--border);}
+.bot-messages{flex:1;overflow-y:auto;padding:14px 16px;display:flex;flex-direction:column;gap:10px;min-height:180px;max-height:300px;}
+.msg{max-width:85%;padding:9px 13px;border-radius:14px;font-size:12px;line-height:1.6;}
+.msg-bot{align-self:flex-start;background:rgba(37,99,235,0.15);border:1px solid var(--border);color:var(--t1);}
+.msg-user{align-self:flex-end;background:var(--blue);color:#fff;}
+.bot-input-row{display:flex;gap:8px;padding:10px 14px;border-top:1px solid var(--border);}
+.bot-input{flex:1;background:rgba(255,255,255,0.06);border:1px solid var(--border);border-radius:10px;padding:9px 12px;font-size:12px;color:var(--t1);outline:none;}
+.bot-send{background:var(--blue);border:none;border-radius:10px;padding:9px 14px;cursor:pointer;}
+</style>
+</head>
+<body>
+
+<div class="top-bar">
+  <a href="landing.html" class="back-btn">→ חזרה</a>
+  <div class="top-right">
+    <a href="https://instagram.com/flyingmink" target="_blank" class="icon-btn">
+      <svg viewBox="0 0 24 24" fill="none" stroke="rgba(96,165,250,0.9)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+      </svg>
+    </a>
+  </div>
+</div>
+
+<div class="full-bg"></div>
+<div class="carousel-overlay"></div>
+
+<div class="main">
+  <div class="content-card">
+    <div class="form-header">
+      <img class="form-logo" src="data:image/png;base64,..." alt="Flying Mink">
+      <h1>הזמנת <span>שיעור אחד על אחד</span></h1>
+      <p>הצעד הראשון שלך להפוך למטיס מקצועי</p>
+    </div>
+
+    <div id="formArea">
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">שם מלא *</label>
+          <input class="form-input" type="text" id="fName" placeholder="השם שלך">
+        </div>
+        <div class="form-group">
+          <label class="form-label">טלפון *</label>
+          <input class="form-input" type="tel" id="fPhone" placeholder="050-000-0000" dir="ltr">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">רמת ניסיון *</label>
+        <select class="form-select" id="fLevel">
+          <option value="">בחר רמת ניסיון</option>
+          <option value="beginner">מתחיל (מעולם לא הטסתי)</option>
+          <option value="simulator">ניסיון בסימולטור בלבד</option>
+          <option value="intermediate">מטיס חובב (רוצה להשתפר)</option>
+          <option value="pro">מתקדם (הכנה לרישיון/צילום מסחרי)</option>
+        </select>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">תאריך מבוקש *</label>
+          <input class="form-input" type="date" id="fDate">
+        </div>
+        <div class="form-group">
+          <label class="form-label">סוג שיעור</label>
+          <select class="form-select" id="fLessonType">
+            <option value="basic">הטסה בסיסית</option>
+            <option value="fpv">FPV ומרוצים</option>
+            <option value="cinematic">צילום סינמטי</option>
+          </select>
+        </div>
+      </div>
+
+      <button class="submit-btn" onclick="submitForm()">שליחת בקשה לשיעור ←</button>
+      <div class="form-msg" id="formMsg"></div>
+    </div>
+  </div>
+</div>
+
+<button class="bot-fab" id="botFab">
+  <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M12 8V4H8"/><rect x="2" y="8" width="20" height="12" rx="2"/></svg>
+</button>
+
+<div class="bot-panel" id="botPanel">
+  <div class="bot-header">
+    <div style="display:flex;align-items:center;gap:10px;">
+      <div style="background:var(--blue);width:30px;height:30px;border-radius:50%;display:flex;justify-content:center;align-items:center;">🤖</div>
+      <div style="font-size:13px;font-weight:700;">Mink Bot</div>
+    </div>
+    <button id="botClose" style="background:none;border:none;color:white;cursor:pointer;">✕</button>
+  </div>
+  <div class="bot-messages" id="botMessages">
+    <div class="msg msg-bot">שלום! רוצה ללמוד להטיס? אני כאן לכל שאלה על השיעורים שלנו. 🛸</div>
+  </div>
+  <div class="bot-input-row">
+    <input class="bot-input" id="botInput" type="text" placeholder="שאל אותי משהו...">
+    <button class="bot-send" onclick="sendMsg()">></button>
+  </div>
+</div>
+
+<script>
+const WA="972549902676";
+
+function submitForm(){
+  const name=document.getElementById('fName').value.trim();
+  const phone=document.getElementById('fPhone').value.trim();
+  const level=document.getElementById('fLevel').value;
+  const date=document.getElementById('fDate').value;
+  const msg=document.getElementById('formMsg');
+
+  if(!name||!phone||!level||!date){
+    msg.className='form-msg error';
+    msg.textContent='נא למלא את כל השדות המסומנים *';
+    return;
+  }
+
+  const waMsg=encodeURIComponent(
+    "היי מאור, אני מעוניין בשיעור אחד על אחד 🛸\n\n"+
+    "שם: "+name+"\n"+
+    "טלפון: "+phone+"\n"+
+    "רמת ניסיון: "+level+"\n"+
+    "תאריך מבוקש: "+date+"\n\n"+
+    "אשמח לקבל פרטים נוספים."
+  );
+
+  msg.className='form-msg success';
+  msg.textContent='מעביר לוואטסאפ...';
+  setTimeout(()=>window.open("https://wa.me/"+WA+"?text="+waMsg,"_blank"),800);
+}
+
+const fab=document.getElementById('botFab');
+const panel=document.getElementById('botPanel');
+fab.onclick=()=>panel.classList.toggle('open');
+document.getElementById('botClose').onclick=()=>panel.classList.remove('open');
+</script>
+
+</body>
+</html>
