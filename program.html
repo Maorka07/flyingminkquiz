@@ -8,13 +8,18 @@
         :root {
             --bg-color: #0a0e1a;
             --card-bg: #141b2d;
-            --accent-color: #4a90e2;
+            --accent-color: #a78bfa; /* הסגול של האתר */
             --text-color: #ffffff;
             --input-bg: #1f2940;
+            
+            /* צבעים חדשים לפי בקשתך */
+            --heading-color: #e2e8f0;
+            --sub-color: #c4b5fd;
         }
 
         body {
-            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            /* פונט מעודכן */
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
             background-color: var(--bg-color);
             color: var(--text-color);
             margin: 0;
@@ -26,7 +31,6 @@
             box-sizing: border-box;
         }
 
-        /* כפתור חזרה - נגישות מלאה */
         .back-nav {
             width: 100%;
             max-width: 500px;
@@ -55,40 +59,44 @@
         .form-card {
             background-color: var(--card-bg);
             width: 100%;
-            max-width: 500px; /* הרחבה קלה למראה טוב יותר במחשב */
+            max-width: 500px;
             padding: 40px 30px;
             border-radius: 24px;
             box-shadow: 0 20px 40px rgba(0,0,0,0.4);
             text-align: center;
             box-sizing: border-box;
-            overflow: hidden; /* מונע בריחה של אלמנטים */
+            overflow: hidden;
+        }
+
+        /* כותרות ראשיות (לוגו, שאלות וכו') */
+        .brand-name, h1 {
+            color: var(--heading-color);
+            font-weight: 700;
+            display: block;
         }
 
         .brand-name {
-            font-family: 'Arial Black', sans-serif;
-            font-size: 1.2rem;
+            font-size: 18px;
             letter-spacing: 1px;
             margin-bottom: 8px;
-            display: block;
-            color: #ffffff;
-            opacity: 0.9;
         }
 
-        /* תיקון כותרת - שורה אחת ללא חריגה */
         h1 {
-            color: var(--accent-color);
             margin: 0 0 12px 0;
-            white-space: nowrap; /* שומר על שורה אחת */
-            /* חישוב דינמי שמוודא שהטקסט לא יעקוף את רוחב הבועה */
-            font-size: clamp(1.1rem, 4.5vw, 1.85rem); 
-            font-weight: 800;
+            white-space: nowrap;
+            font-size: 20px;
             overflow: hidden;
             text-overflow: ellipsis;
         }
 
+        /* כותרות משנה וטקסט דגש */
+        p.subtitle, label {
+            color: var(--sub-color);
+            font-weight: 600;
+        }
+
         p.subtitle {
-            font-size: 1rem;
-            opacity: 0.7;
+            font-size: 15px;
             margin-bottom: 35px;
             line-height: 1.4;
         }
@@ -101,8 +109,7 @@
         label {
             display: block;
             margin-bottom: 8px;
-            font-size: 0.9rem;
-            font-weight: 600;
+            font-size: 14px;
         }
 
         input, select {
@@ -115,94 +122,9 @@
             box-sizing: border-box;
             font-size: 1rem;
             outline: none;
+            font-family: inherit;
         }
 
-        /* תיקון צבעים בתיבת הבחירה - שחור על לבן במחשב */
         select {
             cursor: pointer;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
-            background-repeat: no-repeat;
-            background-position: left 12px center;
-            background-size: 16px;
-            appearance: none;
-        }
-
-        select option {
-            background-color: #ffffff;
-            color: #000000;
-        }
-
-        .submit-btn {
-            width: 100%;
-            padding: 16px;
-            background-color: var(--accent-color);
-            color: white;
-            border: none;
-            border-radius: 12px;
-            font-size: 1.1rem;
-            font-weight: bold;
-            cursor: pointer;
-            margin-top: 10px;
-            transition: transform 0.2s, background 0.2s;
-        }
-
-        .submit-btn:hover {
-            background-color: #357abd;
-            transform: translateY(-1px);
-        }
-
-        /* התאמה למסכים קטנים מאוד */
-        @media (max-width: 380px) {
-            .form-card {
-                padding: 30px 20px;
-            }
-            h1 {
-                font-size: 1.1rem;
-            }
-        }
-    </style>
-</head>
-<body>
-
-    <div class="back-nav">
-        <a href="https://flyingmink.com" class="btn-back">→ חזרה לאתר</a>
-    </div>
-
-    <div class="form-card">
-        <span class="brand-name">Flying Mink</span>
-        
-        <h1>הזמנת שיעור אחד על אחד</h1>
-        <p class="subtitle">הצעד הראשון שלך להפוך למטיס מקצועי</p>
-
-        <form action="#" method="POST">
-            <div class="form-group">
-                <label>שם מלא *</label>
-                <input type="text" name="name" placeholder="השם שלך" required>
-            </div>
-
-            <div class="form-group">
-                <label>טלפון *</label>
-                <input type="tel" name="phone" placeholder="050-000-0000" required>
-            </div>
-
-            <div class="form-group">
-                <label>רמת ניסיון *</label>
-                <select name="experience" required>
-                    <option value="" disabled selected>בחר רמת ניסיון</option>
-                    <option value="none">ללא ניסיון (מתחיל מאפס)</option>
-                    <option value="basic">ניסיון בסיסי</option>
-                    <option value="advanced">מתקדם / מטיס קיים</option>
-                </select>
-            </div>
-
-            <div class="form-group">
-                <label>תאריך מבוקש *</label>
-                <input type="date" name="date" required>
-            </div>
-
-            <button type="submit" class="submit-btn">שליחת בקשה</button>
-        </form>
-    </div>
-
-</body>
-</html>
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15
