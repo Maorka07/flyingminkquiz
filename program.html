@@ -3,237 +3,155 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>הזמנת שיעור פרטי - Flying Mink</title>
+    <title>הזמנת שיעור - Flying Mink</title>
     <style>
         :root {
-            /* רקע עמוק מאוד, מדויק לפי התמונה */
-            --bg-color: #050811; 
-            /* צבע הבועה, מבודד מעט מהרקע */
-            --card-bg: #0c0f24; 
-            /* סגול חי ואחיד לאלמנטים פעילים */
-            --accent-color: #8b5cf6; 
-            /* צבע כותרת ראשי (לבן-קרם), מדויק לפי התמונה */
-            --heading-color: #e6edf7;
-            /* צבע טקסט משנה, מדויק לפי התמונה */
-            --sub-color: #b3bdd0;
-            /* רקע תיבות קלט אחיד */
-            --input-bg: #1e293b;
+            /* צבע הבועה - כחול כהה עמוק מהתמונה */
+            --card-bg: #111827; 
+            /* רקע הדף - כהה ב-20% מהבועה (קרוב לשחור מוחלט) */
+            --body-bg: #05070a; 
+            /* סגול המותג */
+            --accent-color: #a78bfa; 
+            /* צבע כותרות */
+            --text-heading: #e2e8f0;
+            /* צבע טקסט משני */
+            --text-sub: #94a3b8;
         }
 
         body {
-            /* גופן אחיד ומקצועי כפי שביקשת */
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            background-color: var(--bg-color);
+            background-color: var(--body-bg);
             color: #ffffff;
             margin: 0;
             display: flex;
             flex-direction: column;
             align-items: center;
+            justify-content: center;
             min-height: 100vh;
             padding: 20px;
             box-sizing: border-box;
         }
 
-        /* שורת הכותרת העליונה - Flexbox לסימטריה */
+        /* ניווט עליון סימטרי */
         header {
             width: 100%;
-            max-width: 480px; /* רוחב הבועה המקסימלי */
+            max-width: 450px;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .btn-back {
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text-heading);
+            text-decoration: none;
+            padding: 8px 18px;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 600;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* לוגו הסמור */
+        .mink-logo {
+            width: 90px;
+            height: auto;
+            margin-bottom: 15px;
+        }
+
+        /* בועת ההזמנה - סימטרית ומדויקת */
+        .form-bubble {
+            background-color: var(--card-bg);
+            width: 100%;
+            max-width: 450px;
+            padding: 35px 25px;
+            border-radius: 24px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            text-align: center;
+            box-sizing: border-box;
+        }
+
+        /* כותרת בשורה אחת - חובה */
+        h1 {
+            color: var(--text-heading);
+            font-size: clamp(1.2rem, 5vw, 1.7rem); /* מתאים את הגודל למסך */
+            font-weight: 700;
+            margin: 0 0 10px 0;
+            white-space: nowrap; /* מונע ירידת שורה */
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .subtitle {
+            color: var(--accent-color);
+            font-size: 15px;
+            font-weight: 600;
             margin-bottom: 30px;
         }
 
-        /* סמלים בצד שמאל */
-        .header-left {
-            display: flex;
-            gap: 12px;
-        }
-
-        .icon-btn {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background-color: #1e293b;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
-            transition: background 0.2s;
-        }
-
-        .icon-btn:hover {
-            background-color: #2d3e5a;
-        }
-
-        .icon-btn svg {
-            width: 18px;
-            height: 18px;
-            fill: #a78bfa; /* סגול בהיר לאייקונים */
-        }
-
-        /* כפתור "חזרה" בצד ימין */
-        .btn-back {
-            background-color: #1e293b;
-            color: var(--sub-color);
-            text-decoration: none;
-            padding: 8px 16px;
-            border-radius: 8px;
-            font-size: 14px;
-            font-weight: 600;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: background 0.2s;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .btn-back:hover {
-            background-color: #2d3e5a;
-        }
-
-        /* אזור תוכן מרכזי */
-        main {
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        /* לוגו מרכזי - המינק המעופף */
-        .mink-logo {
-            width: 100px;
-            height: auto;
-            margin-bottom: 20px;
-        }
-
-        /* כותרות ראשיות כפי שמופיעות בתמונה */
-        h1.guides-title {
-            font-size: 20px;
-            font-weight: 700;
-            color: var(--heading-color);
-            margin: 0 0 10px 0;
-            text-align: center;
-        }
-
-        p.drones-text {
-            font-size: 14px;
-            font-weight: 600;
-            color: var(--sub-color);
-            margin: 0 0 30px 0;
-            text-align: center;
-            max-width: 320px;
-            line-height: 1.4;
-        }
-
-        /* בועת ההזמנה - The Bubble - אחידה וסימטרית */
-        .center-card {
-            background-color: var(--card-bg);
-            width: 100%;
-            max-width: 480px; /* רוחב אחיד גם למחשב */
-            padding: 30px;
-            border-radius: 20px;
-            box-shadow: 0 15px 35px -10px rgba(0, 0, 0, 0.6);
-            border: 1px solid rgba(255, 255, 255, 0.03); /* גבול עדין מאוד */
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            box-sizing: border-box;
-            transition: transform 0.2s;
-        }
-
-        /* כותרת בתוך הבועה */
-        .card-header {
-            font-size: 18px;
-            font-weight: 700;
-            color: var(--heading-color);
-            margin-bottom: 25px;
-            text-align: center;
-        }
-
-        /* פריסת הטופס - Flexbox לסימטריה מלאה */
-        form {
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            gap: 16px; /* מרווח אחיד בין כל השדות */
-        }
-
-        .form-row {
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-        }
-
-        /* כותרת כל שדה */
-        label {
-            font-size: 13px;
-            font-weight: 600;
-            color: var(--sub-color);
-            margin-bottom: 6px;
+        /* שדות הטופס */
+        .form-group {
             text-align: right;
+            margin-bottom: 18px;
         }
 
-        /* שדות קלט וסלקט - אחידים לחלוטין בגודל ובצורה */
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-sub);
+        }
+
         input, select {
             width: 100%;
-            height: 44px; /* גובה אחיד לכל השדות */
-            padding: 0 14px;
-            background-color: var(--input-bg);
+            height: 48px; /* גובה אחיד לכולם */
+            background-color: #1f2937;
             border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 8px;
+            border-radius: 12px;
             color: white;
-            font-size: 15px;
-            outline: none;
+            padding: 0 15px;
+            font-size: 16px;
             box-sizing: border-box;
+            outline: none;
             font-family: inherit;
-            transition: border-color 0.2s;
         }
 
         input:focus, select:focus {
             border-color: var(--accent-color);
         }
 
-        /* כפתור השליחה - אחיד בגובה וסימטרי */
-        .submit-btn {
+        /* כפתור וואצאפ */
+        .whatsapp-btn {
             width: 100%;
-            height: 48px; /* גובה אחיד, מעט גבוה משדות הקלט */
+            height: 52px;
             background-color: var(--accent-color);
-            color: white;
+            color: #000; /* טקסט שחור על סגול נראה טוב יותר וברור */
             border: none;
-            border-radius: 8px;
-            font-size: 16px;
+            border-radius: 12px;
+            font-size: 17px;
             font-weight: 700;
             cursor: pointer;
-            margin-top: 10px; /* מרווח מעט גדול יותר */
-            transition: transform 0.1s, filter 0.2s;
+            margin-top: 10px;
+            transition: transform 0.2s;
             display: flex;
             justify-content: center;
             align-items: center;
+            gap: 8px;
             font-family: inherit;
         }
 
-        .submit-btn:hover {
+        .whatsapp-btn:hover {
+            transform: translateY(-2px);
             filter: brightness(1.1);
         }
 
-        .submit-btn:active {
-            transform: scale(0.98);
-        }
-
-        /* רספונסיביות למחשב (מסכים גדולים) */
-        @media (min-width: 768px) {
-            .center-card {
-                padding: 40px; /* יותר מרווח פנימי למחשב */
-                border-radius: 24px;
-            }
-            .guides-title {
-                font-size: 24px; /* כותרת גדולה יותר למחשב */
-            }
-            p.drones-text {
-                font-size: 15px;
-                max-width: 400px;
+        /* התאמה לנייד */
+        @media (max-width: 480px) {
+            .form-bubble {
+                padding: 25px 20px;
             }
         }
     </style>
@@ -241,90 +159,79 @@
 <body>
 
     <header>
-        <div class="header-left">
-            <div class="icon-btn">
-                <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"></path></svg>
-            </div>
-            <div class="icon-btn">
-                <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.919-.058-1.265-.069-1.644-.069-4.849 0-3.204.013-3.583.069-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"></path></svg>
-            </div>
+        <div style="display: flex; gap: 10px;">
+            <div style="width: 35px; height: 35px; border-radius: 50%; background: #1f2937; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(255,255,255,0.1);">👤</div>
+            <div style="width: 35px; height: 35px; border-radius: 50%; background: #1f2937; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(255,255,255,0.1);">📸</div>
         </div>
-        <a href="https://flyingmink.com" class="btn-back">
-            <span>חזרה</span>
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
-        </a>
+        <a href="https://flyingmink.com" class="btn-back">חזרה לאתר ←</a>
     </header>
 
-    <main>
-        <img src="https://flyingmink.com/mink-logo-silver.png" alt="Flying Mink Logo" class="mink-logo">
+    <img src="https://flyingmink.com/mink-logo-silver.png" alt="Flying Mink Logo" class="mink-logo">
 
-        <h1 class="guides-title">מדריכים ותוכן</h1>
-        <p class="drones-text">كل ما שצריך לדעת על רחפנים - חלק בחינם, חלק למנויים</p>
+    <div class="form-bubble">
+        <h1>הזמנת שיעור אחד על אחד</h1>
+        <p class="subtitle">הצעד הראשון שלך להפוך למטיס מקצועי</p>
 
-        <div class="center-card">
-            <h2 class="card-header">הזמנת שיעור פרטי</h2>
-            
-            <form id="bookingForm">
-                <div class="form-row">
-                    <label>שם מלא *</label>
-                    <input type="text" id="name" placeholder="השם שלך" required>
-                </div>
-                <div class="form-row">
-                    <label>טלפון *</label>
-                    <input type="tel" id="phone" placeholder="050-000-0000" required>
-                </div>
-                <div class="form-row">
-                    <label>רמת ניסיון *</label>
-                    <select id="experience" required>
-                        <option value="" disabled selected>בחר רמת ניסיון</option>
-                        <option value="מתחיל">מתחיל (מאפס)</option>
-                        <option value="בסיסי">ניסיון בסיסי</option>
-                        <option value="מתקדם">מתקדם</option>
-                    </select>
-                </div>
-                <div class="form-row">
-                    <label>תאריך מבוקש *</label>
-                    <input type="date" id="date" required>
-                </div>
-                <button type="submit" class="submit-btn">
-                    <span>לתיאום בוואטסאפ🚁</span>
-                </button>
-            </form>
-        </div>
-    </main>
+        <form id="bookingForm">
+            <div class="form-group">
+                <label>שם מלא *</label>
+                <input type="text" id="name" placeholder="השם שלך" required>
+            </div>
+
+            <div class="form-group">
+                <label>טלפון *</label>
+                <input type="tel" id="phone" placeholder="050-000-0000" required>
+            </div>
+
+            <div class="form-group">
+                <label>רמת ניסיון *</label>
+                <select id="experience" required>
+                    <option value="" disabled selected>בחר רמת ניסיון</option>
+                    <option value="ללא ניסיון">ללא ניסיון (מתחיל מאפס)</option>
+                    <option value="ניסיון בסיסי">ניסיון בסיסי</option>
+                    <option value="מתקדם">מתקדם / מטיס קיים</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>תאריך מבוקש *</label>
+                <input type="date" id="date" required>
+            </div>
+
+            <button type="submit" class="whatsapp-btn">
+                שליחת בקשה בוואצאפ 📱
+            </button>
+        </form>
+    </div>
 
     <script>
         document.getElementById('bookingForm').onsubmit = function(e) {
-            e.preventDefault(); // מונע את שליחת הטופס כברירת מחדל
+            e.preventDefault();
 
-            // קליטת הנתונים
             const name = document.getElementById('name').value;
             const phone = document.getElementById('phone').value;
             const exp = document.getElementById('experience').value;
             const dateInput = document.getElementById('date').value;
 
-            // המרת תאריך לפורמט ישראלי (DD/MM/YYYY)
+            // המרת תאריך לפורמט ישראלי
             let formattedDate = dateInput;
             if (dateInput) {
-                const [year, month, day] = dateInput.split('-');
-                formattedDate = `${day}/${month}/${year}`;
+                const parts = dateInput.split('-');
+                formattedDate = `${parts[2]}/${parts[1]}/${parts[0]}`;
             }
-            
-            // בניית הודעת וואטסאפ מפורטת
-            const text = `שלום Flying Mink! 👋 אשמח לתאם שיעור פרטי 1-על-1🚁\n\n` +
-                         `*פרטי ההזמנה:* \n` +
-                         `👤 *שם:* ${name}\n` +
-                         `📞 *טלפון:* ${phone}\n` +
-                         `🎓 *ניסיון:* ${exp}\n` +
-                         `📅 *תאריך מבוקש:* ${formattedDate}`;
 
-            // מספר הטלפון שלך
+            const message = `היי Flying Mink! 👋 אשמח לתאם שיעור אחד על אחד🚁\n\n` +
+                            `*שם:* ${name}\n` +
+                            `*טלפון:* ${phone}\n` +
+                            `*ניסיון:* ${exp}\n` +
+                            `*תאריך מבוקש:* ${formattedDate}`;
+
             const phoneNumber = "972549902676";
-
-            // יצירת קישור ופתיחתו בחלונית חדשה
-            const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(text)}`;
+            const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+            
             window.open(whatsappUrl, '_blank');
         };
     </script>
+
 </body>
 </html>
