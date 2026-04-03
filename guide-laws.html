@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Flying Mink — חוקים ואזורי טיסה</title>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0a0b16;--bg2:#111827;--bg3:#1a2332;--purple:#6d28d9;--purple-l:#a78bfa;--border:rgba(139,92,246,0.2);--border-h:rgba(167,139,250,0.5);--t1:#f1f5f9;--t2:#94a3b8;--t3:#64748b;--green:#34d399;--gold:#f59e0b;--red:#ef4444;}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'Heebo',sans-serif;background:var(--bg);color:var(--t1);min-height:100vh;line-height:1.8;}
+
+.top-bar{position:fixed;top:0;right:0;left:0;z-index:90;display:flex;justify-content:space-between;align-items:center;padding:10px 16px;background:rgba(10,11,22,0.88);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);}
+.back-btn{display:flex;align-items:center;gap:6px;padding:8px 16px;border-radius:10px;background:rgba(255,255,255,0.04);border:1px solid var(--border);color:var(--t2);font-size:13px;font-weight:500;text-decoration:none;font-family:inherit;transition:all 0.3s;}
+.back-btn:hover{border-color:var(--border-h);color:var(--t1);}
+.top-right{display:flex;gap:8px;}
+.icon-btn{width:38px;height:38px;border-radius:50%;background:rgba(109,40,217,0.25);border:1.5px solid rgba(167,139,250,0.4);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all 0.3s;text-decoration:none;}
+.icon-btn:hover{background:rgba(109,40,217,0.5);transform:scale(1.08);}
+.icon-btn svg{width:18px;height:18px;}
+
+.article{max-width:700px;margin:0 auto;padding:72px 20px 60px;}
+
+.article-header{text-align:center;margin-bottom:2.5rem;padding-bottom:1.5rem;border-bottom:1px solid var(--border);}
+.article-badge{display:inline-block;background:rgba(52,211,153,0.15);border:1px solid rgba(52,211,153,0.3);color:var(--green);font-size:11px;font-weight:600;padding:3px 12px;border-radius:6px;margin-bottom:12px;}
+.article-header h1{font-size:clamp(1.5rem,4vw,2.2rem);font-weight:800;margin-bottom:8px;line-height:1.3;}
+.article-header h1 span{color:var(--purple-l);}
+.article-header p{color:var(--t3);font-size:14px;}
+
+.section{margin-bottom:2.5rem;}
+.section-icon{font-size:1.8rem;margin-bottom:8px;}
+.section h2{font-size:1.15rem;font-weight:700;margin-bottom:14px;display:flex;align-items:center;gap:10px;}
+.section h2 .bar{width:4px;height:22px;border-radius:2px;flex-shrink:0;}
+.section p{font-size:15px;color:var(--t2);margin-bottom:12px;}
+.section strong{color:var(--t1);}
+
+.rule-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin:14px 0;}
+@media(max-width:550px){.rule-grid{grid-template-columns:1fr;}}
+.rule-card{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:16px;transition:all 0.25s;}
+.rule-card:hover{border-color:var(--border-h);transform:translateY(-2px);}
+.rule-card h4{font-size:14px;font-weight:700;margin-bottom:4px;display:flex;align-items:center;gap:6px;}
+.rule-card p{font-size:13px;color:var(--t2);margin:0;}
+
+.highlight{background:rgba(109,40,217,0.1);border:1px solid var(--border);border-radius:12px;padding:14px 18px;margin:14px 0;font-size:14px;}
+.highlight.warn{background:rgba(245,158,11,0.1);border-color:rgba(245,158,11,0.3);}
+.highlight.warn strong{color:var(--gold);}
+.highlight.danger{background:rgba(239,68,68,0.1);border-color:rgba(239,68,68,0.3);}
+.highlight.danger strong{color:var(--red);}
+
+.map-info{background:var(--bg2);border:1px solid var(--border);border-radius:14px;padding:18px;margin:14px 0;}
+.map-info h4{font-size:14px;font-weight:700;margin-bottom:10px;color:var(--purple-l);}
+.map-item{display:flex;align-items:flex-start;gap:10px;margin-bottom:8px;font-size:13px;color:var(--t2);}
+.map-dot{width:10px;height:10px;border-radius:3px;flex-shrink:0;margin-top:5px;}
+
+.banned-list{display:flex;flex-direction:column;gap:8px;margin:12px 0;}
+.banned-item{display:flex;align-items:center;gap:10px;padding:10px 14px;background:rgba(239,68,68,0.06);border:1px solid rgba(239,68,68,0.15);border-radius:10px;font-size:14px;color:var(--t2);}
+.banned-x{color:var(--red);font-weight:700;font-size:16px;flex-shrink:0;}
+
+.phone-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin:12px 0;}
+@media(max-width:500px){.phone-grid{grid-template-columns:1fr;}}
+.phone-card{background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:12px;text-align:center;}
+.phone-card .phone-num{font-size:18px;font-weight:800;color:var(--t1);direction:ltr;}
+.phone-card .phone-label{font-size:12px;color:var(--t3);}
+
+.tip-box{background:linear-gradient(135deg,rgba(109,40,217,0.15),rgba(79,70,229,0.1));border:1px solid var(--border);border-radius:16px;padding:20px;text-align:center;margin-top:2rem;}
+.tip-box .tip-emoji{font-size:2rem;margin-bottom:8px;}
+.tip-box .tip-label{font-size:12px;color:var(--purple-l);font-weight:600;letter-spacing:1px;margin-bottom:6px;}
+.tip-box .tip-text{font-size:15px;color:var(--t1);line-height:1.7;}
+
+.chapter-link{display:inline-flex;align-items:center;gap:6px;color:var(--purple-l);font-size:13px;font-weight:600;text-decoration:none;margin-top:6px;transition:all 0.2s;}
+.chapter-link:hover{color:#c4b5fd;text-decoration:underline;}
+
+.nav-bottom{display:flex;justify-content:space-between;align-items:center;padding-top:2rem;border-top:1px solid var(--border);margin-top:2rem;}
+.nav-link{font-size:13px;color:var(--t3);text-decoration:none;transition:color 0.2s;}
+.nav-link:hover{color:var(--purple-l);}
+.nav-link.next{color:var(--purple-l);font-weight:600;}
+
+.footer{text-align:center;padding:24px;font-size:12px;color:var(--t3);border-top:1px solid var(--border);}
+</style>
+</head>
+<body>
+
+<div class="top-bar">
+  <a href="guides.html" class="back-btn">→ חזרה למדריכים</a>
+  <div class="top-right">
+    <a href="https://instagram.com/flyingmink" target="_blank" class="icon-btn"><svg viewBox="0 0 24 24" fill="none" stroke="rgba(167,139,250,0.9)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+    <div class="icon-btn" onclick="window.location.href='profile.html'"><svg viewBox="0 0 24 24" fill="none" stroke="rgba(167,139,250,0.9)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+  </div>
+</div>
+
+<article class="article">
+  <div class="article-header">
+    <div class="article-badge">⚖️ פרק 3 · חינמי</div>
+    <h1>חוקים <span>ואזורי טיסה</span></h1>
+    <p>כל מה שחייבים לדעת לפני שמרימים רחפן לאוויר בישראל</p>
+  </div>
+
+  <!-- RULE 1 -->
+  <div class="section">
+    <h2><span class="bar" style="background:var(--red)"></span>🔑 הכלל הראשון: לא מטיסים בלי רשיון</h2>
+    <p>כל מי שמטיס רחפן בישראל — <strong>לא משנה המשקל</strong> — חייב רשיון מטיסן מרשות התעופה האזרחית (רת״א). בלי רשיון = בלתי חוקי, קנסות, ואפילו תפיסת הרחפן.</p>
+    <a href="guide-license.html" class="chapter-link">🪪 למדריך מלא — איך להוציא רשיון מטיסן →</a>
+  </div>
+
+  <!-- BASIC RULES -->
+  <div class="section">
+    <h2><span class="bar" style="background:var(--purple-l)"></span>📋 הכללים הבסיסיים</h2>
+    <div class="rule-grid">
+      <div class="rule-card">
+        <h4>📏 גובה מרבי</h4>
+        <p>עד 50 מטר (164 רגל) מעל פני הקרקע — אלא אם יש אישור אחר.</p>
+      </div>
+      <div class="rule-card">
+        <h4>👥 מרחק מאנשים</h4>
+        <p>לא לטוס מעל אנשים שלא נתנו הסכמה. לשמור מרחק בטוח.</p>
+      </div>
+      <div class="rule-card">
+        <h4>👁️ קו ראייה</h4>
+        <p>חובה לשמור קו ראייה ישיר עם הרחפן בכל רגע. לא רואים = נוחתים.</p>
+      </div>
+      <div class="rule-card">
+        <h4>☀️ טיסה ביום בלבד</h4>
+        <p>טיסה בלילה אסורה ללא אישור מיוחד.</p>
+      </div>
+      <div class="rule-card">
+        <h4>✈️ מרחק מנמלי תעופה</h4>
+        <p>אסור לטוס בקרבת שדות תעופה, בסיסים צבאיים ואזורים מוגבלים.</p>
+      </div>
+      <div class="rule-card">
+        <h4>⚖️ מעל 250 גרם</h4>
+        <p>חייב רישום ברת״א + רשיון מתאים. Air 3S, Mavic 4 Pro — חייבים רישום.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- MAP -->
+  <div class="section">
+    <h2><span class="bar" style="background:var(--green)"></span>🗺️ איפה אפשר לטוס? מפת התעופה הספורטיבית</h2>
+    <p><strong>הכלי היחיד שמחייב בישראל</strong> הוא <strong>מפת התעופה הספורטיבית</strong> שמפורסמת על ידי רת״א. המפה זמינה דרך <strong>אפליקציית פמ״ת</strong> (פרסומי מידע תעופתי).</p>
+
+    <div class="map-info">
+      <h4>מה יש במפה:</h4>
+      <div class="map-item"><div class="map-dot" style="background:var(--red);"></div><strong>אזורים אסורים (CTR)</strong> — אזורי בקרה סביב שדות תעופה ובסיסים. טיסה שם = עבירה פלילית.</div>
+      <div class="map-item"><div class="map-dot" style="background:var(--gold);"></div><strong>אזורים מוגבלים (R)</strong> — אזורי אימונים צבאיים, שטחי אש. אסור ללא אישור.</div>
+      <div class="map-item"><div class="map-dot" style="background:var(--green);"></div><strong>בועות</strong> — אזורים שבהם מותר לטוס בגובה מסוים בלבד (כתוב על המפה ברגל).</div>
+      <div class="map-item"><div class="map-dot" style="background:var(--purple-l);"></div><strong>נתיבי טיסה</strong> — נתיבים מוגדרים לתעופה ספורטיבית.</div>
+      <div class="map-item"><div class="map-dot" style="background:#60a5fa;"></div><strong>גובה מרבי לכל אזור</strong> — מסומן על המפה ברגל.</div>
+    </div>
+
+    <div class="highlight warn">
+      <strong>⚠️ שימו לב:</strong> אפליקציית DJI Fly <strong>לא</strong> מספיקה! היא מראה Fly Zones כלליים אבל <strong>לא</strong> את המפה הרשמית של ישראל. רק מפת התעופה הספורטיבית באפליקציית פמ״ת היא המקור המחייב.
+    </div>
+
+    <p style="font-size:13px;color:var(--t3);margin-top:12px;">📎 המפות (עדכון אוקטובר 2025, רת״א): גליון צפוני + גליון דרומי — זמינים להורדה באתר רת״א ובאפליקציית פמ״ת.</p>
+  </div>
+
+  <!-- BANNED -->
+  <div class="section">
+    <h2><span class="bar" style="background:var(--red)"></span>🚫 איפה אסור לטוס — לעולם!</h2>
+    <div class="banned-list">
+      <div class="banned-item"><span class="banned-x">✕</span>בטווח של שדות תעופה (בן גוריון, רמון, חיפה ועוד)</div>
+      <div class="banned-item"><span class="banned-x">✕</span>מעל בסיסים צבאיים</div>
+      <div class="banned-item"><span class="banned-x">✕</span>מעל כלאים ומתקנים ביטחוניים</div>
+      <div class="banned-item"><span class="banned-x">✕</span>מעל קווי הגבול</div>
+      <div class="banned-item"><span class="banned-x">✕</span>מעל אירועים המוניים (ללא אישור)</div>
+      <div class="banned-item"><span class="banned-x">✕</span>באזורי שמורות טבע מסוימות (בדקו במפה)</div>
+    </div>
+  </div>
+
+  <!-- PHONES -->
+  <div class="section">
+    <h2><span class="bar" style="background:var(--gold)"></span>📞 טלפוני חירום</h2>
+    <div class="phone-grid">
+      <div class="phone-card">
+        <div class="phone-num">03-9750555</div>
+        <div class="phone-label">רת״א — מוקד אירועי תעופה</div>
+      </div>
+      <div class="phone-card">
+        <div class="phone-num">100</div>
+        <div class="phone-label">משטרה</div>
+      </div>
+      <div class="phone-card">
+        <div class="phone-num">101</div>
+        <div class="phone-label">מוקד חילוץ (מד״א)</div>
+      </div>
+      <div class="phone-card">
+        <div class="phone-num">102</div>
+        <div class="phone-label">כיבוי אש</div>
+      </div>
+    </div>
+    <p style="font-size:13px;color:var(--t3);">אם יש אירוע תעופתי (רחפן נפל, איבדתם שליטה באזור רגיש, חילוץ) — <strong>לדווח מיד.</strong></p>
+  </div>
+
+  <!-- TIP -->
+  <div class="tip-box">
+    <div class="tip-emoji">💡</div>
+    <div class="tip-label">טיפ מ-FLYING MINK</div>
+    <div class="tip-text">לפני כל טיסה — פתחו את אפליקציית פמ״ת ובדקו.<br>זה לוקח 30 שניות ויכול לחסוך לכם קנס של אלפי שקלים.</div>
+  </div>
+
+  <!-- NAV -->
+  <div class="nav-bottom">
+    <a href="guide-after-buy.html" class="nav-link">→ הפרק הקודם: מה לעשות אחרי קנייה</a>
+    <a href="guide-how-works.html" class="nav-link next">⚙️ הפרק הבא: איך הרחפן עובד ←</a>
+  </div>
+</article>
+
+<footer class="footer">© 2025 Flying Mink Drone Solutions — מאור שטולץ</footer>
+</body>
+</html>
