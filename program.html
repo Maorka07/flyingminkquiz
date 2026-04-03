@@ -26,15 +26,14 @@
             box-sizing: border-box;
         }
 
-        /* כפתור חזרה - תיקון נגישות למחשב */
+        /* כפתור חזרה - נגישות מלאה */
         .back-nav {
             width: 100%;
             max-width: 500px;
             display: flex;
             justify-content: flex-end;
             margin-bottom: 20px;
-            position: relative;
-            z-index: 999; /* מוודא שהכפתור תמיד מעל הכל וניתן ללחיצה */
+            z-index: 1000;
         }
 
         .btn-back {
@@ -47,53 +46,56 @@
             border: 1px solid rgba(255, 255, 255, 0.2);
             transition: all 0.3s ease;
             cursor: pointer;
-            display: inline-block;
         }
 
         .btn-back:hover {
             background: rgba(255, 255, 255, 0.2);
-            transform: translateY(-2px);
         }
 
         .form-card {
             background-color: var(--card-bg);
             width: 100%;
-            max-width: 450px;
+            max-width: 500px; /* הרחבה קלה למראה טוב יותר במחשב */
             padding: 40px 30px;
             border-radius: 24px;
             box-shadow: 0 20px 40px rgba(0,0,0,0.4);
             text-align: center;
             box-sizing: border-box;
+            overflow: hidden; /* מונע בריחה של אלמנטים */
         }
 
-        /* כותרת מיתוג Flying Mink */
         .brand-name {
             font-family: 'Arial Black', sans-serif;
-            font-size: 1.4rem;
+            font-size: 1.2rem;
             letter-spacing: 1px;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
             display: block;
             color: #ffffff;
+            opacity: 0.9;
         }
 
-        /* כותרת בשורה אחת עם התאמה לנייד */
+        /* תיקון כותרת - שורה אחת ללא חריגה */
         h1 {
             color: var(--accent-color);
-            margin: 0 0 10px 0;
-            white-space: nowrap;
-            font-size: clamp(1.3rem, 5vw, 2rem);
+            margin: 0 0 12px 0;
+            white-space: nowrap; /* שומר על שורה אחת */
+            /* חישוב דינמי שמוודא שהטקסט לא יעקוף את רוחב הבועה */
+            font-size: clamp(1.1rem, 4.5vw, 1.85rem); 
             font-weight: 800;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
 
         p.subtitle {
             font-size: 1rem;
             opacity: 0.7;
             margin-bottom: 35px;
+            line-height: 1.4;
         }
 
         .form-group {
             text-align: right;
-            margin-bottom: 22px;
+            margin-bottom: 20px;
         }
 
         label {
@@ -115,21 +117,19 @@
             outline: none;
         }
 
-        /* תיקון קריטי לתיבת הבחירה (Select) במחשב */
+        /* תיקון צבעים בתיבת הבחירה - שחור על לבן במחשב */
         select {
             cursor: pointer;
-            appearance: none; /* מסיר עיצוב דפדפן מקורי */
             background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
             background-repeat: no-repeat;
             background-position: left 12px center;
-            background-size: 18px;
+            background-size: 16px;
+            appearance: none;
         }
 
-        /* מבטיח שהאופציות בתוך הרשימה יהיו קריאות (שחור על לבן במידת הצורך של הדפדפן) */
         select option {
             background-color: #ffffff;
             color: #000000;
-            padding: 10px;
         }
 
         .submit-btn {
@@ -143,11 +143,22 @@
             font-weight: bold;
             cursor: pointer;
             margin-top: 10px;
-            transition: opacity 0.2s;
+            transition: transform 0.2s, background 0.2s;
         }
 
         .submit-btn:hover {
-            opacity: 0.9;
+            background-color: #357abd;
+            transform: translateY(-1px);
+        }
+
+        /* התאמה למסכים קטנים מאוד */
+        @media (max-width: 380px) {
+            .form-card {
+                padding: 30px 20px;
+            }
+            h1 {
+                font-size: 1.1rem;
+            }
         }
     </style>
 </head>
@@ -163,20 +174,20 @@
         <h1>הזמנת שיעור אחד על אחד</h1>
         <p class="subtitle">הצעד הראשון שלך להפוך למטיס מקצועי</p>
 
-        <form>
+        <form action="#" method="POST">
             <div class="form-group">
                 <label>שם מלא *</label>
-                <input type="text" placeholder="השם שלך" required>
+                <input type="text" name="name" placeholder="השם שלך" required>
             </div>
 
             <div class="form-group">
                 <label>טלפון *</label>
-                <input type="tel" placeholder="050-000-0000" required>
+                <input type="tel" name="phone" placeholder="050-000-0000" required>
             </div>
 
             <div class="form-group">
                 <label>רמת ניסיון *</label>
-                <select required>
+                <select name="experience" required>
                     <option value="" disabled selected>בחר רמת ניסיון</option>
                     <option value="none">ללא ניסיון (מתחיל מאפס)</option>
                     <option value="basic">ניסיון בסיסי</option>
@@ -186,7 +197,7 @@
 
             <div class="form-group">
                 <label>תאריך מבוקש *</label>
-                <input type="date" required>
+                <input type="date" name="date" required>
             </div>
 
             <button type="submit" class="submit-btn">שליחת בקשה</button>
