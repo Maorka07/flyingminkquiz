@@ -309,6 +309,7 @@ a{color:inherit;text-decoration:none}
 <section class="hero">
   <video class="hero-video" id="heroVid" autoplay muted loop playsinline preload="auto" poster="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1920 1080'%3E%3Crect fill='%230b0a16' width='1920' height='1080'/%3E%3C/svg%3E">
     <source src="https://cdn.jsdelivr.net/gh/Maorka07/drone-video@main/Untitled%20design.mp4" type="video/mp4">
+    <source src="https://raw.githubusercontent.com/Maorka07/drone-video/main/Untitled%20design.mp4" type="video/mp4">
   </video>
   <div class="hero-overlay"></div>
   <div class="hero-content">
@@ -419,7 +420,27 @@ a{color:inherit;text-decoration:none}
   </div>
   <div class="gallery-viewport" style="max-width:1100px;margin:0 auto;padding:0 1.5rem">
     <div class="gallery-track" id="galleryTrack">
-      <!-- Gallery images are loaded from base64 already in original -->
+      <div class="gallery-item" onclick="openLightbox(this.querySelector('img').src)">
+        <img src="https://raw.githubusercontent.com/Maorka07/flyingmink-quiz/main/dji_fly_20251227_171520_0030_1766911205739_photo.jpeg" alt="צילום אוויר - נוף" loading="lazy">
+      </div>
+      <div class="gallery-item" onclick="openLightbox(this.querySelector('img').src)">
+        <img src="https://raw.githubusercontent.com/Maorka07/flyingmink-quiz/main/dji_fly_20251229_172346_0006_1767000785239_photo.jpeg" alt="צילום אוויר - נוף" loading="lazy">
+      </div>
+      <div class="gallery-item" onclick="openLightbox(this.querySelector('img').src)">
+        <img src="https://raw.githubusercontent.com/Maorka07/flyingmink-quiz/main/dji_fly_20251230_131308_0017_1767082033980_photo.jpeg" alt="צילום אוויר - נוף" loading="lazy">
+      </div>
+      <div class="gallery-item" onclick="openLightbox(this.querySelector('img').src)">
+        <img src="https://raw.githubusercontent.com/Maorka07/flyingmink-quiz/main/dji_fly_20260103_120218_0069_1767435764991_photo.jpeg" alt="צילום אוויר - נוף" loading="lazy">
+      </div>
+      <div class="gallery-item" onclick="openLightbox(this.querySelector('img').src)">
+        <img src="https://raw.githubusercontent.com/Maorka07/flyingmink-quiz/main/dji_fly_20260103_123714_0132_1767435381858_photo.jpeg" alt="צילום אוויר - נוף" loading="lazy">
+      </div>
+      <div class="gallery-item" onclick="openLightbox(this.querySelector('img').src)">
+        <img src="https://raw.githubusercontent.com/Maorka07/flyingmink-quiz/main/dji_fly_20260103_125202_0159_1767435245354_photo.jpeg" alt="צילום אוויר - נוף" loading="lazy">
+      </div>
+      <div class="gallery-item" onclick="openLightbox(this.querySelector('img').src)">
+        <img src="https://raw.githubusercontent.com/Maorka07/flyingmink-quiz/main/dji_fly_20260104_063138_0056_1768249162462_photo.jpeg" alt="צילום אוויר - נוף" loading="lazy">
+      </div>
     </div>
   </div>
   <div class="gallery-nav">
@@ -581,13 +602,17 @@ if(v){
   v.muted=true;
   v.setAttribute("playsinline","");
   v.setAttribute("webkit-playsinline","");
+  v.setAttribute("muted","");
   const tryPlay=()=>{v.play().catch(()=>{})};
+  v.addEventListener("canplay",tryPlay,{once:true});
+  v.addEventListener("error",function(){v.load()},true);
   tryPlay();
   document.addEventListener("touchstart",tryPlay,{once:true});
   document.addEventListener("click",tryPlay,{once:true});
   document.addEventListener("scroll",tryPlay,{once:true});
   setTimeout(tryPlay,500);
   setTimeout(tryPlay,1500);
+  setTimeout(tryPlay,3000);
 }
 
 /* Side menu */
@@ -701,6 +726,20 @@ function updateDots(){
   dots.querySelectorAll("span").forEach((d,i)=>{d.classList.toggle("active",i===galleryPos)});
 }
 
+/* Init gallery dots */
+(function initGallery(){
+  const track=document.getElementById("galleryTrack");
+  const dots=document.getElementById("galleryDots");
+  if(!track||!dots)return;
+  const items=track.children;
+  for(let i=0;i<items.length;i++){
+    const s=document.createElement("span");
+    if(i===0)s.classList.add("active");
+    s.onclick=function(){galleryPos=i;track.style.transform="translateX("+(-galleryPos*336)+"px)";updateDots();};
+    dots.appendChild(s);
+  }
+})();
+
 /* Lightbox */
 function openLightbox(src){
   document.getElementById("lightboxImg").src=src;
@@ -735,10 +774,4 @@ function botReply(q){
   if(l.includes("רחפן")||l.includes("drone"))r="מומלץ לעשות את השאלון שלנו! הוא יעזור לך לבחור רחפן מתאים. לחץ על 'שאלון' בתפריט.";
   else if(l.includes("מחיר")||l.includes("עולה"))r='שיעור פרטי: החל מ-300 ש"ח. צילום אווירי: לפי פרויקט. שלח הודעה בוואטסאפ לפרטים מדויקים!';
   else if(l.includes("קשר")||l.includes("טלפון"))r="הדרך הכי מהירה: וואטסאפ 054-990-2676. או גלול למטה לטופס יצירת קשר.";
-  else if(l.includes("קורס"))r="הקורס כולל 45 פרקים — 14 חינמיים! לחץ על 'קורס חינמי' בתפריט.";
-  else r="תודה על הפנייה! לתשובה מדויקת שלח הודעה בוואטסאפ: 054-990-2676";
-  addBotMsg(r,"bot");
-}
-</script>
-</body>
-</html>
+  else if(l.includes("קורס"))r="הקורס כולל 45 פר�
