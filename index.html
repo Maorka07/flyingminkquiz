@@ -101,7 +101,7 @@ a{color:inherit;text-decoration:none}
 /* Gallery */
 .gallery-section{overflow:hidden;padding-bottom:3rem}
 .gallery-viewport{overflow:hidden;position:relative}
-.gallery-track{display:flex;gap:1rem;transition:transform 0.5s ease;will-change:transform}
+.gallery-track{display:flex;gap:1rem;direction:ltr;transition:transform 0.5s ease;will-change:transform}
 .gallery-item{flex-shrink:0;width:320px;height:213px;border-radius:12px;overflow:hidden;border:1px solid var(--card-border);background:var(--bg2);cursor:pointer}
 .gallery-item img{width:100%;height:100%;object-fit:cover;transition:transform 0.4s}
 .gallery-item:hover img{transform:scale(1.05)}
@@ -211,6 +211,8 @@ a{color:inherit;text-decoration:none}
       <div class="lang-dropdown" id="langDrop">
         <button class="lang-option active" onclick="setLang('he')">🇮🇱 עברית</button>
         <button class="lang-option" onclick="setLang('en')">🇺🇸 English</button>
+        <button class="lang-option" onclick="setLang('de')">🇩🇪 Deutsch</button>
+        <button class="lang-option" onclick="setLang('ru')">🇷🇺 Русский</button>
       </div>
     </div>
     <div class="fc-btn" onclick="openProfile()">
@@ -222,12 +224,12 @@ a{color:inherit;text-decoration:none}
 <div class="overlay" id="overlay" onclick="toggleSideMenu()"></div>
 <div class="side-menu" id="sideMenu">
   <button class="side-close" onclick="toggleSideMenu()">X</button>
-  <a href="#quiz" onclick="toggleSideMenu()" data-he="שאלון רחפנים" data-en="Drone Quiz">שאלון רחפנים</a>
-  <a href="#services" onclick="toggleSideMenu()" data-he="שירותים" data-en="Services">שירותים</a>
-  <a href="#course" onclick="toggleSideMenu()" data-he="קורס חינמי" data-en="Free Course">קורס חינמי</a>
-  <a href="#schools" onclick="toggleSideMenu()" data-he="בתי ספר" data-en="Schools">בתי ספר</a>
-  <a href="#gallery" onclick="toggleSideMenu()" data-he="גלריה" data-en="Gallery">גלריה</a>
-  <a href="#contact" onclick="toggleSideMenu()" data-he="צור קשר" data-en="Contact">צור קשר</a>
+  <a href="#quiz" onclick="toggleSideMenu()" data-he="שאלון רחפנים" data-en="Drone Quiz" data-de="Drohnen-Quiz" data-ru="Тест по дронам">שאלון רחפנים</a>
+  <a href="#services" onclick="toggleSideMenu()" data-he="שירותים" data-en="Services" data-de="Dienste" data-ru="Услуги">שירותים</a>
+  <a href="#course" onclick="toggleSideMenu()" data-he="קורס חינמי" data-en="Free Course" data-de="Gratiskurs" data-ru="Бесплатный курс">קורס חינמי</a>
+  <a href="#schools" onclick="toggleSideMenu()" data-he="בתי ספר" data-en="Schools" data-de="Schulen" data-ru="Школы">בתי ספר</a>
+  <a href="#gallery" onclick="toggleSideMenu()" data-he="גלריה" data-en="Gallery" data-de="Galerie" data-ru="Галерея">גלריה</a>
+  <a href="#contact" onclick="toggleSideMenu()" data-he="צור קשר" data-en="Contact" data-de="Kontakt" data-ru="Контакт">צור קשר</a>
 </div>
 
 <!-- ══════ HERO ══════ -->
@@ -241,7 +243,7 @@ a{color:inherit;text-decoration:none}
     <p class="hero-tagline">Drone Solutions</p>
   </div>
   <a href="#course" class="hero-cta">
-    <span class="hero-cta-text" data-he="בשביל לקבל ביטחון בהטסה שלך לחץ כאן" data-en="Click here to gain drone flight confidence">בשביל לקבל ביטחון בהטסה שלך לחץ כאן</span>
+    <span class="hero-cta-text" data-he="בשביל לקבל ביטחון בהטסה שלך לחץ כאן" data-en="Click here to gain drone flight confidence" data-de="Klicken Sie hier um Flugsicherheit zu gewinnen" data-ru="Нажмите чтобы обрести уверенность в полёте">בשביל לקבל ביטחון בהטסה שלך לחץ כאן</span>
     <span class="hero-cta-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></span>
   </a>
 </section>
@@ -251,22 +253,22 @@ a{color:inherit;text-decoration:none}
 <section class="section section-alt" id="quiz">
   <div class="section-inner fade-in">
     <div class="quiz-banner">
-      <h2 data-he="לשאלון של בחירת הרחפן המתאים עבורכם — לחצו כאן" data-en="Find your perfect drone — take the quiz">לשאלון של בחירת הרחפן המתאים עבורכם — לחצו כאן</h2>
-      <p data-he="ענו על כמה שאלות קצרות וקבלו המלצה אישית מתוך 12+ דגמים." data-en="Answer a few quick questions and get a personalized recommendation from 12+ models.">ענו על כמה שאלות קצרות וקבלו המלצה אישית מתוך 12+ דגמים.</p>
-      <a href="quiz.html" class="btn-primary" data-he="התחל שאלון" data-en="Start Quiz">התחל שאלון</a>
+      <h2 data-he="לשאלון של בחירת הרחפן המתאים עבורכם — לחצו כאן" data-en="Find your perfect drone — take the quiz" data-de="Finden Sie Ihre perfekte Drohne — starten Sie das Quiz" data-ru="Найдите идеальный дрон — пройдите тест">לשאלון של בחירת הרחפן המתאים עבורכם — לחצו כאן</h2>
+      <p data-he="ענו על כמה שאלות קצרות וקבלו המלצה אישית מתוך 12+ דגמים." data-en="Answer a few quick questions and get a personalized recommendation from 12+ models." data-de="Beantworten Sie einige kurze Fragen und erhalten Sie eine Empfehlung aus 12+ Modellen." data-ru="Ответьте на несколько вопросов и получите рекомендацию из 12+ моделей.">ענו על כמה שאלות קצרות וקבלו המלצה אישית מתוך 12+ דגמים.</p>
+      <a href="quiz.html" class="btn-primary" data-he="התחל שאלון" data-en="Start Quiz" data-de="Quiz starten" data-ru="Начать тест">התחל שאלון</a>
     </div>
   </div>
 </section>
 
 <section class="section" id="services">
   <div class="section-inner fade-in">
-    <div class="section-label" data-he="שירותים" data-en="SERVICES">שירותים</div>
-    <div class="section-title" data-he="מה אנחנו מציעים" data-en="What We Offer">מה אנחנו מציעים</div>
+    <div class="section-label" data-he="שירותים" data-en="SERVICES" data-de="DIENSTE" data-ru="УСЛУГИ">שירותים</div>
+    <div class="section-title" data-he="מה אנחנו מציעים" data-en="What We Offer" data-de="Was wir anbieten" data-ru="Что мы предлагаем">מה אנחנו מציעים</div>
     <div class="services-grid">
-      <a href="photography.html" class="service-card"><h3 data-he="הזמנת שירותי צילום" data-en="Aerial Photography">הזמנת שירותי צילום</h3><p data-he="צילום אוויר מקצועי — אירועים, נדל&quot;ן, תוכן שיווקי. ציוד קולנועי, טייס מוסמך." data-en="Professional aerial photos for events, real estate, landscapes and more.">צילום אוויר מקצועי — אירועים, נדל&quot;ן, תוכן שיווקי. ציוד קולנועי, טייס מוסמך.</p><span class="service-link" data-he="להזמנה ←" data-en="Book now ←">להזמנה ←</span></a>
-      <a href="photography.html#lessons" class="service-card"><h3 data-he="הזמנת שיעורים פרטיים" data-en="Private Drone Lessons">הזמנת שיעורים פרטיים</h3><p data-he="למד לטוס ברחפן מאפס — שיעורים 1 על 1." data-en="Learn to fly a drone from scratch — 1-on-1 lessons.">למד לטוס ברחפן מאפס — שיעורים 1 על 1.</p><span class="service-link" data-he="לתוכנית הלימודים ←" data-en="View program ←">לתוכנית הלימודים ←</span></a>
-      <a href="guides.html" class="service-card"><h3 data-he="לקורס הרחפן הראשון שלי" data-en="My First Drone Course">לקורס הרחפן הראשון שלי</h3><p data-he="קורס מקוון — 14 פרקים חינמיים ו-31 פרקים מתקדמים." data-en="Online course — 14 free chapters and 31 advanced chapters.">קורס מקוון — 14 פרקים חינמיים ו-31 פרקים מתקדמים.</p><span class="service-link" data-he="למדריכים ←" data-en="View guides ←">למדריכים ←</span></a>
-      <a href="#contact" class="service-card"><h3 data-he="ליווי עד להוצאת רישיון" data-en="Drone License Assistance">ליווי עד להוצאת רישיון</h3><p data-he="הסבר מלא וצמוד — רישיון פנאי/מטיסן, מסחרי עד 25 ק&quot;ג, ומסחרי מעל." data-en="Full step-by-step guidance — hobby, commercial up to 25kg, and beyond.">הסבר מלא וצמוד — רישיון פנאי/מטיסן, מסחרי עד 25 ק&quot;ג, ומסחרי מעל.</p><span class="service-link" data-he="צור קשר לפרטים ←" data-en="Contact for details ←">צור קשר לפרטים ←</span></a>
+      <a href="photography.html" class="service-card"><h3 data-he="הזמנת שירותי צילום" data-en="Aerial Photography" data-de="Luftaufnahmen" data-ru="Аэросъёмка">הזמנת שירותי צילום</h3><p data-he="צילום אוויר מקצועי — אירועים, נדל&quot;ן, תוכן שיווקי. ציוד קולנועי, טייס מוסמך." data-en="Professional aerial photos for events, real estate, landscapes and more." data-de="Professionelle Luftaufnahmen für Events, Immobilien, Landschaften und mehr." data-ru="Профессиональная аэросъёмка для мероприятий, недвижимости, пейзажей.">צילום אוויר מקצועי — אירועים, נדל&quot;ן, תוכן שיווקי. ציוד קולנועי, טייס מוסמך.</p><span class="service-link" data-he="להזמנה ←" data-en="Book now ←" data-de="Jetzt buchen ←" data-ru="Заказать ←">להזמנה ←</span></a>
+      <a href="photography.html#lessons" class="service-card"><h3 data-he="הזמנת שיעורים פרטיים" data-en="Private Drone Lessons" data-de="Private Drohnenstunden" data-ru="Частные уроки дронов">הזמנת שיעורים פרטיים</h3><p data-he="למד לטוס ברחפן מאפס — שיעורים 1 על 1." data-en="Learn to fly a drone from scratch — 1-on-1 lessons." data-de="Drohnenfliegen von Grund auf lernen — Einzelunterricht." data-ru="Научитесь управлять дроном с нуля — индивидуальные уроки.">למד לטוס ברחפן מאפס — שיעורים 1 על 1.</p><span class="service-link" data-he="לתוכנית הלימודים ←" data-en="View program ←" data-de="Programm ansehen ←" data-ru="Программа ←">לתוכנית הלימודים ←</span></a>
+      <a href="guides.html" class="service-card"><h3 data-he="לקורס הרחפן הראשון שלי" data-en="My First Drone Course" data-de="Mein erster Drohnenkurs" data-ru="Мой первый курс дронов">לקורס הרחפן הראשון שלי</h3><p data-he="קורס מקוון — 14 פרקים חינמיים ו-31 פרקים מתקדמים." data-en="Online course — 14 free chapters and 31 advanced chapters." data-de="Online-Kurs — 14 kostenlose und 31 Fortgeschrittenen-Kapitel." data-ru="Онлайн-курс — 14 бесплатных и 31 продвинутый урок.">קורס מקוון — 14 פרקים חינמיים ו-31 פרקים מתקדמים.</p><span class="service-link" data-he="למדריכים ←" data-en="View guides ←" data-de="Anleitungen ←" data-ru="Руководства ←">למדריכים ←</span></a>
+      <a href="#contact" class="service-card"><h3 data-he="ליווי עד להוצאת רישיון" data-en="Drone License Assistance" data-de="Drohnenführerschein-Hilfe" data-ru="Помощь с лицензией на дрон">ליווי עד להוצאת רישיון</h3><p data-he="הסבר מלא וצמוד — רישיון פנאי/מטיסן, מסחרי עד 25 ק&quot;ג, ומסחרי מעל." data-en="Full step-by-step guidance — hobby, commercial up to 25kg, and beyond." data-de="Komplette Begleitung — Hobby-, Gewerbelizenz bis 25kg und darüber." data-ru="Полное сопровождение — любительская, коммерческая лицензия до 25кг и выше.">הסבר מלא וצמוד — רישיון פנאי/מטיסן, מסחרי עד 25 ק&quot;ג, ומסחרי מעל.</p><span class="service-link" data-he="צור קשר לפרטים ←" data-en="Contact for details ←" data-de="Kontakt für Details ←" data-ru="Связаться для деталей ←">צור קשר לפרטים ←</span></a>
     </div>
   </div>
 </section>
@@ -275,14 +277,14 @@ a{color:inherit;text-decoration:none}
   <div class="section-inner fade-in">
     <div class="course-box">
       <div class="course-info">
-        <div class="section-label" data-he="הקורס שלי" data-en="MY COURSE">הקורס שלי</div>
-        <h2 data-he="לכניסה לקורס החינמי וקבלת ביטחון ברחפן" data-en="Enter the free course and gain drone confidence">לכניסה לקורס החינמי וקבלת ביטחון ברחפן</h2>
-        <p data-he="45 פרקים מקצועיים — 14 חינמיים לגמרי. מהרגע שפתחתם את הקופסה ועד טיסה בטוחה." data-en="45 professional chapters — 14 completely free. From unboxing to safe flying.">45 פרקים מקצועיים — 14 חינמיים לגמרי. מהרגע שפתחתם את הקופסה ועד טיסה בטוחה.</p>
-        <a href="guides.html" class="btn-primary" data-he="לחץ כאן" data-en="Click Here">לחץ כאן</a>
+        <div class="section-label" data-he="הקורס שלי" data-en="MY COURSE" data-de="MEIN KURS" data-ru="МОЙ КУРС">הקורס שלי</div>
+        <h2 data-he="לכניסה לקורס החינמי וקבלת ביטחון ברחפן" data-en="Enter the free course and gain drone confidence" data-de="Starten Sie den Gratiskurs und fliegen Sie sicher" data-ru="Начните бесплатный курс и летайте уверенно">לכניסה לקורס החינמי וקבלת ביטחון ברחפן</h2>
+        <p data-he="45 פרקים מקצועיים — 14 חינמיים לגמרי. מהרגע שפתחתם את הקופסה ועד טיסה בטוחה." data-en="45 professional chapters — 14 completely free. From unboxing to safe flying." data-de="45 professionelle Kapitel — 14 völlig kostenlos. Vom Auspacken bis zum sicheren Flug." data-ru="45 профессиональных уроков — 14 полностью бесплатных. От распаковки до безопасного полёта.">45 פרקים מקצועיים — 14 חינמיים לגמרי. מהרגע שפתחתם את הקופסה ועד טיסה בטוחה.</p>
+        <a href="guides.html" class="btn-primary" data-he="לחץ כאן" data-en="Click Here" data-de="Hier klicken" data-ru="Нажмите здесь">לחץ כאן</a>
       </div>
       <div class="course-card">
-        <h3 data-he="הרחפן הראשון שלי" data-en="My First Drone">הרחפן הראשון שלי</h3>
-        <p data-he="קורס מקוון מקיף — חוקים, בטיחות, צילום, עריכה ועוד." data-en="Comprehensive online course — laws, safety, photography, editing and more.">קורס מקוון מקיף — חוקים, בטיחות, צילום, עריכה ועוד.</p>
+        <h3 data-he="הרחפן הראשון שלי" data-en="My First Drone" data-de="Meine erste Drohne" data-ru="Мой первый дрон">הרחפן הראשון שלי</h3>
+        <p data-he="קורס מקוון מקיף — חוקים, בטיחות, צילום, עריכה ועוד." data-en="Comprehensive online course — laws, safety, photography, editing and more." data-de="Umfassender Online-Kurs — Gesetze, Sicherheit, Fotografie, Bearbeitung." data-ru="Комплексный онлайн-курс — законы, безопасность, фото, монтаж.">קורס מקוון מקיף — חוקים, בטיחות, צילום, עריכה ועוד.</p>
       </div>
     </div>
   </div>
@@ -290,22 +292,22 @@ a{color:inherit;text-decoration:none}
 
 <section class="section" id="schools">
   <div class="section-inner fade-in">
-    <div class="section-label" data-he="ימי שיא והפעלות רחפנים" data-en="EVENTS & DRONE ACTIVATIONS">ימי שיא והפעלות רחפנים</div>
-    <div class="section-title" data-he="סדנאות וימי שיא במוסדות חינוך" data-en="Workshops & Events for Educational Institutions">סדנאות וימי שיא במוסדות חינוך</div>
-    <div class="section-desc" data-he="חוויית לימוד ייחודית שמחברת טכנולוגיה, פיזיקה ועבודת צוות." data-en="A unique learning experience combining technology, physics, and teamwork.">חוויית לימוד ייחודית שמחברת טכנולוגיה, פיזיקה ועבודת צוות.</div>
+    <div class="section-label" data-he="ימי שיא והפעלות רחפנים" data-en="EVENTS & DRONE ACTIVATIONS" data-de="EVENTS & DROHNEN-AKTIVIERUNGEN" data-ru="МЕРОПРИЯТИЯ И ДРОН-АКТИВАЦИИ">ימי שיא והפעלות רחפנים</div>
+    <div class="section-title" data-he="סדנאות וימי שיא במוסדות חינוך" data-en="Workshops & Events for Educational Institutions" data-de="Workshops & Events für Bildungseinrichtungen" data-ru="Мастер-классы для образовательных учреждений">סדנאות וימי שיא במוסדות חינוך</div>
+    <div class="section-desc" data-he="חוויית לימוד ייחודית שמחברת טכנולוגיה, פיזיקה ועבודת צוות." data-en="A unique learning experience combining technology, physics, and teamwork." data-de="Ein einzigartiges Lernerlebnis mit Technologie, Physik und Teamarbeit." data-ru="Уникальный опыт обучения: технологии, физика и командная работа.">חוויית לימוד ייחודית שמחברת טכנולוגיה, פיזיקה ועבודת צוות.</div>
     <div class="schools-grid">
-      <a href="schools.html" class="school-card"><h3 data-he="מפגשים קבועים" data-en="Regular Sessions">מפגשים קבועים</h3><p data-he="תכנית חודשית/חצי שנתית לבתי ספר יסודיים, חטיבות ביניים, תיכונים ומכינות." data-en="Monthly/semi-annual program for elementary, middle, high schools and pre-army academies.">תכנית חודשית/חצי שנתית לבתי ספר יסודיים, חטיבות ביניים, תיכונים ומכינות.</p><span class="service-link" data-he="לפרטים ←" data-en="Details ←">לפרטים ←</span></a>
-      <div class="school-card"><h3 data-he="ימי שיא" data-en="Peak Days">ימי שיא</h3><p data-he="ימי שיא לקבוצות בכל הגילאים." data-en="Peak days for groups of all ages.">ימי שיא לקבוצות בכל הגילאים.</p><span class="service-link" data-he="צור קשר ←" data-en="Contact us ←">צור קשר ←</span></div>
-      <div class="school-card placeholder-card"><h3 data-he="חוגי רחפנים" data-en="Drone Clubs">חוגי רחפנים</h3><p data-he="חוג שבועי קבוע לילדים ונוער." data-en="Weekly drone club for kids and teens.">חוג שבועי קבוע לילדים ונוער.</p><span class="service-link" style="color:var(--text-muted)" data-he="בקרוב" data-en="Coming soon">בקרוב</span></div>
+      <a href="schools.html" class="school-card"><h3 data-he="מפגשים קבועים" data-en="Regular Sessions" data-de="Regelmäßige Kurse" data-ru="Регулярные занятия">מפגשים קבועים</h3><p data-he="תכנית חודשית/חצי שנתית לבתי ספר יסודיים, חטיבות ביניים, תיכונים ומכינות." data-en="Monthly/semi-annual program for elementary, middle, high schools and pre-army academies." data-de="Monatliches/halbjährliches Programm für Schulen aller Stufen." data-ru="Ежемесячная/полугодовая программа для школ всех уровней.">תכנית חודשית/חצי שנתית לבתי ספר יסודיים, חטיבות ביניים, תיכונים ומכינות.</p><span class="service-link" data-he="לפרטים ←" data-en="Details ←" data-de="Details ←" data-ru="Подробнее ←">לפרטים ←</span></a>
+      <div class="school-card"><h3 data-he="ימי שיא" data-en="Peak Days" data-de="Event-Tage" data-ru="Дни мероприятий">ימי שיא</h3><p data-he="ימי שיא לקבוצות בכל הגילאים." data-en="Peak days for groups of all ages." data-de="Event-Tage für Gruppen jeden Alters." data-ru="Мероприятия для групп всех возрастов.">ימי שיא לקבוצות בכל הגילאים.</p><span class="service-link" data-he="צור קשר ←" data-en="Contact us ←" data-de="Kontakt ←" data-ru="Связаться ←">צור קשר ←</span></div>
+      <div class="school-card placeholder-card"><h3 data-he="חוגי רחפנים" data-en="Drone Clubs" data-de="Drohnen-Clubs" data-ru="Кружки дронов">חוגי רחפנים</h3><p data-he="חוג שבועי קבוע לילדים ונוער." data-en="Weekly drone club for kids and teens." data-de="Wöchentlicher Drohnen-Club für Kinder und Jugendliche." data-ru="Еженедельный кружок дронов для детей и подростков.">חוג שבועי קבוע לילדים ונוער.</p><span class="service-link" style="color:var(--text-muted)" data-he="בקרוב" data-en="Coming soon" data-de="Demnächst" data-ru="Скоро">בקרוב</span></div>
     </div>
   </div>
 </section>
 
 <section class="section gallery-section" id="gallery">
   <div style="max-width:1000px;margin:0 auto 1.5rem;padding:0 1.5rem">
-    <div class="section-label" data-he="גלריה" data-en="GALLERY">גלריה</div>
-    <div class="section-title" data-he="צילומי אוויר" data-en="Aerial Photography">צילומי אוויר</div>
-    <div class="section-desc" data-he="צילומי אוויר מקצועיים — אירועים, נדל&quot;ן, נוף ועוד." data-en="Professional aerial photography — events, real estate, landscapes and more.">צילומי אוויר מקצועיים — אירועים, נדל&quot;ן, נוף ועוד.</div>
+    <div class="section-label" data-he="גלריה" data-en="GALLERY" data-de="GALERIE" data-ru="ГАЛЕРЕЯ">גלריה</div>
+    <div class="section-title" data-he="צילומי אוויר" data-en="Aerial Photography" data-de="Luftaufnahmen" data-ru="Аэросъёмка">צילומי אוויר</div>
+    <div class="section-desc" data-he="צילומי אוויר מקצועיים — אירועים, נדל&quot;ן, נוף ועוד." data-en="Professional aerial photography — events, real estate, landscapes and more." data-de="Professionelle Luftaufnahmen — Events, Immobilien, Landschaften." data-ru="Профессиональная аэросъёмка — мероприятия, недвижимость, пейзажи.">צילומי אוויר מקצועיים — אירועים, נדל&quot;ן, נוף ועוד.</div>
   </div>
   <div class="gallery-viewport" style="max-width:1100px;margin:0 auto;padding:0 1.5rem">
     <div class="gallery-track" id="galleryTrack">
@@ -326,23 +328,23 @@ a{color:inherit;text-decoration:none}
 <section class="section section-alt" id="contact">
   <div class="section-inner fade-in">
     <div style="text-align:center;margin-bottom:2rem">
-      <div class="section-label" data-he="צור קשר" data-en="CONTACT">צור קשר</div>
-      <div class="section-title" data-he="דברו איתנו" data-en="Get in Touch">דברו איתנו</div>
-      <div class="section-desc" style="margin:0 auto" data-he="שאלה, הזמנה, שיתוף פעולה — תבחרו את הדרך הנוחה לכם" data-en="Question, booking, or collaboration — choose your preferred way">שאלה, הזמנה, שיתוף פעולה — תבחרו את הדרך הנוחה לכם</div>
+      <div class="section-label" data-he="צור קשר" data-en="CONTACT" data-de="KONTAKT" data-ru="КОНТАКТ">צור קשר</div>
+      <div class="section-title" data-he="דברו איתנו" data-en="Get in Touch" data-de="Kontaktieren Sie uns" data-ru="Свяжитесь с нами">דברו איתנו</div>
+      <div class="section-desc" style="margin:0 auto" data-he="שאלה, הזמנה, שיתוף פעולה — תבחרו את הדרך הנוחה לכם" data-en="Question, booking, or collaboration — choose your preferred way" data-de="Frage, Buchung oder Zusammenarbeit — wählen Sie Ihren Weg" data-ru="Вопрос, бронирование или сотрудничество — выберите удобный способ">שאלה, הזמנה, שיתוף פעולה — תבחרו את הדרך הנוחה לכם</div>
     </div>
     <div class="contact-full">
       <div class="contact-grid-full">
-        <a href="https://wa.me/972549902676" target="_blank" class="c-card"><div class="c-icon" style="background:rgba(37,211,102,0.15)"><svg viewBox="0 0 24 24" fill="none" stroke="#25D366" stroke-width="1.8"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg></div><div class="c-info"><h3 data-he="וואטסאפ" data-en="WhatsApp">וואטסאפ</h3><p data-he="הדרך הכי מהירה — כתבו ונחזור מיד" data-en="Fastest — write and we reply immediately">הדרך הכי מהירה — כתבו ונחזור מיד</p></div></a>
-        <a href="tel:+972549902676" class="c-card"><div class="c-icon" style="background:rgba(96,165,250,0.15)"><svg viewBox="0 0 24 24" fill="none" stroke="#60a5fa" stroke-width="1.8"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg></div><div class="c-info"><h3>054-990-2676</h3><p data-he="מעדיפים לדבר? התקשרו" data-en="Prefer to talk? Call us">מעדיפים לדבר? התקשרו</p></div></a>
-        <a href="https://instagram.com/flyingmink" target="_blank" class="c-card"><div class="c-icon" style="background:rgba(236,72,153,0.15)"><svg viewBox="0 0 24 24" fill="none" stroke="#ec4899" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></div><div class="c-info"><h3 data-he="אינסטגרם" data-en="Instagram">אינסטגרם</h3><p>@flyingmink</p></div></a>
-        <a href="mailto:maor@flyingmink.com" class="c-card"><div class="c-icon" style="background:rgba(167,139,250,0.15)"><svg viewBox="0 0 24 24" fill="none" stroke="#a78bfa" stroke-width="1.8"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div><div class="c-info"><h3 data-he="אימייל" data-en="Email">אימייל</h3><p>maor@flyingmink.com</p></div></a>
+        <a href="https://wa.me/972549902676" target="_blank" class="c-card"><div class="c-icon" style="background:rgba(37,211,102,0.15)"><svg viewBox="0 0 24 24" fill="none" stroke="#25D366" stroke-width="1.8"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg></div><div class="c-info"><h3 data-he="וואטסאפ" data-en="WhatsApp" data-de="WhatsApp" data-ru="WhatsApp">וואטסאפ</h3><p data-he="הדרך הכי מהירה — כתבו ונחזור מיד" data-en="Fastest — write and we reply immediately" data-de="Am schnellsten — schreiben Sie uns" data-ru="Самый быстрый способ — напишите нам">הדרך הכי מהירה — כתבו ונחזור מיד</p></div></a>
+        <a href="tel:+972549902676" class="c-card"><div class="c-icon" style="background:rgba(96,165,250,0.15)"><svg viewBox="0 0 24 24" fill="none" stroke="#60a5fa" stroke-width="1.8"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg></div><div class="c-info"><h3>054-990-2676</h3><p data-he="מעדיפים לדבר? התקשרו" data-en="Prefer to talk? Call us" data-de="Lieber telefonieren? Rufen Sie an" data-ru="Предпочитаете звонить? Позвоните">מעדיפים לדבר? התקשרו</p></div></a>
+        <a href="https://instagram.com/flyingmink" target="_blank" class="c-card"><div class="c-icon" style="background:rgba(236,72,153,0.15)"><svg viewBox="0 0 24 24" fill="none" stroke="#ec4899" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></div><div class="c-info"><h3 data-he="אינסטגרם" data-en="Instagram" data-de="Instagram" data-ru="Instagram">אינסטגרם</h3><p>@flyingmink</p></div></a>
+        <a href="mailto:&#109;&#97;&#111;&#114;&#64;&#102;&#108;&#121;&#105;&#110;&#103;&#109;&#105;&#110;&#107;&#46;&#99;&#111;&#109;" class="c-card"><div class="c-icon" style="background:rgba(167,139,250,0.15)"><svg viewBox="0 0 24 24" fill="none" stroke="#a78bfa" stroke-width="1.8"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div><div class="c-info"><h3 data-he="אימייל" data-en="Email" data-de="E-Mail" data-ru="Эл. почта">אימייל</h3><p>&#109;&#97;&#111;&#114;&#64;flyingmink.com</p></div></a>
       </div>
       <div class="c-form">
-        <h3 data-he="שלחו הודעה" data-en="Send a Message">שלחו הודעה</h3>
-        <div class="c-row"><input class="c-input" id="cName" placeholder="שם מלא" data-he="שם מלא" data-en="Full name"><input class="c-input" id="cPhone" placeholder="טלפון" data-he="טלפון" data-en="Phone"></div>
-        <select class="c-select" id="cSubject"><option value="" data-he="בחרו נושא" data-en="Select topic">בחרו נושא</option><option value="photo" data-he="צילום אווירי" data-en="Aerial Photo">צילום אווירי</option><option value="lesson" data-he="שיעור פרטי" data-en="Private Lesson">שיעור פרטי</option><option value="school" data-he="סדנה לבית ספר" data-en="School Workshop">סדנה לבית ספר</option><option value="course" data-he="קורס מקוון" data-en="Online Course">קורס מקוון</option><option value="other" data-he="אחר" data-en="Other">אחר</option></select>
-        <textarea class="c-textarea" id="cMsg" placeholder="הודעה (אופציונלי)" data-he="הודעה (אופציונלי)" data-en="Message (optional)"></textarea>
-        <button class="btn-primary" style="width:100%;justify-content:center" onclick="submitContact()" data-he="שלח בוואטסאפ" data-en="Send via WhatsApp">שלח בוואטסאפ</button>
+        <h3 data-he="שלחו הודעה" data-en="Send a Message" data-de="Nachricht senden" data-ru="Отправить сообщение">שלחו הודעה</h3>
+        <div class="c-row"><input class="c-input" id="cName" placeholder="שם מלא" data-he="שם מלא" data-en="Full name" data-de="Vollständiger Name" data-ru="Полное имя"><input class="c-input" id="cPhone" placeholder="טלפון" data-he="טלפון" data-en="Phone" data-de="Telefon" data-ru="Телефон"></div>
+        <select class="c-select" id="cSubject"><option value="" data-he="בחרו נושא" data-en="Select topic" data-de="Thema wählen" data-ru="Выберите тему">בחרו נושא</option><option value="photo" data-he="צילום אווירי" data-en="Aerial Photo" data-de="Luftaufnahme" data-ru="Аэросъёмка">צילום אווירי</option><option value="lesson" data-he="שיעור פרטי" data-en="Private Lesson" data-de="Privatunterricht" data-ru="Частный урок">שיעור פרטי</option><option value="school" data-he="סדנה לבית ספר" data-en="School Workshop" data-de="Schulworkshop" data-ru="Школьный мастер-класс">סדנה לבית ספר</option><option value="course" data-he="קורס מקוון" data-en="Online Course" data-de="Online-Kurs" data-ru="Онлайн-курс">קורס מקוון</option><option value="other" data-he="אחר" data-en="Other" data-de="Sonstiges" data-ru="Другое">אחר</option></select>
+        <textarea class="c-textarea" id="cMsg" placeholder="הודעה (אופציונלי)" data-he="הודעה (אופציונלי)" data-en="Message (optional)" data-de="Nachricht (optional)" data-ru="Сообщение (необязательно)"></textarea>
+        <button class="btn-primary" style="width:100%;justify-content:center" onclick="submitContact()" data-he="שלח בוואטסאפ" data-en="Send via WhatsApp" data-de="Per WhatsApp senden" data-ru="Отправить через WhatsApp">שלח בוואטסאפ</button>
         <div id="cFormMsg"></div>
       </div>
       <div class="sig">
@@ -355,13 +357,13 @@ a{color:inherit;text-decoration:none}
 
 <section class="section centered" id="partners">
   <div class="section-inner fade-in">
-    <div class="section-label" data-he="שותפים" data-en="PARTNERS">שותפים</div>
-    <div class="section-title" data-he="איפה לקנות רחפנים" data-en="Where to Buy Drones">איפה לקנות רחפנים</div>
-    <div class="section-desc" data-he="המקומות המומלצים לרכישת רחפנים בישראל." data-en="Recommended places to buy drones in Israel.">המקומות המומלצים לרכישת רחפנים בישראל.</div>
+    <div class="section-label" data-he="שותפים" data-en="PARTNERS" data-de="PARTNER" data-ru="ПАРТНЁРЫ">שותפים</div>
+    <div class="section-title" data-he="איפה לקנות רחפנים" data-en="Where to Buy Drones" data-de="Wo man Drohnen kauft" data-ru="Где купить дроны">איפה לקנות רחפנים</div>
+    <div class="section-desc" data-he="המקומות המומלצים לרכישת רחפנים בישראל." data-en="Recommended places to buy drones in Israel." data-de="Empfohlene Orte für den Drohnenkauf in Israel." data-ru="Рекомендуемые места для покупки дронов в Израиле.">המקומות המומלצים לרכישת רחפנים בישראל.</div>
     <div style="display:flex;gap:1.25rem;justify-content:center;flex-wrap:wrap">
-      <div style="width:160px;height:160px;border-radius:14px;background:rgba(109,40,217,0.12);border:1px solid var(--card-border);display:flex;align-items:center;justify-content:center;color:var(--text-muted);font-size:13px" data-he="בקרוב" data-en="Coming soon">בקרוב</div>
-      <div style="width:160px;height:160px;border-radius:14px;background:rgba(109,40,217,0.12);border:1px solid var(--card-border);display:flex;align-items:center;justify-content:center;color:var(--text-muted);font-size:13px" data-he="בקרוב" data-en="Coming soon">בקרוב</div>
-      <div style="width:160px;height:160px;border-radius:14px;background:rgba(109,40,217,0.12);border:1px solid var(--card-border);display:flex;align-items:center;justify-content:center;color:var(--text-muted);font-size:13px" data-he="בקרוב" data-en="Coming soon">בקרוב</div>
+      <div style="width:160px;height:160px;border-radius:14px;background:rgba(109,40,217,0.12);border:1px solid var(--card-border);display:flex;align-items:center;justify-content:center;color:var(--text-muted);font-size:13px" data-he="בקרוב" data-en="Coming soon" data-de="Demnächst" data-ru="Скоро">בקרוב</div>
+      <div style="width:160px;height:160px;border-radius:14px;background:rgba(109,40,217,0.12);border:1px solid var(--card-border);display:flex;align-items:center;justify-content:center;color:var(--text-muted);font-size:13px" data-he="בקרוב" data-en="Coming soon" data-de="Demnächst" data-ru="Скоро">בקרוב</div>
+      <div style="width:160px;height:160px;border-radius:14px;background:rgba(109,40,217,0.12);border:1px solid var(--card-border);display:flex;align-items:center;justify-content:center;color:var(--text-muted);font-size:13px" data-he="בקרוב" data-en="Coming soon" data-de="Demnächst" data-ru="Скоро">בקרוב</div>
     </div>
   </div>
 </section>
@@ -370,11 +372,11 @@ a{color:inherit;text-decoration:none}
 
 <footer class="footer">
   <div class="footer-links">
-    <a href="#quiz" data-he="שאלון" data-en="Quiz">שאלון</a>
-    <a href="#services" data-he="שירותים" data-en="Services">שירותים</a>
-    <a href="#course" data-he="קורס" data-en="Course">קורס</a>
-    <a href="#schools" data-he="בתי ספר" data-en="Schools">בתי ספר</a>
-    <a href="#contact" data-he="צור קשר" data-en="Contact">צור קשר</a>
+    <a href="#quiz" data-he="שאלון" data-en="Quiz" data-de="Quiz" data-ru="Тест">שאלון</a>
+    <a href="#services" data-he="שירותים" data-en="Services" data-de="Dienste" data-ru="Услуги">שירותים</a>
+    <a href="#course" data-he="קורס" data-en="Course" data-de="Kurs" data-ru="Курс">קורס</a>
+    <a href="#schools" data-he="בתי ספר" data-en="Schools" data-de="Schulen" data-ru="Школы">בתי ספר</a>
+    <a href="#contact" data-he="צור קשר" data-en="Contact" data-de="Kontakt" data-ru="Контакт">צור קשר</a>
   </div>
   <p>&copy; 2025 Flying Mink Drone Solutions — Maor Stoltz</p>
 </footer>
@@ -382,7 +384,7 @@ a{color:inherit;text-decoration:none}
 <div class="login-modal" id="loginModal">
   <div class="login-box">
     <button class="login-close" onclick="closeProfile()">X</button>
-    <h3 data-he="כניסה לחשבון" data-en="Login">כניסה לחשבון</h3>
+    <h3 data-he="כניסה לחשבון" data-en="Login" data-de="Anmelden" data-ru="Вход">כניסה לחשבון</h3>
     <div class="login-tabs"><button class="login-tab active" onclick="switchLoginTab('login')">כניסה</button><button class="login-tab" onclick="switchLoginTab('register')">הרשמה</button></div>
     <div id="loginForm"><input class="c-input" id="loginEmail" placeholder="אימייל" type="email"><input class="c-input" id="loginPass" placeholder="סיסמה" type="password"><button class="btn-primary" style="width:100%;justify-content:center;margin-top:8px" onclick="doLogin()">כניסה</button></div>
     <div id="registerForm" style="display:none"><input class="c-input" id="regName" placeholder="שם מלא"><input class="c-input" id="regEmail" placeholder="אימייל" type="email"><input class="c-input" id="regPass" placeholder="סיסמה" type="password"><button class="btn-primary" style="width:100%;justify-content:center;margin-top:8px" onclick="doRegister()">הרשמה</button></div>
@@ -404,55 +406,133 @@ a{color:inherit;text-decoration:none}
 </div>
 
 <script>
-const v=document.getElementById("heroVid");
-if(v){v.muted=true;v.setAttribute("playsinline","");v.setAttribute("webkit-playsinline","");const tryPlay=()=>{v.play().catch(()=>{})};tryPlay();document.addEventListener("touchstart",tryPlay,{once:true});document.addEventListener("click",tryPlay,{once:true});document.addEventListener("scroll",tryPlay,{once:true});setTimeout(tryPlay,500);setTimeout(tryPlay,1500);}
+/* Video autoplay */
+var v=document.getElementById("heroVid");
+if(v){v.muted=true;v.setAttribute("playsinline","");v.setAttribute("webkit-playsinline","");var tryPlay=function(){v.play().catch(function(){})};tryPlay();document.addEventListener("touchstart",tryPlay,{once:true});document.addEventListener("click",tryPlay,{once:true});document.addEventListener("scroll",tryPlay,{once:true});setTimeout(tryPlay,500);setTimeout(tryPlay,1500);}
 
+/* Side menu */
 function toggleSideMenu(){document.getElementById("sideMenu").classList.toggle("open");document.getElementById("overlay").classList.toggle("open")}
-const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting)e.target.classList.add("visible")});},{threshold:0.12});
-document.querySelectorAll(".fade-in").forEach(el=>obs.observe(el));
 
-let currentLang="he";
+/* Scroll fade */
+var obs=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting)e.target.classList.add("visible")});},{threshold:0.12});
+document.querySelectorAll(".fade-in").forEach(function(el){obs.observe(el)});
+
+/* Language */
+var currentLang="he";
 function toggleLangDropdown(){document.getElementById("langDrop").classList.toggle("open")}
 function setLang(lang){
-  currentLang=lang;document.documentElement.lang=currentLang;document.documentElement.dir=currentLang==="he"?"rtl":"ltr";
-  document.querySelectorAll("[data-"+currentLang+"]").forEach(el=>{const txt=el.getAttribute("data-"+currentLang);if(txt){if(el.tagName==="INPUT"||el.tagName==="TEXTAREA")el.placeholder=txt;else if(el.tagName==="OPTION")el.textContent=txt;else el.textContent=txt;}});
-  document.querySelectorAll(".lang-option").forEach(btn=>{btn.classList.toggle("active",btn.textContent.includes(lang==="he"?"עברית":"English"));});
-  document.querySelectorAll(".lang-dropdown").forEach(dd=>dd.classList.remove("open"));
+  currentLang=lang;
+  document.documentElement.lang=lang;
+  document.documentElement.dir=(lang==="he")?"rtl":"ltr";
+  document.querySelectorAll("[data-"+lang+"]").forEach(function(el){
+    var txt=el.getAttribute("data-"+lang);
+    if(txt){
+      if(el.tagName==="INPUT"||el.tagName==="TEXTAREA") el.placeholder=txt;
+      else if(el.tagName==="OPTION") el.textContent=txt;
+      else el.textContent=txt;
+    }
+  });
+  var labels={"he":"\u05e2\u05d1\u05e8\u05d9\u05ea","en":"English","de":"Deutsch","ru":"\u0420\u0443\u0441\u0441\u043a\u0438\u0439"};
+  document.querySelectorAll(".lang-option").forEach(function(btn){
+    btn.classList.toggle("active",btn.textContent.indexOf(labels[lang])>=0);
+  });
+  document.querySelectorAll(".lang-dropdown").forEach(function(dd){dd.classList.remove("open");});
 }
-document.addEventListener("click",function(e){if(!e.target.closest(".lang-toggle"))document.querySelectorAll(".lang-dropdown").forEach(dd=>dd.classList.remove("open"));});
+document.addEventListener("click",function(e){if(!e.target.closest(".lang-toggle"))document.querySelectorAll(".lang-dropdown").forEach(function(dd){dd.classList.remove("open")});});
 
+/* Contact form */
 function submitContact(){
-  const name=document.getElementById("cName").value.trim();const phone=document.getElementById("cPhone").value.trim();const subj=document.getElementById("cSubject");const subjText=subj.options[subj.selectedIndex]?.text||"";const msg=document.getElementById("cMsg").value.trim();const formMsg=document.getElementById("cFormMsg");
-  if(!name||!phone||!subj.value){formMsg.style.color="#fbbf24";formMsg.textContent="נא למלא שם, טלפון ונושא";return;}
-  const waMsg=encodeURIComponent("היי מאור, פנייה מאתר Flying Mink\n\nשם: "+name+"\nטלפון: "+phone+"\nנושא: "+subjText+"\n"+(msg?"הודעה: "+msg:""));
-  window.open("https://wa.me/972549902676?text="+waMsg,"_blank");formMsg.style.color="#34d399";formMsg.textContent="ההודעה נשלחה! נחזור אליכם בהקדם.";
+  var name=document.getElementById("cName").value.trim();
+  var phone=document.getElementById("cPhone").value.trim();
+  var subj=document.getElementById("cSubject");
+  var subjText=subj.options[subj.selectedIndex]?subj.options[subj.selectedIndex].text:"";
+  var msg=document.getElementById("cMsg").value.trim();
+  var formMsg=document.getElementById("cFormMsg");
+  if(!name||!phone||!subj.value){formMsg.style.color="#fbbf24";formMsg.textContent="\u05e0\u05d0 \u05dc\u05de\u05dc\u05d0 \u05e9\u05dd, \u05d8\u05dc\u05e4\u05d5\u05df \u05d5\u05e0\u05d5\u05e9\u05d0";return;}
+  var waMsg=encodeURIComponent("\u05d4\u05d9\u05d9 \u05de\u05d0\u05d5\u05e8, \u05e4\u05e0\u05d9\u05d9\u05d4 \u05de\u05d0\u05ea\u05e8 Flying Mink\n\n\u05e9\u05dd: "+name+"\n\u05d8\u05dc\u05e4\u05d5\u05df: "+phone+"\n\u05e0\u05d5\u05e9\u05d0: "+subjText+"\n"+(msg?"\u05d4\u05d5\u05d3\u05e2\u05d4: "+msg:""));
+  window.open("https://wa.me/972549902676?text="+waMsg,"_blank");
+  formMsg.style.color="#34d399";formMsg.textContent="\u05d4\u05d4\u05d5\u05d3\u05e2\u05d4 \u05e0\u05e9\u05dc\u05d7\u05d4! \u05e0\u05d7\u05d6\u05d5\u05e8 \u05d0\u05dc\u05d9\u05db\u05dd \u05d1\u05d4\u05e7\u05d3\u05dd.";
 }
 
+/* Login */
 function openProfile(){document.getElementById("loginModal").classList.add("open")}
 function closeProfile(){document.getElementById("loginModal").classList.remove("open")}
-function switchLoginTab(tab){document.querySelectorAll(".login-tab").forEach((t,i)=>{t.classList.toggle("active",i===(tab==="login"?0:1))});document.getElementById("loginForm").style.display=tab==="login"?"block":"none";document.getElementById("registerForm").style.display=tab==="register"?"block":"none";document.getElementById("loginMsg").textContent="";}
-function doLogin(){const email=document.getElementById("loginEmail").value.trim();const pass=document.getElementById("loginPass").value;if(!email||!pass){document.getElementById("loginMsg").textContent="נא למלא את כל השדות";return;}const users=JSON.parse(localStorage.getItem("fm_users")||"[]");const u=users.find(x=>x.email===email&&x.pass===pass);if(u){localStorage.setItem("fm_current",JSON.stringify(u));closeProfile();alert("שלום "+u.name+"!");}else{document.getElementById("loginMsg").textContent="אימייל או סיסמה שגויים";}}
-function doRegister(){const name=document.getElementById("regName").value.trim();const email=document.getElementById("regEmail").value.trim();const pass=document.getElementById("regPass").value;if(!name||!email||!pass){document.getElementById("loginMsg").textContent="נא למלא את כל השדות";return;}const users=JSON.parse(localStorage.getItem("fm_users")||"[]");if(users.find(x=>x.email===email)){document.getElementById("loginMsg").textContent="אימייל כבר רשום";return;}users.push({name,email,pass});localStorage.setItem("fm_users",JSON.stringify(users));localStorage.setItem("fm_current",JSON.stringify({name,email}));closeProfile();alert("נרשמת בהצלחה! שלום "+name);}
+function switchLoginTab(tab){
+  document.querySelectorAll(".login-tab").forEach(function(t,i){t.classList.toggle("active",i===(tab==="login"?0:1))});
+  document.getElementById("loginForm").style.display=tab==="login"?"block":"none";
+  document.getElementById("registerForm").style.display=tab==="register"?"block":"none";
+  document.getElementById("loginMsg").textContent="";
+}
+function doLogin(){
+  var email=document.getElementById("loginEmail").value.trim();
+  var pass=document.getElementById("loginPass").value;
+  if(!email||!pass){document.getElementById("loginMsg").textContent="\u05e0\u05d0 \u05dc\u05de\u05dc\u05d0 \u05d0\u05ea \u05db\u05dc \u05d4\u05e9\u05d3\u05d5\u05ea";return;}
+  var users=JSON.parse(localStorage.getItem("fm_users")||"[]");
+  var u=users.find(function(x){return x.email===email&&x.pass===pass});
+  if(u){localStorage.setItem("fm_current",JSON.stringify(u));closeProfile();alert("\u05e9\u05dc\u05d5\u05dd "+u.name+"!");}
+  else{document.getElementById("loginMsg").textContent="\u05d0\u05d9\u05de\u05d9\u05d9\u05dc \u05d0\u05d5 \u05e1\u05d9\u05e1\u05de\u05d4 \u05e9\u05d2\u05d5\u05d9\u05d9\u05dd";}
+}
+function doRegister(){
+  var name=document.getElementById("regName").value.trim();
+  var email=document.getElementById("regEmail").value.trim();
+  var pass=document.getElementById("regPass").value;
+  if(!name||!email||!pass){document.getElementById("loginMsg").textContent="\u05e0\u05d0 \u05dc\u05de\u05dc\u05d0 \u05d0\u05ea \u05db\u05dc \u05d4\u05e9\u05d3\u05d5\u05ea";return;}
+  var users=JSON.parse(localStorage.getItem("fm_users")||"[]");
+  if(users.find(function(x){return x.email===email})){document.getElementById("loginMsg").textContent="\u05d0\u05d9\u05de\u05d9\u05d9\u05dc \u05db\u05d1\u05e8 \u05e8\u05e9\u05d5\u05dd";return;}
+  users.push({name:name,email:email,pass:pass});
+  localStorage.setItem("fm_users",JSON.stringify(users));
+  localStorage.setItem("fm_current",JSON.stringify({name:name,email:email}));
+  closeProfile();alert("\u05e0\u05e8\u05e9\u05de\u05ea \u05d1\u05d4\u05e6\u05dc\u05d7\u05d4! \u05e9\u05dc\u05d5\u05dd "+name);
+}
 
-let galleryPos=0;
-function galleryNext(){const track=document.getElementById("galleryTrack");if(!track)return;const items=track.children;if(!items.length)return;galleryPos++;if(galleryPos>=items.length)galleryPos=0;track.style.transform="translateX("+(-galleryPos*336)+"px)";updateDots();}
-function updateDots(){const dots=document.getElementById("galleryDots");if(!dots)return;dots.querySelectorAll("span").forEach((d,i)=>{d.classList.toggle("active",i===galleryPos)});}
-(function(){const dots=document.getElementById("galleryDots");const count=document.getElementById("galleryTrack").children.length;for(let i=0;i<count;i++){const s=document.createElement("span");if(i===0)s.classList.add("active");s.onclick=(function(idx){return function(){galleryPos=idx;document.getElementById("galleryTrack").style.transform="translateX("+(-idx*336)+"px)";updateDots();};})(i);dots.appendChild(s);}})();
+/* Gallery */
+var galleryPos=0;
+function galleryNext(){
+  var track=document.getElementById("galleryTrack");
+  if(!track)return;
+  var items=track.children;
+  if(!items.length)return;
+  galleryPos++;
+  if(galleryPos>=items.length)galleryPos=0;
+  track.style.transform="translateX("+(-galleryPos*336)+"px)";
+  updateDots();
+}
+function updateDots(){
+  var dots=document.getElementById("galleryDots");
+  if(!dots)return;
+  dots.querySelectorAll("span").forEach(function(d,i){d.classList.toggle("active",i===galleryPos)});
+}
+(function(){
+  var dots=document.getElementById("galleryDots");
+  var count=document.getElementById("galleryTrack").children.length;
+  for(var i=0;i<count;i++){
+    var s=document.createElement("span");
+    if(i===0)s.classList.add("active");
+    s.onclick=(function(idx){return function(){galleryPos=idx;document.getElementById("galleryTrack").style.transform="translateX("+(-idx*336)+"px)";updateDots();};})(i);
+    dots.appendChild(s);
+  }
+})();
 
-function openLightbox(e){var src=e.currentTarget.querySelector("img").src;document.getElementById("lightboxImg").src=src;document.getElementById("lightbox").classList.add("open");}
+/* Lightbox */
+function openLightbox(e){
+  var src=e.currentTarget.querySelector("img").src;
+  document.getElementById("lightboxImg").src=src;
+  document.getElementById("lightbox").classList.add("open");
+}
 function closeLightbox(){document.getElementById("lightbox").classList.remove("open")}
 
+/* Bot */
 function toggleBot(){document.getElementById("botChat").classList.toggle("open")}
-function botAsk(q){addBotMsg(q,"user");document.getElementById("botQuick").style.display="none";setTimeout(()=>botReply(q),600);}
-function sendBot(){const inp=document.getElementById("botInput");const q=inp.value.trim();if(!q)return;inp.value="";addBotMsg(q,"user");setTimeout(()=>botReply(q),600);}
-function addBotMsg(text,type){const msgs=document.getElementById("botMsgs");const d=document.createElement("div");d.className="bot-msg "+type;d.textContent=text;msgs.appendChild(d);msgs.scrollTop=msgs.scrollHeight;}
+function botAsk(q){addBotMsg(q,"user");document.getElementById("botQuick").style.display="none";setTimeout(function(){botReply(q)},600);}
+function sendBot(){var inp=document.getElementById("botInput");var q=inp.value.trim();if(!q)return;inp.value="";addBotMsg(q,"user");setTimeout(function(){botReply(q)},600);}
+function addBotMsg(text,type){var msgs=document.getElementById("botMsgs");var d=document.createElement("div");d.className="bot-msg "+type;d.textContent=text;msgs.appendChild(d);msgs.scrollTop=msgs.scrollHeight;}
 function botReply(q){
   var l=q.toLowerCase();var r="";
-  if(l.indexOf("drone")>=0||l.indexOf("רחפן")>=0) r="מומלץ לעשות את השאלון שלנו! לחץ על שאלון בתפריט.";
-  else if(l.indexOf("מחיר")>=0||l.indexOf("עולה")>=0) r="שיעור פרטי: החל מ-300. צילום אווירי: לפי פרויקט. שלח הודעה בוואטסאפ!";
-  else if(l.indexOf("קשר")>=0||l.indexOf("טלפון")>=0) r="הדרך הכי מהירה: וואטסאפ 054-990-2676.";
-  else if(l.indexOf("קורס")>=0) r="הקורס כולל 45 פרקים - 14 חינמיים!";
-  else r="תודה על הפנייה! שלח הודעה בוואטסאפ: 054-990-2676";
+  if(l.indexOf("drone")>=0||l.indexOf("\u05e8\u05d7\u05e4\u05df")>=0) r="\u05de\u05d5\u05de\u05dc\u05e5 \u05dc\u05e2\u05e9\u05d5\u05ea \u05d0\u05ea \u05d4\u05e9\u05d0\u05dc\u05d5\u05df \u05e9\u05dc\u05e0\u05d5! \u05dc\u05d7\u05e5 \u05e2\u05dc \u05e9\u05d0\u05dc\u05d5\u05df \u05d1\u05ea\u05e4\u05e8\u05d9\u05d8.";
+  else if(l.indexOf("\u05de\u05d7\u05d9\u05e8")>=0||l.indexOf("\u05e2\u05d5\u05dc\u05d4")>=0) r="\u05e9\u05d9\u05e2\u05d5\u05e8 \u05e4\u05e8\u05d8\u05d9: \u05d4\u05d7\u05dc \u05de-300. \u05e6\u05d9\u05dc\u05d5\u05dd \u05d0\u05d5\u05d5\u05d9\u05e8\u05d9: \u05dc\u05e4\u05d9 \u05e4\u05e8\u05d5\u05d9\u05e7\u05d8.";
+  else if(l.indexOf("\u05e7\u05e9\u05e8")>=0||l.indexOf("\u05d8\u05dc\u05e4\u05d5\u05df")>=0) r="\u05d5\u05d5\u05d0\u05d8\u05e1\u05d0\u05e4 054-990-2676.";
+  else if(l.indexOf("\u05e7\u05d5\u05e8\u05e1")>=0) r="\u05d4\u05e7\u05d5\u05e8\u05e1 \u05db\u05d5\u05dc\u05dc 45 \u05e4\u05e8\u05e7\u05d9\u05dd - 14 \u05d7\u05d9\u05e0\u05de\u05d9\u05d9\u05dd!";
+  else r="\u05ea\u05d5\u05d3\u05d4 \u05e2\u05dc \u05d4\u05e4\u05e0\u05d9\u05d9\u05d4! \u05d5\u05d5\u05d0\u05d8\u05e1\u05d0\u05e4: 054-990-2676";
   addBotMsg(r,"bot");
 }
 </script>
