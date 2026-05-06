@@ -173,14 +173,14 @@ a{color:inherit;text-decoration:none}
 .lang-toggle{position:relative}
 .lang-dropdown{position:absolute;top:54px;left:50%;transform:translateX(-50%);background:rgba(16,12,30,0.98);border:1px solid var(--card-border);border-radius:12px;padding:8px;display:none;flex-direction:column;gap:4px;min-width:140px;box-shadow:0 8px 30px rgba(0,0,0,0.5);z-index:200}
 .lang-dropdown.open{display:flex}
-.lang-option{display:flex;align-items:center;gap:10px;padding:8px 12px;border-radius:8px;cursor:pointer;font-size:14px;font-weight:500;color:var(--text-dim);transition:all 0.2s;border:none;background:none;font-family:inherit;width:100%;text-align:right}
+.lang-option{display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:8px;cursor:pointer;font-size:16px;font-weight:500;color:var(--text-dim);transition:all 0.2s;border:none;background:none;font-family:inherit;width:100%;text-align:right}
 .lang-option:hover{background:rgba(109,40,217,0.15);color:var(--text)}
 .lang-option.active{color:var(--purple-light)}
 
 /* Side menu */
 .side-menu{position:fixed;top:0;right:-300px;width:280px;height:100vh;background:rgba(11,10,22,0.98);backdrop-filter:blur(20px);z-index:200;transition:right 0.35s ease;padding:70px 20px 20px;border-left:1px solid var(--card-border)}
 .side-menu.open{right:0}
-.side-menu a{display:block;padding:12px 16px;font-size:15px;color:var(--text-dim);border-radius:10px;margin-bottom:4px;transition:all 0.2s}
+.side-menu a{display:block;padding:14px 18px;font-size:17px;color:var(--text-dim);border-radius:10px;margin-bottom:4px;transition:all 0.2s}
 .side-menu a:hover{background:rgba(109,40,217,0.15);color:var(--text)}
 .side-close{position:absolute;top:16px;left:16px;background:none;border:none;color:var(--text-muted);font-size:22px;cursor:pointer}
 .overlay{position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:199;display:none}
@@ -188,14 +188,16 @@ a{color:inherit;text-decoration:none}
 
 /* ══════ HERO ══════ */
 .hero{position:relative;height:85vh;min-height:420px;display:flex;align-items:center;justify-content:center;overflow:hidden;background:#0b0a16 url('dji_fly_20260103_125202_0159_1767435245354_photo.jpeg') center/cover no-repeat;z-index:2}
-.hero-video{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;opacity:1;transition:opacity 0.6s ease;background:#0b0a16}
+.hero{position:relative;background:#0b0a16}
+.hero-poster-bg{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;z-index:0;background:#0b0a16}
+.hero-video{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 0.8s ease;z-index:1}
 .hero-video.loaded{opacity:1}
-.hero-overlay{position:absolute;top:0;left:0;width:100%;height:100%;background:linear-gradient(180deg,rgba(11,10,22,0.2) 0%,rgba(11,10,22,0.45) 50%,var(--bg) 100%)}
-.hero-content{position:relative;z-index:2;text-align:center;padding:2rem 1.5rem}
-.hero h1{font-size:clamp(2.8rem,7vw,4.5rem);font-weight:900;line-height:1.1;letter-spacing:2px;animation:fadeInUp 0.8s ease}
+.hero-overlay{position:absolute;top:0;left:0;width:100%;height:100%;background:linear-gradient(180deg,rgba(11,10,22,0.2) 0%,rgba(11,10,22,0.45) 50%,var(--bg) 100%);z-index:2}
+.hero-content{position:relative;z-index:3;text-align:center;padding:2rem 1.5rem}
+.hero h1{font-size:clamp(2.8rem,7vw,4.5rem);font-weight:900;line-height:1.1;letter-spacing:2px;animation:fadeInUp 0.8s ease;direction:ltr;unicode-bidi:isolate}
 .hero h1 .mink{background:linear-gradient(135deg,var(--purple-light),#818cf8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.hero-tagline{font-size:clamp(0.9rem,2.2vw,1.15rem);color:var(--text-dim);font-weight:300;margin-top:0.75rem;letter-spacing:1px;animation:fadeInUp 0.8s ease 0.2s both}
-.hero-cta{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);z-index:2;display:flex;flex-direction:column;align-items:center;gap:8px;cursor:pointer;animation:bounce 2s infinite;text-decoration:none}
+.hero-tagline{font-size:clamp(1.4rem,3.5vw,2rem);color:var(--text-dim);font-weight:500;margin-top:0.75rem;letter-spacing:1px;animation:fadeInUp 0.8s ease 0.2s both}
+.hero-cta{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);z-index:3;display:flex;flex-direction:column;align-items:center;gap:8px;cursor:pointer;animation:bounce 2s infinite;text-decoration:none}
 .hero-cta-text{font-size:clamp(0.8rem,2vw,1rem);color:var(--purple-light);font-weight:500;letter-spacing:0.5px;text-align:center;line-height:1.5;max-width:320px}
 .hero-cta-arrow{display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:50%;background:rgba(109,40,217,0.3);border:1px solid rgba(167,139,250,0.4)}
 .hero-cta-arrow svg{width:18px;height:18px;color:var(--purple-light)}
@@ -209,26 +211,26 @@ a{color:inherit;text-decoration:none}
 /* ══════ SECTIONS ══════ */
 .section{padding:5rem 1.5rem}
 .section-inner{max-width:1000px;margin:auto}
-.section-label{display:inline-block;font-size:12px;font-weight:600;color:var(--purple-light);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:0.6rem}
+.section-label{display:inline-block;font-size:14px;font-weight:600;color:var(--purple-light);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:0.6rem}
 .section-title{font-size:clamp(1.5rem,3.5vw,2rem);font-weight:700;margin-bottom:0.75rem;line-height:1.3}
-.section-desc{font-size:14px;color:var(--text-dim);max-width:520px;margin-bottom:2rem}
+.section-desc{font-size:16px;color:var(--text-dim);max-width:520px;margin-bottom:2rem}
 .section-alt{background:rgba(16,14,30,0.85)}
 .centered{text-align:center}
 .centered .section-desc{margin-left:auto;margin-right:auto}
-.btn-primary{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,var(--purple),var(--indigo));color:#fff;padding:13px 30px;border-radius:11px;font-size:15px;font-weight:600;font-family:inherit;border:none;cursor:pointer;transition:all 0.25s}
+.btn-primary{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,var(--purple),var(--indigo));color:#fff;padding:14px 32px;border-radius:11px;font-size:17px;font-weight:600;font-family:inherit;border:none;cursor:pointer;transition:all 0.25s}
 .btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 30px var(--purple-glow)}
 
 .quiz-banner{background:linear-gradient(135deg,rgba(109,40,217,0.2),rgba(79,70,229,0.2));border:1px solid rgba(167,139,250,0.25);border-radius:16px;padding:2.5rem 2rem;text-align:center;position:relative;overflow:hidden}
 .quiz-banner .drone-illust{position:absolute;top:12px;left:12px;width:80px;height:80px;opacity:0.4;direction:ltr;pointer-events:none}
 .quiz-banner h2{font-size:clamp(1.3rem,3vw,1.7rem);font-weight:700;margin-bottom:0.5rem}
-.quiz-banner p{font-size:14px;color:var(--text-dim);margin-bottom:1.75rem}
+.quiz-banner p{font-size:16px;color:var(--text-dim);margin-bottom:1.75rem}
 
 .map-banner{background:linear-gradient(135deg,rgba(20,184,166,0.18),rgba(34,197,94,0.15));border:1px solid rgba(94,234,212,0.3);border-radius:16px;padding:2.5rem 2rem;text-align:center;position:relative;overflow:hidden;margin-top:1.5rem}
 .map-banner::before{content:"";position:absolute;top:-30%;right:-10%;width:240px;height:240px;background:radial-gradient(circle,rgba(94,234,212,0.18) 0%,transparent 70%);pointer-events:none}
 .map-banner .map-icon{position:absolute;top:14px;left:14px;width:64px;height:64px;opacity:0.5;direction:ltr;pointer-events:none}
 .map-banner h2{font-size:clamp(1.3rem,3vw,1.7rem);font-weight:700;margin-bottom:0.5rem;background:linear-gradient(135deg,#5eead4,#a78bfa);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;display:inline-block}
-.map-banner p{font-size:14px;color:var(--text-dim);margin-bottom:1.75rem;position:relative}
-.map-banner .btn-map{display:inline-block;padding:0.85rem 2rem;border-radius:10px;background:linear-gradient(135deg,#0d9488,#7c3aed);color:#fff;font-weight:600;font-size:15px;transition:all 0.25s;box-shadow:0 4px 14px rgba(20,184,166,0.3)}
+.map-banner p{font-size:16px;color:var(--text-dim);margin-bottom:1.75rem;position:relative}
+.map-banner .btn-map{display:inline-block;padding:0.95rem 2.2rem;border-radius:10px;background:linear-gradient(135deg,#0d9488,#7c3aed);color:#fff;font-weight:600;font-size:17px;transition:all 0.25s;box-shadow:0 4px 14px rgba(20,184,166,0.3)}
 .map-banner .btn-map:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(20,184,166,0.5)}
 .map-banner .pulse-dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:#10b981;margin-left:8px;animation:pulse 1.8s ease-in-out infinite}
 @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.6;transform:scale(1.3)}}
@@ -236,16 +238,16 @@ a{color:inherit;text-decoration:none}
 .faq-banner{background:linear-gradient(135deg,rgba(245,158,11,0.15),rgba(239,68,68,0.12));border:1px solid rgba(251,191,36,0.3);border-radius:16px;padding:2rem;text-align:center;position:relative;overflow:hidden;margin-bottom:2rem}
 .faq-banner::before{content:"?";position:absolute;top:-30px;right:20px;font-size:160px;font-weight:900;color:rgba(251,191,36,0.1);font-family:Georgia,serif;line-height:1;pointer-events:none}
 .faq-banner h2{font-size:clamp(1.2rem,2.8vw,1.5rem);font-weight:700;margin-bottom:0.5rem;color:#fbbf24}
-.faq-banner p{font-size:14px;color:var(--text-dim);margin-bottom:1.5rem}
-.faq-banner .btn-faq{display:inline-block;padding:0.75rem 1.75rem;border-radius:10px;background:linear-gradient(135deg,#f59e0b,#dc2626);color:#fff;font-weight:600;font-size:14px;transition:all 0.25s}
+.faq-banner p{font-size:16px;color:var(--text-dim);margin-bottom:1.5rem}
+.faq-banner .btn-faq{display:inline-block;padding:0.85rem 1.95rem;border-radius:10px;background:linear-gradient(135deg,#f59e0b,#dc2626);color:#fff;font-weight:600;font-size:16px;transition:all 0.25s}
 .faq-banner .btn-faq:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(245,158,11,0.4)}
 
 .intl-banner{background:linear-gradient(135deg,rgba(59,130,246,0.18),rgba(99,102,241,0.15));border:1px solid rgba(96,165,250,0.3);border-radius:16px;padding:2.5rem 2rem;text-align:center;position:relative;overflow:hidden;margin-top:2rem}
 .intl-banner::before{content:"";position:absolute;top:-30%;left:-10%;width:240px;height:240px;background:radial-gradient(circle,rgba(96,165,250,0.18) 0%,transparent 70%);pointer-events:none}
 .intl-banner .globe-icon{position:absolute;top:14px;right:14px;width:64px;height:64px;opacity:0.45;direction:ltr;pointer-events:none}
 .intl-banner h2{font-size:clamp(1.3rem,3vw,1.7rem);font-weight:700;margin-bottom:0.5rem;background:linear-gradient(135deg,#60a5fa,#a78bfa);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;display:inline-block}
-.intl-banner p{font-size:14px;color:var(--text-dim);margin-bottom:1.5rem;position:relative}
-.intl-banner .btn-intl{display:inline-block;padding:0.85rem 2rem;border-radius:10px;background:linear-gradient(135deg,#2563eb,#7c3aed);color:#fff;font-weight:600;font-size:15px;transition:all 0.25s;box-shadow:0 4px 14px rgba(59,130,246,0.3)}
+.intl-banner p{font-size:16px;color:var(--text-dim);margin-bottom:1.5rem;position:relative}
+.intl-banner .btn-intl{display:inline-block;padding:0.95rem 2.2rem;border-radius:10px;background:linear-gradient(135deg,#2563eb,#7c3aed);color:#fff;font-weight:600;font-size:17px;transition:all 0.25s;box-shadow:0 4px 14px rgba(59,130,246,0.3)}
 .intl-banner .btn-intl:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(59,130,246,0.5)}
 .intl-banner .flags-row{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;margin-bottom:1rem;font-size:clamp(18px,4vw,24px);letter-spacing:4px;direction:ltr;position:relative}
 
@@ -254,18 +256,18 @@ a{color:inherit;text-decoration:none}
 .service-card:hover{border-color:var(--purple-light);transform:translateY(-3px);box-shadow:0 10px 35px var(--purple-glow)}
 .service-card .drone-illust{position:absolute;bottom:-6px;left:-4px;width:80px;height:80px;opacity:0.4;transition:opacity 0.4s;direction:ltr;pointer-events:none}
 .service-card:hover .drone-illust{opacity:0.65}
-.service-card h3{font-size:16px;font-weight:600;margin-bottom:0.4rem}
-.service-card p{font-size:13px;color:var(--text-dim);line-height:1.6;margin-bottom:1rem}
-.service-link{font-size:12px;color:var(--purple-light);font-weight:500}
+.service-card h3{font-size:18px;font-weight:600;margin-bottom:0.4rem}
+.service-card p{font-size:15px;color:var(--text-dim);line-height:1.6;margin-bottom:1rem}
+.service-link{font-size:14px;color:var(--purple-light);font-weight:500}
 @media(max-width:768px){.services-grid{grid-template-columns:1fr}}
 
 .course-box{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;align-items:center}
 .course-info h2{font-size:clamp(1.4rem,3vw,1.8rem);font-weight:700;margin-bottom:0.75rem}
-.course-info p{font-size:14px;color:var(--text-dim);line-height:1.7;margin-bottom:1.5rem}
+.course-info p{font-size:16px;color:var(--text-dim);line-height:1.7;margin-bottom:1.5rem}
 .course-card{background:var(--card-bg);border:1px solid var(--card-border);border-radius:16px;padding:2rem;text-align:center;position:relative;overflow:hidden}
 .course-card .drone-illust{position:absolute;top:10px;left:10px;width:80px;height:80px;opacity:0.4;direction:ltr;pointer-events:none}
-.course-card h3{font-size:17px;font-weight:600;margin-bottom:0.5rem;margin-top:1rem}
-.course-card p{font-size:13px;color:var(--text-dim);margin-bottom:1.25rem}
+.course-card h3{font-size:19px;font-weight:600;margin-bottom:0.5rem;margin-top:1rem}
+.course-card p{font-size:15px;color:var(--text-dim);margin-bottom:1.25rem}
 @media(max-width:768px){.course-box{grid-template-columns:1fr}}
 
 .schools-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem}
@@ -273,8 +275,8 @@ a{color:inherit;text-decoration:none}
 .school-card:hover{border-color:var(--purple-light);transform:translateY(-3px)}
 .school-card .drone-illust{position:absolute;bottom:-4px;left:-2px;width:70px;height:70px;opacity:0.4;transition:opacity 0.4s;direction:ltr;pointer-events:none}
 .school-card:hover .drone-illust{opacity:0.65}
-.school-card h3{font-size:15px;font-weight:600;margin-bottom:0.4rem}
-.school-card p{font-size:12px;color:var(--text-dim);line-height:1.6;margin-bottom:0.75rem}
+.school-card h3{font-size:17px;font-weight:600;margin-bottom:0.4rem}
+.school-card p{font-size:14px;color:var(--text-dim);line-height:1.6;margin-bottom:0.75rem}
 .placeholder-card{opacity:0.6;cursor:default}
 @media(max-width:768px){.schools-grid{grid-template-columns:1fr}}
 
@@ -307,31 +309,31 @@ a{color:inherit;text-decoration:none}
 .c-card:hover{border-color:var(--border-h);transform:translateY(-3px);box-shadow:0 8px 30px var(--purple-glow)}
 .c-icon{width:52px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
 .c-icon svg{width:26px;height:26px}
-.c-info h3{font-size:15px;font-weight:600;margin-bottom:2px}
-.c-info p{font-size:12px;color:var(--text-dim)}
+.c-info h3{font-size:17px;font-weight:600;margin-bottom:2px}
+.c-info p{font-size:14px;color:var(--text-dim)}
 .c-form{background:var(--card-bg);border:1px solid var(--card-border);border-radius:16px;padding:2rem}
-.c-form h3{font-size:16px;font-weight:600;margin-bottom:1.25rem;text-align:center}
+.c-form h3{font-size:18px;font-weight:600;margin-bottom:1.25rem;text-align:center}
 .c-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
 @media(max-width:500px){.c-row{grid-template-columns:1fr}}
-.c-input{background:rgba(255,255,255,0.05);border:1px solid var(--card-border);border-radius:10px;padding:11px 14px;color:var(--text);font-family:inherit;font-size:14px;outline:none;transition:border 0.2s;width:100%}
+.c-input{background:rgba(255,255,255,0.05);border:1px solid var(--card-border);border-radius:10px;padding:13px 14px;color:var(--text);font-family:inherit;font-size:16px;outline:none;transition:border 0.2s;width:100%}
 .c-input:focus{border-color:var(--purple-light)}
-.c-select{background:var(--bg2);border:1px solid var(--card-border);border-radius:10px;padding:11px 14px;color:var(--text);font-family:inherit;font-size:14px;outline:none;width:100%}
+.c-select{background:var(--bg2);border:1px solid var(--card-border);border-radius:10px;padding:13px 14px;color:var(--text);font-family:inherit;font-size:16px;outline:none;width:100%}
 .c-select option{background:var(--bg2);color:var(--text)}
-.c-textarea{background:rgba(255,255,255,0.05);border:1px solid var(--card-border);border-radius:10px;padding:11px 14px;color:var(--text);font-family:inherit;font-size:14px;outline:none;width:100%;min-height:80px;resize:vertical;margin-bottom:12px}
+.c-textarea{background:rgba(255,255,255,0.05);border:1px solid var(--card-border);border-radius:10px;padding:13px 14px;color:var(--text);font-family:inherit;font-size:16px;outline:none;width:100%;min-height:80px;resize:vertical;margin-bottom:12px}
 .c-textarea:focus,.c-select:focus{border-color:var(--purple-light)}
 #cFormMsg{text-align:center;margin-top:8px;font-size:13px;min-height:20px}
 .sig{display:flex;align-items:center;gap:12px;padding:1rem 0;margin-top:2rem;border-top:1px solid var(--card-border)}
 .sig img{width:40px;height:40px;border-radius:10px;object-fit:contain}
 .sig-info span{display:block}
-.sig-info .sig-name{font-size:13px;font-weight:600}
-.sig-info .sig-title{font-size:11px;color:var(--text-muted)}
+.sig-info .sig-name{font-size:15px;font-weight:600}
+.sig-info .sig-title{font-size:13px;color:var(--text-muted)}
 
 /* Footer */
 .footer{padding:2rem 1.5rem;text-align:center;border-top:1px solid rgba(139,92,246,0.1)}
 .footer-links{display:flex;gap:1.5rem;justify-content:center;margin-bottom:0.75rem;flex-wrap:wrap}
-.footer-links a{font-size:12px;color:var(--text-dim);transition:color 0.2s}
+.footer-links a{font-size:14px;color:var(--text-dim);transition:color 0.2s}
 .footer-links a:hover{color:var(--purple-light)}
-.footer p{font-size:11px;color:var(--text-muted)}
+.footer p{font-size:13px;color:var(--text-muted)}
 
 /* Bot */
 .bot-bubble{position:fixed;bottom:1.5rem;left:1.5rem;z-index:90;width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,var(--purple),var(--indigo));display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 4px 20px var(--purple-glow);transition:all 0.3s;font-size:24px}
@@ -484,12 +486,13 @@ a{color:inherit;text-decoration:none}
 
 <!-- ══════ HERO ══════ -->
 <section class="hero">
-  <video class="hero-video" id="heroVid" muted loop playsinline preload="none" poster="dji_fly_20260103_125202_0159_1767435245354_photo.jpeg">
+  <img class="hero-poster-bg" src="dji_fly_20260103_125202_0159_1767435245354_photo.jpeg" alt="" decoding="sync" fetchpriority="high">
+  <video class="hero-video" id="heroVid" muted loop playsinline preload="none">
   </video>
   <div class="hero-overlay"></div>
   <div class="hero-content">
     <h1>FLYING <span class="mink">MINK</span></h1>
-    <p class="hero-tagline">Drone Solutions</p>
+    <p class="hero-tagline" data-he="שירותי רחפנים" data-en="Drone Services" data-de="Drohnen-Dienstleistungen" data-ru="Услуги дронов">שירותי רחפנים</p>
   </div>
   <a href="#course" class="hero-cta">
     <span class="hero-cta-text" data-he="בשביל לקבל ביטחון בהטסה שלך לחץ כאן" data-en="Click here to gain drone flight confidence" data-de="Klicken Sie hier um Flugsicherheit zu gewinnen" data-ru="Нажмите чтобы обрести уверенность в полёте">בשביל לקבל ביטחון בהטסה שלך לחץ כאן</span>
@@ -498,25 +501,55 @@ a{color:inherit;text-decoration:none}
 </section>
 
 <script>
-// Lazy load video AFTER page is interactive - poster shows instantly
+// Smart video loading - random start point, no jumps
 (function(){
   function loadHeroVideo(){
     var v = document.getElementById('heroVid');
     if(!v || v.dataset.loaded) return;
     v.dataset.loaded = '1';
+
     var src = document.createElement('source');
     src.src = 'https://cdn.jsdelivr.net/gh/Maorka07/drone-video@main/Untitled%20design.mp4';
     src.type = 'video/mp4';
     v.appendChild(src);
     v.preload = 'auto';
-    v.addEventListener('canplay', function(){ v.classList.add('loaded'); v.play().catch(function(){}); }, {once:true});
+    v.muted = true;
+
+    var started = false;
+    function tryStart(){
+      if(started) return;
+      // Wait for enough data and known duration
+      if(!isFinite(v.duration) || v.duration <= 0) return;
+      if(v.readyState < 3) return; // need HAVE_FUTURE_DATA at minimum
+
+      started = true;
+      // Pick a random start point between 5% and 70% of the video
+      var minStart = v.duration * 0.05;
+      var maxStart = v.duration * 0.70;
+      var randomTime = minStart + Math.random() * (maxStart - minStart);
+
+      // Set time BEFORE first paint, then play and reveal
+      try { v.currentTime = randomTime; } catch(e){}
+      v.classList.add('loaded');
+      var p = v.play();
+      if(p && p.catch) p.catch(function(){});
+    }
+
+    // Multiple events ensure we catch the right moment
+    v.addEventListener('loadedmetadata', tryStart);
+    v.addEventListener('canplay', tryStart);
+    v.addEventListener('canplaythrough', tryStart);
+    // Safety fallback - if nothing fires in 4s, try anyway
+    setTimeout(tryStart, 4000);
+
     v.load();
   }
-  // Load video 800ms after everything else - poster image shows during this time
+
+  // Load video 600ms after page is interactive — poster shows during this time
   if(document.readyState === 'complete'){
-    setTimeout(loadHeroVideo, 800);
+    setTimeout(loadHeroVideo, 600);
   } else {
-    window.addEventListener('load', function(){ setTimeout(loadHeroVideo, 800); });
+    window.addEventListener('load', function(){ setTimeout(loadHeroVideo, 600); });
   }
 })();
 </script>
@@ -946,7 +979,7 @@ a{color:inherit;text-decoration:none}
         <path d="M11 20 L53 20" stroke="#60a5fa" stroke-width="1" opacity="0.4"/>
         <path d="M11 44 L53 44" stroke="#60a5fa" stroke-width="1" opacity="0.4"/>
       </svg>
-      <div class="flags-row">🇬🇪 🇧🇬 🇨🇾 🇺🇸 🇧🇷 🇦🇷 🇹🇭 🇵🇭 🇮🇳</div>
+      <div class="flags-row">🇬🇪 🇧🇬 🇺🇸 🇧🇷 🇦🇷 🇹🇭 🇵🇭 🇮🇳</div>
       <h2 data-he="לפני שאתם ממריאים" data-en="Before You Take Off" data-de="Bevor Sie abheben" data-ru="Перед взлётом">לפני שאתם ממריאים</h2>
       <p data-he="חוקי הטסת רחפן במדינות שאתם נוסעים אליהן — מדריך מסודר לפי מדינה" data-en="Drone flight regulations in the countries you travel to — organized by country" data-de="Drohnenflugvorschriften in den Ländern, in die Sie reisen — nach Land geordnet" data-ru="Правила полётов дронов в странах назначения — по странам">חוקי הטסת רחפן במדינות שאתם נוסעים אליהן — מדריך מסודר לפי מדינה</p>
       <a href="laws.html" class="btn-intl" data-he="לחוקי ההטסה לפי מדינה" data-en="See Laws by Country" data-de="Gesetze nach Land ansehen" data-ru="Законы по странам">לחוקי ההטסה לפי מדינה ←</a>
