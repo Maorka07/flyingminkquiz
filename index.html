@@ -487,7 +487,8 @@ a{color:inherit;text-decoration:none}
 <!-- ══════ HERO ══════ -->
 <section class="hero">
   <img class="hero-poster-bg" src="dji_fly_20260103_125202_0159_1767435245354_photo.jpeg" alt="" decoding="sync" fetchpriority="high">
-  <video class="hero-video" id="heroVid" muted loop playsinline preload="none">
+  <video class="hero-video" id="heroVid" muted loop playsinline preload="auto" autoplay>
+    <source src="https://cdn.jsdelivr.net/gh/Maorka07/drone-video@main/Untitled%20design.mp4" type="video/mp4">
   </video>
   <div class="hero-overlay"></div>
   <div class="hero-content">
@@ -501,56 +502,52 @@ a{color:inherit;text-decoration:none}
 </section>
 
 <script>
-// Smart video loading - random start point, no jumps
+// Smart video loading - random start point, no jumps, no flicker
 (function(){
-  function loadHeroVideo(){
-    var v = document.getElementById('heroVid');
-    if(!v || v.dataset.loaded) return;
-    v.dataset.loaded = '1';
+  var v = document.getElementById('heroVid');
+  if(!v) return;
 
-    var src = document.createElement('source');
-    src.src = 'https://cdn.jsdelivr.net/gh/Maorka07/drone-video@main/Untitled%20design.mp4';
-    src.type = 'video/mp4';
-    v.appendChild(src);
-    v.preload = 'auto';
-    v.muted = true;
+  var started = false;
+  var revealed = false;
 
-    var started = false;
-    function tryStart(){
-      if(started) return;
-      // Wait for enough data and known duration
-      if(!isFinite(v.duration) || v.duration <= 0) return;
-      if(v.readyState < 3) return; // need HAVE_FUTURE_DATA at minimum
-
-      started = true;
-      // Pick a random start point between 5% and 70% of the video
-      var minStart = v.duration * 0.05;
-      var maxStart = v.duration * 0.70;
-      var randomTime = minStart + Math.random() * (maxStart - minStart);
-
-      // Set time BEFORE first paint, then play and reveal
-      try { v.currentTime = randomTime; } catch(e){}
-      v.classList.add('loaded');
-      var p = v.play();
-      if(p && p.catch) p.catch(function(){});
-    }
-
-    // Multiple events ensure we catch the right moment
-    v.addEventListener('loadedmetadata', tryStart);
-    v.addEventListener('canplay', tryStart);
-    v.addEventListener('canplaythrough', tryStart);
-    // Safety fallback - if nothing fires in 4s, try anyway
-    setTimeout(tryStart, 4000);
-
-    v.load();
+  function reveal(){
+    if(revealed) return;
+    revealed = true;
+    v.classList.add('loaded');
   }
 
-  // Load video 600ms after page is interactive — poster shows during this time
-  if(document.readyState === 'complete'){
-    setTimeout(loadHeroVideo, 600);
-  } else {
-    window.addEventListener('load', function(){ setTimeout(loadHeroVideo, 600); });
+  function tryStart(){
+    if(started) return;
+    if(!isFinite(v.duration) || v.duration <= 0) return;
+    if(v.readyState < 3) return; // need HAVE_FUTURE_DATA at minimum
+
+    started = true;
+    // Pick a random start point between 5% and 70% of the video
+    var minStart = v.duration * 0.05;
+    var maxStart = v.duration * 0.70;
+    var randomTime = minStart + Math.random() * (maxStart - minStart);
+
+    // Reveal only AFTER the seek completes — this avoids the "stuck on one frame" flicker
+    var onSeeked = function(){
+      v.removeEventListener('seeked', onSeeked);
+      reveal();
+    };
+    v.addEventListener('seeked', onSeeked);
+
+    try { v.currentTime = randomTime; } catch(e){ reveal(); }
+    var p = v.play();
+    if(p && p.catch) p.catch(function(){});
   }
+
+  v.addEventListener('loadedmetadata', tryStart);
+  v.addEventListener('canplay', tryStart);
+  v.addEventListener('canplaythrough', tryStart);
+  // Also reveal once playback actually begins (extra safety net)
+  v.addEventListener('playing', reveal);
+  // Safety fallback - if nothing fires in 4s, try anyway
+  setTimeout(tryStart, 4000);
+  // Final fallback - reveal after 6s no matter what so the user never sees a blank hero
+  setTimeout(reveal, 6000);
 })();
 </script>
 
@@ -613,7 +610,7 @@ a{color:inherit;text-decoration:none}
       </svg>
       <h2 data-he="איפה מותר להטיס?" data-en="Where Can You Fly?" data-de="Wo darf man fliegen?" data-ru="Где можно летать?">איפה מותר להטיס?</h2>
       <p data-he="מפה אינטראקטיבית של אזורי הטיסה בישראל — בדקו את המיקום שלכם לפני המראה" data-en="Interactive map of flight zones in Israel — check your location before takeoff" data-de="Interaktive Karte der Flugzonen in Israel — prüfen Sie Ihren Standort vor dem Start" data-ru="Интерактивная карта зон полётов в Израиле — проверьте местоположение перед взлётом">מפה אינטראקטיבית של אזורי הטיסה בישראל — בדקו את המיקום שלכם לפני המראה</p>
-      <a href="map.html" class="btn-map" data-he="פתח את המפה" data-en="Open the Map" data-de="Karte öffnen" data-ru="Открыть карту">פתח את המפה<span class="pulse-dot"></span></a>
+      <a href="israelmap.html" class="btn-map" data-he="פתח את המפה" data-en="Open the Map" data-de="Karte öffnen" data-ru="Открыть карту">פתח את המפה<span class="pulse-dot"></span></a>
     </div>
   </div>
 </section>
