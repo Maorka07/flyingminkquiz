@@ -49,37 +49,6 @@ function submitContact(){
   formMsg.style.color="#34d399";formMsg.textContent="\u05d4\u05d4\u05d5\u05d3\u05e2\u05d4 \u05e0\u05e9\u05dc\u05d7\u05d4! \u05e0\u05d7\u05d6\u05d5\u05e8 \u05d0\u05dc\u05d9\u05db\u05dd \u05d1\u05d4\u05e7\u05d3\u05dd.";
 }
 
-/* Login */
-function openProfile(){document.getElementById("loginModal").classList.add("open")}
-function closeProfile(){document.getElementById("loginModal").classList.remove("open")}
-function switchLoginTab(tab){
-  document.querySelectorAll(".login-tab").forEach(function(t,i){t.classList.toggle("active",i===(tab==="login"?0:1))});
-  document.getElementById("loginForm").style.display=tab==="login"?"block":"none";
-  document.getElementById("registerForm").style.display=tab==="register"?"block":"none";
-  document.getElementById("loginMsg").textContent="";
-}
-function doLogin(){
-  var email=document.getElementById("loginEmail").value.trim();
-  var pass=document.getElementById("loginPass").value;
-  if(!email||!pass){document.getElementById("loginMsg").textContent="\u05e0\u05d0 \u05dc\u05de\u05dc\u05d0 \u05d0\u05ea \u05db\u05dc \u05d4\u05e9\u05d3\u05d5\u05ea";return;}
-  var users=JSON.parse(localStorage.getItem("fm_users")||"[]");
-  var u=users.find(function(x){return x.email===email&&x.pass===pass});
-  if(u){localStorage.setItem("fm_current",JSON.stringify(u));closeProfile();alert("\u05e9\u05dc\u05d5\u05dd "+u.name+"!");}
-  else{document.getElementById("loginMsg").textContent="\u05d0\u05d9\u05de\u05d9\u05d9\u05dc \u05d0\u05d5 \u05e1\u05d9\u05e1\u05de\u05d4 \u05e9\u05d2\u05d5\u05d9\u05d9\u05dd";}
-}
-function doRegister(){
-  var name=document.getElementById("regName").value.trim();
-  var email=document.getElementById("regEmail").value.trim();
-  var pass=document.getElementById("regPass").value;
-  if(!name||!email||!pass){document.getElementById("loginMsg").textContent="\u05e0\u05d0 \u05dc\u05de\u05dc\u05d0 \u05d0\u05ea \u05db\u05dc \u05d4\u05e9\u05d3\u05d5\u05ea";return;}
-  var users=JSON.parse(localStorage.getItem("fm_users")||"[]");
-  if(users.find(function(x){return x.email===email})){document.getElementById("loginMsg").textContent="\u05d0\u05d9\u05de\u05d9\u05d9\u05dc \u05db\u05d1\u05e8 \u05e8\u05e9\u05d5\u05dd";return;}
-  users.push({name:name,email:email,pass:pass});
-  localStorage.setItem("fm_users",JSON.stringify(users));
-  localStorage.setItem("fm_current",JSON.stringify({name:name,email:email}));
-  closeProfile();alert("\u05e0\u05e8\u05e9\u05de\u05ea \u05d1\u05d4\u05e6\u05dc\u05d7\u05d4! \u05e9\u05dc\u05d5\u05dd "+name);
-}
-
 /* Bot */
 function toggleBot(){document.getElementById("botChat").classList.toggle("open")}
 function botAsk(q){addBotMsg(q,"user");document.getElementById("botQuick").style.display="none";setTimeout(function(){botReply(q)},600);}
