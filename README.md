@@ -10,7 +10,7 @@
 |---|---|
 | `_includes/home/head.html` | כותרת הדף, תיאור, SEO, Schema.org, Google Analytics, גופנים |
 | `_includes/home/loader.html` | מסך הטעינה |
-| `_includes/home/menu.html` | כפתורים צפים, בחירת שפה, תפריט צד |
+| `_includes/home/menu.html` | כפתורים צפים, בחירת שפה, סמל נגישות, תפריט צד |
 | `_includes/home/hero.html` | וידאו הפתיחה |
 | `_includes/home/quiz-and-map.html` | שאלון הרחפנים + באנר המפה |
 | `_includes/home/services-and-faq.html` | שירותים + באנר שאלות נפוצות |
@@ -19,10 +19,10 @@
 | `_includes/home/gallery-banner.html` | הבועה שמובילה לגלריה |
 | `_includes/home/contact.html` | צור קשר |
 | `_includes/home/partners.html` | שותפים |
-| `_includes/home/footer.html` | פוטר |
-| `_includes/home/overlays.html` | חלון ההתחברות והבוט |
+| `_includes/home/footer.html` | פוטר, כולל הקישור למדיניות הפרטיות |
+| `_includes/home/overlays.html` | הבוט |
 | `assets/css/home.css` | העיצוב של דף הבית |
-| `assets/js/home.js` | החלפת שפה, תפריט, טופס יצירת קשר, התחברות, בוט |
+| `assets/js/home.js` | החלפת שפה, תפריט, טופס יצירת קשר, בוט |
 
 ## עמודים
 
@@ -43,6 +43,9 @@
 | `photography.html` | הזמנת צילום אווירי |
 | `program.html` | הזמנת שיעור |
 | `israelmap.html` | מפת אזורי הטיסה |
+| `privacy.html` | תקנון, תנאי שימוש ומדיניות פרטיות (קישור מהפוטר ומטופס יצירת הקשר) |
+| `accessibility.html` | הצהרת נגישות (קישור מסמל הנגישות בראש דף הבית) |
+| `assets/css/legal.css` | העיצוב המשותף לשני העמודים האלה |
 
 עמודי הקורס מקושרים מ-`guides.html`. הצ׳קליסט מקושר גם מבאנר בדף הבית, מתחת לבאנר המפה.
 
@@ -61,6 +64,8 @@
 2. מוסיפים שורה אחת לרשימה `GALLERY_PHOTOS` בראש הסקריפט ב-`gallery.html`.
 
 ## חשוב לדעת
+
+- כשמשנים משהו באתר שקשור לאיסוף מידע (טופס חדש, כלי מדידה, שירות חיצוני) או לנגישות, צריך לעדכן גם את `privacy.html` או את `accessibility.html` ואת תאריך העדכון שבראשם.
 
 - הצ׳קליסט (`check.html`) מצפה גם לקבצים `check-sw.js`, `check.webmanifest` ולאייקונים `check-icon-*.png`. בלעדיהם הדף עובד, אבל לא יעבוד בלי אינטרנט ולא יהיה אפשר להתקין אותו כאפליקציה.
 
