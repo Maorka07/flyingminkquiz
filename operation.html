@@ -1,0 +1,1174 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light only">
+<meta name="theme-color" content="#F1EFFA">
+<title>תפעול בסיסי של רחפן – הדלקה, כיבוי, עצירה בהיפוך ונוריות | Flying Mink</title>
+<meta name="description" content="מדריך אינטראקטיבי לתפעול בסיסי של רחפן: סדר הדלקה וכיבוי נכון, התנעה ועצירת מנועים, עצירת מנועים בהיפוך הרחפן, ומשמעות כל נורית ברחפן, בסוללה ובשלט.">
+<link rel="canonical" href="https://flyingmink.com/operation.html">
+<meta property="og:type" content="article">
+<meta property="og:locale" content="he_IL">
+<meta property="og:site_name" content="Flying Mink Drone Solutions">
+<meta property="og:title" content="תפעול בסיסי של רחפן – הדלקה, כיבוי ונוריות">
+<meta property="og:description" content="סדר הדלקה וכיבוי, עצירת מנועים בהיפוך ומשמעות הנוריות – עם הדמיות אינטראקטיביות.">
+<meta property="og:url" content="https://flyingmink.com/operation.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700;800;900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-CP1NCS3G49"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-CP1NCS3G49');
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "תפעול בסיסי של רחפן: הדלקה, כיבוי, עצירה בהיפוך ומשמעות הנוריות",
+  "inLanguage": "he",
+  "publisher": {"@type": "Organization", "name": "Flying Mink Drone Solutions", "url": "https://flyingmink.com", "email": "maor@flyingmink.com"},
+  "step": [
+    {"@type": "HowToStep", "name": "הדלקת השלט", "text": "מדליקים קודם את השלט: לחיצה קצרה ואז לחיצה ארוכה של כשתי שניות."},
+    {"@type": "HowToStep", "name": "הדלקת הרחפן", "text": "מניחים את הרחפן על משטח ישר ומדליקים אותו באותה שיטה: לחיצה קצרה ואז לחיצה ארוכה."},
+    {"@type": "HowToStep", "name": "המתנה לבדיקה עצמית", "text": "ממתינים שהנורית תסיים את הבדיקה העצמית ותעבור להבהוב ירוק איטי (GPS פעיל)."},
+    {"@type": "HowToStep", "name": "כיבוי", "text": "אחרי הנחיתה עוצרים מנועים, מכבים קודם את הרחפן ורק אחר כך את השלט."}
+  ]
+}
+</script>
+<style>
+:root{
+  color-scheme: light only;
+  --bg:#F1EFFA;
+  --surface:#FFFFFF;
+  --surface-2:#F8F7FD;
+  --ink:#211C35;
+  --ink-2:#4A4463;
+  --ink-3:#6B6585;
+  --line:#E2DEF2;
+  --purple:#5B21B6;
+  --purple-2:#7C3AED;
+  --purple-soft:#EDE7FB;
+  --teal:#0D7A70;
+  --teal-soft:#E3F4F1;
+  --amber:#9A5B00;
+  --amber-soft:#FFF4DC;
+  --danger:#B42318;
+  --danger-soft:#FDECEA;
+  --led-red:#EF2D3B;
+  --led-yellow:#F7B500;
+  --led-green:#18B45B;
+  --led-blue:#2F7BFF;
+  --led-purple:#A23CFF;
+  --radius-lg:24px;
+  --radius-md:16px;
+  --shadow-1:0 1px 2px rgba(33,28,53,.06),0 6px 20px rgba(33,28,53,.06);
+  --shadow-2:0 2px 4px rgba(33,28,53,.06),0 18px 40px rgba(91,33,182,.10);
+  --font:'Heebo',system-ui,-apple-system,'Segoe UI',Arial,sans-serif;
+  --mono:'JetBrains Mono',ui-monospace,Menlo,Consolas,monospace;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;background:var(--bg)}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body{-webkit-tap-highlight-color:transparent;margin:0;background:var(--bg);color:var(--ink);font-family:var(--font);font-size:17px;line-height:1.7;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img,svg{display:block;max-width:100%}
+a{color:var(--purple)}
+button{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--purple-2);outline-offset:3px;border-radius:10px}
+[hidden]{display:none!important}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.skip{position:absolute;inset-inline-start:16px;top:-60px;background:var(--purple);color:#fff;padding:10px 16px;border-radius:12px;z-index:100;text-decoration:none;font-weight:700;transition:top .2s}
+.skip:focus{top:12px}
+.wrap{width:100%;max-width:1320px;margin:0 auto;padding-top:0;padding-bottom:0;padding-left:max(16px,env(safe-area-inset-left));padding-right:max(16px,env(safe-area-inset-right))}
+@media(min-width:768px){.wrap{padding-left:max(28px,env(safe-area-inset-left));padding-right:max(28px,env(safe-area-inset-right))}}
+@media(min-width:1280px){.wrap{padding-left:40px;padding-right:40px}}
+@media(min-width:1700px){.wrap{max-width:1480px}body{font-size:18px}}
+
+/* Top bar */
+.topbar{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.88);backdrop-filter:saturate(1.4) blur(12px);-webkit-backdrop-filter:saturate(1.4) blur(12px);border-bottom:1px solid var(--line)}
+.topbar .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:64px}
+.back{display:inline-flex;align-items:center;gap:8px;text-decoration:none;color:var(--ink);font-weight:700;font-size:15px;padding:9px 16px 9px 14px;border-radius:999px;background:var(--surface-2);border:1px solid var(--line);transition:background .2s,border-color .2s,transform .2s}
+@media(hover:hover){.back:hover{background:var(--purple-soft);border-color:#CFC3F2;transform:translateX(2px)}}
+.back svg{width:18px;height:18px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none}
+.brand img{height:40px;width:auto;mix-blend-mode:multiply}
+.toc{display:none;gap:4px}
+.toc a{text-decoration:none;color:var(--ink-2);font-weight:500;font-size:15px;padding:8px 14px;border-radius:999px;transition:background .2s,color .2s}
+.toc a:hover,.toc a.active{background:var(--purple-soft);color:var(--purple)}
+@media(min-width:900px){.toc{display:flex}}
+
+/* Hero */
+.hero{padding:44px 0 20px}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:12.5px;letter-spacing:.06em;color:var(--teal);background:var(--teal-soft);padding:6px 12px;border-radius:999px;font-weight:700;direction:ltr}
+.hero h1{font-weight:900;font-size:clamp(34px,7vw,60px);line-height:1.08;letter-spacing:-.02em;margin:0 0 14px}
+.hero h1 .accent{color:var(--purple)}
+.hero p.lead{font-size:clamp(17px,2.4vw,20px);color:var(--ink-2);max-width:720px;margin:0 0 26px}
+.chips{display:grid;grid-template-columns:1fr;gap:12px}
+@media(min-width:700px){.chips{grid-template-columns:repeat(3,1fr)}}
+.chip{display:flex;align-items:center;gap:14px;text-decoration:none;color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-md);padding:16px 18px;box-shadow:var(--shadow-1);transition:transform .2s,box-shadow .2s,border-color .2s}
+@media(hover:hover){.chip:hover{transform:translateY(-3px);box-shadow:var(--shadow-2);border-color:#CFC3F2}}
+.chip .ic{flex:none;width:44px;height:44px;border-radius:14px;display:grid;place-items:center;background:var(--purple-soft);color:var(--purple)}
+.chip .ic svg{width:22px;height:22px}
+.chip b{display:block;font-weight:800;font-size:16.5px;line-height:1.3}
+.chip span{display:block;font-size:14px;color:var(--ink-3);line-height:1.4}
+.chip .num{font-family:var(--mono);font-size:12px;color:var(--teal);font-weight:700}
+
+/* Sections */
+section.block{padding:56px 0 8px;scroll-margin-top:72px}
+.sec-head{display:flex;align-items:flex-start;gap:16px;margin-bottom:22px}
+.sec-num{flex:none;font-family:var(--mono);font-weight:700;font-size:14px;color:#fff;background:var(--purple);width:42px;height:42px;border-radius:14px;display:grid;place-items:center;margin-top:6px}
+.sec-head h2{font-weight:900;font-size:clamp(27px,4.6vw,40px);line-height:1.15;margin:0 0 6px;letter-spacing:-.01em}
+.sec-head p{margin:0;color:var(--ink-2);max-width:760px}
+h3{font-weight:800;font-size:21px;line-height:1.3;margin:0 0 12px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-lg);padding:22px;box-shadow:var(--shadow-1)}
+@media(min-width:768px){.card{padding:28px}}
+.grid-2{display:grid;grid-template-columns:1fr;gap:16px}
+@media(min-width:768px){.grid-2{grid-template-columns:1fr 1fr;gap:20px}}
+.stack{display:grid;gap:16px}
+@media(min-width:768px){.stack{gap:20px}}
+
+/* Steps */
+.steps{list-style:none;margin:0;padding:0;display:grid;gap:12px;counter-reset:st}
+.steps li{position:relative;padding:14px 16px 14px 16px;padding-inline-start:58px;background:var(--surface-2);border:1px solid var(--line);border-radius:var(--radius-md);counter-increment:st}
+.steps li::before{content:counter(st);position:absolute;inset-inline-start:14px;top:14px;width:30px;height:30px;border-radius:10px;background:var(--surface);border:1px solid #CFC3F2;color:var(--purple);font-family:var(--mono);font-weight:700;font-size:14px;display:grid;place-items:center}
+.steps li b{display:block;font-weight:800;line-height:1.35}
+.steps li span{display:block;color:var(--ink-2);font-size:15.5px;line-height:1.6}
+.steps.teal li::before{color:var(--teal);border-color:#A9DCD5}
+.kbd{display:inline-block;font-family:var(--mono);font-size:13px;font-weight:700;padding:1px 8px;border-radius:8px;background:var(--purple-soft);color:var(--purple);border:1px solid #D9CEF6;direction:ltr;unicode-bidi:isolate;white-space:nowrap}
+.tag{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:700;padding:3px 10px;border-radius:999px}
+.tag.ok{background:var(--teal-soft);color:var(--teal)}
+.tag.warn{background:var(--amber-soft);color:var(--amber)}
+.tag.bad{background:var(--danger-soft);color:var(--danger)}
+
+/* Callouts */
+.callout{display:flex;gap:14px;align-items:flex-start;border-radius:var(--radius-md);padding:16px 18px;border:1px solid}
+.callout svg{flex:none;width:22px;height:22px;margin-top:3px}
+.callout p{margin:0;font-size:15.5px;line-height:1.65}
+.callout b{font-weight:800}
+.callout.info{background:var(--purple-soft);border-color:#D9CEF6;color:#3B1782}
+.callout.tip{background:var(--teal-soft);border-color:#B5E1DA;color:#0A5A53}
+.callout.warn{background:var(--amber-soft);border-color:#F3D9A4;color:#6B4000}
+.callout.danger{background:var(--danger-soft);border-color:#F6C6C1;color:#8A1B12}
+
+/* Power simulator */
+.sim-head{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:16px}
+.sim-head h3{margin:0}
+.btn{text-decoration:none;display:inline-flex;align-items:center;justify-content:center;gap:8px;border:1px solid var(--line);background:var(--surface);color:var(--ink);font-weight:700;font-size:15px;padding:10px 18px;border-radius:999px;cursor:pointer;transition:background .2s,border-color .2s,transform .15s,box-shadow .2s;min-height:44px}
+.btn:hover{background:var(--purple-soft);border-color:#CFC3F2}
+.btn:active{transform:scale(.97)}
+.btn svg{width:18px;height:18px}
+.btn.primary{background:var(--purple);border-color:var(--purple);color:#fff}
+.btn.primary:hover{background:#4C1D95;border-color:#4C1D95}
+.btn.danger{background:var(--danger);border-color:var(--danger);color:#fff}
+.btn.danger:hover{background:#912018}
+.btn[disabled]{opacity:.45;cursor:not-allowed;transform:none}
+.devices{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media(min-width:1024px){.devices{gap:14px}}
+@media(min-width:768px) and (min-height:700px){#powerSim{position:sticky;top:84px;align-self:start}}
+.device{min-width:0;background:var(--surface-2);border:1px solid var(--line);border-radius:var(--radius-md);padding:14px 8px;display:flex;flex-direction:column;align-items:center;gap:12px;text-align:center}
+.device .label{font-weight:800;font-size:16px;display:flex;align-items:center;gap:8px}
+.device .state{font-family:var(--mono);font-size:12px;font-weight:700;padding:2px 9px;border-radius:999px;background:#ECEAF3;color:var(--ink-3);direction:ltr}
+.device .state.on{background:var(--teal-soft);color:var(--teal)}
+.device .art{width:100%;max-width:220px;height:auto;aspect-ratio:220/150}
+.batt{display:flex;gap:6px;direction:ltr;align-items:center}
+.batt i{width:16px;height:8px;border-radius:3px;background:#D8D4E6;transition:background .2s,box-shadow .2s}
+.batt i.on{background:var(--led-green);box-shadow:0 0 8px rgba(24,180,91,.55)}
+.batt i.blink{background:var(--led-green);box-shadow:0 0 8px rgba(24,180,91,.55);animation:blinkSlow 1s infinite}
+.batt-label{font-family:var(--mono);font-size:11.5px;color:var(--ink-3);direction:ltr}
+.pbtn{position:relative;width:76px;height:76px;border-radius:50%;border:0;background:var(--surface);cursor:pointer;display:grid;place-items:center;box-shadow:0 3px 0 #D8D2EE,0 8px 18px rgba(33,28,53,.12);touch-action:none;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none;transition:transform .1s,box-shadow .1s}
+.pbtn:active,.pbtn.pressed{transform:translateY(2px);box-shadow:0 1px 0 #D8D2EE,0 4px 10px rgba(33,28,53,.12)}
+.pbtn svg.ring{position:absolute;inset:0;width:76px;height:76px;transform:rotate(-90deg)}
+.pbtn svg.ring circle{fill:none;stroke-width:5}
+.pbtn svg.ring .track{stroke:#EEEAF8}
+.pbtn svg.ring .prog{stroke:var(--purple);stroke-linecap:round;stroke-dasharray:213.6;stroke-dashoffset:213.6}
+.pbtn .pw{width:28px;height:28px;color:var(--purple);position:relative}
+.pbtn-hint{font-size:13px;color:var(--ink-3);line-height:1.4;margin:0}
+.tracker{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:16px 0 0}
+.tracker div{background:var(--surface-2);border:1px solid var(--line);border-radius:12px;padding:10px 8px;text-align:center;font-size:13.5px;font-weight:700;color:var(--ink-3);line-height:1.35;transition:all .25s}
+.tracker div small{display:block;font-family:var(--mono);font-weight:700;font-size:11px;opacity:.8}
+.tracker div.done{background:var(--teal-soft);border-color:#A9DCD5;color:var(--teal)}
+.tracker div.wrong{background:var(--amber-soft);border-color:#F3D9A4;color:var(--amber)}
+.msg{margin-top:14px;min-height:56px;border-radius:14px;padding:12px 16px;font-size:15.5px;line-height:1.55;background:var(--surface-2);border:1px dashed #CFC3F2;color:var(--ink-2);transition:background .25s,border-color .25s,color .25s}
+.msg.ok{background:var(--teal-soft);border:1px solid #B5E1DA;color:#0A5A53}
+.msg.warn{background:var(--amber-soft);border:1px solid #F3D9A4;color:#6B4000}
+.msg.bad{background:var(--danger-soft);border:1px solid #F6C6C1;color:#8A1B12}
+
+/* LEDs */
+.led{--c:var(--led-green);display:inline-block;width:16px;height:16px;border-radius:50%;background:var(--c);box-shadow:0 0 0 2px rgba(255,255,255,.9),0 0 12px var(--c);flex:none}
+.led.off{background:#CFCBDD;box-shadow:0 0 0 2px rgba(255,255,255,.9);animation:none!important}
+.led.lg{width:22px;height:22px}
+.p-slow{animation:blinkSlow 1.6s infinite}
+.p-fast{animation:blinkFast .36s infinite}
+.p-double{animation:blinkDouble 1.8s infinite}
+.p-cycle{animation:cycle3 1.5s infinite step-end}
+.p-cycle5{animation:cycle5 2.5s infinite step-end}
+.p-altry{animation:altRY .8s infinite step-end}
+@keyframes blinkSlow{0%,48%{opacity:1}52%,100%{opacity:.14}}
+@keyframes blinkFast{0%,45%{opacity:1}55%,100%{opacity:.12}}
+@keyframes blinkDouble{0%,9%{opacity:1}10%,19%{opacity:.12}20%,29%{opacity:1}30%,100%{opacity:.12}}
+@keyframes cycle3{0%{background:var(--led-red);box-shadow:0 0 0 2px #fff,0 0 12px var(--led-red)}33.3%{background:var(--led-yellow);box-shadow:0 0 0 2px #fff,0 0 12px var(--led-yellow)}66.6%{background:var(--led-green);box-shadow:0 0 0 2px #fff,0 0 12px var(--led-green)}}
+@keyframes cycle5{0%{background:var(--led-red);box-shadow:0 0 0 2px #fff,0 0 12px var(--led-red)}20%{background:var(--led-yellow);box-shadow:0 0 0 2px #fff,0 0 12px var(--led-yellow)}40%{background:var(--led-green);box-shadow:0 0 0 2px #fff,0 0 12px var(--led-green)}60%{background:var(--led-blue);box-shadow:0 0 0 2px #fff,0 0 12px var(--led-blue)}80%{background:var(--led-purple);box-shadow:0 0 0 2px #fff,0 0 12px var(--led-purple)}}
+@keyframes altRY{0%{background:var(--led-red);box-shadow:0 0 0 2px #fff,0 0 12px var(--led-red)}50%{background:var(--led-yellow);box-shadow:0 0 0 2px #fff,0 0 12px var(--led-yellow)}}
+
+/* Sticks (CSC) */
+.csc{display:grid;grid-template-columns:1fr;gap:12px;margin:14px 0}
+@media(min-width:560px){.csc{grid-template-columns:1fr 1fr}}
+.csc figure{margin:0;background:var(--surface-2);border:1px solid var(--line);border-radius:var(--radius-md);padding:14px;text-align:center}
+.csc figcaption{font-size:14px;font-weight:700;color:var(--ink-2);margin-top:6px}
+.csc svg{width:100%;max-width:260px;height:auto;margin:0 auto}
+
+/* Range (battery demo) */
+.range-wrap{margin-top:16px}
+.range-wrap label{display:flex;justify-content:space-between;align-items:center;font-weight:700;font-size:15px;margin-bottom:8px}
+input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:12px;border-radius:999px;background:#E7E2F7;outline-offset:6px;cursor:pointer;direction:ltr;touch-action:pan-y;margin:8px 0}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:30px;height:30px;border-radius:50%;background:var(--purple);border:4px solid #fff;box-shadow:0 2px 8px rgba(33,28,53,.3)}
+input[type=range]::-moz-range-thumb{width:24px;height:24px;border-radius:50%;background:var(--purple);border:4px solid #fff;box-shadow:0 2px 8px rgba(33,28,53,.3)}
+
+/* Pros/cons list */
+.list{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.list li{display:flex;gap:10px;align-items:flex-start;font-size:15.5px;line-height:1.6;color:var(--ink-2)}
+.list li svg{flex:none;width:20px;height:20px;margin-top:3px}
+.list.ok svg{color:var(--teal)}
+.list.bad svg{color:var(--danger)}
+
+/* LED table */
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+.filters button{border:1px solid var(--line);background:var(--surface);padding:8px 16px;border-radius:999px;font-weight:700;font-size:14.5px;cursor:pointer;transition:background .2s,border-color .2s,color .2s;min-height:40px;color:var(--ink-2)}
+.filters button:hover{border-color:#CFC3F2;background:var(--purple-soft)}
+.filters button[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:#fff}
+.led-list{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.led-row{display:grid;grid-template-columns:56px 1fr;gap:4px 14px;align-items:center;background:var(--surface-2);border:1px solid var(--line);border-radius:var(--radius-md);padding:14px 16px;transition:opacity .2s}
+.led-row[hidden]{display:none}
+.led-row .led-cell{grid-row:span 2;display:grid;place-items:center;height:48px;width:48px;border-radius:14px;background:#fff;border:1px solid var(--line)}
+.led-row .pat{font-weight:800;font-size:16px;line-height:1.35;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.led-row .mean{font-size:15px;color:var(--ink-2);line-height:1.55}
+.led-row .mean b{color:var(--ink);font-weight:700}
+@media(min-width:760px){
+  .led-row{grid-template-columns:56px minmax(220px,1fr) 1.6fr;grid-template-rows:auto}
+  .led-row .led-cell{grid-row:auto}
+}
+.batt-demo{display:flex;flex-direction:column;align-items:center;gap:14px;background:var(--surface-2);border:1px solid var(--line);border-radius:var(--radius-md);padding:20px 16px}
+.batt-demo .batt i{width:34px;height:14px;border-radius:5px}
+.batt-demo .pct{font-family:var(--mono);font-size:28px;font-weight:700;color:var(--ink);direction:ltr}
+.mini-table{width:100%;border-collapse:separate;border-spacing:0;font-size:15px;margin-top:6px}
+.mini-table th,.mini-table td{text-align:start;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+.mini-table th{font-weight:800;font-size:13.5px;color:var(--ink-3);background:var(--surface-2)}
+.mini-table tr:last-child td{border-bottom:0}
+.mini-table td:first-child{font-weight:700;white-space:nowrap}
+
+/* Quiz */
+.quiz-q{display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:center;margin-bottom:14px}
+.quiz-q .led-cell{display:grid;place-items:center;height:64px;width:64px;border-radius:18px;background:#fff;border:1px solid var(--line)}
+.quiz-q p{margin:0;font-weight:800;font-size:17px;line-height:1.4}
+.quiz-q small{display:block;font-family:var(--mono);color:var(--ink-3);font-weight:700;font-size:12px}
+.answers{display:grid;gap:10px}
+@media(min-width:620px){.answers{grid-template-columns:1fr 1fr}}
+.answers button{text-align:start;border:1px solid var(--line);background:var(--surface-2);padding:12px 16px;border-radius:14px;cursor:pointer;font-weight:600;font-size:15.5px;line-height:1.45;transition:background .2s,border-color .2s;min-height:48px}
+.answers button:hover:not([disabled]){border-color:#CFC3F2;background:var(--purple-soft)}
+.answers button.correct{background:var(--teal-soft);border-color:var(--teal);color:#0A5A53}
+.answers button.wrong{background:var(--danger-soft);border-color:#E9A39C;color:#8A1B12}
+.answers button[disabled]{cursor:default}
+.quiz-foot{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:14px;flex-wrap:wrap}
+.quiz-score{font-family:var(--mono);font-weight:700;color:var(--ink-3);font-size:13.5px}
+
+/* CTA + footer */
+.cta{margin:56px 0 0;background:linear-gradient(135deg,#5B21B6 0%,#3E1785 100%);color:#fff;border-radius:var(--radius-lg);padding:30px 24px;display:grid;gap:16px;box-shadow:var(--shadow-2)}
+@media(min-width:800px){.cta{grid-template-columns:1fr auto;align-items:center;padding:36px 40px}}
+.cta h2{margin:0 0 6px;font-weight:900;font-size:clamp(24px,3.6vw,32px);line-height:1.2}
+.cta p{margin:0;color:#E5DCFB}
+.cta .btn{background:#fff;color:var(--purple);border-color:#fff}
+.cta .btn:hover{background:#F1EFFA}
+.related{display:grid;grid-template-columns:1fr;gap:12px;margin-top:20px}
+@media(min-width:700px){.related{grid-template-columns:repeat(3,1fr)}}
+footer{margin-top:48px;border-top:1px solid var(--line);background:var(--surface);padding:28px 0 max(36px,env(safe-area-inset-bottom));font-size:14.5px;color:var(--ink-3)}
+footer .wrap{display:flex;flex-wrap:wrap;gap:12px 24px;align-items:center;justify-content:space-between}
+footer a{color:var(--ink-2);text-decoration:none;font-weight:600}
+footer a:hover{color:var(--purple)}
+.disclaimer{font-size:13.5px;color:var(--ink-3);margin-top:18px;line-height:1.6}
+
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{scroll-behavior:auto!important}
+  .chip:hover,.back:hover{transform:none}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">דילוג לתוכן</a>
+
+<header class="topbar">
+  <div class="wrap">
+    <a class="back" href="index.html" aria-label="חזרה לעמוד הבית">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      חזרה
+    </a>
+    <nav class="toc" aria-label="ניווט בעמוד">
+      <a href="#power">הדלקה וכיבוי</a>
+      <a href="#flip">עצירה בהיפוך</a>
+      <a href="#lights">משמעות הנוריות</a>
+      <a href="#quiz">בוחן קצר</a>
+    </nav>
+    <a class="brand" href="index.html" aria-label="Flying Mink – עמוד הבית">
+      <img src="data:image/jpeg;base64,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" alt="Flying Mink Drone Solutions" width="64" height="40">
+    </a>
+  </div>
+</header>
+
+<main id="main">
+  <div class="wrap">
+
+    <!-- HERO -->
+    <section class="hero" aria-labelledby="pageTitle">
+      <h1 id="pageTitle">תפעול בסיסי <span class="accent">של רחפן</span></h1>
+      <p class="lead">שלושה דברים שכל מטיס צריך לדעת לפני ההמראה הראשונה: איך מדליקים ומכבים בסדר הנכון, איך עוצרים מנועים כשהרחפן ביד או אחרי התרסקות, ומה כל נורית מנסה להגיד לך. בדרך יש הדמיות ובוחן קצר לתרגול.</p>
+      <div class="chips">
+        <a class="chip" href="#power">
+          <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2v10"/><path d="M18.4 6.6a9 9 0 1 1-12.77.04"/></svg></span>
+          <span><span class="num">01</span><b>הדלקה וכיבוי</b><span>סדר נכון, התנעה ועצירת מנועים</span></span>
+        </a>
+        <a class="chip" href="#flip">
+          <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 1 1-3-6.7"/><path d="M21 4v5h-5"/></svg></span>
+          <span><span class="num">02</span><b>עצירה בהיפוך</b><span>מתי זה עובד, ומתי ממש לא</span></span>
+        </a>
+        <a class="chip" href="#lights">
+          <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7c.6.5 1 1.2 1 2V17h6v-.3c0-.8.4-1.5 1-2A7 7 0 0 0 12 2z"/></svg></span>
+          <span><span class="num">03</span><b>משמעות הנוריות</b><span>רחפן, סוללה ושלט</span></span>
+        </a>
+      </div>
+    </section>
+
+    <!-- ============ 01 POWER ============ -->
+    <section class="block" id="power" aria-labelledby="powerTitle">
+      <div class="sec-head">
+        <span class="sec-num" aria-hidden="true">01</span>
+        <div>
+          <h2 id="powerTitle">הדלקה וכיבוי</h2>
+          <p>ברוב רחפני הצילום, גם הסוללה של הרחפן וגם השלט נדלקים באותה שיטה: <b>לחיצה קצרה</b> ומיד אחריה <b>לחיצה ארוכה</b> של כשתי שניות. לחיצה קצרה אחת בלבד רק מציגה את רמת הסוללה.</p>
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div class="stack">
+          <div class="card">
+            <h3>סדר הדלקה</h3>
+            <ol class="steps">
+              <li><b>שלט קודם</b><span>לחיצה קצרה ואז לחיצה ארוכה. כך הרחפן מוצא שלט פעיל ברגע שהוא עולה, ולא נשאר אפילו רגע בלי שליטה.</span></li>
+              <li><b>רחפן על משטח ישר וחלק</b><span>מורידים כיסוי גימבל, פורשים זרועות בדגמים מתקפלים, ומניחים על משטח ישר. הרחפן מכייל חיישנים בעלייה ולא אוהב תזוזה.</span></li>
+              <li><b>מדליקים את הרחפן</b><span>לחיצה קצרה ואז לחיצה ארוכה על כפתור הסוללה. לא מזיזים את הרחפן בזמן הבדיקה העצמית.</span></li>
+              <li><b>מחכים לאור ירוק</b><span>הנורית מסיימת סבב צבעים (בדיקה עצמית) ועוברת להבהוב ירוק איטי: יש GPS, אפשר להמריא. באפליקציה מחכים גם לשמירת נקודת הבית.</span></li>
+            </ol>
+          </div>
+          <div class="card">
+            <h3>סדר כיבוי</h3>
+            <ol class="steps teal">
+              <li><b>נוחתים ועוצרים מנועים</b><span>מוודאים שהמנועים עצרו לגמרי לפני שמתקרבים לרחפן.</span></li>
+              <li><b>מכבים את הרחפן קודם</b><span>לחיצה קצרה ואז לחיצה ארוכה על כפתור הסוללה.</span></li>
+              <li><b>רק אז את השלט</b><span>אם מכבים את השלט ראשון, הרחפן נשאר דולק בלי קשר. על הקרקע זה בעיקר מבזבז סוללה, אבל זה הרגל שכדאי לא לפתח.</span></li>
+            </ol>
+          </div>
+          <div class="callout tip" role="note">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+            <p><b>כלל אצבע:</b> השלט הוא הראשון שנכנס לחדר והאחרון שיוצא ממנו. מדליקים שלט ← רחפן, מכבים רחפן ← שלט.</p>
+          </div>
+        </div>
+
+        <!-- Power simulator -->
+        <div class="card" id="powerSim">
+          <div class="sim-head">
+            <h3>הדמיה: הדליקו את המערכת</h3>
+            <button class="btn" id="powerReset" type="button">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7"/><path d="M3 4v5h5"/></svg>
+              איפוס
+            </button>
+          </div>
+          <div class="devices">
+            <div class="device" id="dev-rc">
+              <div class="label">שלט <span class="state" data-state>OFF</span></div>
+              <svg class="art" viewBox="0 0 220 150" aria-hidden="true">
+                <rect x="20" y="40" width="180" height="80" rx="34" fill="#E9E5F5" stroke="#CFC8E6" stroke-width="2"/>
+                <circle cx="62" cy="80" r="20" fill="#fff" stroke="#CFC8E6" stroke-width="2"/>
+                <circle cx="62" cy="80" r="7" fill="#4A4463"/>
+                <circle cx="158" cy="80" r="20" fill="#fff" stroke="#CFC8E6" stroke-width="2"/>
+                <circle cx="158" cy="80" r="7" fill="#4A4463"/>
+                <rect x="84" y="20" width="52" height="28" rx="6" fill="#4A4463"/>
+                <circle cx="110" cy="102" r="6" fill="#CFCBDD" data-led/>
+              </svg>
+              <div class="batt" data-batt aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+              <button class="pbtn" type="button" data-pbtn aria-label="כפתור הפעלה של השלט: לחיצה קצרה ואז לחיצה ארוכה">
+                <svg class="ring" viewBox="0 0 76 76" aria-hidden="true"><circle class="track" cx="38" cy="38" r="34"/><circle class="prog" cx="38" cy="38" r="34"/></svg>
+                <svg class="pw" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M12 3v9"/><path d="M18.4 7.6a8 8 0 1 1-12.8 0"/></svg>
+              </button>
+              <p class="pbtn-hint">קצרה ← ארוכה (2 שנ׳)</p>
+            </div>
+            <div class="device" id="dev-drone">
+              <div class="label">רחפן <span class="state" data-state>OFF</span></div>
+              <svg class="art" viewBox="0 0 220 150" aria-hidden="true">
+                <g stroke="#CFC8E6" stroke-width="7" stroke-linecap="round"><line x1="110" y1="75" x2="48" y2="30"/><line x1="110" y1="75" x2="172" y2="30"/><line x1="110" y1="75" x2="48" y2="120"/><line x1="110" y1="75" x2="172" y2="120"/></g>
+                <g fill="#fff" stroke="#CFC8E6" stroke-width="2"><circle cx="48" cy="30" r="22"/><circle cx="172" cy="30" r="22"/><circle cx="48" cy="120" r="22"/><circle cx="172" cy="120" r="22"/></g>
+                <g fill="#4A4463"><circle cx="48" cy="30" r="5"/><circle cx="172" cy="30" r="5"/><circle cx="48" cy="120" r="5"/><circle cx="172" cy="120" r="5"/></g>
+                <rect x="84" y="44" width="52" height="66" rx="16" fill="#E9E5F5" stroke="#CFC8E6" stroke-width="2"/>
+                <rect x="100" y="34" width="20" height="14" rx="4" fill="#4A4463"/>
+                <circle cx="110" cy="96" r="7" fill="#CFCBDD" data-led/>
+              </svg>
+              <div class="batt" data-batt aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+              <button class="pbtn" type="button" data-pbtn aria-label="כפתור הפעלה של סוללת הרחפן: לחיצה קצרה ואז לחיצה ארוכה">
+                <svg class="ring" viewBox="0 0 76 76" aria-hidden="true"><circle class="track" cx="38" cy="38" r="34"/><circle class="prog" cx="38" cy="38" r="34"/></svg>
+                <svg class="pw" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M12 3v9"/><path d="M18.4 7.6a8 8 0 1 1-12.8 0"/></svg>
+              </button>
+              <p class="pbtn-hint">קצרה ← ארוכה (2 שנ׳)</p>
+            </div>
+          </div>
+          <div class="tracker" aria-label="התקדמות סדר ההדלקה">
+            <div data-step="1"><small>STEP 1</small>שלט דולק</div>
+            <div data-step="2"><small>STEP 2</small>רחפן דולק</div>
+            <div data-step="3"><small>STEP 3</small>מוכן להמראה</div>
+          </div>
+          <div class="msg" id="powerMsg" role="status" aria-live="polite">לחצו לחיצה קצרה על אחד הכפתורים כדי לראות את רמת הסוללה. כדי להדליק: לחיצה קצרה, ומיד אחריה לחיצה ארוכה.</div>
+        </div>
+      </div>
+
+      <!-- Motors -->
+      <div class="card" style="margin-top:20px">
+        <h3>התנעה ועצירה של המנועים</h3>
+        <p style="margin:0 0 4px;color:var(--ink-2)">ברוב רחפני הצילום המנועים מותנעים בפקודת סטיקים משולבת (CSC). זה מכוון: קשה לבצע אותה בטעות.</p>
+        <div class="csc">
+          <figure>
+            <svg viewBox="0 0 260 120" role="img" aria-label="שני הסטיקים למטה ופנימה">
+              <defs><marker id="ah1" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#5B21B6"/></marker></defs>
+              <rect x="10" y="10" width="100" height="100" rx="18" fill="#fff" stroke="#CFC8E6" stroke-width="2"/>
+              <rect x="150" y="10" width="100" height="100" rx="18" fill="#fff" stroke="#CFC8E6" stroke-width="2"/>
+              <circle cx="60" cy="60" r="5" fill="#CFC8E6"/><circle cx="200" cy="60" r="5" fill="#CFC8E6"/>
+              <line x1="60" y1="60" x2="92" y2="92" stroke="#5B21B6" stroke-width="4" stroke-linecap="round" marker-end="url(#ah1)"/>
+              <line x1="200" y1="60" x2="168" y2="92" stroke="#5B21B6" stroke-width="4" stroke-linecap="round" marker-end="url(#ah1)"/>
+            </svg>
+            <figcaption>אפשרות א׳: שני הסטיקים למטה ופנימה</figcaption>
+          </figure>
+          <figure>
+            <svg viewBox="0 0 260 120" role="img" aria-label="שני הסטיקים למטה והחוצה">
+              <defs><marker id="ah2" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#0D7A70"/></marker></defs>
+              <rect x="10" y="10" width="100" height="100" rx="18" fill="#fff" stroke="#CFC8E6" stroke-width="2"/>
+              <rect x="150" y="10" width="100" height="100" rx="18" fill="#fff" stroke="#CFC8E6" stroke-width="2"/>
+              <circle cx="60" cy="60" r="5" fill="#CFC8E6"/><circle cx="200" cy="60" r="5" fill="#CFC8E6"/>
+              <line x1="60" y1="60" x2="28" y2="92" stroke="#0D7A70" stroke-width="4" stroke-linecap="round" marker-end="url(#ah2)"/>
+              <line x1="200" y1="60" x2="232" y2="92" stroke="#0D7A70" stroke-width="4" stroke-linecap="round" marker-end="url(#ah2)"/>
+            </svg>
+            <figcaption>אפשרות ב׳: שני הסטיקים למטה והחוצה</figcaption>
+          </figure>
+        </div>
+        <div class="grid-2">
+          <ol class="steps">
+            <li><b>התנעה</b><span>מבצעים את ה-CSC, וברגע שהמנועים מסתובבים משחררים את שני הסטיקים יחד. אחר כך מעלים גז בעדינות להמראה. בהרבה דגמים יש גם כפתור המראה אוטומטית באפליקציה.</span></li>
+            <li><b>עצירה אחרי נחיתה</b><span>מחזיקים את סטיק הגז למטה עד שהמנועים נעצרים (בדרך כלל כשלוש שניות), או מבצעים שוב את ה-CSC אחרי שהרחפן כבר על הקרקע.</span></li>
+          </ol>
+          <div class="stack">
+            <div class="callout danger" role="note">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>
+              <p><b>עצירת חירום באוויר:</b> ברוב הדגמים, החזקת ה-CSC כשתי שניות בזמן טיסה עוצרת את המנועים, <b>והרחפן נופל</b>. כברירת מחדל זה עובד רק כשהרחפן מזהה מצב חירום (התנגשות, מנוע תקוע, סחרור). משתמשים בזה רק כשהנפילה פחות מסוכנת מהמשך הטיסה.</p>
+            </div>
+            <div class="callout info" role="note">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="6" width="20" height="12" rx="6"/><circle cx="16" cy="12" r="3"/></svg>
+              <p><b>ברחפני FPV זה אחרת:</b> אין CSC. מחמשים ומנטרלים במתג ARM בשלט, וחימוש אפשרי רק כשהגז על אפס. מתג ARM הוא גם עצירת החירום.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 02 FLIP ============ -->
+    <section class="block" id="flip" aria-labelledby="flipTitle">
+      <div class="sec-head">
+        <span class="sec-num" aria-hidden="true">02</span>
+        <div>
+          <h2 id="flipTitle">עצירת מנועים בהיפוך הרחפן</h2>
+          <p>ברבים מרחפני הצילום, בקר הטיסה מזהה כשהרחפן נמצא בזווית קיצונית או הפוך לגמרי ומפסיק את המנועים. זה מנגנון הגנה שנועד בעיקר להתרסקות: שהמנועים לא ימשיכו לטחון כשהרחפן שוכב על הגב. מטיסים משתמשים בזה גם כדי לעצור מנועים אחרי תפיסה ביד.</p>
+        </div>
+      </div>
+
+      <div class="grid-2">
+          <div class="card">
+            <h3>איך עושים את זה נכון</h3>
+            <ol class="steps">
+              <li><b>רק ברחפן קטן וקל</b><span>רחפני צילום מתחת ל-250 גרם, ועדיף עם מגיני פרופלורים. ברחפן גדול לא תופסים ביד בכלל.</span></li>
+              <li><b>מרחפים נמוך ויציב</b><span>הרחפן מרחף בגובה החזה, בלי רוח, והאף מופנה הצידה ממך.</span></li>
+              <li><b>אוחזים מלמטה, בגוף בלבד</b><span>יד שטוחה מתחת לגוף המרכזי, אצבעות רחוקות מהפרופלורים. לא תופסים זרוע.</span></li>
+              <li><b>הופכים בתנועה אחת</b><span>מסובבים את הרחפן כך שהפרופלורים פונים למטה, ומחזיקים יציב עד שכל המנועים נעצרו.</span></li>
+              <li><b>במקביל, גז למטה</b><span>מחזיקים את סטיק הגז למטה. אם המנועים לא נעצרים, משתמשים בעצירת החירום מהשלט.</span></li>
+            </ol>
+          </div>
+          <div class="stack" style="align-content:start">
+          <div class="callout warn" role="note">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>
+            <p><b>זה לא כפתור כיבוי רשמי.</b> אצל רוב היצרנים זה מנגנון הגנה, לא שיטת עצירה מתועדת. יש מקרים מתועדים שבהם המנועים <b>לא</b> נעצרו, למשל כשמצב עקיפת מכשולים פעיל והרחפן מנסה "להתחמק" מהיד. הדרך המועדפת תמיד: לנחות על הקרקע.</p>
+          </div>
+        <div class="card">
+          <h3><span class="tag ok">מתי זה שימושי</span></h3>
+          <ul class="list ok">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>נחיתה מסירה, מגג או משטח לא ישר, כשאין מקום בטוח להנחית</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>אחרי התרסקות: הרחפן התהפך והמנועים צריכים להיעצר לבד כדי לא להישרף</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>קרקע עם חול, דשא גבוה או אבק שעלולים להיכנס למנועים ולמצלמה</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3><span class="tag bad">מתי לא</span></h3>
+          <ul class="list bad">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>ברחפן FPV: הוא לא נעצר בהיפוך. מנטרלים רק במתג ARM</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>ברחפנים גדולים (מעל 250 גרם) או בלי מגיני פרופלורים</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>ברוח, עם כפפות, או כשמטיס אחר מחזיק את השלט</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>בשיעור ראשון: קודם שולטים בנחיתה רגילה, אחר כך לומדים תפיסה ביד</li>
+          </ul>
+        </div>
+          </div>
+      </div>
+    </section>
+
+    <!-- ============ 03 LIGHTS ============ -->
+    <section class="block" id="lights" aria-labelledby="lightsTitle">
+      <div class="sec-head">
+        <span class="sec-num" aria-hidden="true">03</span>
+        <div>
+          <h2 id="lightsTitle">משמעות הנוריות</h2>
+          <p>הנוריות הן הדרך של הרחפן לדבר איתך כשאתה לא מסתכל על המסך. יש שלוש קבוצות: נורית הסטטוס של הרחפן, נוריות הסוללה, ונוריות השלט. הטבלה מבוססת על המוסכמה הנפוצה ברוב רחפני הצילום. ביצרנים אחרים הצבעים יכולים להיות שונים, אז תמיד כדאי לבדוק במדריך של הדגם.</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="sim-head">
+          <h3>נורית הסטטוס של הרחפן</h3>
+          <div class="filters" role="group" aria-label="סינון לפי חומרה">
+            <button type="button" data-filter="all" aria-pressed="true">הכל</button>
+            <button type="button" data-filter="ok" aria-pressed="false">תקין</button>
+            <button type="button" data-filter="warn" aria-pressed="false">זהירות</button>
+            <button type="button" data-filter="bad" aria-pressed="false">לא להמריא / לנחות</button>
+          </div>
+        </div>
+        <ul class="led-list" id="ledList"></ul>
+        <div class="msg" id="ledEmpty" hidden>אין נוריות בקטגוריה הזו.</div>
+      </div>
+
+      <div class="grid-2" style="margin-top:20px">
+        <div class="card">
+          <h3>נוריות הסוללה</h3>
+          <p style="margin:0 0 14px;color:var(--ink-2);font-size:15.5px">ארבע נוריות, כל אחת שווה בערך רבע מהסוללה. נורית מהבהבת = הרבע הזה מלא חלקית. לחיצה קצרה על כפתור הסוללה מציגה את הרמה גם כשהיא כבויה.</p>
+          <div class="batt-demo">
+            <div class="pct" id="battPct">72%</div>
+            <div class="batt" id="battDemo" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+            <div class="range-wrap" style="width:100%;margin-top:4px">
+              <label for="battRange">רמת טעינה</label>
+              <input type="range" id="battRange" min="0" max="100" step="1" value="72">
+            </div>
+          </div>
+          <div class="callout tip" role="note" style="margin-top:14px">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+            <p><b>בזמן טעינה</b> הנוריות בדרך כלל מהבהבות ברצף אחת אחרי השנייה, וכבות או נדלקות קבוע כשהטעינה הסתיימה. הבהוב לא רגיל בטעינה יכול להעיד על סוללה חמה מדי, קרה מדי או תקולה.</p>
+          </div>
+        </div>
+        <div class="card">
+          <h3>אורות קדמיים ונוריות השלט</h3>
+          <table class="mini-table">
+            <thead><tr><th scope="col">נורית</th><th scope="col">מה היא אומרת</th></tr></thead>
+            <tbody>
+              <tr><td>אורות קדמיים</td><td>מסמנים איפה החזית של הרחפן, כדי לדעת לאן הוא פונה כשהוא רחוק. בחלק מהדגמים אפשר לכבות אותם באפליקציה, ובחלק הם כבים אוטומטית בזמן צילום כדי שלא ייכנסו לתמונה.</td></tr>
+              <tr><td>אור נגד התנגשות</td><td>אור מהבהב חזק (Beacon / AUX) לטיסות בדמדומים ובלילה, כדי שכלי טיס אחרים יראו את הרחפן. בחלק מהדגמים מובנה, באחרים מוסיפים חיצוני.</td></tr>
+              <tr><td>סוללת השלט</td><td>אותה שיטה כמו בסוללת הרחפן: ארבע נוריות, נורית מהבהבת = רבע חלקי. השלט גם מצפצף כשהסוללה שלו נמוכה.</td></tr>
+              <tr><td>נורית סטטוס בשלט</td><td>אור קבוע = מחובר לרחפן. מהבהב = מחפש חיבור או בתהליך קישור (Linking). הצבעים עצמם משתנים בין דגמים.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ QUIZ ============ -->
+    <section class="block" id="quiz" aria-labelledby="quizTitle">
+      <div class="sec-head">
+        <span class="sec-num" aria-hidden="true">?</span>
+        <div>
+          <h2 id="quizTitle">בוחן קצר: מה אומרת הנורית?</h2>
+          <p>חמש שאלות. מסתכלים על הנורית ובוחרים את המשמעות.</p>
+        </div>
+      </div>
+      <div class="card" id="quizCard">
+        <div class="quiz-q">
+          <div class="led-cell"><span class="led lg" id="quizLed"></span></div>
+          <p><small id="quizCount">שאלה 1 מתוך 5</small><span id="quizPattern"></span></p>
+        </div>
+        <div class="answers" id="quizAnswers"></div>
+        <div class="quiz-foot">
+          <span class="quiz-score" id="quizScore">SCORE 0</span>
+          <button class="btn primary" type="button" id="quizNext" disabled>השאלה הבאה</button>
+        </div>
+        <div class="msg" id="quizMsg" role="status" aria-live="polite" hidden></div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <aside class="cta" aria-labelledby="ctaTitle">
+      <div>
+        <h2 id="ctaTitle">רוצים לתרגל את זה בשטח?</h2>
+        <p>שיעור פרטי עם מדריך: הדלקה וכיבוי, נחיתה ותפיסה ביד, וקריאת נוריות. על הרחפן שלכם או על שלנו, בכל הארץ.</p>
+      </div>
+      <a class="btn" href="index.html#contact">
+        לתיאום שיעור
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg>
+      </a>
+    </aside>
+
+    <nav class="related" aria-label="עמודים קשורים">
+      <a class="chip" href="check.html">
+        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></span>
+        <span><b>צ׳קליסט טיסה</b><span>לפני, במהלך ואחרי</span></span>
+      </a>
+      <a class="chip" href="rth-lesson.html">
+        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/></svg></span>
+        <span><b>חזרה הביתה (RTH)</b><span>איך זה עובד ומתי נכשל</span></span>
+      </a>
+      <a class="chip" href="gnss.html">
+        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15 15 0 0 1 0 20 15 15 0 0 1 0-20z"/></svg></span>
+        <span><b>GPS ו-GNSS</b><span>למה מחכים לירוק</span></span>
+      </a>
+    </nav>
+
+    <p class="disclaimer">המידע בעמוד כללי ומבוסס על ההתנהגות הנפוצה ברוב רחפני הצילום וה-FPV. פרטים כמו צבעי נוריות, זמני לחיצה ושיטות עצירה משתנים בין יצרנים, דגמים וגרסאות קושחה. לפני טיסה קראו את המדריך של הדגם שלכם.</p>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© <span id="year">2026</span> Flying Mink Drone Solutions</span>
+    <span style="display:flex;gap:18px;flex-wrap:wrap">
+      <a href="index.html">עמוד הבית</a>
+      <a href="faq.html">שאלות נפוצות</a>
+      <a href="mailto:maor@flyingmink.com">maor@flyingmink.com</a>
+    </span>
+  </div>
+</footer>
+
+<script>
+(function () {
+  'use strict';
+
+  const REDUCED_MOTION = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const LED_COLORS = {
+    red: 'var(--led-red)',
+    yellow: 'var(--led-yellow)',
+    green: 'var(--led-green)',
+    blue: 'var(--led-blue)',
+    purple: 'var(--led-purple)'
+  };
+  const PATTERN_CLASSES = ['p-slow', 'p-fast', 'p-double', 'p-cycle', 'p-cycle5', 'p-altry'];
+
+  /* ---------- Shared helpers ---------- */
+  function setMessage(el, text, tone) {
+    if (!el) return;
+    el.textContent = text;
+    el.classList.remove('ok', 'warn', 'bad');
+    if (tone) el.classList.add(tone);
+  }
+
+  function applyLedPattern(el, pattern, color) {
+    if (!el) return;
+    el.classList.remove('off', ...PATTERN_CLASSES);
+    if (pattern === 'off') {
+      el.classList.add('off');
+      el.style.removeProperty('--c');
+      return;
+    }
+    if (color) el.style.setProperty('--c', LED_COLORS[color]);
+    if (pattern !== 'solid') el.classList.add('p-' + pattern);
+  }
+
+  function renderBatteryLeds(container, percent, visible) {
+    if (!container) return;
+    const leds = container.querySelectorAll('i');
+    leds.forEach(function (led, index) {
+      led.classList.remove('on', 'blink');
+      if (!visible) return;
+      const lower = index * 25;
+      const upper = (index + 1) * 25;
+      if (percent >= upper) led.classList.add('on');
+      else if (percent > lower) led.classList.add('blink');
+    });
+    if (visible && percent <= 0 && leds[0]) leds[0].classList.add('blink');
+  }
+
+  /* ---------- LED catalogue ---------- */
+  const LED_STATES = [
+    { id: 'selftest', pattern: 'cycle5', color: null, title: 'צבעים מתחלפים', short: 'בדיקה עצמית בהדלקה', meaning: '<b>בדיקה עצמית</b> מיד אחרי ההדלקה. לא מזיזים את הרחפן עד שזה נגמר.', sev: 'ok' },
+    { id: 'warmup', pattern: 'slow', color: 'purple', title: 'סגול מהבהב לאט', short: 'חימום חיישנים', meaning: '<b>חימום</b> של החיישנים (בחלק מהדגמים), בעיקר בקור. מחכים שיעבור לפני ההמראה.', sev: 'warn' },
+    { id: 'gps', pattern: 'slow', color: 'green', title: 'ירוק מהבהב לאט', short: 'GPS פעיל, מוכן לטיסה', meaning: '<b>מוכן לטיסה.</b> GPS פעיל: הרחפן מחזיק מיקום ויכול לחזור הביתה.', sev: 'ok' },
+    { id: 'vision', pattern: 'double', color: 'green', title: 'ירוק מהבהב פעמיים', short: 'מיצוב בחיישני ראייה, בלי GPS', meaning: '<b>מיצוב בעזרת חיישני הראייה</b> התחתונים, בלי GPS. יציב בגובה נמוך מעל משטח עם טקסטורה, אבל חזרה הביתה לא אמינה.', sev: 'warn' },
+    { id: 'brake', pattern: 'fast', color: 'green', title: 'ירוק מהבהב מהר', short: 'בלימה', meaning: '<b>בלימה:</b> הרחפן עוצר במקום (למשל אחרי שחרור סטיקים או מול מכשול).', sev: 'ok' },
+    { id: 'atti', pattern: 'slow', color: 'yellow', title: 'צהוב מהבהב לאט', short: 'מצב ATTI, אין GPS ואין ראייה', meaning: '<b>מצב ATTI:</b> אין GPS ואין חיישני ראייה. הרחפן לא מחזיק מקום ונסחף ברוח. שולטים ידנית ונוחתים בזהירות.', sev: 'warn' },
+    { id: 'rclost', pattern: 'fast', color: 'yellow', title: 'צהוב מהבהב מהר', short: 'אובדן קשר עם השלט', meaning: '<b>אובדן קשר עם השלט.</b> הרחפן יבצע את הפעולה שהוגדרה לאובדן קשר, בדרך כלל חזרה הביתה.', sev: 'bad' },
+    { id: 'lowbat', pattern: 'slow', color: 'red', title: 'אדום מהבהב לאט', short: 'סוללה חלשה', meaning: '<b>סוללה חלשה.</b> מתחילים לחזור לנקודת הנחיתה.', sev: 'warn' },
+    { id: 'critbat', pattern: 'fast', color: 'red', title: 'אדום מהבהב מהר', short: 'סוללה קריטית', meaning: '<b>סוללה קריטית.</b> נוחתים עכשיו. הרחפן עלול להתחיל לנחות בעצמו.', sev: 'bad' },
+    { id: 'error', pattern: 'solid', color: 'red', title: 'אדום קבוע', short: 'תקלה קריטית', meaning: '<b>תקלה קריטית.</b> לא ממריאים. בודקים את ההודעה באפליקציה.', sev: 'bad' },
+    { id: 'compass', pattern: 'altry', color: null, title: 'אדום וצהוב לסירוגין', short: 'נדרש כיול מצפן', meaning: '<b>נדרש כיול מצפן.</b> מכיילים לפי האפליקציה, רחוק ממתכות, רכבים ומבנים.', sev: 'bad' }
+  ];
+  const SEV_TAGS = { ok: ['ok', 'תקין'], warn: ['warn', 'זהירות'], bad: ['bad', 'לא להמריא / לנחות'] };
+
+  function buildLedList() {
+    const list = document.getElementById('ledList');
+    if (!list) return;
+    const fragment = document.createDocumentFragment();
+    LED_STATES.forEach(function (state) {
+      const row = document.createElement('li');
+      row.className = 'led-row';
+      row.dataset.sev = state.sev;
+
+      const cell = document.createElement('div');
+      cell.className = 'led-cell';
+      const led = document.createElement('span');
+      led.className = 'led lg';
+      led.setAttribute('aria-hidden', 'true');
+      applyLedPattern(led, state.pattern, state.color);
+      cell.appendChild(led);
+
+      const pat = document.createElement('div');
+      pat.className = 'pat';
+      pat.textContent = state.title + ' ';
+      const tag = document.createElement('span');
+      tag.className = 'tag ' + SEV_TAGS[state.sev][0];
+      tag.textContent = SEV_TAGS[state.sev][1];
+      pat.appendChild(tag);
+
+      const mean = document.createElement('div');
+      mean.className = 'mean';
+      mean.innerHTML = state.meaning;
+
+      row.append(cell, pat, mean);
+      fragment.appendChild(row);
+    });
+    list.appendChild(fragment);
+
+    const filterButtons = document.querySelectorAll('.filters button');
+    const emptyState = document.getElementById('ledEmpty');
+    filterButtons.forEach(function (button) {
+      button.addEventListener('click', function () {
+        const filter = button.dataset.filter;
+        filterButtons.forEach(function (b) { b.setAttribute('aria-pressed', String(b === button)); });
+        let visibleCount = 0;
+        list.querySelectorAll('.led-row').forEach(function (row) {
+          const show = filter === 'all' || row.dataset.sev === filter;
+          row.hidden = !show;
+          if (show) visibleCount += 1;
+        });
+        if (emptyState) emptyState.hidden = visibleCount > 0;
+      });
+    });
+  }
+
+  /* ---------- Battery demo ---------- */
+  function initBatteryDemo() {
+    const range = document.getElementById('battRange');
+    const demo = document.getElementById('battDemo');
+    const label = document.getElementById('battPct');
+    if (!range || !demo || !label) return;
+    function update() {
+      const value = Number(range.value);
+      label.textContent = value + '%';
+      renderBatteryLeds(demo, value, true);
+      range.setAttribute('aria-valuetext', value + ' אחוז');
+    }
+    range.addEventListener('input', update);
+    update();
+  }
+
+  /* ---------- Power simulator ---------- */
+  function initPowerSim() {
+    const root = document.getElementById('powerSim');
+    if (!root) return;
+    const msg = document.getElementById('powerMsg');
+    const HOLD_MS = 2000;
+    const SECOND_PRESS_WINDOW_MS = 2500;
+    const BATTERY_PREVIEW_MS = 4000;
+    const BOOT_MS = 3200;
+    const RING_LENGTH = 213.6;
+
+    const state = {
+      rc: { on: false, battery: 58 },
+      drone: { on: false, booting: false, battery: 72 },
+      orderMistake: false
+    };
+    const timers = { boot: null };
+
+    const devices = {
+      rc: buildDevice('rc', document.getElementById('dev-rc')),
+      drone: buildDevice('drone', document.getElementById('dev-drone'))
+    };
+
+    function buildDevice(key, el) {
+      return {
+        key: key,
+        el: el,
+        led: el.querySelector('[data-led]'),
+        batt: el.querySelector('[data-batt]'),
+        stateTag: el.querySelector('[data-state]'),
+        button: el.querySelector('[data-pbtn]'),
+        ring: el.querySelector('.prog'),
+        armedUntil: 0,
+        holding: false,
+        holdStart: 0,
+        holdTimer: null,
+        rafId: null,
+        previewTimer: null,
+        keyDown: false,
+        ignoreNextRelease: false
+      };
+    }
+
+    function setSvgLed(circle, color, pattern) {
+      if (!circle) return;
+      PATTERN_CLASSES.forEach(function (c) { circle.classList.remove(c); });
+      circle.style.animation = '';
+      if (!color) {
+        circle.setAttribute('fill', '#CFCBDD');
+        circle.style.filter = '';
+        return;
+      }
+      const map = { red: '#EF2D3B', yellow: '#F7B500', green: '#18B45B', teal: '#0D9488' };
+      circle.setAttribute('fill', map[color] || color);
+      circle.style.filter = 'drop-shadow(0 0 4px ' + (map[color] || color) + ')';
+      if (pattern === 'cycle') {
+        circle.style.animation = 'svgCycle 1.2s infinite step-end';
+      } else if (pattern && pattern !== 'solid') {
+        circle.classList.add('p-' + pattern);
+      }
+    }
+
+    function render() {
+      const rc = devices.rc;
+      const drone = devices.drone;
+
+      rc.stateTag.textContent = state.rc.on ? 'ON' : 'OFF';
+      rc.stateTag.classList.toggle('on', state.rc.on);
+      setSvgLed(rc.led, state.rc.on ? (state.drone.on && !state.drone.booting ? 'green' : 'teal') : null, state.rc.on && !(state.drone.on && !state.drone.booting) ? 'slow' : 'solid');
+      if (state.rc.on) renderBatteryLeds(rc.batt, state.rc.battery, true);
+      else if (!rc.previewTimer) renderBatteryLeds(rc.batt, state.rc.battery, false);
+
+      drone.stateTag.textContent = state.drone.on ? (state.drone.booting ? 'BOOT' : 'ON') : 'OFF';
+      drone.stateTag.classList.toggle('on', state.drone.on);
+      if (!state.drone.on) setSvgLed(drone.led, null);
+      else if (state.drone.booting) setSvgLed(drone.led, 'red', 'cycle');
+      else if (!state.rc.on) setSvgLed(drone.led, 'yellow', 'fast');
+      else setSvgLed(drone.led, 'green', 'slow');
+      if (state.drone.on) renderBatteryLeds(drone.batt, state.drone.battery, true);
+      else if (!drone.previewTimer) renderBatteryLeds(drone.batt, state.drone.battery, false);
+
+      const tracker = root.querySelectorAll('.tracker [data-step]');
+      const step1 = state.rc.on;
+      const step2 = state.drone.on;
+      const step3 = state.rc.on && state.drone.on && !state.drone.booting;
+      [step1, step2, step3].forEach(function (done, i) {
+        tracker[i].classList.toggle('done', done && !(i === 0 && state.orderMistake));
+        tracker[i].classList.toggle('wrong', i === 0 && state.orderMistake && !state.rc.on);
+      });
+    }
+
+    function previewBattery(dev) {
+      const devState = state[dev.key];
+      if (devState.on) return;
+      clearTimeout(dev.previewTimer);
+      renderBatteryLeds(dev.batt, devState.battery, true);
+      dev.previewTimer = setTimeout(function () {
+        dev.previewTimer = null;
+        if (!state[dev.key].on) renderBatteryLeds(dev.batt, devState.battery, false);
+      }, BATTERY_PREVIEW_MS);
+    }
+
+    function setRing(dev, fraction) {
+      dev.ring.style.strokeDashoffset = String(RING_LENGTH * (1 - Math.min(1, Math.max(0, fraction))));
+    }
+
+    function animateRing(dev) {
+      const elapsed = performance.now() - dev.holdStart;
+      setRing(dev, elapsed / HOLD_MS);
+      if (dev.holding) dev.rafId = requestAnimationFrame(function () { animateRing(dev); });
+    }
+
+    function cancelHold(dev, completed) {
+      dev.holding = false;
+      clearTimeout(dev.holdTimer);
+      cancelAnimationFrame(dev.rafId);
+      dev.button.classList.remove('pressed');
+      setRing(dev, 0);
+      if (!completed) {
+        setMessage(msg, 'שחררתם מוקדם מדי. אחרי הלחיצה הקצרה צריך ללחוץ שוב ולהחזיק כשתי שניות, עד שהטבעת מתמלאת.', 'warn');
+      }
+    }
+
+    function onPress(dev) {
+      const now = performance.now();
+      dev.button.classList.add('pressed');
+      if (now <= dev.armedUntil) {
+        dev.holding = true;
+        dev.holdStart = now;
+        dev.armedUntil = 0;
+        if (!REDUCED_MOTION) animateRing(dev);
+        else setRing(dev, 0.5);
+        dev.holdTimer = setTimeout(function () {
+          cancelHold(dev, true);
+          dev.ignoreNextRelease = true;
+          togglePower(dev.key);
+        }, HOLD_MS);
+      } else {
+        dev.holding = false;
+      }
+    }
+
+    function onRelease(dev) {
+      dev.button.classList.remove('pressed');
+      if (dev.ignoreNextRelease) {
+        dev.ignoreNextRelease = false;
+        return;
+      }
+      if (dev.holding) {
+        cancelHold(dev, false);
+        return;
+      }
+      dev.armedUntil = performance.now() + SECOND_PRESS_WINDOW_MS;
+      const name = dev.key === 'rc' ? 'השלט' : 'הרחפן';
+      const isOn = state[dev.key].on;
+      previewBattery(dev);
+      setMessage(msg, 'לחיצה קצרה: מוצגת רמת הסוללה של ' + name + '. עכשיו לחצו שוב והחזיקו כשתי שניות כדי ' + (isOn ? 'לכבות.' : 'להדליק.'), null);
+    }
+
+    function bindButton(dev) {
+      const btn = dev.button;
+      btn.addEventListener('pointerdown', function (event) {
+        event.preventDefault();
+        try { btn.setPointerCapture(event.pointerId); } catch (err) { /* capture is optional */ }
+        onPress(dev);
+      });
+      btn.addEventListener('pointerup', function () { onRelease(dev); });
+      btn.addEventListener('pointercancel', function () { if (dev.holding) cancelHold(dev, false); dev.button.classList.remove('pressed'); });
+      btn.addEventListener('contextmenu', function (event) { event.preventDefault(); });
+      btn.addEventListener('keydown', function (event) {
+        if (event.key !== ' ' && event.key !== 'Enter') return;
+        event.preventDefault();
+        if (dev.keyDown) return;
+        dev.keyDown = true;
+        onPress(dev);
+      });
+      btn.addEventListener('keyup', function (event) {
+        if (event.key !== ' ' && event.key !== 'Enter') return;
+        event.preventDefault();
+        dev.keyDown = false;
+        onRelease(dev);
+      });
+      btn.addEventListener('click', function (event) { event.preventDefault(); });
+    }
+
+    function togglePower(key) {
+      if (key === 'rc') {
+        if (!state.rc.on) {
+          state.rc.on = true;
+          if (state.drone.on) {
+            setMessage(msg, 'השלט נדלק והקשר עם הרחפן חזר. בפעם הבאה: שלט קודם, ורק אחר כך רחפן.', 'warn');
+          } else {
+            setMessage(msg, 'מצוין, השלט דולק. עכשיו מדליקים את הרחפן: לחיצה קצרה ואז ארוכה.', 'ok');
+          }
+        } else {
+          state.rc.on = false;
+          if (state.drone.on) {
+            setMessage(msg, 'כיביתם את השלט כשהרחפן עדיין דולק, והרחפן איבד קשר (צהוב מהבהב מהר). בכיבוי: רחפן קודם, שלט אחרון.', 'bad');
+          } else {
+            setMessage(msg, 'הכל כבוי, בסדר הנכון. כל הכבוד.', 'ok');
+            state.orderMistake = false;
+          }
+        }
+      } else {
+        if (!state.drone.on) {
+          state.drone.on = true;
+          state.drone.booting = true;
+          if (!state.rc.on) {
+            state.orderMistake = true;
+            setMessage(msg, 'הרחפן נדלק לפני השלט. הוא מבצע בדיקה עצמית, ואחריה יהבהב בצהוב מהיר: אין קשר לשלט. הסדר הנכון: שלט קודם.', 'warn');
+          } else {
+            setMessage(msg, 'הרחפן מבצע בדיקה עצמית (צבעים מתחלפים). לא מזיזים אותו.', null);
+          }
+          clearTimeout(timers.boot);
+          timers.boot = setTimeout(function () {
+            state.drone.booting = false;
+            if (state.drone.on) {
+              if (state.rc.on) setMessage(msg, 'ירוק מהבהב לאט: GPS פעיל, המערכת מוכנה להמראה.', 'ok');
+              else setMessage(msg, 'צהוב מהבהב מהר: הרחפן לא מוצא שלט. הדליקו את השלט.', 'warn');
+            }
+            render();
+          }, BOOT_MS);
+        } else {
+          state.drone.on = false;
+          state.drone.booting = false;
+          clearTimeout(timers.boot);
+          if (state.rc.on) setMessage(msg, 'הרחפן כבוי. עכשיו אפשר לכבות את השלט.', 'ok');
+          else setMessage(msg, 'הרחפן כבוי. בפעם הבאה כבו אותו לפני השלט.', 'warn');
+        }
+      }
+      render();
+    }
+
+    function reset() {
+      clearTimeout(timers.boot);
+      Object.keys(devices).forEach(function (key) {
+        const dev = devices[key];
+        cancelHold(dev, true);
+        clearTimeout(dev.previewTimer);
+        dev.previewTimer = null;
+        dev.armedUntil = 0;
+        dev.ignoreNextRelease = false;
+      });
+      state.rc.on = false;
+      state.drone.on = false;
+      state.drone.booting = false;
+      state.orderMistake = false;
+      setMessage(msg, 'לחצו לחיצה קצרה על אחד הכפתורים כדי לראות את רמת הסוללה. כדי להדליק: לחיצה קצרה, ומיד אחריה לחיצה ארוכה.', null);
+      render();
+    }
+
+    Object.keys(devices).forEach(function (key) { bindButton(devices[key]); });
+    document.getElementById('powerReset').addEventListener('click', reset);
+    render();
+  }
+
+  /* ---------- Quiz ---------- */
+  function initQuiz() {
+    const ledEl = document.getElementById('quizLed');
+    const countEl = document.getElementById('quizCount');
+    const patternEl = document.getElementById('quizPattern');
+    const answersEl = document.getElementById('quizAnswers');
+    const scoreEl = document.getElementById('quizScore');
+    const nextBtn = document.getElementById('quizNext');
+    const msg = document.getElementById('quizMsg');
+    if (!ledEl || !answersEl) return;
+
+    const TOTAL = 5;
+    let questions = [];
+    let index = 0;
+    let score = 0;
+
+    function shuffle(array) {
+      const copy = array.slice();
+      for (let i = copy.length - 1; i > 0; i -= 1) {
+        const j = Math.floor(Math.random() * (i + 1));
+        const tmp = copy[i];
+        copy[i] = copy[j];
+        copy[j] = tmp;
+      }
+      return copy;
+    }
+
+    function start() {
+      questions = shuffle(LED_STATES.filter(function (s) { return s.id !== 'warmup'; })).slice(0, TOTAL);
+      index = 0;
+      score = 0;
+      nextBtn.textContent = 'השאלה הבאה';
+      showQuestion();
+    }
+
+    function showQuestion() {
+      const q = questions[index];
+      countEl.textContent = 'שאלה ' + (index + 1) + ' מתוך ' + TOTAL;
+      patternEl.textContent = q.title;
+      applyLedPattern(ledEl, q.pattern, q.color);
+      scoreEl.textContent = 'SCORE ' + score;
+      nextBtn.disabled = true;
+      msg.hidden = true;
+
+      const distractors = shuffle(LED_STATES.filter(function (s) { return s.id !== q.id && s.short !== q.short; })).slice(0, 3);
+      const options = shuffle([q].concat(distractors));
+      answersEl.innerHTML = '';
+      options.forEach(function (option) {
+        const button = document.createElement('button');
+        button.type = 'button';
+        button.textContent = option.short;
+        button.addEventListener('click', function () { choose(button, option.id === q.id, q); });
+        answersEl.appendChild(button);
+      });
+    }
+
+    function choose(button, correct, q) {
+      const buttons = answersEl.querySelectorAll('button');
+      buttons.forEach(function (b) {
+        b.disabled = true;
+        if (b.textContent === q.short) b.classList.add('correct');
+      });
+      if (correct) {
+        score += 1;
+      } else {
+        button.classList.add('wrong');
+      }
+      scoreEl.textContent = 'SCORE ' + score;
+      msg.hidden = false;
+      const tmp = document.createElement('div');
+      tmp.innerHTML = q.meaning;
+      setMessage(msg, (correct ? 'נכון. ' : 'לא בדיוק. ') + tmp.textContent, correct ? 'ok' : 'warn');
+      nextBtn.disabled = false;
+      nextBtn.textContent = index === TOTAL - 1 ? 'סיום' : 'השאלה הבאה';
+    }
+
+    nextBtn.addEventListener('click', function () {
+      if (nextBtn.dataset.finished === 'true') {
+        nextBtn.dataset.finished = 'false';
+        start();
+        return;
+      }
+      if (index < TOTAL - 1) {
+        index += 1;
+        showQuestion();
+        return;
+      }
+      answersEl.innerHTML = '';
+      applyLedPattern(ledEl, 'slow', score >= 4 ? 'green' : 'yellow');
+      countEl.textContent = 'תוצאה';
+      patternEl.textContent = 'ענית נכון על ' + score + ' מתוך ' + TOTAL;
+      const tone = score >= 4 ? 'ok' : 'warn';
+      setMessage(msg, score >= 4 ? 'מצוין! אתם קוראים נוריות כמו מטיסים ותיקים.' : 'כדאי לעבור שוב על טבלת הנוריות ולנסות שוב.', tone);
+      msg.hidden = false;
+      nextBtn.textContent = 'נסו שוב';
+      nextBtn.dataset.finished = 'true';
+    });
+
+    start();
+  }
+
+  /* ---------- Active TOC link ---------- */
+  function initTocHighlight() {
+    const links = document.querySelectorAll('.toc a');
+    if (!('IntersectionObserver' in window) || !links.length) return;
+    const byId = {};
+    links.forEach(function (a) { byId[a.getAttribute('href').slice(1)] = a; });
+    const observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        links.forEach(function (a) { a.classList.remove('active'); });
+        const link = byId[entry.target.id];
+        if (link) link.classList.add('active');
+      });
+    }, { rootMargin: '-40% 0px -55% 0px' });
+    Object.keys(byId).forEach(function (id) {
+      const section = document.getElementById(id);
+      if (section) observer.observe(section);
+    });
+  }
+
+  function safeInit(fn, name) {
+    try { fn(); } catch (error) {
+      if (window.console) console.error('[operation] ' + name + ' failed', error);
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', function () {
+    const year = document.getElementById('year');
+    if (year) year.textContent = String(new Date().getFullYear());
+    safeInit(buildLedList, 'led list');
+    safeInit(initBatteryDemo, 'battery demo');
+    safeInit(initPowerSim, 'power sim');
+    safeInit(initQuiz, 'quiz');
+    safeInit(initTocHighlight, 'toc');
+  });
+})();
+
+</script>
+</body>
+</html>

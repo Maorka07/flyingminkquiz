@@ -126,6 +126,17 @@ a{color:inherit;text-decoration:none}
 .placeholder-card{opacity:0.6;cursor:default}
 @media(max-width:768px){.schools-grid{grid-template-columns:1fr}}
 
+/* Checklist banner (check.html) */
+.check-banner{background:linear-gradient(135deg,rgba(34,211,238,0.14),rgba(99,102,241,0.16));border:1px solid rgba(103,232,249,0.28);border-radius:16px;padding:2.5rem 2rem;text-align:center;position:relative;overflow:hidden;margin-top:1.5rem}
+.check-banner::before{content:"";position:absolute;bottom:-30%;left:-10%;width:240px;height:240px;background:radial-gradient(circle,rgba(103,232,249,0.14) 0%,transparent 70%);pointer-events:none}
+.check-banner .check-icon{position:absolute;top:14px;right:14px;width:64px;height:64px;opacity:0.5;direction:ltr;pointer-events:none}
+.check-banner h2{font-size:clamp(1.3rem,3vw,1.7rem);font-weight:700;margin-bottom:0.5rem;background:linear-gradient(135deg,#67e8f9,#a5b4fc);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;display:inline-block}
+.check-banner p{font-size:16px;color:var(--text-dim);margin-bottom:1.75rem;position:relative}
+.check-banner .btn-check{display:inline-flex;align-items:center;gap:10px;padding:0.95rem 2.2rem;border-radius:10px;background:linear-gradient(135deg,#0891b2,#4f46e5);color:#fff;font-weight:600;font-size:17px;transition:all 0.25s;box-shadow:0 4px 14px rgba(8,145,178,0.3);position:relative}
+.check-banner .btn-check:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(8,145,178,0.5)}
+.check-banner .btn-check svg{width:18px;height:18px;flex-shrink:0}
+[dir="rtl"] .check-banner .btn-check svg{transform:scaleX(-1)}
+
 /* Gallery banner (the full gallery lives in gallery.html) */
 .gallery-banner-wrap{padding:0 1.5rem 4rem}
 .gallery-banner{background:linear-gradient(135deg,rgba(167,139,250,0.18),rgba(236,72,153,0.12));border:1px solid rgba(196,181,253,0.3);border-radius:16px;padding:2.5rem 2rem;text-align:center;position:relative;overflow:hidden}

@@ -1,0 +1,1797 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title data-i18n="page.title">איך הרחפן יודע איפה הוא? GPS ו־GNSS — Flying Mink</title>
+<meta name="description" content="הסבר אינטראקטיבי על מערכות הניווט הלוויינית של הרחפן: GPS, GLONASS, Galileo, BeiDou, מצב ATTI, RTK ועוד.">
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0b0a16;--bg2:#100e1e;--bg3:#150f24;
+  --purple:#6d28d9;--purple-light:#a78bfa;--purple-bright:#c4b5fd;
+  --purple-glow:rgba(109,40,217,0.25);
+  --indigo:#4f46e5;
+  --text:#e2e8f0;--text-dim:#94a3b8;--text-muted:#64748b;
+  --card-bg:rgba(109,40,217,0.06);
+  --card-border:rgba(139,92,246,0.2);
+  --border-h:rgba(167,139,250,0.5);
+  --green:#10b981;--red:#ef4444;--blue:#3b82f6;--yellow:#f59e0b;--orange:#f97316;
+}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Heebo',sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  overflow-x:hidden;
+  line-height:1.7;
+  background-image:
+    radial-gradient(ellipse at top, rgba(109,40,217,0.15) 0%, transparent 50%),
+    radial-gradient(ellipse at bottom, rgba(79,70,229,0.10) 0%, transparent 50%);
+  background-attachment:fixed;
+}
+a{color:inherit;text-decoration:none}
+
+/* ════════ HEADER ════════ */
+.top-bar{
+  position:sticky;top:0;z-index:50;
+  background:rgba(11,10,22,0.85);
+  backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--card-border);
+  padding:14px 24px;
+  display:flex;align-items:center;justify-content:space-between;
+}
+.brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:15px;letter-spacing:0.5px}
+.brand-mark{
+  width:42px;height:42px;border-radius:10px;
+  background:#fff;
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 4px 18px rgba(167,139,250,0.35), 0 0 0 1px rgba(167,139,250,0.25);
+  overflow:hidden;
+  flex-shrink:0;
+}
+.brand-mark img{width:100%;height:100%;object-fit:cover;display:block}
+.brand-text .gradient{background:linear-gradient(135deg,var(--purple-light),#818cf8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.back-link{font-size:13px;color:var(--text-dim);display:flex;align-items:center;gap:6px;transition:color 0.2s}
+.back-link:hover{color:var(--purple-light)}
+.back-link svg{width:14px;height:14px}
+
+/* ════════ MAIN CONTAINER ════════ */
+main{max-width:1080px;margin:0 auto;padding:3rem 1.25rem 5rem}
+
+/* ════════ HERO ════════ */
+.hero{text-align:center;margin-bottom:3.5rem;animation:fadeInUp 0.8s ease}
+.hero-badge{
+  display:inline-block;
+  font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;
+  color:var(--purple-light);
+  background:rgba(109,40,217,0.15);
+  border:1px solid rgba(167,139,250,0.25);
+  padding:6px 14px;border-radius:999px;
+  margin-bottom:1.25rem;
+}
+.hero h1{
+  font-size:clamp(2rem,5.5vw,3.4rem);
+  font-weight:900;line-height:1.15;letter-spacing:0.5px;
+  margin-bottom:1rem;
+}
+.hero h1 .gradient{
+  background:linear-gradient(135deg,var(--purple-light),#818cf8 70%,#fff);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.hero-sub{
+  font-size:clamp(0.95rem,2vw,1.1rem);
+  color:var(--text-dim);max-width:620px;margin:0 auto;
+  font-weight:300;line-height:1.7;
+}
+
+@keyframes fadeInUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+
+/* ════════ EXPLANATION SECTION ════════ */
+.explainer{margin-bottom:4rem}
+.explainer-intro{
+  background:linear-gradient(135deg,rgba(109,40,217,0.12),rgba(79,70,229,0.08));
+  border:1px solid var(--card-border);
+  border-radius:18px;
+  padding:1.75rem 1.75rem;
+  margin-bottom:2rem;
+  position:relative;overflow:hidden;
+}
+.explainer-intro::before{
+  content:"";position:absolute;top:0;right:0;width:200px;height:200px;
+  background:radial-gradient(circle, rgba(167,139,250,0.18), transparent 70%);
+  pointer-events:none;
+}
+.explainer-intro h2{
+  font-size:clamp(1.25rem,2.6vw,1.55rem);font-weight:700;margin-bottom:0.5rem;
+  position:relative;
+}
+.explainer-intro p{
+  font-size:15px;color:var(--text);line-height:1.75;
+  position:relative;
+}
+.explainer-intro strong{color:var(--purple-bright);font-weight:600}
+
+.steps-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:1rem;
+  margin-bottom:2rem;
+}
+@media(max-width:680px){.steps-grid{grid-template-columns:1fr}}
+
+.step-card{
+  background:var(--card-bg);
+  border:1px solid var(--card-border);
+  border-radius:14px;
+  padding:1.5rem 1.4rem;
+  transition:all 0.3s ease;
+  position:relative;overflow:hidden;
+}
+.step-card:hover{
+  border-color:var(--border-h);
+  transform:translateY(-2px);
+  box-shadow:0 8px 32px var(--purple-glow);
+}
+.step-num{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:34px;height:34px;border-radius:10px;
+  background:linear-gradient(135deg,var(--purple),var(--indigo));
+  color:#fff;font-weight:700;font-size:14px;
+  margin-bottom:0.85rem;
+  box-shadow:0 4px 14px var(--purple-glow);
+}
+.step-card h3{
+  font-size:16px;font-weight:700;margin-bottom:0.5rem;
+  color:var(--text);
+}
+.step-card p{
+  font-size:14px;color:var(--text-dim);line-height:1.7;
+}
+.step-card .formula{
+  display:inline-block;margin-top:0.65rem;
+  padding:5px 11px;border-radius:7px;
+  background:rgba(167,139,250,0.10);
+  border:1px solid rgba(167,139,250,0.25);
+  color:var(--purple-bright);
+  font-size:13px;font-weight:600;
+  letter-spacing:0.3px;
+}
+
+.info-callout{
+  background:linear-gradient(135deg,rgba(16,185,129,0.06),rgba(109,40,217,0.06));
+  border:1px solid rgba(167,139,250,0.20);
+  border-right:3px solid var(--purple-light);
+  border-radius:12px;
+  padding:1.15rem 1.3rem;
+  margin-bottom:1rem;
+}
+.info-callout h4{
+  font-size:14px;font-weight:700;color:var(--purple-bright);
+  margin-bottom:0.4rem;letter-spacing:0.3px;
+}
+.info-callout p{font-size:14px;color:var(--text-dim);line-height:1.7}
+.info-callout ul{margin-top:0.5rem;padding-right:1.2rem}
+.info-callout li{font-size:14px;color:var(--text-dim);margin-bottom:0.25rem}
+
+.errors-box{
+  background:rgba(239,68,68,0.05);
+  border:1px solid rgba(239,68,68,0.20);
+  border-right:3px solid var(--red);
+}
+.errors-box h4{color:#fca5a5}
+
+.rtk-box{
+  background:linear-gradient(135deg,rgba(16,185,129,0.07),rgba(109,40,217,0.07));
+  border:1px solid rgba(16,185,129,0.25);
+  border-right:3px solid var(--green);
+}
+.rtk-box h4{color:#6ee7b7}
+
+/* ════════ SIMULATION ════════ */
+.sim-section{margin-top:3rem}
+.sim-heading{text-align:center;margin-bottom:1.5rem}
+.sim-heading .label{
+  display:inline-block;font-size:11px;font-weight:700;letter-spacing:2px;
+  color:var(--purple-light);text-transform:uppercase;margin-bottom:0.5rem;
+}
+.sim-heading h2{
+  font-size:clamp(1.4rem,3vw,1.85rem);font-weight:700;margin-bottom:0.4rem;
+}
+.sim-heading p{font-size:14px;color:var(--text-dim);max-width:520px;margin:0 auto}
+
+.sim-frame{
+  position:relative;
+  background:linear-gradient(180deg, #0a0816 0%, #1a0d2e 100%);
+  border:1px solid rgba(167,139,250,0.30);
+  border-radius:20px;
+  overflow:hidden;
+  aspect-ratio: 16 / 10;
+  box-shadow:
+    0 20px 60px rgba(109,40,217,0.20),
+    inset 0 0 80px rgba(109,40,217,0.10);
+}
+@media (max-width: 720px){
+  .sim-frame{aspect-ratio: 4 / 3}
+}
+@media (max-width: 480px){
+  .sim-frame{aspect-ratio: 5 / 4}
+}
+.sim-frame::before{
+  content:"";position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse at 50% 90%, rgba(109,40,217,0.30), transparent 60%),
+    radial-gradient(ellipse at 50% 0%, rgba(79,70,229,0.18), transparent 50%);
+  pointer-events:none;
+  z-index:1;
+}
+.sim-frame::after{
+  content:"";position:absolute;inset:0;
+  background-image:
+    linear-gradient(rgba(167,139,250,0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(167,139,250,0.05) 1px, transparent 1px);
+  background-size: 40px 40px;
+  pointer-events:none;
+  z-index:2;
+  mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%);
+  -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%);
+}
+
+#scene{
+  position:absolute;inset:0;
+  width:100%;height:100%;
+  z-index:3;
+}
+
+/* particles */
+.particles{position:absolute;inset:0;z-index:2;pointer-events:none;overflow:hidden}
+.particle{
+  position:absolute;
+  width:3px;height:3px;border-radius:50%;
+  background:var(--purple-light);
+  box-shadow:0 0 8px var(--purple-light);
+  opacity:0;
+  animation:floatUp linear infinite;
+}
+@keyframes floatUp{
+  0%{opacity:0;transform:translateY(20px)}
+  20%{opacity:0.6}
+  80%{opacity:0.6}
+  100%{opacity:0;transform:translateY(-100px)}
+}
+
+/* HUD */
+.hud{
+  position:absolute;
+  z-index:5;
+  font-family:'Heebo',sans-serif;
+  pointer-events:none;
+}
+.hud-tl{top:14px;left:14px;direction:ltr;text-align:left}
+.hud-tr{top:14px;right:14px;direction:ltr;text-align:right}
+.hud-bl{bottom:14px;left:14px;direction:ltr}
+.hud-br{bottom:14px;right:14px;direction:ltr}
+
+.hud-block{
+  background:rgba(7,5,18,0.65);
+  backdrop-filter:blur(8px);
+  border:1px solid rgba(167,139,250,0.25);
+  border-radius:10px;
+  padding:8px 12px;
+  font-size:11px;
+  letter-spacing:0.5px;
+  color:var(--text);
+  margin-bottom:6px;
+}
+.hud-label{
+  font-size:9px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;
+  color:var(--text-muted);margin-bottom:3px;
+}
+.hud-value{font-size:14px;font-weight:700;letter-spacing:0.5px}
+
+/* GPS bars */
+.gps-bars{display:flex;align-items:flex-end;gap:3px;height:14px}
+.gps-bar{
+  width:4px;background:rgba(167,139,250,0.3);border-radius:1px;
+  transition:background 0.3s, height 0.3s;
+}
+.gps-bar.active{background:var(--green);box-shadow:0 0 4px var(--green)}
+.gps-bar.warn.active{background:var(--orange);box-shadow:0 0 4px var(--orange)}
+.gps-bar.crit.active{background:var(--red);box-shadow:0 0 4px var(--red)}
+
+/* satellite counter */
+.sat-counter{
+  display:flex;align-items:center;gap:8px;
+  background:rgba(7,5,18,0.65);
+  backdrop-filter:blur(8px);
+  border:1px solid rgba(167,139,250,0.25);
+  border-radius:12px;
+  padding:8px 14px;
+  font-family:'Heebo',sans-serif;
+  font-weight:700;
+  transition:all 0.3s;
+}
+.sat-counter svg{width:18px;height:18px}
+.sat-counter .num{font-size:20px;letter-spacing:0.5px;font-variant-numeric:tabular-nums}
+.sat-counter .max{font-size:11px;color:var(--text-muted);font-weight:500}
+.sat-counter.green{color:var(--green);box-shadow:0 0 18px rgba(16,185,129,0.30);border-color:rgba(16,185,129,0.45)}
+.sat-counter.orange{color:var(--orange);box-shadow:0 0 18px rgba(249,115,22,0.30);border-color:rgba(249,115,22,0.45)}
+.sat-counter.red{color:var(--red);box-shadow:0 0 18px rgba(239,68,68,0.30);border-color:rgba(239,68,68,0.45)}
+
+/* flight mode */
+.mode-text{
+  font-size:13px;font-weight:700;letter-spacing:1px;
+  display:inline-block;padding:3px 8px;border-radius:6px;
+  transition:all 0.3s;
+}
+.mode-gps{background:rgba(16,185,129,0.15);color:var(--green);border:1px solid rgba(16,185,129,0.4)}
+.mode-atti{background:rgba(239,68,68,0.15);color:var(--red);border:1px solid rgba(239,68,68,0.4);animation:pulseAtti 1s ease-in-out infinite}
+@keyframes pulseAtti{0%,100%{opacity:1}50%{opacity:0.55}}
+
+/* GPS LOCK badge (SVG-based) */
+#gpsLockSvg{
+  transition:opacity 0.5s ease;
+  pointer-events:none;
+}
+#gpsLockSvg.show{opacity:1 !important}
+#gpsLockSvg.show .gps-lock-rect{
+  animation:lockPulse 2s ease-in-out infinite;
+}
+@keyframes lockPulse{
+  0%,100%{stroke:rgba(16,185,129,0.55);filter:drop-shadow(0 0 4px rgba(16,185,129,0.4))}
+  50%{stroke:rgba(16,185,129,0.95);filter:drop-shadow(0 0 10px rgba(16,185,129,0.7))}
+}
+
+/* ════════ CONTROLS ════════ */
+.controls{
+  margin-top:1.25rem;
+  background:var(--card-bg);
+  border:1px solid var(--card-border);
+  border-radius:16px;
+  padding:1.25rem 1.4rem;
+}
+.slider-row{
+  display:flex;align-items:center;gap:1.2rem;margin-bottom:1.1rem;
+  flex-wrap:wrap;
+}
+.slider-label{
+  font-size:13px;font-weight:600;color:var(--text-dim);
+  letter-spacing:0.3px;min-width:130px;
+}
+.slider-wrap{flex:1;min-width:200px;position:relative;direction:ltr}
+input[type=range]{
+  -webkit-appearance:none;appearance:none;
+  width:100%;height:6px;
+  background:linear-gradient(to right,
+    var(--purple-light) 0%,
+    var(--purple-light) calc(var(--val,100) * 1%),
+    rgba(167,139,250,0.15) calc(var(--val,100) * 1%),
+    rgba(167,139,250,0.15) 100%);
+  border-radius:3px;outline:none;cursor:pointer;
+  direction:ltr;
+}
+input[type=range]::-webkit-slider-thumb{
+  -webkit-appearance:none;appearance:none;
+  width:20px;height:20px;border-radius:50%;
+  background:linear-gradient(135deg,#fff,var(--purple-light));
+  border:2px solid var(--purple);
+  box-shadow:0 2px 10px var(--purple-glow);
+  cursor:pointer;transition:transform 0.15s;
+}
+input[type=range]::-webkit-slider-thumb:hover{transform:scale(1.15)}
+input[type=range]::-moz-range-thumb{
+  width:20px;height:20px;border-radius:50%;
+  background:linear-gradient(135deg,#fff,var(--purple-light));
+  border:2px solid var(--purple);
+  box-shadow:0 2px 10px var(--purple-glow);
+  cursor:pointer;
+}
+.slider-val{
+  font-size:14px;font-weight:700;color:var(--purple-bright);
+  min-width:36px;text-align:center;font-variant-numeric:tabular-nums;
+}
+
+.toggle-row{
+  display:flex;flex-wrap:wrap;gap:0.6rem;
+}
+.toggle-btn{
+  flex:1;min-width:130px;
+  background:rgba(7,5,18,0.5);
+  border:1px solid rgba(167,139,250,0.20);
+  color:var(--text-dim);
+  padding:11px 14px;border-radius:11px;
+  font-family:'Heebo',sans-serif;font-size:13px;font-weight:600;
+  cursor:pointer;transition:all 0.25s;
+  display:flex;align-items:center;justify-content:center;gap:7px;
+}
+.toggle-btn svg{width:14px;height:14px;flex-shrink:0}
+.toggle-btn:hover{
+  border-color:var(--border-h);
+  color:var(--text);
+  background:rgba(109,40,217,0.10);
+}
+.toggle-btn.active{
+  background:linear-gradient(135deg,rgba(109,40,217,0.30),rgba(79,70,229,0.30));
+  border-color:var(--purple-light);
+  color:#fff;
+  box-shadow:0 0 18px rgba(109,40,217,0.35);
+}
+.toggle-btn.active.danger{
+  background:linear-gradient(135deg,rgba(239,68,68,0.25),rgba(220,38,38,0.25));
+  border-color:#fca5a5;
+  box-shadow:0 0 18px rgba(239,68,68,0.30);
+}
+.toggle-btn.active.success{
+  background:linear-gradient(135deg,rgba(16,185,129,0.25),rgba(5,150,105,0.25));
+  border-color:#6ee7b7;
+  box-shadow:0 0 18px rgba(16,185,129,0.30);
+}
+.toggle-btn.reset{
+  background:rgba(167,139,250,0.08);
+}
+
+/* state hint */
+.state-hint{
+  margin-top:0.85rem;
+  text-align:center;
+  font-size:12px;color:var(--text-muted);
+  min-height:18px;
+  letter-spacing:0.4px;
+  transition:color 0.3s;
+}
+.state-hint.warn{color:var(--orange)}
+.state-hint.danger{color:var(--red)}
+.state-hint.good{color:var(--green)}
+
+/* legend */
+.legend{
+  margin-top:1.25rem;display:flex;flex-wrap:wrap;justify-content:center;gap:1rem;
+  font-size:12px;color:var(--text-dim);
+}
+.legend-item{display:flex;align-items:center;gap:7px}
+.legend-dash{
+  width:24px;height:2px;border-radius:1px;
+  background-image:linear-gradient(to right, currentColor 50%, transparent 50%);
+  background-size:8px 2px;
+}
+
+/* footer note */
+.foot-note{
+  margin-top:3rem;text-align:center;
+  font-size:12px;color:var(--text-muted);
+  letter-spacing:0.4px;
+}
+.foot-note .gradient{background:linear-gradient(135deg,var(--purple-light),#818cf8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-weight:700}
+
+/* responsive: smaller HUD on phones */
+@media (max-width:600px){
+  .hud-block{padding:6px 9px;font-size:10px}
+  .hud-value{font-size:12px}
+  .sat-counter{padding:6px 10px}
+  .sat-counter .num{font-size:16px}
+  .sat-counter svg{width:14px;height:14px}
+  main{padding:1.5rem 0.85rem 3rem}
+  .toggle-btn{min-width:calc(50% - 0.3rem);font-size:12px;padding:10px}
+  .step-card{padding:1.25rem 1.1rem}
+}
+
+/* desktop: larger, more readable typography */
+@media (min-width:900px){
+  body{font-size:17px}
+  main{max-width:1140px;padding:2.75rem 1.5rem 5rem}
+  .hero{margin-bottom:4.5rem}
+  .hero h1{font-size:clamp(2.6rem,5.5vw,4rem)}
+  .hero-sub{font-size:1.2rem;line-height:1.75;max-width:680px}
+  .hero-badge{font-size:12px;letter-spacing:2.5px;padding:8px 18px}
+  .explainer-intro h2{font-size:clamp(1.55rem,2.6vw,1.85rem);margin-bottom:0.75rem}
+  .explainer-intro p{font-size:1.05rem;line-height:1.8}
+  .step-card .num{width:38px;height:38px;font-size:16px}
+  .step-card h3{font-size:1.2rem;margin-bottom:0.65rem}
+  .step-card p{font-size:1rem;line-height:1.75}
+  .info-callout{padding:1.4rem 1.5rem}
+  .info-callout .lbl{font-size:14px;letter-spacing:1.5px}
+  .info-callout h4{font-size:1.1rem;margin:0.4rem 0 0.55rem}
+  .info-callout p{font-size:1rem;line-height:1.75}
+  .info-callout li{font-size:1rem;line-height:1.7;margin-bottom:0.35rem}
+  .sim-section{padding:2rem 1.75rem}
+  .sim-heading .label{font-size:12px;letter-spacing:2.5px}
+  .sim-heading h2{font-size:clamp(1.7rem,3vw,2.15rem);margin-bottom:0.55rem}
+  .sim-heading p{font-size:1.05rem}
+  .slider-label{font-size:14px;min-width:160px}
+  .slider-val{font-size:16px;min-width:42px}
+  .toggle-btn{font-size:14px;padding:11px 18px}
+  .toggle-btn svg{width:18px;height:18px}
+  .legend{gap:1.25rem}
+  .legend-item{font-size:13px}
+  .state-hint{font-size:14px;padding:0.85rem 1rem}
+  .foot-note{font-size:14px}
+  .back-link{font-size:14px}
+  .brand{font-size:16px}
+}
+
+</style>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-CP1NCS3G49"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-CP1NCS3G49');
+</script>
+</head>
+<body>
+
+<header class="top-bar">
+  <a href="/" class="brand">
+    <span class="brand-mark">
+      <img src="data:image/jpeg;base64,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" alt="Flying Mink"/>
+    </span>
+    <span class="brand-text">Flying <span class="gradient">Mink</span></span>
+  </a>
+  <a href="/" class="back-link">
+    <span data-i18n="nav.back">חזרה לאתר</span>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+  </a>
+</header>
+
+<main>
+
+  <!-- ════════ HERO ════════ -->
+  <section class="hero">
+    <span class="hero-badge" data-i18n="hero.badge">GNSS · ניווט לוויינים</span>
+    <h1 data-i18n-html="hero.title">איך הרחפן <span class="gradient">יודע איפה הוא?</span></h1>
+    <p class="hero-sub" data-i18n="hero.subtitle">מדריך אינטראקטיבי שמסביר איך 30,000 ק"מ מעלינו, רשת לוויינים בודקת את המיקום שלך עשרות פעמים בשנייה, מייצבת את הרחפן באוויר, ולמה לפעמים זה פתאום מפסיק לעבוד.</p>
+  </section>
+
+  <!-- ════════ EXPLAINER ════════ -->
+  <section class="explainer">
+
+    <div class="explainer-intro">
+      <h2 data-i18n="explainer.heading">הרעיון בקצרה</h2>
+      <p data-i18n-html="explainer.body">המערכת שכולנו מכירים כ־<strong>GPS</strong> היא רק חלק אחד ממשפחה גדולה יותר שנקראת <strong>GNSS</strong> (מערכות ניווט לוויינית גלובליות). הרעיון שמאחורי כל המערכות האלה זהה: לחשב את המיקום שלך בעולם <strong>לפי המרחק שלך מכמה לוויינים בשמיים</strong>. הרחפן עושה את החישוב הזה עשרות פעמים בשנייה — ובזכות זה הוא יודע לעמוד באוויר במקום אחד, גם כשרוח דוחפת אותו.</p>
+    </div>
+
+    <!-- Steps grid -->
+    <div class="steps-grid">
+
+      <div class="step-card">
+        <div class="step-num">1</div>
+        <h3 data-i18n="step.1.title">הלוויינים משדרים אות</h3>
+        <p data-i18n="step.1.desc">כל לוויין יודע בדיוק איפה הוא נמצא במסלול שלו, ומשדר ללא הפסקה שני נתונים: את המיקום המדויק שלו ואת הזמן המדויק שבו האות יצא ממנו. בלוויינים יש שעונים אטומיים מדויקים להפליא.</p>
+      </div>
+
+      <div class="step-card">
+        <div class="step-num">2</div>
+        <h3 data-i18n="step.2.title">מדידת זמן הגעה</h3>
+        <p data-i18n="step.2.desc">הרחפן (או הטלפון שלך) קולט את האות, ומחשב כמה זמן בדיוק לקח לאות לעבור מהלוויין אליו. האות נע במהירות האור — לכן ההפרש קטן מאוד, אבל מדיד.</p>
+      </div>
+
+      <div class="step-card">
+        <div class="step-num">3</div>
+        <h3 data-i18n="step.3.title">חישוב מרחק</h3>
+        <p data-i18n="step.3.desc">אם יודעים כמה זמן לקח לאות להגיע, ויודעים את המהירות שלו, אפשר לחשב את המרחק. כל לוויין נותן לרחפן "מרחק ממנו" — ערך אחד, שמייצג גודל של כדור סביב הלוויין.</p>
+        <span class="formula" data-i18n="step.3.formula">מרחק = מהירות × זמן</span>
+      </div>
+
+      <div class="step-card">
+        <div class="step-num">4</div>
+        <h3 data-i18n="step.4.title">טרילטרציה</h3>
+        <p data-i18n="step.4.desc">כל לוויין "מצייר" כדור מסביבו ברדיוס של המרחק. שני כדורים נחתכים במעגל. שלושה כדורים נחתכים בשתי נקודות. ארבעה לוויינים — נקודה אחת בלבד. זה המיקום של הרחפן.</p>
+      </div>
+
+    </div>
+
+    <!-- Why 4 satellites -->
+    <div class="info-callout">
+      <h4 data-i18n="callout.why4.title">למה צריך לפחות 4 לוויינים?</h4>
+      <p data-i18n="callout.why4.body">השעון של הרחפן הרבה פחות מדויק מהשעונים האטומיים שבלוויינים. שלושה לוויינים מספיקים בתאוריה למיקום מלא — אבל הלוויין הרביעי בא לתקן את שגיאת הזמן של המקלט. בלעדיו, גם שגיאה זעירה של אלפיות שנייה הופכת לעשרות מטרים של טעות.</p>
+    </div>
+
+    <!-- Multi-GNSS -->
+    <div class="info-callout">
+      <h4 data-i18n="callout.multi.title">למה משתמשים בכמה מערכות יחד?</h4>
+      <p data-i18n="callout.multi.intro">מעבר ל־GPS האמריקאי, יש עוד שלוש מערכות לוויינים ניווטיות פעילות בעולם:</p>
+      <ul>
+        <li data-i18n-html="callout.multi.glo"><strong style="color:var(--purple-bright)">GLONASS</strong> — רוסיה</li>
+        <li data-i18n-html="callout.multi.gal"><strong style="color:var(--purple-bright)">Galileo</strong> — איחוד אירופי</li>
+        <li data-i18n-html="callout.multi.bds"><strong style="color:var(--purple-bright)">BeiDou</strong> — סין</li>
+      </ul>
+      <p style="margin-top:0.5rem" data-i18n="callout.multi.body">רחפנים מודרניים מתחברים לכמה מערכות במקביל (Multi-GNSS). זה אומר יותר לוויינים זמינים בכל רגע, פחות "שטחים מתים" ליד בניינים והרים, ודיוק גבוה יותר. בפועל הרחפן רואה לפעמים 15 עד 20 לוויינים בו זמנית.</p>
+    </div>
+
+    <!-- ATTI mode -->
+    <div class="info-callout">
+      <h4 data-i18n="callout.atti.title">מה זה מצב ATTI?</h4>
+      <p data-i18n-html="callout.atti.body1">כשהרחפן מאבד אות מספיק חזק מהלוויינים — הוא נופל אוטומטית למצב <strong style="color:var(--orange)">ATTI</strong> (קיצור של Attitude). במצב הזה הרחפן <strong>לא יודע איפה הוא במרחב</strong>, אבל כן יודע <strong>באיזו זווית הוא ביחס לקרקע</strong>, בזכות חיישני ה־IMU (תאוצה וג'יירוסקופ).</p>
+      <p style="margin-top:0.5rem" data-i18n="callout.atti.body2">המשמעות: הרחפן ימשיך לרחף אופקית, אבל לא יחזיק עמדה. כל רוח קלה תסחף אותו לאן שהיא דוחפת. הטיסה ב־ATTI דורשת טייס שיודע לפצות ידנית על הסחיפה, וזה החלק הראשון שמלמדים בקורס FPV. רוב הרחפנים האזרחיים שומרים על גובה גם ב־ATTI (בעזרת ברומטר), אבל לא על מיקום אופקי.</p>
+    </div>
+
+    <!-- Errors -->
+    <div class="info-callout errors-box">
+      <h4 data-i18n="callout.errors.title">מה גורם לשגיאות במיקום?</h4>
+      <p data-i18n-html="callout.errors.intro">הדיוק הרגיל של GPS ברחפן צרכני הוא בערך <strong>1 עד 5 מטר</strong>. למה לא מדויק יותר? כמה גורמים פוגעים בדיוק:</p>
+      <ul>
+        <li data-i18n="callout.errors.l1">עיכובים של האות במעבר באטמוספירה (במיוחד היונוספירה)</li>
+        <li data-i18n="callout.errors.l2">החזרים של אות מבניינים, מצוקים ומשטחי מים — Multipath</li>
+        <li data-i18n="callout.errors.l3">זווית גרועה של הלוויינים בשמיים (כשכולם מקובצים באותו אזור)</li>
+        <li data-i18n="callout.errors.l4">שגיאות זעירות בשעונים ובמיקום המסלולי של הלוויין</li>
+        <li data-i18n="callout.errors.l5">הפרעות יזומות: הצפת אות (Jamming) או שידור אותות מזויפים (Spoofing)</li>
+      </ul>
+    </div>
+
+    <!-- RTK -->
+    <div class="info-callout rtk-box">
+      <h4 data-i18n="callout.rtk.title">RTK — דיוק של סנטימטרים</h4>
+      <p data-i18n-html="callout.rtk.body1">לרחפנים מקצועיים (במיוחד למיפוי ולחקלאות) יש מערכת שנקראת <strong style="color:#6ee7b7">RTK</strong> — Real Time Kinematic. הרעיון: שמים תחנה קרקעית במיקום ידוע במדויק לחלוטין. התחנה מקבלת את אותו אות GPS שהרחפן מקבל, ובודקת איזו שגיאה יש כרגע באות. את התיקון הזה היא משדרת בזמן אמת לרחפן.</p>
+      <p style="margin-top:0.5rem" data-i18n="callout.rtk.body2">התוצאה: הדיוק קופץ מ־5 מטר לפחות מ־3 ס"מ. אפשר לראות את ההבדל בהדמיה למטה כשמפעילים את ה־RTK — מעגל הדיוק מסביב לרחפן מתכווץ דרמטית.</p>
+    </div>
+
+  </section>
+
+  <!-- ════════ SIMULATION ════════ -->
+  <section class="sim-section">
+    <div class="sim-heading">
+      <span class="label" data-i18n="sim.eyebrow">הדמיה אינטראקטיבית</span>
+      <h2 data-i18n="sim.heading">שחק עם הסימולציה</h2>
+      <p data-i18n="sim.subtitle">הזז את המחוון, הפעל הפרעות, תראה איך הרחפן מגיב בזמן אמת.</p>
+    </div>
+
+    <div class="sim-frame" id="simFrame">
+      <div class="particles" id="particles"></div>
+
+      <!-- Main SVG scene -->
+      <svg id="scene" viewBox="0 0 900 600" preserveAspectRatio="xMidYMid meet">
+        <defs>
+          <!-- Earth gradient -->
+          <radialGradient id="earthGrad" cx="35%" cy="35%">
+            <stop offset="0%" stop-color="#5b4b8a"/>
+            <stop offset="40%" stop-color="#2d1b5a"/>
+            <stop offset="100%" stop-color="#0a0820"/>
+          </radialGradient>
+          <radialGradient id="earthAtm" cx="50%" cy="50%">
+            <stop offset="70%" stop-color="rgba(167,139,250,0)"/>
+            <stop offset="95%" stop-color="rgba(167,139,250,0.45)"/>
+            <stop offset="100%" stop-color="rgba(167,139,250,0)"/>
+          </radialGradient>
+          <linearGradient id="continent" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="rgba(196,181,253,0.55)"/>
+            <stop offset="100%" stop-color="rgba(109,40,217,0.30)"/>
+          </linearGradient>
+
+          <!-- Drone glow -->
+          <radialGradient id="droneGlow" cx="50%" cy="50%">
+            <stop offset="0%" stop-color="rgba(196,181,253,0.6)"/>
+            <stop offset="100%" stop-color="rgba(196,181,253,0)"/>
+          </radialGradient>
+
+          <!-- Filters -->
+          <filter id="purpleGlow" x="-50%" y="-50%" width="200%" height="200%">
+            <feGaussianBlur stdDeviation="2.5" result="blur"/>
+            <feMerge>
+              <feMergeNode in="blur"/>
+              <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+          </filter>
+          <filter id="softGlow" x="-50%" y="-50%" width="200%" height="200%">
+            <feGaussianBlur stdDeviation="1.5" result="blur"/>
+            <feMerge>
+              <feMergeNode in="blur"/>
+              <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+          </filter>
+
+          <!-- Drone symbol -->
+          <symbol id="drone" viewBox="-30 -20 60 40">
+            <!-- center body -->
+            <rect x="-7" y="-3" width="14" height="6" rx="2" fill="#1a1530" stroke="#a78bfa" stroke-width="0.8"/>
+            <!-- arms -->
+            <line x1="-7" y1="0" x2="-22" y2="-10" stroke="#a78bfa" stroke-width="1.4"/>
+            <line x1="7" y1="0" x2="22" y2="-10" stroke="#a78bfa" stroke-width="1.4"/>
+            <line x1="-7" y1="0" x2="-22" y2="10" stroke="#a78bfa" stroke-width="1.4"/>
+            <line x1="7" y1="0" x2="22" y2="10" stroke="#a78bfa" stroke-width="1.4"/>
+            <!-- propellers (rotors) -->
+            <ellipse cx="-22" cy="-10" rx="9" ry="2" fill="rgba(167,139,250,0.35)"/>
+            <ellipse cx="22" cy="-10" rx="9" ry="2" fill="rgba(167,139,250,0.35)"/>
+            <ellipse cx="-22" cy="10" rx="9" ry="2" fill="rgba(167,139,250,0.35)"/>
+            <ellipse cx="22" cy="10" rx="9" ry="2" fill="rgba(167,139,250,0.35)"/>
+            <!-- rotor hubs -->
+            <circle cx="-22" cy="-10" r="2" fill="#c4b5fd"/>
+            <circle cx="22" cy="-10" r="2" fill="#c4b5fd"/>
+            <circle cx="-22" cy="10" r="2" fill="#c4b5fd"/>
+            <circle cx="22" cy="10" r="2" fill="#c4b5fd"/>
+            <!-- camera/sensor -->
+            <circle cx="0" cy="0" r="2.5" fill="#c4b5fd" filter="url(#softGlow)"/>
+            <!-- LEDs -->
+            <circle cx="-7" cy="0" r="1" fill="#ef4444"/>
+            <circle cx="7" cy="0" r="1" fill="#10b981"/>
+          </symbol>
+        </defs>
+
+        <!-- Star background sparkle -->
+        <g id="stars" opacity="0.45">
+          <circle cx="80" cy="60" r="0.8" fill="#fff"/>
+          <circle cx="200" cy="40" r="1" fill="#a78bfa"/>
+          <circle cx="350" cy="80" r="0.7" fill="#fff"/>
+          <circle cx="500" cy="50" r="0.9" fill="#fff"/>
+          <circle cx="650" cy="90" r="0.7" fill="#a78bfa"/>
+          <circle cx="800" cy="65" r="1" fill="#fff"/>
+          <circle cx="120" cy="180" r="0.6" fill="#a78bfa"/>
+          <circle cx="780" cy="200" r="0.8" fill="#fff"/>
+          <circle cx="50" cy="280" r="0.7" fill="#fff"/>
+          <circle cx="850" cy="300" r="0.9" fill="#a78bfa"/>
+        </g>
+
+        <!-- Earth -->
+        <g id="earthGroup" transform="translate(450, 580)">
+          <!-- atmosphere halo -->
+          <circle r="180" fill="url(#earthAtm)" opacity="0.7"/>
+          <!-- earth body -->
+          <g id="earthRotor">
+            <circle r="155" fill="url(#earthGrad)"/>
+            <!-- continents (stylized blobs) -->
+            <g opacity="0.6" fill="url(#continent)" id="continents">
+              <path d="M-90 -20 Q-75 -45 -45 -38 Q-20 -30 -10 -50 Q5 -60 25 -45 Q35 -25 20 -10 Q5 5 -20 0 Q-50 5 -75 -5 Q-95 -10 -90 -20 Z"/>
+              <path d="M30 30 Q55 25 70 45 Q72 65 55 70 Q35 70 25 55 Q22 40 30 30 Z"/>
+              <path d="M-70 50 Q-55 35 -40 50 Q-35 70 -55 75 Q-75 70 -70 50 Z"/>
+              <path d="M-110 25 Q-95 15 -90 35 Q-95 45 -110 40 Q-115 30 -110 25 Z"/>
+            </g>
+            <!-- equator hint -->
+            <ellipse cx="0" cy="0" rx="155" ry="38" fill="none" stroke="rgba(167,139,250,0.10)" stroke-width="1"/>
+            <!-- meridian -->
+            <ellipse cx="0" cy="0" rx="50" ry="155" fill="none" stroke="rgba(167,139,250,0.10)" stroke-width="1"/>
+          </g>
+          <!-- terminator shading -->
+          <circle r="155" fill="url(#earthGrad)" opacity="0" />
+          <circle r="155" fill="rgba(0,0,0,0.25)" style="mix-blend-mode:multiply"/>
+        </g>
+
+        <!-- Wind arrows layer -->
+        <g id="windLayer"></g>
+
+        <!-- Ground details (city/people on Earth surface, near top of Earth) -->
+        <g id="groundDetails">
+          <!-- Building 1 (left, taller) -->
+          <g transform="translate(395, 433.3) rotate(-18.8)">
+            <rect x="-4.5" y="-14" width="9" height="14" fill="#1a1530" stroke="#a78bfa" stroke-width="0.5"/>
+            <g fill="#a78bfa">
+              <rect x="-3.2" y="-12" width="1.2" height="1.2" opacity="0.75"/>
+              <rect x="-1.5" y="-12" width="1.2" height="1.2" opacity="0.50"/>
+              <rect x="0.3" y="-12" width="1.2" height="1.2" opacity="0.65"/>
+              <rect x="2" y="-12" width="1.2" height="1.2" opacity="0.45"/>
+              <rect x="-3.2" y="-9.5" width="1.2" height="1.2" opacity="0.55"/>
+              <rect x="-1.5" y="-9.5" width="1.2" height="1.2" opacity="0.70"/>
+              <rect x="0.3" y="-9.5" width="1.2" height="1.2" opacity="0.45"/>
+              <rect x="2" y="-9.5" width="1.2" height="1.2" opacity="0.65"/>
+              <rect x="-3.2" y="-7" width="1.2" height="1.2" opacity="0.65"/>
+              <rect x="-1.5" y="-7" width="1.2" height="1.2" opacity="0.45"/>
+              <rect x="0.3" y="-7" width="1.2" height="1.2" opacity="0.70"/>
+              <rect x="2" y="-7" width="1.2" height="1.2" opacity="0.55"/>
+              <rect x="-3.2" y="-4.5" width="1.2" height="1.2" opacity="0.50"/>
+              <rect x="-1.5" y="-4.5" width="1.2" height="1.2" opacity="0.65"/>
+              <rect x="0.3" y="-4.5" width="1.2" height="1.2" opacity="0.45"/>
+              <rect x="2" y="-4.5" width="1.2" height="1.2" opacity="0.70"/>
+            </g>
+          </g>
+
+          <!-- Tree 1 (left) -->
+          <g transform="translate(420, 428.3) rotate(-11.2)">
+            <rect x="-0.5" y="-2" width="1" height="2" fill="#6d28d9"/>
+            <polygon points="-3,-2 0,-9 3,-2" fill="rgba(167,139,250,0.55)" stroke="#a78bfa" stroke-width="0.3"/>
+          </g>
+
+          <!-- Person with remote controller (centered, directly below drone) -->
+          <g transform="translate(450, 425)">
+            <!-- legs -->
+            <line x1="-1.4" y1="0" x2="-0.3" y2="-4" stroke="#c4b5fd" stroke-width="1.1" stroke-linecap="round"/>
+            <line x1="1.4" y1="0" x2="0.3" y2="-4" stroke="#c4b5fd" stroke-width="1.1" stroke-linecap="round"/>
+            <!-- body -->
+            <line x1="0" y1="-4" x2="0" y2="-9.5" stroke="#c4b5fd" stroke-width="1.4" stroke-linecap="round"/>
+            <!-- head -->
+            <circle cx="0" cy="-11" r="1.5" fill="#c4b5fd"/>
+            <!-- arms holding remote -->
+            <line x1="0" y1="-8" x2="-2.2" y2="-7" stroke="#c4b5fd" stroke-width="1.1" stroke-linecap="round"/>
+            <line x1="0" y1="-8" x2="2.2" y2="-7" stroke="#c4b5fd" stroke-width="1.1" stroke-linecap="round"/>
+            <!-- remote controller body -->
+            <rect x="-2.7" y="-7.6" width="5.4" height="2" rx="0.3" fill="#1a1530" stroke="#a78bfa" stroke-width="0.4"/>
+            <!-- antennas -->
+            <line x1="-1.8" y1="-9.2" x2="-1.8" y2="-7.6" stroke="#a78bfa" stroke-width="0.4"/>
+            <line x1="1.8" y1="-9.2" x2="1.8" y2="-7.6" stroke="#a78bfa" stroke-width="0.4"/>
+            <!-- LED indicators on remote -->
+            <circle cx="-0.7" cy="-6.8" r="0.32" fill="#10b981"/>
+            <circle cx="0.7" cy="-6.8" r="0.32" fill="#ef4444"/>
+          </g>
+
+          <!-- Car -->
+          <g transform="translate(475, 427) rotate(9.3)">
+            <!-- car body -->
+            <path d="M-4,0 L-4,-1.6 L-3,-3 L2,-3 L3,-1.6 L4,-1.6 L4,0 Z" fill="#1a1530" stroke="#a78bfa" stroke-width="0.4"/>
+            <!-- windshield/window -->
+            <path d="M-2.5,-2.7 L-2,-1.6 L1.5,-1.6 L2,-2.7 Z" fill="rgba(167,139,250,0.5)"/>
+            <!-- wheels -->
+            <circle cx="-2.5" cy="0" r="0.85" fill="#0a0820" stroke="#a78bfa" stroke-width="0.3"/>
+            <circle cx="2.5" cy="0" r="0.85" fill="#0a0820" stroke="#a78bfa" stroke-width="0.3"/>
+            <!-- headlight -->
+            <circle cx="3.6" cy="-1" r="0.3" fill="#fde68a" opacity="0.8"/>
+          </g>
+
+          <!-- Tree 2 (right) -->
+          <g transform="translate(495, 431.7) rotate(16.9)">
+            <rect x="-0.5" y="-2" width="1" height="2" fill="#6d28d9"/>
+            <polygon points="-2.5,-2 0,-8 2.5,-2" fill="rgba(167,139,250,0.55)" stroke="#a78bfa" stroke-width="0.3"/>
+          </g>
+
+          <!-- Building 2 (right, smaller) -->
+          <g transform="translate(515, 439.3) rotate(24.7)">
+            <rect x="-3.5" y="-11" width="7" height="11" fill="#1a1530" stroke="#a78bfa" stroke-width="0.5"/>
+            <g fill="#a78bfa">
+              <rect x="-2.5" y="-9.5" width="1.1" height="1.1" opacity="0.7"/>
+              <rect x="-0.7" y="-9.5" width="1.1" height="1.1" opacity="0.5"/>
+              <rect x="1.4" y="-9.5" width="1.1" height="1.1" opacity="0.7"/>
+              <rect x="-2.5" y="-7" width="1.1" height="1.1" opacity="0.5"/>
+              <rect x="-0.7" y="-7" width="1.1" height="1.1" opacity="0.7"/>
+              <rect x="1.4" y="-7" width="1.1" height="1.1" opacity="0.55"/>
+              <rect x="-2.5" y="-4.5" width="1.1" height="1.1" opacity="0.7"/>
+              <rect x="-0.7" y="-4.5" width="1.1" height="1.1" opacity="0.5"/>
+              <rect x="1.4" y="-4.5" width="1.1" height="1.1" opacity="0.6"/>
+              <rect x="-2.5" y="-2.2" width="1.1" height="1.1" opacity="0.55"/>
+              <rect x="-0.7" y="-2.2" width="1.1" height="1.1" opacity="0.7"/>
+              <rect x="1.4" y="-2.2" width="1.1" height="1.1" opacity="0.5"/>
+            </g>
+          </g>
+        </g>
+
+        <!-- Precision visualization: flat ellipse on ground showing horizontal accuracy zone -->
+        <g id="precisionGroup">
+          <line id="precisionLine" x1="450" y1="388" x2="450" y2="425"
+            stroke="rgba(167,139,250,0.30)" stroke-width="0.6" stroke-dasharray="2 2" opacity="0"/>
+          <ellipse id="precisionCircle" cx="450" cy="425" rx="55" ry="16"
+            fill="rgba(167,139,250,0.12)"
+            stroke="rgba(167,139,250,0.55)"
+            stroke-width="1"
+            stroke-dasharray="4 3"
+            opacity="0"/>
+        </g>
+
+        <!-- Ground station (RTK) - positioned on Earth surface to the right -->
+        <g id="rtkStation" opacity="0" transform="translate(540, 453) rotate(35.5)">
+          <!-- triangular base -->
+          <polygon points="-6,0 6,0 0,-6" fill="#1a1530" stroke="#c4b5fd" stroke-width="1"/>
+          <!-- antenna mast -->
+          <line x1="0" y1="-6" x2="0" y2="-22" stroke="#c4b5fd" stroke-width="1.5"/>
+          <!-- top dish -->
+          <circle cx="0" cy="-24" r="3.2" fill="#1a1530" stroke="#10b981" stroke-width="1.1" filter="url(#softGlow)"/>
+          <circle cx="0" cy="-24" r="1.2" fill="#10b981"/>
+          <!-- label (counter-rotated to stay horizontal) -->
+          <text x="0" y="13" text-anchor="middle" fill="#6ee7b7" font-size="8" font-family="Heebo, sans-serif" font-weight="700" letter-spacing="0.8" transform="rotate(-35.5)">RTK BASE</text>
+        </g>
+
+        <!-- RTK link from drone to ground station antenna -->
+        <line id="rtkLink" x1="450" y1="388" x2="554" y2="433"
+          stroke="#10b981" stroke-width="1.4" stroke-dasharray="6 4"
+          opacity="0" filter="url(#softGlow)"/>
+
+        <!-- Signal lines layer (rendered in JS) -->
+        <g id="signalLayer"></g>
+
+        <!-- Satellites layer (rendered in JS) -->
+        <g id="satLayer"></g>
+
+        <!-- Drone (now hovering close to Earth surface) -->
+        <g id="droneGroup" transform="translate(450, 388)">
+          <circle r="40" fill="url(#droneGlow)" opacity="0.5"/>
+          <use href="#drone" width="60" height="40" x="-30" y="-20" filter="url(#purpleGlow)"/>
+        </g>
+
+        <!-- GPS LOCK badge (SVG-based, follows drone position) -->
+        <g id="gpsLockSvg" opacity="0" transform="translate(450, 348)">
+          <rect class="gps-lock-rect" x="-38" y="-10" width="76" height="20" rx="10"
+            fill="rgba(16,185,129,0.12)" stroke="rgba(16,185,129,0.55)" stroke-width="1"/>
+          <text x="0" y="4" text-anchor="middle" fill="#10b981" font-size="10"
+            font-family="Heebo, sans-serif" font-weight="700" letter-spacing="2.2">GPS LOCK</text>
+        </g>
+      </svg>
+
+      <!-- HUD: top-right (satellite counter) -->
+      <div class="hud hud-tr">
+        <div class="sat-counter green" id="satCounterUI">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M5 12l4-4M9 8l4 4M13 12l-4 4M9 16l-4-4M13 12l4 4M17 16l4-4M21 12l-4-4M17 8l-4 4"/>
+            <circle cx="12" cy="12" r="2" fill="currentColor"/>
+          </svg>
+          <div>
+            <div class="num" id="satCountNum">15</div>
+          </div>
+          <div class="max">/15</div>
+        </div>
+      </div>
+
+      <!-- HUD: top-left (GPS signal + flight mode) -->
+      <div class="hud hud-tl">
+        <div class="hud-block">
+          <div class="hud-label">GPS Signal</div>
+          <div class="gps-bars" id="gpsBars">
+            <div class="gps-bar" style="height:20%"></div>
+            <div class="gps-bar" style="height:40%"></div>
+            <div class="gps-bar" style="height:60%"></div>
+            <div class="gps-bar" style="height:80%"></div>
+            <div class="gps-bar" style="height:100%"></div>
+          </div>
+        </div>
+        <div class="hud-block">
+          <div class="hud-label">Flight Mode</div>
+          <span class="mode-text mode-gps" id="modeText">GPS</span>
+        </div>
+      </div>
+
+      <!-- GPS LOCK is now rendered inside the SVG scene (#gpsLockSvg) so it follows the drone -->
+    </div>
+
+    <!-- Controls -->
+    <div class="controls">
+      <div class="slider-row">
+        <label class="slider-label" for="satSlider" data-i18n="ctrl.satellites">לוויינים פעילים</label>
+        <div class="slider-wrap">
+          <input type="range" id="satSlider" min="0" max="15" value="15">
+        </div>
+        <span class="slider-val" id="satSliderVal">15</span>
+      </div>
+
+      <div class="toggle-row">
+        <button class="toggle-btn" id="btnJam">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M8 16l8-8M8 8l8 8M3 12h2M19 12h2M12 3v2M12 19v2"/>
+          </svg>
+          <span data-i18n="ctrl.jamming">הפרעת אות (Jamming)</span>
+        </button>
+        <button class="toggle-btn" id="btnSpoof">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 2L4 7v10l8 5 8-5V7L12 2z"/>
+            <path d="M12 22V12"/>
+            <path d="M4 7l8 5"/>
+            <path d="M20 7l-8 5"/>
+          </svg>
+          <span data-i18n="ctrl.spoofing">זיוף אות (Spoofing)</span>
+        </button>
+        <button class="toggle-btn" id="btnRtk">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 21l-7-7 7-7M19 14l-7 7"/>
+            <circle cx="12" cy="14" r="3"/>
+          </svg>
+          <span data-i18n="ctrl.rtk">מצב RTK</span>
+        </button>
+        <button class="toggle-btn reset" id="btnReset">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 12a9 9 0 1 1-3-6.7L21 8M21 3v5h-5"/>
+          </svg>
+          <span data-i18n="ctrl.reset">איפוס</span>
+        </button>
+      </div>
+
+      <div class="state-hint" id="stateHint">15 לוויינים — דיוק מקסימלי, רחפן יציב</div>
+
+      <div class="legend">
+        <div class="legend-item" style="color:#10b981"><span class="legend-dash"></span><span data-i18n="legend.gps">GPS · ארה"ב</span></div>
+        <div class="legend-item" style="color:#ef4444"><span class="legend-dash"></span><span data-i18n="legend.bds">BeiDou · סין</span></div>
+        <div class="legend-item" style="color:#3b82f6"><span class="legend-dash"></span><span data-i18n="legend.gal">Galileo · אירופה</span></div>
+        <div class="legend-item" style="color:#e5e7eb"><span class="legend-dash"></span><span data-i18n="legend.glo">GLONASS · רוסיה</span></div>
+      </div>
+    </div>
+
+  </section>
+
+  <p class="foot-note" data-i18n-html="foot.note">הדמיה לצרכי הסבר · <span class="gradient">Flying Mink</span> · 2026</p>
+
+</main>
+
+<script>
+(function(){
+  'use strict';
+
+  // ═══════════════════════════════════════════════════════════
+  // I18N SYSTEM
+  // ═══════════════════════════════════════════════════════════
+  // To add a new language: copy the `he` object, translate values,
+  // then call `applyLang('en')` (or whichever code you used).
+  // Static text uses [data-i18n="key"] (textContent) or
+  // [data-i18n-html="key"] (innerHTML). Dynamic text uses t(key, {n: 5}).
+  const translations = {
+    he: {
+      'page.title': 'איך הרחפן יודע איפה הוא? GPS ו־GNSS — Flying Mink',
+      'nav.back': 'חזרה לאתר',
+      'hero.badge': 'GNSS · ניווט לוויינים',
+      'hero.title': 'איך הרחפן <span class="gradient">יודע איפה הוא?</span>',
+      'hero.subtitle': 'מדריך אינטראקטיבי שמסביר איך 30,000 ק"מ מעלינו, רשת לוויינים בודקת את המיקום שלך עשרות פעמים בשנייה, מייצבת את הרחפן באוויר, ולמה לפעמים זה פתאום מפסיק לעבוד.',
+      'explainer.heading': 'הרעיון בקצרה',
+      'explainer.body': 'המערכת שכולנו מכירים כ־<strong>GPS</strong> היא רק חלק אחד ממשפחה גדולה יותר שנקראת <strong>GNSS</strong> (מערכות ניווט לוויינית גלובליות). הרעיון שמאחורי כל המערכות האלה זהה: לחשב את המיקום שלך בעולם <strong>לפי המרחק שלך מכמה לוויינים בשמיים</strong>. הרחפן עושה את החישוב הזה עשרות פעמים בשנייה — ובזכות זה הוא יודע לעמוד באוויר במקום אחד, גם כשרוח דוחפת אותו.',
+      'step.1.title': 'הלוויינים משדרים אות',
+      'step.1.desc': 'כל לוויין יודע בדיוק איפה הוא נמצא במסלול שלו, ומשדר ללא הפסקה שני נתונים: את המיקום המדויק שלו ואת הזמן המדויק שבו האות יצא ממנו. בלוויינים יש שעונים אטומיים מדויקים להפליא.',
+      'step.2.title': 'מדידת זמן הגעה',
+      'step.2.desc': 'הרחפן (או הטלפון שלך) קולט את האות, ומחשב כמה זמן בדיוק לקח לאות לעבור מהלוויין אליו. האות נע במהירות האור — לכן ההפרש קטן מאוד, אבל מדיד.',
+      'step.3.title': 'חישוב מרחק',
+      'step.3.desc': 'אם יודעים כמה זמן לקח לאות להגיע, ויודעים את המהירות שלו, אפשר לחשב את המרחק. כל לוויין נותן לרחפן "מרחק ממנו" — ערך אחד, שמייצג גודל של כדור סביב הלוויין.',
+      'step.3.formula': 'מרחק = מהירות × זמן',
+      'step.4.title': 'טרילטרציה',
+      'step.4.desc': 'כל לוויין "מצייר" כדור מסביבו ברדיוס של המרחק. שני כדורים נחתכים במעגל. שלושה כדורים נחתכים בשתי נקודות. ארבעה לוויינים — נקודה אחת בלבד. זה המיקום של הרחפן.',
+      'callout.why4.title': 'למה צריך לפחות 4 לוויינים?',
+      'callout.why4.body': 'השעון של הרחפן הרבה פחות מדויק מהשעונים האטומיים שבלוויינים. שלושה לוויינים מספיקים בתאוריה למיקום מלא — אבל הלוויין הרביעי בא לתקן את שגיאת הזמן של המקלט. בלעדיו, גם שגיאה זעירה של אלפיות שנייה הופכת לעשרות מטרים של טעות.',
+      'callout.multi.title': 'למה משתמשים בכמה מערכות יחד?',
+      'callout.multi.intro': 'מעבר ל־GPS האמריקאי, יש עוד שלוש מערכות לוויינים ניווטיות פעילות בעולם:',
+      'callout.multi.glo': '<strong style="color:var(--purple-bright)">GLONASS</strong> — רוסיה',
+      'callout.multi.gal': '<strong style="color:var(--purple-bright)">Galileo</strong> — איחוד אירופי',
+      'callout.multi.bds': '<strong style="color:var(--purple-bright)">BeiDou</strong> — סין',
+      'callout.multi.body': 'רחפנים מודרניים מתחברים לכמה מערכות במקביל (Multi-GNSS). זה אומר יותר לוויינים זמינים בכל רגע, פחות "שטחים מתים" ליד בניינים והרים, ודיוק גבוה יותר. בפועל הרחפן רואה לפעמים 15 עד 20 לוויינים בו זמנית.',
+      'callout.atti.title': 'מה זה מצב ATTI?',
+      'callout.atti.body1': 'כשהרחפן מאבד אות מספיק חזק מהלוויינים — הוא נופל אוטומטית למצב <strong style="color:var(--orange)">ATTI</strong> (קיצור של Attitude). במצב הזה הרחפן <strong>לא יודע איפה הוא במרחב</strong>, אבל כן יודע <strong>באיזו זווית הוא ביחס לקרקע</strong>, בזכות חיישני ה־IMU (תאוצה וג\'יירוסקופ).',
+      'callout.atti.body2': 'המשמעות: הרחפן ימשיך לרחף אופקית, אבל לא יחזיק עמדה. כל רוח קלה תסחף אותו לאן שהיא דוחפת. הטיסה ב־ATTI דורשת טייס שיודע לפצות ידנית על הסחיפה, וזה החלק הראשון שמלמדים בקורס FPV. רוב הרחפנים האזרחיים שומרים על גובה גם ב־ATTI (בעזרת ברומטר), אבל לא על מיקום אופקי.',
+      'callout.errors.title': 'מה גורם לשגיאות במיקום?',
+      'callout.errors.intro': 'הדיוק הרגיל של GPS ברחפן צרכני הוא בערך <strong>1 עד 5 מטר</strong>. למה לא מדויק יותר? כמה גורמים פוגעים בדיוק:',
+      'callout.errors.l1': 'עיכובים של האות במעבר באטמוספירה (במיוחד היונוספירה)',
+      'callout.errors.l2': 'החזרים של אות מבניינים, מצוקים ומשטחי מים — Multipath',
+      'callout.errors.l3': 'זווית גרועה של הלוויינים בשמיים (כשכולם מקובצים באותו אזור)',
+      'callout.errors.l4': 'שגיאות זעירות בשעונים ובמיקום המסלולי של הלוויין',
+      'callout.errors.l5': 'הפרעות יזומות: הצפת אות (Jamming) או שידור אותות מזויפים (Spoofing)',
+      'callout.rtk.title': 'RTK — דיוק של סנטימטרים',
+      'callout.rtk.body1': 'לרחפנים מקצועיים (במיוחד למיפוי ולחקלאות) יש מערכת שנקראת <strong style="color:#6ee7b7">RTK</strong> — Real Time Kinematic. הרעיון: שמים תחנה קרקעית במיקום ידוע במדויק לחלוטין. התחנה מקבלת את אותו אות GPS שהרחפן מקבל, ובודקת איזו שגיאה יש כרגע באות. את התיקון הזה היא משדרת בזמן אמת לרחפן.',
+      'callout.rtk.body2': 'התוצאה: הדיוק קופץ מ־5 מטר לפחות מ־3 ס"מ. אפשר לראות את ההבדל בהדמיה למטה כשמפעילים את ה־RTK — מעגל הדיוק מסביב לרחפן מתכווץ דרמטית.',
+      'sim.eyebrow': 'הדמיה אינטראקטיבית',
+      'sim.heading': 'שחק עם הסימולציה',
+      'sim.subtitle': 'הזז את המחוון, הפעל הפרעות, תראה איך הרחפן מגיב בזמן אמת.',
+      'ctrl.satellites': 'לוויינים פעילים',
+      'ctrl.jamming': 'הפרעת אות (Jamming)',
+      'ctrl.spoofing': 'זיוף אות (Spoofing)',
+      'ctrl.rtk': 'מצב RTK',
+      'ctrl.reset': 'איפוס',
+      'legend.gps': 'GPS · ארה"ב',
+      'legend.bds': 'BeiDou · סין',
+      'legend.gal': 'Galileo · אירופה',
+      'legend.glo': 'GLONASS · רוסיה',
+      'hint.falling': 'אובדן שליטה — הרחפן נופל',
+      'hint.spoofing': 'התקפת זיוף פעילה — מיקום מזויף, שליטה מתערערת',
+      'hint.jamming': 'הפרעת אות פעילה — האות מקוטע, הרחפן רועד',
+      'hint.noSignal': 'אין אות לוויינים — מצב ATTI, רוח דוחפת את הרחפן',
+      'hint.tooFew': '{n} לוויינים — לא מספיק לחישוב מיקום מלא',
+      'hint.weak': '{n} לוויינים — אחיזה חלשה, סחיפה ניכרת',
+      'hint.ok': '{n} לוויינים — אחיזה טובה, סחיפה מתונה',
+      'hint.max': '{n} לוויינים — דיוק מקסימלי, רחפן יציב',
+      'hint.maxRtk': '{n} לוויינים + RTK — דיוק סנטימטרי, יציבות מלאה',
+      'foot.note': 'הדמיה לצרכי הסבר · <span class="gradient">Flying Mink</span> · 2026',
+    },
+    // To add English: en: { 'nav.back': 'Back to site', ... }
+  };
+
+  let currentLang = 'he';
+
+  // Translation helper. Returns translated string with {placeholder} substitutions.
+  function t(key, params){
+    const dict = translations[currentLang] || translations.he;
+    let str = dict[key] != null ? dict[key] : key;
+    if (params){
+      for (const k in params){
+        str = str.replace(new RegExp('\\{' + k + '\\}', 'g'), params[k]);
+      }
+    }
+    return str;
+  }
+
+  // Apply a language to the entire page. Sets <html lang> and <html dir>,
+  // then walks every element with [data-i18n] / [data-i18n-html] and updates it.
+  function applyLang(lang){
+    if (!translations[lang]) return;
+    currentLang = lang;
+    document.documentElement.lang = lang;
+    // RTL languages — extend this list as needed
+    const rtlLangs = ['he', 'ar', 'fa', 'ur'];
+    document.documentElement.dir = rtlLangs.includes(lang) ? 'rtl' : 'ltr';
+    // text-only nodes
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      const val = translations[lang][key];
+      if (val != null) el.textContent = val;
+    });
+    // HTML-bearing nodes
+    document.querySelectorAll('[data-i18n-html]').forEach(el => {
+      const key = el.getAttribute('data-i18n-html');
+      const val = translations[lang][key];
+      if (val != null) el.innerHTML = val;
+    });
+  }
+  // Expose globally so the user can call `window.applyLang('en')` from anywhere.
+  window.applyLang = applyLang;
+  window.t = t;
+
+
+  // ═══════════════════════════════════════════════════════════
+  // SCENE CONSTANTS
+  // ═══════════════════════════════════════════════════════════
+  const VIEW_W = 900, VIEW_H = 600;
+  const DRONE_HOME = { x: 450, y: 388 };  // hovers very close to Earth surface
+  const EARTH_CENTER = { x: 450, y: 580 };
+  const EARTH_RADIUS = 155;
+  const EARTH_TOP_Y = EARTH_CENTER.y - EARTH_RADIUS;  // = 425, the top of visible surface
+  const GROUND_CLEARANCE = 15;  // minimum px above earth surface during normal hover
+  const ARC_CENTER = { x: 450, y: 320 };
+  const ARC_RADIUS = 250;
+  const ARC_START_DEG = 30;   // measured from positive X going CCW (math convention)
+  const ARC_END_DEG = 150;
+  const TOTAL_SATS = 15;
+
+  // RTK ground station antenna top (in world SVG coords) — precomputed
+  // Station at translate(540,453) rotate(35.5deg), antenna top at local (0,-24)
+  const RTK_STATION_GROUND = { x: 540, y: 453 };
+  const RTK_ANTENNA_TIP = { x: 554, y: 433 };
+
+  // Earth surface y at given x (returns null if outside visible disk)
+  function earthSurfaceY(x){
+    const dx = x - EARTH_CENTER.x;
+    const r2 = EARTH_RADIUS * EARTH_RADIUS - dx * dx;
+    if (r2 < 0) return null;
+    return EARTH_CENTER.y - Math.sqrt(r2);
+  }
+
+  // System colors
+  const SYSTEM_COLORS = {
+    GPS: '#10b981',   // green
+    BDS: '#ef4444',   // red
+    GAL: '#3b82f6',   // blue
+    GLO: '#e5e7eb',   // white-ish
+  };
+
+  // 15 satellites: 6 GPS, 4 BDS, 3 GAL, 2 GLO. Interleaved for visual variety.
+  const SAT_LAYOUT = [
+    'GPS', 'BDS', 'GPS', 'GAL', 'GPS',
+    'BDS', 'GLO', 'GPS', 'BDS', 'GAL',
+    'GPS', 'BDS', 'GLO', 'GAL', 'GPS'
+  ];
+
+  // ═══════════════════════════════════════════════════════════
+  // STATE
+  // ═══════════════════════════════════════════════════════════
+  const state = {
+    satCount: 15,
+    jamming: false,
+    spoofing: false,
+    rtk: false,
+    spoofingPhase: 0,    // 0..1 - progression of spoofing attack
+    spoofingStartedAt: 0,
+    droneFalling: false,
+    droneFallVy: 0,
+    droneFallY: DRONE_HOME.y,
+  };
+
+  // Drone position (current rendered)
+  const drone = {
+    x: DRONE_HOME.x,
+    y: DRONE_HOME.y,
+    targetX: DRONE_HOME.x,
+    targetY: DRONE_HOME.y,
+  };
+
+  // Wind direction (slowly varying)
+  let windAngle = 0; // radians
+
+  // ═══════════════════════════════════════════════════════════
+  // FLAG SVG STRINGS (tiny, ~14x10)
+  // ═══════════════════════════════════════════════════════════
+  const FLAGS = {
+    us: `<g transform="translate(-7,-5)">
+           <rect width="14" height="10" fill="#b22234"/>
+           <rect y="1.4" width="14" height="1.4" fill="#fff"/>
+           <rect y="4.2" width="14" height="1.4" fill="#fff"/>
+           <rect y="7" width="14" height="1.4" fill="#fff"/>
+           <rect width="6" height="5.6" fill="#3c3b6e"/>
+         </g>`,
+    cn: `<g transform="translate(-7,-5)">
+           <rect width="14" height="10" fill="#de2910"/>
+           <polygon points="3,2 3.4,3 4.4,3 3.6,3.7 3.9,4.7 3,4.1 2.1,4.7 2.4,3.7 1.6,3 2.6,3" fill="#ffde00"/>
+           <circle cx="6" cy="1.5" r="0.5" fill="#ffde00"/>
+           <circle cx="7" cy="2.7" r="0.5" fill="#ffde00"/>
+           <circle cx="7" cy="4.3" r="0.5" fill="#ffde00"/>
+           <circle cx="6" cy="5.5" r="0.5" fill="#ffde00"/>
+         </g>`,
+    eu: `<g transform="translate(-7,-5)">
+           <rect width="14" height="10" fill="#003399"/>
+           <g fill="#ffcc00">
+             <circle cx="7" cy="2" r="0.55"/>
+             <circle cx="9.3" cy="2.7" r="0.55"/>
+             <circle cx="10.6" cy="5" r="0.55"/>
+             <circle cx="9.3" cy="7.3" r="0.55"/>
+             <circle cx="7" cy="8" r="0.55"/>
+             <circle cx="4.7" cy="7.3" r="0.55"/>
+             <circle cx="3.4" cy="5" r="0.55"/>
+             <circle cx="4.7" cy="2.7" r="0.55"/>
+           </g>
+         </g>`,
+    ru: `<g transform="translate(-7,-5)">
+           <rect width="14" height="3.33" fill="#fff"/>
+           <rect y="3.33" width="14" height="3.33" fill="#0039a6"/>
+           <rect y="6.66" width="14" height="3.34" fill="#d52b1e"/>
+         </g>`,
+  };
+
+  const SYSTEM_TO_FLAG = { GPS:'us', BDS:'cn', GAL:'eu', GLO:'ru' };
+
+  // ═══════════════════════════════════════════════════════════
+  // BUILD SATELLITES (compute positions on arc)
+  // ═══════════════════════════════════════════════════════════
+  const satellites = [];
+  function buildSatellites(){
+    satellites.length = 0;
+    const totalSpan = ARC_END_DEG - ARC_START_DEG;
+    for (let i = 0; i < TOTAL_SATS; i++){
+      const t = i / (TOTAL_SATS - 1);
+      const deg = ARC_START_DEG + t * totalSpan;
+      const rad = deg * Math.PI / 180;
+      const x = ARC_CENTER.x + ARC_RADIUS * Math.cos(rad);
+      const y = ARC_CENTER.y - ARC_RADIUS * Math.sin(rad); // SVG y inverted
+      const system = SAT_LAYOUT[i];
+      satellites.push({
+        idx: i,
+        x, y,
+        baseX: x,
+        baseY: y,
+        system,
+        color: SYSTEM_COLORS[system],
+        flag: SYSTEM_TO_FLAG[system],
+        // each sat has a tiny independent oscillation so they breathe
+        phase: Math.random() * Math.PI * 2,
+      });
+    }
+  }
+  buildSatellites();
+
+  // ═══════════════════════════════════════════════════════════
+  // SATELLITE PRIORITY (random shuffled order — determines which sats
+  // disconnect first when the count goes down. Reshuffled on reset.)
+  // ═══════════════════════════════════════════════════════════
+  let satPriority = [];
+  function shufflePriority(){
+    satPriority = [];
+    for (let i = 0; i < TOTAL_SATS; i++) satPriority.push(i);
+    // Fisher-Yates shuffle
+    for (let i = satPriority.length - 1; i > 0; i--){
+      const j = Math.floor(Math.random() * (i + 1));
+      [satPriority[i], satPriority[j]] = [satPriority[j], satPriority[i]];
+    }
+  }
+  shufflePriority();
+
+  // Returns a Set of satellite indices that are currently active given an effective count.
+  // The first `count` items in satPriority are kept active; the rest drop.
+  function getActiveSet(count){
+    const active = new Set();
+    for (let i = 0; i < count && i < TOTAL_SATS; i++){
+      active.add(satPriority[i]);
+    }
+    return active;
+  }
+
+  // ═══════════════════════════════════════════════════════════
+  // RENDER STATIC SATELLITES INTO SVG
+  // ═══════════════════════════════════════════════════════════
+  const SVG_NS = 'http://www.w3.org/2000/svg';
+  const satLayer = document.getElementById('satLayer');
+  const signalLayer = document.getElementById('signalLayer');
+  const windLayer = document.getElementById('windLayer');
+
+  function renderSatellites(){
+    satLayer.innerHTML = '';
+    satellites.forEach((s, i) => {
+      const g = document.createElementNS(SVG_NS, 'g');
+      g.setAttribute('class', 'sat-group');
+      g.setAttribute('data-idx', i);
+      g.setAttribute('transform', `translate(${s.x}, ${s.y})`);
+
+      // glow ring
+      const glow = document.createElementNS(SVG_NS, 'circle');
+      glow.setAttribute('r', '14');
+      glow.setAttribute('fill', s.color);
+      glow.setAttribute('opacity', '0.18');
+      glow.setAttribute('class', 'sat-glow');
+      glow.style.filter = 'blur(6px)';
+      g.appendChild(glow);
+
+      // satellite body
+      const body = document.createElementNS(SVG_NS, 'g');
+      body.setAttribute('filter', 'url(#softGlow)');
+      body.innerHTML = `
+        <rect x="-5" y="-4" width="10" height="8" rx="1.5" fill="#1a1530" stroke="${s.color}" stroke-width="1"/>
+        <rect x="-12" y="-2" width="6" height="4" fill="rgba(196,181,253,0.40)" stroke="${s.color}" stroke-width="0.6"/>
+        <rect x="6" y="-2" width="6" height="4" fill="rgba(196,181,253,0.40)" stroke="${s.color}" stroke-width="0.6"/>
+        <circle cx="0" cy="0" r="1.5" fill="${s.color}"/>
+      `;
+      g.appendChild(body);
+
+      // flag (offset above satellite)
+      const flag = document.createElementNS(SVG_NS, 'g');
+      flag.setAttribute('transform', 'translate(0,-18)');
+      flag.innerHTML = FLAGS[s.flag];
+      g.appendChild(flag);
+
+      // label (system)
+      const label = document.createElementNS(SVG_NS, 'text');
+      label.setAttribute('x', '0');
+      label.setAttribute('y', '20');
+      label.setAttribute('text-anchor', 'middle');
+      label.setAttribute('fill', s.color);
+      label.setAttribute('font-size', '8.5');
+      label.setAttribute('font-family', 'Heebo, sans-serif');
+      label.setAttribute('font-weight', '700');
+      label.setAttribute('letter-spacing', '0.5');
+      label.textContent = s.system;
+      g.appendChild(label);
+
+      satLayer.appendChild(g);
+
+      // create signal line for this sat
+      const line = document.createElementNS(SVG_NS, 'line');
+      line.setAttribute('class', 'signal-line');
+      line.setAttribute('data-idx', i);
+      line.setAttribute('x1', s.x);
+      line.setAttribute('y1', s.y);
+      line.setAttribute('x2', drone.x);
+      line.setAttribute('y2', drone.y);
+      line.setAttribute('stroke', s.color);
+      line.setAttribute('stroke-width', '1.2');
+      line.setAttribute('stroke-dasharray', '5 4');
+      line.setAttribute('opacity', '0');
+      line.setAttribute('filter', 'url(#softGlow)');
+      signalLayer.appendChild(line);
+    });
+  }
+  renderSatellites();
+
+  // ═══════════════════════════════════════════════════════════
+  // PARTICLES (CSS-driven floating purple dots)
+  // ═══════════════════════════════════════════════════════════
+  function spawnParticles(){
+    const p = document.getElementById('particles');
+    p.innerHTML = '';
+    const count = window.innerWidth < 600 ? 12 : 22;
+    for (let i = 0; i < count; i++){
+      const d = document.createElement('div');
+      d.className = 'particle';
+      const sz = 1 + Math.random() * 2.5;
+      d.style.width = sz + 'px';
+      d.style.height = sz + 'px';
+      d.style.left = (Math.random() * 100) + '%';
+      d.style.bottom = (-Math.random() * 30) + 'px';
+      d.style.animationDuration = (8 + Math.random() * 12) + 's';
+      d.style.animationDelay = (-Math.random() * 20) + 's';
+      d.style.opacity = (0.15 + Math.random() * 0.45);
+      p.appendChild(d);
+    }
+  }
+  spawnParticles();
+
+  // ═══════════════════════════════════════════════════════════
+  // EFFECTIVE SATELLITE COUNT (after jamming/spoofing)
+  // ═══════════════════════════════════════════════════════════
+  function getEffectiveCount(){
+    let n = state.satCount;
+    if (state.jamming){
+      // jamming reduces the effective count by ~40% randomly fluctuating
+      n = Math.max(0, Math.floor(n * 0.55));
+    }
+    if (state.spoofing){
+      const p = state.spoofingPhase;
+      if (p < 0.30) n = Math.min(n, 7);
+      else if (p < 0.60) n = Math.min(n, 3);
+      else n = 0;
+    }
+    return n;
+  }
+
+  // STABILITY 0 (none) → 1 (locked). -1 = falling.
+  function getStability(){
+    if (state.droneFalling) return -1;
+    const n = getEffectiveCount();
+    if (n === 0) return 0;
+    if (n <= 4) return 0.18;
+    if (n <= 7) return 0.40;
+    if (n <= 12) return 0.78;
+    return state.rtk ? 1.0 : 0.96;
+  }
+
+  // ═══════════════════════════════════════════════════════════
+  // UI ELEMENTS REFS
+  // ═══════════════════════════════════════════════════════════
+  const els = {
+    slider: document.getElementById('satSlider'),
+    sliderVal: document.getElementById('satSliderVal'),
+    btnJam: document.getElementById('btnJam'),
+    btnSpoof: document.getElementById('btnSpoof'),
+    btnRtk: document.getElementById('btnRtk'),
+    btnReset: document.getElementById('btnReset'),
+    counterUI: document.getElementById('satCounterUI'),
+    counterNum: document.getElementById('satCountNum'),
+    bars: document.querySelectorAll('#gpsBars .gps-bar'),
+    modeText: document.getElementById('modeText'),
+    gpsLockSvg: document.getElementById('gpsLockSvg'),
+    droneGroup: document.getElementById('droneGroup'),
+    earthRotor: document.getElementById('earthRotor'),
+    rtkStation: document.getElementById('rtkStation'),
+    rtkLink: document.getElementById('rtkLink'),
+    precision: document.getElementById('precisionCircle'),
+    precisionLine: document.getElementById('precisionLine'),
+    stateHint: document.getElementById('stateHint'),
+  };
+
+  function setSliderFill(){
+    const pct = (state.satCount / 15) * 100;
+    els.slider.style.setProperty('--val', pct);
+  }
+
+  // ═══════════════════════════════════════════════════════════
+  // EVENT WIRING
+  // ═══════════════════════════════════════════════════════════
+  els.slider.addEventListener('input', e => {
+    state.satCount = parseInt(e.target.value, 10);
+    els.sliderVal.textContent = state.satCount;
+    setSliderFill();
+  });
+
+  els.btnJam.addEventListener('click', () => {
+    state.jamming = !state.jamming;
+    els.btnJam.classList.toggle('active', state.jamming);
+    els.btnJam.classList.toggle('danger', state.jamming);
+  });
+
+  els.btnSpoof.addEventListener('click', () => {
+    state.spoofing = !state.spoofing;
+    els.btnSpoof.classList.toggle('active', state.spoofing);
+    els.btnSpoof.classList.toggle('danger', state.spoofing);
+    if (state.spoofing){
+      state.spoofingPhase = 0;
+      state.spoofingStartedAt = performance.now();
+      state.droneFalling = false;
+    } else {
+      // recover
+      state.droneFalling = false;
+      state.droneFallVy = 0;
+    }
+  });
+
+  els.btnRtk.addEventListener('click', () => {
+    state.rtk = !state.rtk;
+    els.btnRtk.classList.toggle('active', state.rtk);
+    els.btnRtk.classList.toggle('success', state.rtk);
+  });
+
+  els.btnReset.addEventListener('click', () => {
+    state.satCount = 15;
+    state.jamming = false;
+    state.spoofing = false;
+    state.rtk = false;
+    state.spoofingPhase = 0;
+    state.droneFalling = false;
+    state.droneFallVy = 0;
+    state.droneFallY = DRONE_HOME.y;
+    drone.x = DRONE_HOME.x;
+    drone.y = DRONE_HOME.y;
+
+    // Re-shuffle satellite priority so each reset gives a different random pattern
+    shufflePriority();
+
+    els.slider.value = 15;
+    els.sliderVal.textContent = 15;
+    setSliderFill();
+    [els.btnJam, els.btnSpoof, els.btnRtk].forEach(b => b.classList.remove('active','danger','success'));
+  });
+
+  setSliderFill();
+
+  // ═══════════════════════════════════════════════════════════
+  // ANIMATION LOOP
+  // ═══════════════════════════════════════════════════════════
+  let lastT = performance.now();
+  let earthAngle = 0;
+  let propPhase = 0;
+
+  function tick(now){
+    const dt = Math.min(0.05, (now - lastT) / 1000);
+    lastT = now;
+
+    // ─── earth rotation ─────────────────────────────────────
+    earthAngle += dt * 6; // deg/s
+    els.earthRotor.setAttribute('transform', `rotate(${earthAngle})`);
+
+    // ─── spoofing phase progression ─────────────────────────
+    if (state.spoofing){
+      const elapsed = (now - state.spoofingStartedAt) / 1000;
+      state.spoofingPhase = Math.min(1, elapsed / 6); // takes 6s to fully lose lock
+      if (state.spoofingPhase >= 1 && !state.droneFalling){
+        state.droneFalling = true;
+        state.droneFallVy = 0;
+      }
+    } else if (state.spoofingPhase > 0){
+      // recover smoothly
+      state.spoofingPhase = Math.max(0, state.spoofingPhase - dt * 0.6);
+      if (state.spoofingPhase < 0.05){
+        state.droneFalling = false;
+      }
+    }
+
+    // ─── drone position update ──────────────────────────────
+    const stab = getStability();
+    if (stab < 0){
+      // falling — gravity until off-frame or hits ground
+      state.droneFallVy += 110 * dt;
+      drone.y += state.droneFallVy * dt;
+      // keep some lateral drift
+      drone.x += Math.sin(now / 800) * 0.6;
+      // clamp at bottom so it doesn't escape forever
+      if (drone.y > VIEW_H + 40) drone.y = VIEW_H + 40;
+    } else {
+      // smaller drift values since drone is now at low altitude
+      const driftAmount = (1 - stab) * 38;
+      const t = now / 1000;
+      // smooth drift using sine waves with multiple frequencies
+      const driftX = Math.sin(t * 0.6) * driftAmount * 0.7
+                   + Math.sin(t * 1.7 + 1.3) * driftAmount * 0.4;
+      const driftY = Math.sin(t * 0.4 + 0.5) * driftAmount * 0.30
+                   + Math.cos(t * 1.1) * driftAmount * 0.18;
+
+      // wind contribution (when stab is low, wind pushes consistently in one direction)
+      const windStrength = Math.max(0, (1 - stab)) * 1.0;
+      windAngle += dt * 0.3;
+      const windPushX = Math.cos(windAngle) * windStrength * 28;
+      const windPushY = Math.sin(windAngle * 0.7) * windStrength * 10;
+
+      // micro-jitter for jamming
+      let jamJitter = 0;
+      if (state.jamming){
+        jamJitter = (Math.random() - 0.5) * 6;
+      }
+
+      drone.targetX = DRONE_HOME.x + driftX + windPushX + jamJitter;
+      drone.targetY = DRONE_HOME.y + driftY + windPushY + jamJitter * 0.6;
+
+      // smooth follow
+      const followSpeed = stab > 0.9 ? 0.18 : 0.08;
+      drone.x += (drone.targetX - drone.x) * followSpeed;
+      drone.y += (drone.targetY - drone.y) * followSpeed;
+
+      // keep drone above buildings & ground (only in normal flight, not while falling)
+      const groundUnder = earthSurfaceY(drone.x);
+      if (groundUnder !== null){
+        const minY = groundUnder - GROUND_CLEARANCE;
+        if (drone.y > minY) drone.y = minY;
+      }
+    }
+
+    // tilt the drone slightly toward direction of motion
+    const ddx = drone.targetX - drone.x;
+    const tilt = Math.max(-12, Math.min(12, -ddx * 0.4));
+    els.droneGroup.setAttribute('transform', `translate(${drone.x}, ${drone.y}) rotate(${tilt})`);
+
+    // ─── update signal lines ────────────────────────────────
+    const effective = getEffectiveCount();
+    const activeSet = getActiveSet(effective);  // randomized which satellites are active
+    const lines = signalLayer.querySelectorAll('.signal-line');
+    lines.forEach((line, i) => {
+      // active state determined by random priority (set), not by left-to-right index
+      const active = activeSet.has(i);
+      if (!active){
+        line.setAttribute('opacity', '0');
+        return;
+      }
+
+      // jamming -> flicker
+      let opacity = 0.85;
+      if (state.jamming){
+        opacity = 0.25 + Math.random() * 0.55;
+        if (Math.random() < 0.08) opacity = 0;
+      }
+      // spoofing -> heavy distortion
+      if (state.spoofing){
+        const p = state.spoofingPhase;
+        opacity *= (1 - p * 0.85);
+        if (Math.random() < p * 0.3) opacity = 0;
+      }
+
+      line.setAttribute('opacity', opacity);
+      line.setAttribute('x2', drone.x);
+      line.setAttribute('y2', drone.y);
+
+      // animate dash offset for "signal flow"
+      const sat = satellites[i];
+      const offset = -((now / 60) % 9) + (sat.phase * 2);
+      line.setAttribute('stroke-dashoffset', offset);
+
+      // RTK -> tighten the dash
+      if (state.rtk && !state.spoofing && !state.jamming){
+        line.setAttribute('stroke-dasharray', '7 2');
+        line.setAttribute('stroke-width', '1.4');
+      } else {
+        line.setAttribute('stroke-dasharray', '5 4');
+        line.setAttribute('stroke-width', '1.2');
+      }
+    });
+
+    // ─── satellites breathing ────────────────────────────────
+    const satGroups = satLayer.querySelectorAll('.sat-group');
+    satGroups.forEach((g, i) => {
+      const s = satellites[i];
+      const breath = Math.sin(now / 1000 + s.phase) * 1.2;
+      g.setAttribute('transform', `translate(${s.x}, ${s.y + breath})`);
+      // dim if not active (using random priority set)
+      const active = activeSet.has(i);
+      g.setAttribute('opacity', active ? '1' : '0.30');
+    });
+
+    // ─── HUD: counter ────────────────────────────────────────
+    const displayed = state.spoofing ? Math.min(state.satCount, getEffectiveCount()) : effective;
+    els.counterNum.textContent = displayed;
+    els.counterUI.classList.remove('green','orange','red');
+    if (displayed >= 13) els.counterUI.classList.add('green');
+    else if (displayed >= 8) els.counterUI.classList.add('orange');
+    else els.counterUI.classList.add('red');
+
+    // ─── HUD: gps bars ───────────────────────────────────────
+    const barCount = Math.ceil((displayed / 15) * 5);
+    els.bars.forEach((b, i) => {
+      b.classList.remove('active','warn','crit');
+      if (i < barCount){
+        b.classList.add('active');
+        if (displayed < 8) b.classList.add('crit');
+        else if (displayed < 13) b.classList.add('warn');
+      }
+      // jamming flicker
+      if (state.jamming && Math.random() < 0.18){
+        b.classList.toggle('active');
+      }
+    });
+
+    // ─── HUD: flight mode ────────────────────────────────────
+    if (effective < 4 || state.droneFalling){
+      els.modeText.textContent = 'ATTI';
+      els.modeText.className = 'mode-text mode-atti';
+    } else {
+      els.modeText.textContent = state.rtk ? 'RTK' : 'GPS';
+      els.modeText.className = 'mode-text mode-gps';
+    }
+
+    // ─── GPS LOCK badge (SVG-based, follows drone) ──────────
+    if (effective >= 13 && !state.jamming && !state.spoofing){
+      els.gpsLockSvg.classList.add('show');
+      els.gpsLockSvg.setAttribute('opacity', 1);
+    } else {
+      els.gpsLockSvg.classList.remove('show');
+      els.gpsLockSvg.setAttribute('opacity', 0);
+    }
+    // position the lock badge above the drone in SVG coordinates
+    els.gpsLockSvg.setAttribute('transform', `translate(${drone.x}, ${drone.y - 40})`);
+
+    // ─── precision visualization (flat ellipse on ground below drone) ───
+    // Project drone position straight down to Earth surface
+    const groundY = earthSurfaceY(drone.x);
+    if (groundY !== null && effective >= 4){
+      // horizontal accuracy: large normal, very small with RTK
+      const precisionRx = state.rtk ? 8 : (effective >= 13 ? 30 : effective >= 8 ? 50 : 75);
+      const precisionRy = precisionRx * 0.30;
+      els.precision.setAttribute('cx', drone.x);
+      els.precision.setAttribute('cy', groundY);
+      els.precision.setAttribute('rx', precisionRx);
+      els.precision.setAttribute('ry', precisionRy);
+      els.precision.setAttribute('opacity', 0.85);
+      // connection line drone -> ground projection
+      els.precisionLine.setAttribute('x1', drone.x);
+      els.precisionLine.setAttribute('y1', drone.y);
+      els.precisionLine.setAttribute('x2', drone.x);
+      els.precisionLine.setAttribute('y2', groundY);
+      els.precisionLine.setAttribute('opacity', 0.6);
+      if (state.rtk){
+        els.precision.setAttribute('stroke', '#10b981');
+        els.precision.setAttribute('fill', 'rgba(16,185,129,0.18)');
+        els.precisionLine.setAttribute('stroke', 'rgba(16,185,129,0.4)');
+      } else {
+        els.precision.setAttribute('stroke', 'rgba(167,139,250,0.55)');
+        els.precision.setAttribute('fill', 'rgba(167,139,250,0.12)');
+        els.precisionLine.setAttribute('stroke', 'rgba(167,139,250,0.30)');
+      }
+    } else {
+      els.precision.setAttribute('opacity', 0);
+      els.precisionLine.setAttribute('opacity', 0);
+    }
+
+    // ─── RTK station ─────────────────────────────────────────
+    if (state.rtk){
+      els.rtkStation.setAttribute('opacity', 1);
+      els.rtkLink.setAttribute('opacity', 0.85);
+      els.rtkLink.setAttribute('x1', drone.x);
+      els.rtkLink.setAttribute('y1', drone.y);
+      els.rtkLink.setAttribute('x2', RTK_ANTENNA_TIP.x);
+      els.rtkLink.setAttribute('y2', RTK_ANTENNA_TIP.y);
+      const off = -((now / 80) % 10);
+      els.rtkLink.setAttribute('stroke-dashoffset', off);
+    } else {
+      els.rtkStation.setAttribute('opacity', 0);
+      els.rtkLink.setAttribute('opacity', 0);
+    }
+
+    // ─── wind arrows ─────────────────────────────────────────
+    renderWindArrows(stab, now);
+
+    // ─── state hint ─────────────────────────────────────────
+    updateStateHint(effective, stab);
+
+    requestAnimationFrame(tick);
+  }
+
+  // ═══════════════════════════════════════════════════════════
+  // WIND ARROWS
+  // ═══════════════════════════════════════════════════════════
+  function renderWindArrows(stab, now){
+    windLayer.innerHTML = '';
+    if (stab >= 0.85 && !state.jamming) return; // barely visible when stable
+    if (stab < 0) return; // no wind when falling
+
+    const intensity = Math.max(0, 1 - stab);
+    const arrowCount = Math.floor(2 + intensity * 5);
+    const dir = Math.cos(windAngle); // -1..1, drives left/right preference
+
+    for (let i = 0; i < arrowCount; i++){
+      const t = (now / 1000 + i * 0.5) % 3;
+      const progress = t / 3; // 0..1
+      const yLane = 200 + (i * 65) % 280;
+      const startX = dir > 0 ? -20 + progress * 940 : 920 - progress * 940;
+      const length = 20 + intensity * 18;
+      const opacity = Math.sin(progress * Math.PI) * 0.45 * intensity;
+
+      const g = document.createElementNS(SVG_NS, 'g');
+      g.setAttribute('opacity', opacity);
+      g.setAttribute('transform', `translate(${startX}, ${yLane})`);
+
+      const path = document.createElementNS(SVG_NS, 'path');
+      const dirSign = dir > 0 ? 1 : -1;
+      path.setAttribute('d', `M0 0 L${length * dirSign} 0 M${(length-6) * dirSign} -3 L${length * dirSign} 0 L${(length-6) * dirSign} 3`);
+      path.setAttribute('stroke', '#a78bfa');
+      path.setAttribute('stroke-width', '1.5');
+      path.setAttribute('fill', 'none');
+      path.setAttribute('stroke-linecap', 'round');
+      path.setAttribute('stroke-linejoin', 'round');
+      g.appendChild(path);
+
+      windLayer.appendChild(g);
+    }
+  }
+
+  // ═══════════════════════════════════════════════════════════
+  // STATE HINT TEXT (Hebrew)
+  // ═══════════════════════════════════════════════════════════
+  function updateStateHint(effective, stab){
+    let key = '', cls = '';
+    if (state.droneFalling){       key = 'hint.falling';  cls = 'danger'; }
+    else if (state.spoofing){      key = 'hint.spoofing'; cls = 'danger'; }
+    else if (state.jamming){       key = 'hint.jamming';  cls = 'warn';   }
+    else if (effective === 0){     key = 'hint.noSignal'; cls = 'danger'; }
+    else if (effective < 4){       key = 'hint.tooFew';   cls = 'danger'; }
+    else if (effective < 8){       key = 'hint.weak';     cls = 'warn';   }
+    else if (effective < 13){      key = 'hint.ok';       cls = '';       }
+    else if (state.rtk){           key = 'hint.maxRtk';   cls = 'good';   }
+    else {                         key = 'hint.max';      cls = 'good';   }
+    els.stateHint.textContent = t(key, { n: effective });
+    els.stateHint.className = 'state-hint ' + cls;
+  }
+
+  // Fix a tiny Hebrew typo in case it shipped
+  // (none needed — direct strings used above)
+
+  // ═══════════════════════════════════════════════════════════
+  // KICK OFF
+  // ═══════════════════════════════════════════════════════════
+  requestAnimationFrame(tick);
+
+  // Recompute particles on resize
+  let resizeTO;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTO);
+    resizeTO = setTimeout(spawnParticles, 250);
+  });
+
+})();
+</script>
+
+</body>
+</html>

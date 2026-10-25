@@ -1,0 +1,1951 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>מנגנון RTH - חזרה אוטומטית הביתה | Flying Mink</title>
+<meta name="description" content="המדריך המלא למנגנון ה-RTH ברחפני DJI - איך זה עובד, איך מגדירים אותו נכון, ומה חשוב לשים לב.">
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0b0a16;
+  --bg2:#100e1e;
+  --bg3:#150f24;
+  --purple:#6d28d9;
+  --purple-light:#a78bfa;
+  --purple-soft:#c4b5fd;
+  --purple-glow:rgba(109,40,217,0.25);
+  --indigo:#4f46e5;
+  --text:#e2e8f0;
+  --text-dim:#94a3b8;
+  --text-muted:#64748b;
+  --card-bg:rgba(109,40,217,0.06);
+  --card-border:rgba(139,92,246,0.2);
+  --border-h:rgba(167,139,250,0.5);
+  --accent-orange:#fb923c;
+  --accent-yellow:#facc15;
+  --accent-red:#ef4444;
+  --accent-green:#22c55e;
+}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Heebo',sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  overflow-x:hidden;
+  line-height:1.7;
+  min-height:100vh;
+}
+a{color:inherit;text-decoration:none}
+
+/* ══════ AMBIENT BACKGROUND ══════ */
+.bg-gradient{
+  position:fixed;inset:0;z-index:-2;pointer-events:none;
+  background:
+    radial-gradient(ellipse 80% 60% at 20% 10%, rgba(109,40,217,0.18), transparent 60%),
+    radial-gradient(ellipse 70% 50% at 80% 80%, rgba(79,70,229,0.15), transparent 60%),
+    radial-gradient(ellipse 60% 80% at 50% 50%, rgba(167,139,250,0.05), transparent 70%),
+    var(--bg);
+}
+.particles{position:fixed;inset:0;z-index:-1;pointer-events:none;overflow:hidden}
+.particle{
+  position:absolute;width:4px;height:4px;border-radius:50%;
+  background:var(--purple-light);opacity:0;filter:blur(1px);
+  box-shadow:0 0 10px var(--purple-light);
+  animation:floatParticle linear infinite;
+}
+@keyframes floatParticle{
+  0%{transform:translateY(100vh) translateX(0);opacity:0}
+  10%{opacity:0.4}
+  90%{opacity:0.4}
+  100%{transform:translateY(-10vh) translateX(40px);opacity:0}
+}
+
+/* ══════ FLOATING TOP BAR ══════ */
+.float-controls{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  padding:14px 20px;
+  display:flex;justify-content:space-between;align-items:center;
+  pointer-events:none;
+}
+.float-controls>*{pointer-events:auto}
+.fc-btn{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:9px 16px;border-radius:50px;
+  background:rgba(0,0,0,0.5);
+  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+  border:1px solid rgba(255,255,255,0.12);
+  color:var(--text-dim);
+  font-size:13px;font-weight:500;font-family:inherit;
+  cursor:pointer;transition:all 0.25s;text-decoration:none;
+}
+.fc-btn:hover{background:rgba(109,40,217,0.5);border-color:rgba(167,139,250,0.5);color:#fff}
+.fc-btn svg{width:16px;height:16px}
+.fc-logo{
+  display:flex;align-items:center;
+  width:46px;height:46px;
+  padding:6px;border-radius:50%;
+  background:rgba(0,0,0,0.5);
+  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+  border:1px solid rgba(255,255,255,0.12);
+  transition:all 0.25s;
+  overflow:hidden;
+}
+.fc-logo:hover{border-color:rgba(167,139,250,0.5);background:rgba(109,40,217,0.3);transform:scale(1.05)}
+.fc-logo img{width:100%;height:100%;object-fit:contain;display:block}
+
+/* ══════ HERO ══════ */
+.hero{
+  position:relative;
+  padding:8rem 1.5rem 3rem;
+  text-align:center;
+}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:6px 16px;border-radius:50px;
+  background:rgba(167,139,250,0.1);
+  border:1px solid rgba(167,139,250,0.25);
+  color:var(--purple-light);
+  font-size:12px;font-weight:600;letter-spacing:1.5px;
+  text-transform:uppercase;margin-bottom:1.25rem;
+  animation:fadeInUp 0.8s ease;
+}
+.hero-badge::before{
+  content:"";width:6px;height:6px;border-radius:50%;
+  background:var(--purple-light);box-shadow:0 0 10px var(--purple-light);
+  animation:pulse 2s infinite;
+}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.5;transform:scale(1.3)}}
+.hero h1{
+  font-size:clamp(2rem,5.5vw,3.6rem);
+  font-weight:900;line-height:1.15;letter-spacing:-0.5px;
+  margin-bottom:1rem;
+  animation:fadeInUp 0.8s ease 0.1s both;
+}
+.hero h1 .accent{
+  background:linear-gradient(135deg,var(--purple-light),#818cf8 60%,#60a5fa);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.hero-tagline{
+  font-size:clamp(0.95rem,2vw,1.1rem);
+  color:var(--text-dim);font-weight:400;
+  max-width:680px;margin:0 auto;
+  animation:fadeInUp 0.8s ease 0.2s both;
+}
+@keyframes fadeInUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+
+/* ══════ SIM INVITE BANNER ══════ */
+.sim-invite{
+  display:inline-flex;align-items:center;gap:14px;
+  margin-top:2rem;
+  padding:1rem 1.5rem 1rem 1.25rem;
+  background:linear-gradient(135deg, rgba(167,139,250,0.18), rgba(79,70,229,0.12));
+  border:1px solid rgba(167,139,250,0.35);
+  border-radius:50px;
+  color:var(--text);
+  text-decoration:none;
+  cursor:pointer;
+  transition:all 0.3s ease;
+  max-width:580px;
+  box-shadow:0 10px 40px rgba(109,40,217,0.18);
+  animation:fadeInUp 0.8s ease 0.3s both;
+  text-align:right;
+}
+.sim-invite:hover{
+  border-color:var(--purple-light);
+  background:linear-gradient(135deg, rgba(167,139,250,0.25), rgba(79,70,229,0.18));
+  transform:translateY(-2px);
+  box-shadow:0 16px 50px rgba(109,40,217,0.3);
+}
+.sim-invite-icon{
+  flex-shrink:0;
+  width:42px;height:42px;border-radius:50%;
+  background:linear-gradient(135deg,var(--purple),var(--indigo));
+  display:flex;align-items:center;justify-content:center;
+  color:#fff;
+  box-shadow:0 6px 20px var(--purple-glow);
+}
+.sim-invite-icon svg{width:16px;height:16px;margin-right:-2px}
+.sim-invite-text{
+  display:flex;flex-direction:column;gap:2px;
+  flex:1;
+}
+.sim-invite-text strong{
+  font-size:14px;font-weight:700;color:#fff;
+}
+.sim-invite-text span{
+  font-size:12.5px;color:var(--text-dim);font-weight:400;
+  line-height:1.4;
+}
+.sim-invite-arrow{
+  flex-shrink:0;
+  width:30px;height:30px;border-radius:50%;
+  background:rgba(167,139,250,0.15);
+  display:flex;align-items:center;justify-content:center;
+  color:var(--purple-light);
+  transition:transform 0.3s ease;
+}
+.sim-invite:hover .sim-invite-arrow{transform:translateY(3px)}
+.sim-invite-arrow svg{width:14px;height:14px}
+@media(max-width:540px){
+  .sim-invite{padding:0.85rem 1rem;gap:10px;border-radius:18px}
+  .sim-invite-icon{width:36px;height:36px}
+  .sim-invite-text strong{font-size:13px}
+  .sim-invite-text span{font-size:11.5px}
+  .sim-invite-arrow{width:26px;height:26px}
+}
+
+/* ══════ SECTIONS ══════ */
+.section{padding:4rem 1.25rem;position:relative}
+.section-inner{max-width:1100px;margin:auto}
+.section-label{
+  display:inline-block;
+  font-size:11px;font-weight:600;
+  color:var(--purple-light);letter-spacing:2px;
+  text-transform:uppercase;margin-bottom:0.6rem;
+}
+.section-title{
+  font-size:clamp(1.5rem,3.6vw,2.2rem);
+  font-weight:800;margin-bottom:0.75rem;
+  line-height:1.25;letter-spacing:-0.3px;
+}
+.section-desc{
+  font-size:15px;color:var(--text-dim);
+  max-width:680px;margin-bottom:2.25rem;line-height:1.75;
+}
+.section-head.center{text-align:center}
+.section-head.center .section-desc{margin-left:auto;margin-right:auto}
+
+/* ══════ VIDEO BLOCK ══════ */
+.video-wrap{
+  position:relative;width:100%;max-width:900px;
+  margin:0 auto;border-radius:20px;overflow:hidden;
+  border:1px solid var(--card-border);
+  box-shadow:0 30px 80px rgba(0,0,0,0.5), 0 0 60px rgba(109,40,217,0.15);
+  background:#000;
+}
+.video-wrap::before{content:"";display:block;padding-bottom:56.25%}
+.video-thumb{
+  position:absolute;inset:0;
+  background-size:cover;background-position:center;
+  cursor:pointer;transition:filter 0.3s;
+}
+.video-thumb::after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg, rgba(11,10,22,0.1) 0%, rgba(11,10,22,0.5) 100%);
+  pointer-events:none;
+}
+.video-thumb:hover{filter:brightness(1.1)}
+.video-play{
+  position:absolute;top:50%;left:50%;
+  transform:translate(-50%,-50%);
+  width:80px;height:80px;border-radius:50%;
+  background:linear-gradient(135deg,var(--purple),var(--indigo));
+  display:flex;align-items:center;justify-content:center;
+  z-index:2;
+  box-shadow:0 10px 40px rgba(109,40,217,0.6), 0 0 0 0 rgba(167,139,250,0.5);
+  animation:playPulse 2.5s infinite;transition:transform 0.3s;
+}
+.video-thumb:hover .video-play{transform:translate(-50%,-50%) scale(1.1)}
+.video-play svg{width:30px;height:30px;color:#fff;margin-right:-4px}
+@keyframes playPulse{
+  0%{box-shadow:0 10px 40px rgba(109,40,217,0.6), 0 0 0 0 rgba(167,139,250,0.4)}
+  70%{box-shadow:0 10px 40px rgba(109,40,217,0.6), 0 0 0 24px rgba(167,139,250,0)}
+  100%{box-shadow:0 10px 40px rgba(109,40,217,0.6), 0 0 0 0 rgba(167,139,250,0)}
+}
+.video-meta-text{
+  position:absolute;bottom:1rem;right:1rem;z-index:3;
+  background:rgba(0,0,0,0.6);
+  backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+  padding:6px 14px;border-radius:50px;
+  font-size:12px;font-weight:500;color:#fff;
+  border:1px solid rgba(255,255,255,0.15);
+}
+.video-iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+
+/* ══════ CARDS GRID ══════ */
+.cards-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem}
+.cards-grid.two-col{grid-template-columns:repeat(2,1fr);max-width:780px;margin:0 auto}
+@media(max-width:900px){.cards-grid,.cards-grid.two-col{grid-template-columns:1fr}}
+.info-card{
+  background:var(--card-bg);
+  border:1px solid var(--card-border);
+  border-radius:18px;padding:1.6rem;
+  transition:all 0.3s;position:relative;overflow:hidden;
+}
+.info-card::before{
+  content:"";position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,transparent,var(--purple-light),transparent);
+  transform:translateX(-100%);transition:transform 0.6s;
+}
+.info-card:hover{
+  border-color:var(--border-h);transform:translateY(-4px);
+  box-shadow:0 20px 50px rgba(109,40,217,0.2);
+}
+.info-card:hover::before{transform:translateX(100%)}
+.icon-box{
+  width:46px;height:46px;border-radius:12px;
+  background:rgba(167,139,250,0.12);
+  border:1px solid rgba(167,139,250,0.2);
+  display:flex;align-items:center;justify-content:center;
+  margin-bottom:1.1rem;color:var(--purple-light);
+}
+.icon-box svg{width:22px;height:22px}
+.icon-box.orange{background:rgba(251,146,60,0.12);border-color:rgba(251,146,60,0.25);color:var(--accent-orange)}
+.icon-box.yellow{background:rgba(250,204,21,0.12);border-color:rgba(250,204,21,0.25);color:var(--accent-yellow)}
+.icon-box.red{background:rgba(239,68,68,0.12);border-color:rgba(239,68,68,0.25);color:var(--accent-red)}
+.icon-box.green{background:rgba(34,197,94,0.12);border-color:rgba(34,197,94,0.25);color:var(--accent-green)}
+.info-card h3{font-size:17px;font-weight:700;margin-bottom:0.55rem}
+.info-card p{font-size:14px;color:var(--text-dim);line-height:1.7}
+.info-card .tag{
+  display:inline-block;margin-top:0.9rem;padding:4px 10px;
+  border-radius:6px;background:rgba(167,139,250,0.1);
+  color:var(--purple-light);
+  font-size:11px;font-weight:600;letter-spacing:0.5px;
+}
+
+/* ══════ TIMELINE ══════ */
+.timeline{position:relative;padding-right:2rem}
+.timeline::before{
+  content:"";position:absolute;top:8px;bottom:8px;right:14px;width:2px;
+  background:linear-gradient(180deg,var(--purple-light),var(--indigo),transparent);
+  border-radius:2px;
+}
+.timeline-item{position:relative;padding-bottom:1.75rem;padding-right:2rem}
+.timeline-item:last-child{padding-bottom:0}
+.timeline-num{
+  position:absolute;right:-14px;top:0;
+  width:30px;height:30px;border-radius:50%;
+  background:linear-gradient(135deg,var(--purple),var(--indigo));
+  display:flex;align-items:center;justify-content:center;
+  font-size:13px;font-weight:700;color:#fff;
+  box-shadow:0 4px 16px var(--purple-glow), 0 0 0 4px var(--bg);
+}
+.timeline-content{
+  background:var(--card-bg);border:1px solid var(--card-border);
+  border-radius:14px;padding:1.15rem 1.4rem;
+  transition:border-color 0.25s;
+}
+.timeline-content:hover{border-color:var(--border-h)}
+.timeline-content h4{font-size:16px;font-weight:700;margin-bottom:0.4rem;color:var(--text)}
+.timeline-content p{font-size:14px;color:var(--text-dim);line-height:1.7}
+
+/* ══════ SETUP STEPS ══════ */
+.setup-grid{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:1.1rem;margin-top:1rem;
+}
+@media(max-width:800px){.setup-grid{grid-template-columns:1fr}}
+.setup-card{
+  background:linear-gradient(135deg,rgba(109,40,217,0.08),rgba(79,70,229,0.04));
+  border:1px solid var(--card-border);border-radius:16px;
+  padding:1.4rem;display:flex;gap:1rem;align-items:flex-start;
+}
+.setup-step{
+  flex-shrink:0;width:38px;height:38px;border-radius:12px;
+  background:linear-gradient(135deg,var(--purple),var(--indigo));
+  display:flex;align-items:center;justify-content:center;
+  font-size:14px;font-weight:800;color:#fff;
+  box-shadow:0 6px 18px var(--purple-glow);
+}
+.setup-card h4{font-size:15px;font-weight:700;margin-bottom:0.35rem}
+.setup-card p{font-size:13.5px;color:var(--text-dim);line-height:1.65}
+.setup-card code{
+  display:inline-block;padding:2px 8px;border-radius:5px;
+  background:rgba(167,139,250,0.12);
+  color:var(--purple-soft);
+  font-family:'Heebo',sans-serif;font-size:13px;font-weight:600;
+}
+
+/* ══════ WARNING CARDS ══════ */
+.warn-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
+@media(max-width:900px){.warn-grid{grid-template-columns:1fr}}
+.warn-card{
+  background:linear-gradient(135deg,rgba(239,68,68,0.06),rgba(251,146,60,0.04));
+  border:1px solid rgba(239,68,68,0.2);
+  border-radius:16px;padding:1.4rem;
+}
+.warn-card .icon-box{
+  background:rgba(239,68,68,0.15);
+  border-color:rgba(239,68,68,0.3);color:#fca5a5;
+}
+.warn-card h4{font-size:16px;font-weight:700;margin-bottom:0.5rem;color:#fca5a5}
+.warn-card p{font-size:13.5px;color:var(--text-dim);line-height:1.7}
+
+/* ═══════════════════════════════════════════════════════════
+   ══════ INTERACTIVE SIMULATION ══════
+   ═══════════════════════════════════════════════════════════ */
+.sim-wrap{
+  background:linear-gradient(135deg,rgba(109,40,217,0.12),rgba(79,70,229,0.08));
+  border:1px solid rgba(167,139,250,0.25);
+  border-radius:24px;padding:1.5rem;
+  position:relative;overflow:hidden;
+  box-shadow:0 20px 60px rgba(109,40,217,0.15), inset 0 1px 0 rgba(255,255,255,0.06);
+}
+.sim-wrap::before{
+  content:"";position:absolute;inset:0;
+  background:radial-gradient(ellipse 60% 80% at 50% 0%, rgba(167,139,250,0.18), transparent 70%);
+  pointer-events:none;
+}
+.sim-header{
+  display:flex;justify-content:space-between;align-items:center;
+  margin-bottom:0.85rem;position:relative;z-index:2;
+  flex-wrap:wrap;gap:0.5rem;
+}
+.sim-title{
+  font-size:13px;font-weight:600;
+  color:var(--purple-light);letter-spacing:1px;
+  text-transform:uppercase;
+  display:flex;align-items:center;gap:8px;
+}
+.sim-title::before{
+  content:"";width:8px;height:8px;border-radius:50%;
+  background:var(--accent-green);
+  box-shadow:0 0 8px var(--accent-green);
+  animation:pulse 1.5s infinite;
+}
+.sim-status{
+  font-size:13px;font-weight:500;color:var(--text-dim);
+  text-align:left;
+}
+
+.sim-canvas{
+  background:linear-gradient(180deg,#1a1530 0%,#0f0a22 100%);
+  border-radius:16px;padding:0;position:relative;overflow:hidden;
+  border:1px solid rgba(167,139,250,0.15);
+}
+.sim-canvas svg{display:block;width:100%;height:auto}
+
+.sim-status-bar{
+  position:absolute;
+  bottom:14px;left:50%;transform:translateX(-50%);
+  background:rgba(11,10,22,0.85);
+  backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+  border:1px solid var(--card-border);
+  border-radius:50px;padding:8px 18px;
+  font-size:13px;font-weight:600;color:var(--text);
+  z-index:5;white-space:nowrap;
+  transition:all 0.3s;
+  max-width:90%;
+}
+.sim-status-bar.success{border-color:var(--accent-green);color:#86efac;background:rgba(34,197,94,0.15)}
+.sim-status-bar.danger{border-color:var(--accent-red);color:#fca5a5;background:rgba(239,68,68,0.15)}
+.sim-status-bar.active{border-color:var(--purple-light);color:var(--purple-soft)}
+
+/* ─── Controls panel ─── */
+.sim-controls{
+  display:grid;
+  grid-template-columns:auto 1fr;
+  gap:1rem;
+  margin-top:1.25rem;
+  align-items:stretch;
+}
+@media(max-width:720px){
+  .sim-controls{grid-template-columns:1fr}
+}
+
+.alt-control{
+  background:rgba(0,0,0,0.35);
+  border:1px solid var(--card-border);
+  border-radius:14px;
+  padding:0.85rem 1.1rem;
+  display:flex;align-items:center;gap:0.85rem;
+  min-width:240px;
+}
+.alt-label{
+  display:flex;flex-direction:column;
+  font-size:11px;color:var(--text-muted);
+  letter-spacing:0.5px;text-transform:uppercase;
+  font-weight:600;
+}
+.alt-label strong{
+  font-size:13px;color:var(--purple-light);
+  letter-spacing:0;text-transform:none;font-weight:700;
+  margin-top:2px;
+}
+.alt-input-group{
+  display:flex;align-items:center;gap:6px;margin-right:auto;
+}
+.alt-step-btn{
+  width:30px;height:30px;border-radius:8px;
+  background:rgba(167,139,250,0.1);
+  border:1px solid var(--card-border);
+  color:var(--purple-light);
+  font-size:18px;font-weight:700;font-family:inherit;
+  cursor:pointer;transition:all 0.2s;
+  display:flex;align-items:center;justify-content:center;
+  line-height:1;padding:0;
+}
+.alt-step-btn:hover{background:rgba(167,139,250,0.2);border-color:var(--purple-light)}
+.alt-step-btn:active{transform:scale(0.92)}
+#rthAlt{
+  width:60px;height:34px;
+  background:rgba(0,0,0,0.4);
+  border:1px solid var(--card-border);
+  border-radius:8px;
+  color:var(--text);
+  font-size:16px;font-weight:700;
+  text-align:center;font-family:inherit;
+  -moz-appearance:textfield;
+}
+#rthAlt::-webkit-outer-spin-button,
+#rthAlt::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+#rthAlt:focus{outline:none;border-color:var(--purple-light);box-shadow:0 0 0 3px rgba(167,139,250,0.15)}
+.alt-unit{font-size:13px;color:var(--text-dim);font-weight:500;margin-right:2px}
+
+.sim-buttons{
+  display:flex;gap:8px;flex-wrap:wrap;
+  align-items:stretch;
+}
+.sim-btn{
+  flex:1;min-width:140px;
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  padding:11px 18px;border-radius:14px;
+  background:rgba(0,0,0,0.4);
+  border:1px solid var(--card-border);
+  color:var(--text);
+  font-size:13.5px;font-weight:600;font-family:inherit;
+  cursor:pointer;transition:all 0.25s;
+  white-space:nowrap;
+}
+.sim-btn:not(:disabled):hover{
+  background:rgba(109,40,217,0.3);
+  border-color:var(--purple-light);
+  transform:translateY(-1px);
+}
+.sim-btn:disabled{opacity:0.4;cursor:not-allowed}
+.sim-btn svg{width:14px;height:14px;flex-shrink:0}
+.sim-btn.takeoff:not(:disabled){
+  background:linear-gradient(135deg,var(--accent-green),#16a34a);
+  border-color:transparent;color:#fff;
+}
+.sim-btn.takeoff:not(:disabled):hover{
+  box-shadow:0 8px 25px rgba(34,197,94,0.4);
+}
+.sim-btn.rth:not(:disabled){
+  background:linear-gradient(135deg,var(--purple),var(--indigo));
+  border-color:transparent;color:#fff;
+}
+.sim-btn.rth:not(:disabled):hover{
+  box-shadow:0 8px 25px var(--purple-glow);
+}
+
+/* SVG transitions */
+#drone-group{will-change:transform}
+.altitude-line{transition:all 0.3s ease}
+.height-label{transition:fill 0.3s ease}
+.obstacle-warn{transition:filter 0.3s ease, stroke 0.3s ease}
+
+/* ══════ PERSONAL VIDEO PLACEHOLDER ══════ */
+.personal-video-placeholder{
+  max-width:780px;margin:0 auto 2.5rem;
+  position:relative;
+  border-radius:18px;overflow:hidden;
+  border:2px dashed rgba(167,139,250,0.35);
+  background:linear-gradient(135deg, rgba(109,40,217,0.08), rgba(79,70,229,0.04));
+  aspect-ratio:16/9;
+  display:flex;align-items:center;justify-content:center;
+}
+.personal-video-placeholder::before{
+  content:"";position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse 60% 80% at 50% 50%, rgba(167,139,250,0.12), transparent 70%),
+    repeating-linear-gradient(45deg, transparent 0, transparent 12px, rgba(167,139,250,0.025) 12px, rgba(167,139,250,0.025) 24px);
+  pointer-events:none;
+}
+.placeholder-inner{
+  position:relative;z-index:1;
+  display:flex;flex-direction:column;align-items:center;
+  text-align:center;padding:1.5rem;
+  gap:1.25rem;
+}
+.placeholder-icon{
+  width:74px;height:74px;border-radius:50%;
+  background:rgba(167,139,250,0.12);
+  border:1px solid rgba(167,139,250,0.3);
+  display:flex;align-items:center;justify-content:center;
+  color:var(--purple-light);
+  box-shadow:0 0 30px rgba(167,139,250,0.25), inset 0 0 20px rgba(167,139,250,0.05);
+}
+.placeholder-icon svg{width:30px;height:30px}
+.placeholder-text{display:flex;flex-direction:column;gap:6px;max-width:380px}
+.placeholder-text strong{
+  font-size:17px;font-weight:700;color:var(--text);
+}
+.placeholder-text span{
+  font-size:13.5px;color:var(--text-dim);line-height:1.55;
+}
+@media(max-width:600px){
+  .personal-video-placeholder{aspect-ratio:4/3;margin-bottom:2rem}
+  .placeholder-icon{width:60px;height:60px}
+  .placeholder-icon svg{width:24px;height:24px}
+  .placeholder-text strong{font-size:15px}
+  .placeholder-text span{font-size:12.5px}
+}
+
+/* ══════ CTA ══════ */
+.cta-banner{
+  background:linear-gradient(135deg,rgba(109,40,217,0.18),rgba(79,70,229,0.12));
+  border:1px solid rgba(167,139,250,0.3);
+  border-radius:24px;padding:2.5rem 1.75rem;
+  text-align:center;position:relative;overflow:hidden;
+}
+.cta-banner::before{
+  content:"";position:absolute;inset:0;
+  background:radial-gradient(ellipse 50% 80% at 50% 100%, rgba(167,139,250,0.18), transparent 70%);
+  pointer-events:none;
+}
+.cta-banner h2{
+  font-size:clamp(1.4rem,3vw,1.85rem);
+  font-weight:800;margin-bottom:0.5rem;position:relative;
+}
+.cta-banner p{
+  font-size:15px;color:var(--text-dim);
+  margin-bottom:1.5rem;max-width:520px;
+  margin-left:auto;margin-right:auto;position:relative;
+}
+.cta-buttons{
+  display:inline-flex;gap:10px;flex-wrap:wrap;justify-content:center;
+  position:relative;
+}
+.btn-primary{
+  display:inline-flex;align-items:center;gap:8px;
+  background:linear-gradient(135deg,var(--purple),var(--indigo));
+  color:#fff;padding:13px 28px;border-radius:12px;
+  font-size:15px;font-weight:600;font-family:inherit;
+  border:none;cursor:pointer;transition:all 0.25s;
+  text-decoration:none;
+}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 12px 35px var(--purple-glow)}
+.btn-secondary{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(255,255,255,0.05);color:var(--text);
+  padding:13px 24px;border-radius:12px;
+  font-size:14px;font-weight:500;
+  border:1px solid var(--card-border);
+  cursor:pointer;transition:all 0.25s;text-decoration:none;
+}
+.btn-secondary:hover{background:rgba(167,139,250,0.1);border-color:var(--purple-light)}
+
+/* ══════ FOOTER ══════ */
+.footer{
+  border-top:1px solid var(--card-border);
+  padding:2.25rem 1.5rem 1.75rem;
+  text-align:center;margin-top:2rem;
+}
+.footer-links{
+  display:flex;justify-content:center;
+  gap:1.5rem;margin-bottom:1rem;flex-wrap:wrap;
+}
+.footer-links a{font-size:13px;color:var(--text-dim);transition:color 0.2s}
+.footer-links a:hover{color:var(--purple-light)}
+.footer p{font-size:12px;color:var(--text-muted)}
+
+/* ══════ FADE-IN ══════ */
+.reveal{
+  opacity:0;transform:translateY(30px);
+  transition:opacity 0.8s ease, transform 0.8s ease;
+}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
+/* ══════ MOBILE ══════ */
+@media(max-width:600px){
+  .hero{padding:6.5rem 1.1rem 2.5rem}
+  .section{padding:3rem 1.1rem}
+  .sim-wrap{padding:0.85rem;border-radius:18px}
+  .float-controls{padding:11px 12px}
+  .fc-btn{padding:7px 12px;font-size:12px}
+  .fc-btn .label{display:none}
+  .fc-logo{padding:7px 12px;font-size:12px}
+  .timeline{padding-right:1.5rem}
+  .timeline-item{padding-right:1.4rem;padding-bottom:1.5rem}
+  .alt-control{min-width:0;padding:0.7rem 0.9rem;flex-wrap:wrap}
+  .sim-btn{font-size:13px;padding:10px 14px;min-width:120px}
+  .sim-status-bar{font-size:11.5px;padding:7px 14px;bottom:10px}
+}
+@media(max-width:380px){
+  .sim-buttons{flex-direction:column}
+  .sim-btn{width:100%}
+}
+</style>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-CP1NCS3G49"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-CP1NCS3G49');
+</script>
+</head>
+<body>
+
+<div class="bg-gradient"></div>
+<div class="particles" id="particles"></div>
+
+<!-- ══════ FLOATING CONTROLS ══════ -->
+<div class="float-controls">
+  <a href="guides.html" class="fc-btn">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M9 18l6-6-6-6"/>
+    </svg>
+    <span class="label">חזרה למדריכים</span>
+  </a>
+  <a href="index.html" class="fc-logo" aria-label="Flying Mink Drone Solutions">
+    <img src="data:image/jpeg;base64,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" alt="Flying Mink">
+  </a>
+</div>
+
+<!-- ══════ HERO ══════ -->
+<section class="hero">
+  <h1>מנגנון <span class="accent">RTH</span><br>החזרה האוטומטית הביתה</h1>
+  <p class="hero-tagline">
+    כל מה שצריך לדעת על מערכת הבטיחות הכי חשובה ברחפן שלך — איך היא עובדת, איך מגדירים אותה נכון, ומה אסור להחמיץ. ספציפי לרחפני DJI.
+  </p>
+
+  <a href="#simulation" class="sim-invite" onclick="event.preventDefault();document.getElementById('simulation').scrollIntoView({behavior:'smooth',block:'start'})">
+    <span class="sim-invite-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <polygon points="5 3 19 12 5 21 5 3"/>
+      </svg>
+    </span>
+    <span class="sim-invite-text">
+      <strong>רוצה להתנסות בעצמך?</strong>
+      <span>בנינו לך הדמיה אינטראקטיבית — לחץ כאן כדי לראות איך גובה ה-RTH משפיע</span>
+    </span>
+    <span class="sim-invite-arrow">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="6 9 12 15 18 9"/>
+      </svg>
+    </span>
+  </a>
+</section>
+
+<!-- ══════ VIDEO ══════ -->
+<section class="section">
+  <div class="section-inner reveal">
+    <div class="section-head center">
+      <div class="section-label">סרטון הסבר</div>
+      <h2 class="section-title">צפו בהדגמה במציאות</h2>
+      <p class="section-desc">סרטון קצר שמראה את המנגנון בפעולה — איך הרחפן מאתר את עצמו, חוזר הביתה, ונוחת בדיוק.</p>
+    </div>
+
+    <div class="video-wrap">
+      <div class="video-thumb" id="videoThumb"
+           style="background-image:url('https://img.youtube.com/vi/sGDy79xs5rg/maxresdefault.jpg')"
+           onclick="loadVideo()">
+        <div class="video-play">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+        </div>
+        <div class="video-meta-text">צפייה ביוטיוב</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════ WHAT IS RTH ══════ -->
+<section class="section" style="background:rgba(16,14,30,0.5)">
+  <div class="section-inner reveal">
+    <div class="section-head">
+      <h2 class="section-title">RTH = Return to Home</h2>
+      <p class="section-desc">
+        אחת ממערכות הבטיחות החשובות ביותר בעולם הרחפנים. המנגנון נועד להחזיר את הרחפן באופן עצמאי לנקודת ההמראה במקרים של איבוד קליטה, סוללה חלשה, או החלטה יזומה של המפעיל. בלי המנגנון הזה — הרחפן היה עלול ליפול, להתרסק, או פשוט להיעלם.
+      </p>
+    </div>
+
+    <div class="cards-grid">
+      <div class="info-card">
+        <div class="icon-box orange">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s-8-4.5-8-11.8A8 8 0 0112 2a8 8 0 018 8.2c0 7.3-8 11.8-8 11.8z"/>
+            <circle cx="12" cy="10" r="3"/>
+          </svg>
+        </div>
+        <h3>נקודת הבית (Home Point)</h3>
+        <p>ברגע שהרחפן מתחבר ללוויינים, הוא רושם את הקואורדינטות המדויקות של מיקום ההמראה כ"נקודת הבית", ומאפס את מד-הגובה כך שנקודה זו תיחשב כגובה אפס.</p>
+      </div>
+
+      <div class="info-card">
+        <div class="icon-box">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/>
+            <path d="M12 6v6l4 2"/>
+          </svg>
+        </div>
+        <h3>תזמון אוטומטי</h3>
+        <p>המערכת מחשבת בזמן אמת את המרחק מהבית, גובה הטיסה ועוצמת הרוח. ברגע שנותרת רק מספיק אנרגיה לחזור לנחיתה בטוחה — הרחפן יתריע ויחזור בעצמו, גם אם המפעיל לא ביקש זאת.</p>
+      </div>
+
+      <div class="info-card">
+        <div class="icon-box green">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 11.08V12a10 10 0 11-5.93-9.14"/>
+            <polyline points="22 4 12 14.01 9 11.01"/>
+          </svg>
+        </div>
+        <h3>נחיתה מדויקת</h3>
+        <p>חיישני ראייה תחתונים מצלמים את הקרקע בעת ההמראה. בנחיתה ב-RTH הרחפן משווה את התמונה הנוכחית לזו מההמראה — ונוחת בדיוק באותה נקודה, גם אם המיקום זז קצת.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════ WHEN IT ACTIVATES ══════ ->
+<section class="section">
+  <div class="section-inner reveal">
+    <div class="section-head">
+      <h2 class="section-title">מתי המנגנון נכנס לפעולה?</h2>
+      <p class="section-desc">המערכת יכולה להיכנס לפעולה בשלוש דרכים — אחת יזומה על ידי המפעיל, ושתיים אוטומטיות לחלוטין כתגובה למצבי חירום.</p>
+    </div>
+
+    <div class="cards-grid">
+      <div class="info-card">
+        <div class="icon-box">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/>
+            <circle cx="12" cy="12" r="6"/>
+            <circle cx="12" cy="12" r="2" fill="currentColor"/>
+          </svg>
+        </div>
+        <h3>1. Smart RTH — ידני</h3>
+        <p>המפעיל לוחץ על כפתור ה-RTH הייעודי בשלט (RC) או באפליקציית DJI Fly. הרחפן יעצור את הפעולה הנוכחית, יעלה לגובה ה-RTH שהוגדר, ויטוס ישר הביתה. ניתן לבטל את ה-RTH בכל רגע.</p>
+      </div>
+
+      <div class="info-card">
+        <div class="icon-box yellow">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 3l18 18"/>
+            <path d="M16.72 11.06A10.94 10.94 0 0119 12.55"/>
+            <path d="M5 12.55a10.94 10.94 0 015.17-2.39"/>
+            <path d="M10.71 5.05A16 16 0 0122.58 9"/>
+            <path d="M1.42 9a15.91 15.91 0 014.7-2.88"/>
+            <path d="M8.53 16.11a6 6 0 016.95 0"/>
+            <line x1="12" y1="20" x2="12.01" y2="20"/>
+          </svg>
+        </div>
+        <h3>2. Failsafe RTH — איבוד קשר</h3>
+        <p>כאשר הקשר בין השלט לרחפן ניתק לפרק זמן מוגדר (לרוב מספר שניות), הרחפן מפעיל את הפרוטוקול אוטומטית ויחזור הביתה. אם הקשר חוזר באמצע — אפשר לבטל ולהמשיך לטוס.</p>
+      </div>
+
+      <div class="info-card">
+        <div class="icon-box red">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="1" y="6" width="18" height="12" rx="2" ry="2"/>
+            <line x1="23" y1="13" x2="23" y2="11"/>
+            <line x1="6" y1="10" x2="6" y2="14"/>
+          </svg>
+        </div>
+        <h3>3. Low Battery RTH — סוללה חלשה</h3>
+        <p>המערכת מחשבת רציפות כמה אנרגיה דרושה כדי לחזור הביתה. ברגע שמגיעים לסף הקריטי — הרחפן יתריע, יספור לאחור, ויתחיל RTH אוטומטי. אפשר לבטל, אבל לא מומלץ.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════ EXECUTION TIMELINE ══════ -->
+<section class="section" style="background:rgba(16,14,30,0.5)">
+  <div class="section-inner reveal">
+    <div class="section-head">
+      <h2 class="section-title">מה הרחפן עושה בפועל?</h2>
+      <p class="section-desc">ברגע שהמנגנון מופעל, הרחפן מבצע רצף פעולות מתוכנת מראש — שלב אחר שלב, בלי תלות במפעיל.</p>
+    </div>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-num">1</div>
+        <div class="timeline-content">
+          <h4>עלייה לגובה RTH</h4>
+          <p>הרחפן עולה אנכית לגובה שנקבע מראש בהגדרות (לרוב בין 30 ל-120 מטר). זהו שלב קריטי כדי לוודא שהוא לא יתנגש בעצים, בניינים או חוטי חשמל בדרכו חזרה. אם הרחפן כבר מעל הגובה הזה — הוא יישאר בגובהו הנוכחי וידלג על השלב.</p>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-num">2</div>
+        <div class="timeline-content">
+          <h4>סיבוב לכיוון הבית</h4>
+          <p>הרחפן מסובב את ה"אף" (חזית הגוף והמצלמה) לכיוון נקודת הבית שנשמרה — כדי שיוכל לטוס ישר ולהשתמש בחיישני ההימנעות הקדמיים.</p>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-num">3</div>
+        <div class="timeline-content">
+          <h4>טיסה בקו ישר הביתה</h4>
+          <p>הרחפן טס בנתיב הקצר ביותר לעבר הקואורדינטות של נקודת הבית. ברחפנים מתקדמים — חיישני ראייה קדמיים סורקים את הנתיב ועוקפים מכשולים בזמן אמת.</p>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-num">4</div>
+        <div class="timeline-content">
+          <h4>ירידה ונחיתה</h4>
+          <p>ברגע שהרחפן מזהה באמצעות ה-GNSS שהוא מעל נקודת הבית, הוא מתחיל בירידה אנכית איטית. חיישני הראייה התחתונים מאמתים שהשטח פנוי, ומבצעים נחיתה מדויקת עד לכיבוי המנועים.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════ TECHNOLOGY ══════ -->
+<section class="section">
+  <div class="section-inner reveal">
+    <div class="section-head">
+      <div class="section-label">הטכנולוגיה</div>
+      <h2 class="section-title">מה מאפשר את הדיוק?</h2>
+      <p class="section-desc">מנגנון ה-RTH לא מסתמך רק על GPS אחד. הוא משלב כמה מערכות חיישנים שעובדות במקביל — וכך מגיעים לדיוק גבוה בנחיתה.</p>
+    </div>
+
+    <div class="cards-grid two-col">
+      <div class="info-card">
+        <div class="icon-box">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/>
+            <line x1="2" y1="12" x2="22" y2="12"/>
+            <path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/>
+          </svg>
+        </div>
+        <h3>GNSS — ניווט לוויני</h3>
+        <p>הרחפן משתמש בו זמנית במספר מערכות לוויניות: GPS האמריקאית, GLONASS הרוסית, ו-Galileo האירופית. ככל שיש יותר לוויינים נעולים — כך הקליטה יציבה והדיוק טוב יותר.</p>
+        <span class="tag">בסיס</span>
+      </div>
+
+      <div class="info-card">
+        <div class="icon-box">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+            <circle cx="12" cy="12" r="3"/>
+          </svg>
+        </div>
+        <h3>חיישני ראייה — Vision</h3>
+        <p>מצלמות תחתונות וקדמיות מצלמות ברציפות. בזמן ה-RTH הן מזהות מכשולים ועוקפות אותם, ובנחיתה מאמתות שהקרקע פנויה. ב-DJI זה נקרא APAS / Obstacle Sensing.</p>
+        <span class="tag">חכמה מתקדמת</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════ DJI SETUP ══════ -->
+<section class="section" style="background:rgba(16,14,30,0.5)">
+  <div class="section-inner reveal">
+    <div class="section-head">
+      <h2 class="section-title">איך מגדירים RTH ברחפן DJI שלך</h2>
+      <p class="section-desc">לפני כל טיסה — שווה לוודא שההגדרות מותאמות לאזור שבו אתה טס. עצים גבוהים? בניינים? קווי חשמל? כל אלה משפיעים על הגובה שתבחר.</p>
+    </div>
+
+    <!-- Personal video placeholder (Maor will upload his own video here) -->
+    <div class="personal-video-placeholder">
+      <div class="placeholder-inner">
+        <div class="placeholder-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="23 7 16 12 23 17 23 7"/>
+            <rect x="1" y="5" width="15" height="14" rx="2" ry="2"/>
+          </svg>
+        </div>
+        <div class="placeholder-text">
+          <strong>סרטון הדרכה אישי בקרוב</strong>
+          <span>מאור מדגים שלב אחר שלב איך להגדיר את ה-RTH ברחפן שלך</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="setup-grid">
+      <div class="setup-card">
+        <div class="setup-step">1</div>
+        <div>
+          <h4>הדלק את הרחפן והשלט וחבר ביניהם</h4>
+          <p>ודא שגם הרחפן וגם השלט טעונים. לאחר ההדלקה — חכה שיהיה ביניהם חיבור (תופיע תצוגת המצלמה במסך).</p>
+        </div>
+      </div>
+
+      <div class="setup-card">
+        <div class="setup-step">2</div>
+        <div>
+          <h4>חכה לעדכון נקודת הבית</h4>
+          <p>חכה להודעה הקולית והוויזואלית <code>Home Point Updated</code> שמופיעה במסך. ודא גם שאייקון ה-GNSS לבן ויציב.</p>
+        </div>
+      </div>
+
+      <div class="setup-card">
+        <div class="setup-step">3</div>
+        <div>
+          <h4>פתח את תפריט ההגדרות</h4>
+          <p>מתצוגת המצלמה ב-DJI Fly, לחץ על אייקון <code>שלוש הנקודות</code> בפינה הימנית העליונה כדי להיכנס ל-System Settings.</p>
+        </div>
+      </div>
+
+      <div class="setup-card">
+        <div class="setup-step">4</div>
+        <div>
+          <h4>גש ללשונית בטיחות (Safety)</h4>
+          <p>בתוך ההגדרות עבור ללשונית <code>Safety</code>. כאן נמצאות כל ההגדרות הקריטיות: גובה RTH, התנהגות באובדן קשר, וחיישני מכשולים.</p>
+        </div>
+      </div>
+
+      <div class="setup-card">
+        <div class="setup-step">5</div>
+        <div>
+          <h4>הגדר גובה RTH</h4>
+          <p>תחת <code>RTH Altitude</code>, בחר גובה גבוה מהעצם הכי גבוה באזור הטיסה — בתוספת מרווח ביטחון של 20 מטר. בפארק פתוח: 50-60 מטר. בעיר: 100-120 מטר.</p>
+        </div>
+      </div>
+
+      <div class="setup-card">
+        <div class="setup-step">6</div>
+        <div>
+          <h4>הגדר התנהגות באיבוד קשר</h4>
+          <p>תחת <code>Signal Lost Action</code> בחר ב-<code>Return to Home</code>. הימנע מ-<code>Hover</code> (ריחוף) — הוא יגרום לרחפן להישאר באוויר עד שהסוללה תיגמר.</p>
+        </div>
+      </div>
+
+      <div class="setup-card">
+        <div class="setup-step">7</div>
+        <div>
+          <h4>הפעל הימנעות ממכשולים</h4>
+          <p>תחת <code>Obstacle Avoidance</code> ודא שמופעל מצב <code>Brake</code> או <code>Bypass</code>. במצב <code>Off</code> — הרחפן יטוס בקו ישר גם אם יש עץ באמצע.</p>
+        </div>
+      </div>
+
+      <div class="setup-card">
+        <div class="setup-step">8</div>
+        <div>
+          <h4>איך מפעילים RTH בפועל</h4>
+          <p>בזמן הטיסה: <strong>לחיצה ארוכה</strong> על כפתור ה-RTH הייעודי בשלט (או על אייקון ה-RTH במסך והחזקה לאישור). כדי לבטל — לחיצה נוספת על אותו כפתור.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════ SAFETY WARNINGS ══════ -->
+<section class="section">
+  <div class="section-inner reveal">
+    <div class="section-head">
+      <div class="section-label">חשוב לדעת</div>
+      <h2 class="section-title">3 דגשי בטיחות שאסור לפספס</h2>
+      <p class="section-desc">RTH הוא מנגנון מצוין — אבל הוא לא קסם. אלה שלושת הדברים שגורמים לרוב המקרים שבהם רחפנים אובדים גם עם RTH מופעל.</p>
+    </div>
+
+    <div class="warn-grid">
+      <div class="warn-card">
+        <div class="icon-box">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+            <path d="M2 17l10 5 10-5"/>
+            <path d="M2 12l10 5 10-5"/>
+          </svg>
+        </div>
+        <h4>גובה RTH נמוך מדי</h4>
+        <p>זו הסיבה מספר אחת לאובדן רחפנים. אם הגדרת 30 מטר אבל יש עץ בגובה 35 מטר בנתיב — הרחפן יתנגש בו בדרך הביתה. תמיד הגדר גובה <strong>גבוה מהעצם הכי גבוה</strong> באזור.</p>
+      </div>
+
+      <div class="warn-card">
+        <div class="icon-box">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="3"/>
+            <path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-2 2 2 2 0 01-2-2v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83 0 2 2 0 010-2.83l.06-.06a1.65 1.65 0 00.33-1.82 1.65 1.65 0 00-1.51-1H3a2 2 0 01-2-2 2 2 0 012-2h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 010-2.83 2 2 0 012.83 0l.06.06a1.65 1.65 0 001.82.33H9a1.65 1.65 0 001-1.51V3a2 2 0 012-2 2 2 0 012 2v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 0 2 2 0 010 2.83l-.06.06a1.65 1.65 0 00-.33 1.82V9a1.65 1.65 0 001.51 1H21a2 2 0 012 2 2 2 0 01-2 2h-.09a1.65 1.65 0 00-1.51 1z"/>
+          </svg>
+        </div>
+        <h4>הפרעות מגנטיות למצפן</h4>
+        <p>המצפן (Compass) חיוני ל-RTH — בלעדיו הרחפן לא יודע לאיזה כיוון לטוס. טיסה ליד אנטנות גדולות, מבני מתכת, או חיווט תת-קרקעי עלולה לשבש אותו ולגרום לרחפן לטוס בכיוון הלא נכון.</p>
+      </div>
+
+      <div class="warn-card">
+        <div class="icon-box">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="5"/>
+            <line x1="12" y1="1" x2="12" y2="3"/>
+            <line x1="12" y1="21" x2="12" y2="23"/>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+            <line x1="1" y1="12" x2="3" y2="12"/>
+            <line x1="21" y1="12" x2="23" y2="12"/>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+          </svg>
+        </div>
+        <h4>תאורה — חושך מוחלט</h4>
+        <p>חיישני הראייה ו-Precision Landing לא יעבדו בחושך מוחלט, ובמקרה כזה הרחפן יסתמך על GPS בלבד — דיוק של 1-3 מטרים ולא נחיתה במדויק על הפד. תמיד תאיר את אזור ההמראה אם אתה טס בלילה.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════ INTERACTIVE SIMULATION ══════ -->
+<section class="section" id="simulation">
+  <div class="section-inner reveal">
+    <div class="section-head center">
+      <div class="section-label">תרגול אינטראקטיבי</div>
+      <h2 class="section-title">תנסה בעצמך — סימולטור RTH</h2>
+      <p class="section-desc">
+        להמראה, לחץ "להמראה לחץ כאן". הרחפן יתחיל לטוס באוויר. הגדר את גובה ה-RTH (ברירת מחדל: 40 מטר), ואז לחץ "להפעלת RTH לחץ כאן" כדי לראות מה קורה. רמז: הסתכל על גובה הבניינים והעצים.
+      </p>
+    </div>
+
+    <div class="sim-wrap">
+      <div class="sim-header">
+        <div class="sim-title">RTH SIMULATION</div>
+        <div class="sim-status" id="simStatusText">מוכן להמראה</div>
+      </div>
+
+      <div class="sim-canvas">
+        <svg id="simSvg" viewBox="0 0 1000 500" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
+          <defs>
+            <linearGradient id="skyGrad" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#1a1530"/>
+              <stop offset="60%" stop-color="#1f1838"/>
+              <stop offset="100%" stop-color="#15102a"/>
+            </linearGradient>
+            <linearGradient id="groundGrad" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="rgba(167,139,250,0.18)"/>
+              <stop offset="100%" stop-color="rgba(167,139,250,0)"/>
+            </linearGradient>
+            <linearGradient id="buildingGrad" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#e2e8f0"/>
+              <stop offset="100%" stop-color="#94a3b8"/>
+            </linearGradient>
+            <linearGradient id="towerGrad" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#f1f5f9"/>
+              <stop offset="100%" stop-color="#a78bfa"/>
+              <stop offset="100%" stop-color="#64748b"/>
+            </linearGradient>
+            <radialGradient id="greenGlow">
+              <stop offset="0%" stop-color="#22c55e" stop-opacity="0.7"/>
+              <stop offset="100%" stop-color="#22c55e" stop-opacity="0"/>
+            </radialGradient>
+            <radialGradient id="explosionGrad">
+              <stop offset="0%" stop-color="#fef3c7" stop-opacity="1"/>
+              <stop offset="40%" stop-color="#fb923c" stop-opacity="0.9"/>
+              <stop offset="100%" stop-color="#ef4444" stop-opacity="0"/>
+            </radialGradient>
+            <pattern id="dots" width="40" height="40" patternUnits="userSpaceOnUse">
+              <circle cx="20" cy="20" r="1" fill="rgba(167,139,250,0.12)"/>
+            </pattern>
+          </defs>
+
+          <!-- Sky -->
+          <rect width="1000" height="500" fill="url(#skyGrad)"/>
+          <rect width="1000" height="500" fill="url(#dots)"/>
+
+          <!-- Stars -->
+          <circle cx="180" cy="60" r="1" fill="#fff" opacity="0.5"/>
+          <circle cx="430" cy="40" r="1.2" fill="#fff" opacity="0.6"/>
+          <circle cx="700" cy="80" r="1" fill="#fff" opacity="0.4"/>
+          <circle cx="880" cy="55" r="1.3" fill="#fff" opacity="0.6"/>
+          <circle cx="320" cy="100" r="0.8" fill="#fff" opacity="0.4"/>
+          <circle cx="600" cy="35" r="1" fill="#fff" opacity="0.5"/>
+
+          <!-- Ground -->
+          <rect x="0" y="420" width="1000" height="80" fill="url(#groundGrad)"/>
+          <line x1="0" y1="420" x2="1000" y2="420" stroke="rgba(167,139,250,0.35)" stroke-width="1.5"/>
+
+          <!-- Altitude reference grid (subtle) -->
+          <g opacity="0.18" id="altGrid">
+            <line x1="60" y1="360" x2="940" y2="360" stroke="#a78bfa" stroke-width="0.5" stroke-dasharray="2 6"/>
+            <line x1="60" y1="300" x2="940" y2="300" stroke="#a78bfa" stroke-width="0.5" stroke-dasharray="2 6"/>
+            <line x1="60" y1="240" x2="940" y2="240" stroke="#a78bfa" stroke-width="0.5" stroke-dasharray="2 6"/>
+            <line x1="60" y1="180" x2="940" y2="180" stroke="#a78bfa" stroke-width="0.5" stroke-dasharray="2 6"/>
+            <line x1="60" y1="120" x2="940" y2="120" stroke="#a78bfa" stroke-width="0.5" stroke-dasharray="2 6"/>
+            <text x="40" y="364" fill="#a78bfa" font-size="9" font-family="Heebo">10m</text>
+            <text x="40" y="304" fill="#a78bfa" font-size="9" font-family="Heebo">20m</text>
+            <text x="40" y="244" fill="#a78bfa" font-size="9" font-family="Heebo">30m</text>
+            <text x="40" y="184" fill="#a78bfa" font-size="9" font-family="Heebo">40m</text>
+            <text x="40" y="124" fill="#a78bfa" font-size="9" font-family="Heebo">50m</text>
+          </g>
+
+          <!-- RTH altitude line (dynamic) -->
+          <g id="rthAltLine" opacity="0">
+            <line id="rthLine" x1="60" y1="180" x2="940" y2="180"
+                  stroke="#a78bfa" stroke-width="1.5" stroke-dasharray="8 4"
+                  style="filter:drop-shadow(0 0 4px #a78bfa)"/>
+            <rect id="rthLineLabel" x="850" y="170" width="80" height="20" rx="10"
+                  fill="rgba(167,139,250,0.2)" stroke="#a78bfa" stroke-width="1"/>
+            <text id="rthLineText" x="890" y="184" text-anchor="middle"
+                  fill="#c4b5fd" font-size="11" font-family="Heebo" font-weight="700">RTH 40m</text>
+          </g>
+
+          <!-- ─── OBSTACLES ─── -->
+          <!-- Each obstacle: data-x (center), data-height (in meters), data-top (svg y of top) -->
+
+          <!-- Palm tree 1 — 12m at x=240 -->
+          <g class="obstacle obstacle-warn" data-x="240" data-height="12" data-top="348" data-type="tree">
+            <line x1="240" y1="420" x2="240" y2="350" stroke="#78716c" stroke-width="4"/>
+            <ellipse cx="240" cy="350" rx="22" ry="6" fill="#22c55e" opacity="0.9"/>
+            <ellipse cx="232" cy="346" rx="14" ry="4" fill="#16a34a" opacity="0.85"/>
+            <ellipse cx="248" cy="346" rx="14" ry="4" fill="#16a34a" opacity="0.85"/>
+            <ellipse cx="240" cy="342" rx="10" ry="4" fill="#15803d" opacity="0.85"/>
+            <text class="height-label" x="240" y="338" text-anchor="middle" fill="#94a3b8" font-size="11" font-family="Heebo" font-weight="600">12m</text>
+          </g>
+
+          <!-- Apartment building 1 — 28m at x=380 -->
+          <g class="obstacle obstacle-warn" data-x="380" data-height="28" data-top="252" data-type="building">
+            <rect x="340" y="252" width="80" height="168" fill="url(#buildingGrad)" stroke="rgba(0,0,0,0.2)" stroke-width="0.5"/>
+            <!-- Windows -->
+            <g fill="#1e293b" opacity="0.85">
+              <rect x="349" y="262" width="9" height="12"/><rect x="365" y="262" width="9" height="12"/><rect x="381" y="262" width="9" height="12"/><rect x="397" y="262" width="9" height="12"/>
+              <rect x="349" y="282" width="9" height="12"/><rect x="365" y="282" width="9" height="12"/><rect x="381" y="282" width="9" height="12"/><rect x="397" y="282" width="9" height="12"/>
+              <rect x="349" y="302" width="9" height="12"/><rect x="365" y="302" width="9" height="12"/><rect x="381" y="302" width="9" height="12"/><rect x="397" y="302" width="9" height="12"/>
+              <rect x="349" y="322" width="9" height="12"/><rect x="365" y="322" width="9" height="12"/><rect x="381" y="322" width="9" height="12"/><rect x="397" y="322" width="9" height="12"/>
+              <rect x="349" y="342" width="9" height="12"/><rect x="365" y="342" width="9" height="12"/><rect x="381" y="342" width="9" height="12"/><rect x="397" y="342" width="9" height="12"/>
+              <rect x="349" y="362" width="9" height="12"/><rect x="365" y="362" width="9" height="12"/><rect x="381" y="362" width="9" height="12"/><rect x="397" y="362" width="9" height="12"/>
+              <rect x="349" y="382" width="9" height="12"/><rect x="365" y="382" width="9" height="12"/><rect x="381" y="382" width="9" height="12"/><rect x="397" y="382" width="9" height="12"/>
+            </g>
+            <rect x="340" y="252" width="80" height="6" fill="#475569"/>
+            <text class="height-label" x="380" y="244" text-anchor="middle" fill="#94a3b8" font-size="12" font-family="Heebo" font-weight="700">28m</text>
+          </g>
+
+          <!-- Bushy tree — 10m at x=475 -->
+          <g class="obstacle obstacle-warn" data-x="475" data-height="10" data-top="360" data-type="tree">
+            <line x1="475" y1="420" x2="475" y2="380" stroke="#78716c" stroke-width="4"/>
+            <circle cx="475" cy="372" r="14" fill="#22c55e" opacity="0.9"/>
+            <circle cx="467" cy="378" r="10" fill="#16a34a" opacity="0.85"/>
+            <circle cx="483" cy="378" r="10" fill="#16a34a" opacity="0.85"/>
+            <circle cx="475" cy="364" r="8" fill="#15803d" opacity="0.85"/>
+            <text class="height-label" x="475" y="354" text-anchor="middle" fill="#94a3b8" font-size="11" font-family="Heebo" font-weight="600">10m</text>
+          </g>
+
+          <!-- Tall tower — 55m at x=580 (THE BIG ONE) -->
+          <g class="obstacle obstacle-warn" data-x="580" data-height="55" data-top="90" data-type="tower">
+            <rect x="540" y="90" width="80" height="330" fill="url(#towerGrad)" stroke="rgba(0,0,0,0.25)" stroke-width="0.5"/>
+            <!-- Antenna -->
+            <line x1="580" y1="90" x2="580" y2="70" stroke="#475569" stroke-width="2"/>
+            <circle cx="580" cy="70" r="3" fill="#ef4444">
+              <animate attributeName="opacity" values="1;0.3;1" dur="1.5s" repeatCount="indefinite"/>
+            </circle>
+            <!-- Windows -->
+            <g fill="#1e293b" opacity="0.85">
+              <rect x="548" y="100" width="8" height="11"/><rect x="562" y="100" width="8" height="11"/><rect x="576" y="100" width="8" height="11"/><rect x="590" y="100" width="8" height="11"/><rect x="604" y="100" width="8" height="11"/>
+              <rect x="548" y="118" width="8" height="11"/><rect x="562" y="118" width="8" height="11"/><rect x="576" y="118" width="8" height="11"/><rect x="590" y="118" width="8" height="11"/><rect x="604" y="118" width="8" height="11"/>
+              <rect x="548" y="136" width="8" height="11"/><rect x="562" y="136" width="8" height="11"/><rect x="576" y="136" width="8" height="11"/><rect x="590" y="136" width="8" height="11"/><rect x="604" y="136" width="8" height="11"/>
+              <rect x="548" y="154" width="8" height="11"/><rect x="562" y="154" width="8" height="11"/><rect x="576" y="154" width="8" height="11"/><rect x="590" y="154" width="8" height="11"/><rect x="604" y="154" width="8" height="11"/>
+              <rect x="548" y="172" width="8" height="11"/><rect x="562" y="172" width="8" height="11"/><rect x="576" y="172" width="8" height="11"/><rect x="590" y="172" width="8" height="11"/><rect x="604" y="172" width="8" height="11"/>
+              <rect x="548" y="190" width="8" height="11"/><rect x="562" y="190" width="8" height="11"/><rect x="576" y="190" width="8" height="11"/><rect x="590" y="190" width="8" height="11"/><rect x="604" y="190" width="8" height="11"/>
+              <rect x="548" y="208" width="8" height="11"/><rect x="562" y="208" width="8" height="11"/><rect x="576" y="208" width="8" height="11"/><rect x="590" y="208" width="8" height="11"/><rect x="604" y="208" width="8" height="11"/>
+              <rect x="548" y="226" width="8" height="11"/><rect x="562" y="226" width="8" height="11"/><rect x="576" y="226" width="8" height="11"/><rect x="590" y="226" width="8" height="11"/><rect x="604" y="226" width="8" height="11"/>
+              <rect x="548" y="244" width="8" height="11"/><rect x="562" y="244" width="8" height="11"/><rect x="576" y="244" width="8" height="11"/><rect x="590" y="244" width="8" height="11"/><rect x="604" y="244" width="8" height="11"/>
+              <rect x="548" y="262" width="8" height="11"/><rect x="562" y="262" width="8" height="11"/><rect x="576" y="262" width="8" height="11"/><rect x="590" y="262" width="8" height="11"/><rect x="604" y="262" width="8" height="11"/>
+              <rect x="548" y="280" width="8" height="11"/><rect x="562" y="280" width="8" height="11"/><rect x="576" y="280" width="8" height="11"/><rect x="590" y="280" width="8" height="11"/><rect x="604" y="280" width="8" height="11"/>
+              <rect x="548" y="298" width="8" height="11"/><rect x="562" y="298" width="8" height="11"/><rect x="576" y="298" width="8" height="11"/><rect x="590" y="298" width="8" height="11"/><rect x="604" y="298" width="8" height="11"/>
+              <rect x="548" y="316" width="8" height="11"/><rect x="562" y="316" width="8" height="11"/><rect x="576" y="316" width="8" height="11"/><rect x="590" y="316" width="8" height="11"/><rect x="604" y="316" width="8" height="11"/>
+              <rect x="548" y="334" width="8" height="11"/><rect x="562" y="334" width="8" height="11"/><rect x="576" y="334" width="8" height="11"/><rect x="590" y="334" width="8" height="11"/><rect x="604" y="334" width="8" height="11"/>
+              <rect x="548" y="352" width="8" height="11"/><rect x="562" y="352" width="8" height="11"/><rect x="576" y="352" width="8" height="11"/><rect x="590" y="352" width="8" height="11"/><rect x="604" y="352" width="8" height="11"/>
+              <rect x="548" y="370" width="8" height="11"/><rect x="562" y="370" width="8" height="11"/><rect x="576" y="370" width="8" height="11"/><rect x="590" y="370" width="8" height="11"/><rect x="604" y="370" width="8" height="11"/>
+              <rect x="548" y="388" width="8" height="11"/><rect x="562" y="388" width="8" height="11"/><rect x="576" y="388" width="8" height="11"/><rect x="590" y="388" width="8" height="11"/><rect x="604" y="388" width="8" height="11"/>
+            </g>
+            <rect x="540" y="90" width="80" height="6" fill="#334155"/>
+            <text class="height-label" x="580" y="62" text-anchor="middle" fill="#94a3b8" font-size="13" font-family="Heebo" font-weight="700">55m</text>
+          </g>
+
+          <!-- Palm tree 2 — 15m at x=730 -->
+          <g class="obstacle obstacle-warn" data-x="730" data-height="15" data-top="330" data-type="tree">
+            <line x1="730" y1="420" x2="730" y2="332" stroke="#78716c" stroke-width="4"/>
+            <ellipse cx="730" cy="332" rx="24" ry="6" fill="#22c55e" opacity="0.9"/>
+            <ellipse cx="720" cy="328" rx="15" ry="4" fill="#16a34a" opacity="0.85"/>
+            <ellipse cx="740" cy="328" rx="15" ry="4" fill="#16a34a" opacity="0.85"/>
+            <ellipse cx="730" cy="324" rx="11" ry="4" fill="#15803d" opacity="0.85"/>
+            <text class="height-label" x="730" y="318" text-anchor="middle" fill="#94a3b8" font-size="11" font-family="Heebo" font-weight="600">15m</text>
+          </g>
+
+          <!-- Apartment building 2 — 35m at x=850 -->
+          <g class="obstacle obstacle-warn" data-x="850" data-height="35" data-top="210" data-type="building">
+            <rect x="810" y="210" width="80" height="210" fill="url(#buildingGrad)" stroke="rgba(0,0,0,0.2)" stroke-width="0.5"/>
+            <g fill="#1e293b" opacity="0.85">
+              <rect x="819" y="220" width="9" height="12"/><rect x="835" y="220" width="9" height="12"/><rect x="851" y="220" width="9" height="12"/><rect x="867" y="220" width="9" height="12"/>
+              <rect x="819" y="240" width="9" height="12"/><rect x="835" y="240" width="9" height="12"/><rect x="851" y="240" width="9" height="12"/><rect x="867" y="240" width="9" height="12"/>
+              <rect x="819" y="260" width="9" height="12"/><rect x="835" y="260" width="9" height="12"/><rect x="851" y="260" width="9" height="12"/><rect x="867" y="260" width="9" height="12"/>
+              <rect x="819" y="280" width="9" height="12"/><rect x="835" y="280" width="9" height="12"/><rect x="851" y="280" width="9" height="12"/><rect x="867" y="280" width="9" height="12"/>
+              <rect x="819" y="300" width="9" height="12"/><rect x="835" y="300" width="9" height="12"/><rect x="851" y="300" width="9" height="12"/><rect x="867" y="300" width="9" height="12"/>
+              <rect x="819" y="320" width="9" height="12"/><rect x="835" y="320" width="9" height="12"/><rect x="851" y="320" width="9" height="12"/><rect x="867" y="320" width="9" height="12"/>
+              <rect x="819" y="340" width="9" height="12"/><rect x="835" y="340" width="9" height="12"/><rect x="851" y="340" width="9" height="12"/><rect x="867" y="340" width="9" height="12"/>
+              <rect x="819" y="360" width="9" height="12"/><rect x="835" y="360" width="9" height="12"/><rect x="851" y="360" width="9" height="12"/><rect x="867" y="360" width="9" height="12"/>
+              <rect x="819" y="380" width="9" height="12"/><rect x="835" y="380" width="9" height="12"/><rect x="851" y="380" width="9" height="12"/><rect x="867" y="380" width="9" height="12"/>
+            </g>
+            <rect x="810" y="210" width="80" height="6" fill="#475569"/>
+            <text class="height-label" x="850" y="202" text-anchor="middle" fill="#94a3b8" font-size="12" font-family="Heebo" font-weight="700">35m</text>
+          </g>
+
+          <!-- ─── HOME PAD (green circle) ─── -->
+          <g id="homePadGroup">
+            <circle id="homePadGlow" cx="130" cy="420" r="18" fill="url(#greenGlow)"/>
+            <circle id="homePadOuter" cx="130" cy="420" r="18" fill="none"
+                    stroke="#22c55e" stroke-width="2" opacity="0.6"
+                    style="filter:drop-shadow(0 0 6px #22c55e)"/>
+            <circle id="homePadInner" cx="130" cy="420" r="10" fill="#22c55e" opacity="0.4"/>
+            <circle cx="130" cy="420" r="4" fill="#22c55e"
+                    style="filter:drop-shadow(0 0 4px #22c55e)"/>
+            <text x="130" y="446" text-anchor="middle" fill="#86efac" font-size="11" font-family="Heebo" font-weight="700">HOME</text>
+          </g>
+
+          <!-- ─── YELLOW TRAIL (drone to home) ─── -->
+          <line id="trailLine" x1="130" y1="420" x2="130" y2="420"
+                stroke="#facc15" stroke-width="1.5" stroke-dasharray="3 4"
+                opacity="0" style="filter:drop-shadow(0 0 3px #facc15)"/>
+
+          <!-- ─── EXPLOSION (hidden by default) ─── -->
+          <g id="explosionGroup" opacity="0" style="pointer-events:none">
+            <circle id="explosion" cx="0" cy="0" r="0" fill="url(#explosionGrad)"/>
+          </g>
+
+          <!-- ─── DEBRIS (smoke when crashed) ─── -->
+          <g id="debrisGroup" opacity="0" style="pointer-events:none"></g>
+
+          <!-- ─── DRONE ─── -->
+          <g id="drone-group" transform="translate(130,420)">
+            <g id="drone-tilt">
+              <!-- Arms -->
+              <line x1="-12" y1="-9" x2="-19" y2="-15" stroke="#cbd5e1" stroke-width="1.8" stroke-linecap="round"/>
+              <line x1="12" y1="-9" x2="19" y2="-15" stroke="#cbd5e1" stroke-width="1.8" stroke-linecap="round"/>
+              <line x1="-12" y1="9" x2="-19" y2="15" stroke="#cbd5e1" stroke-width="1.8" stroke-linecap="round"/>
+              <line x1="12" y1="9" x2="19" y2="15" stroke="#cbd5e1" stroke-width="1.8" stroke-linecap="round"/>
+              <!-- Propellers (animated blur) -->
+              <g id="props">
+                <ellipse cx="-19" cy="-15" rx="9" ry="2.2" fill="rgba(167,139,250,0.6)"/>
+                <ellipse cx="19" cy="-15" rx="9" ry="2.2" fill="rgba(167,139,250,0.6)"/>
+                <ellipse cx="-19" cy="15" rx="9" ry="2.2" fill="rgba(167,139,250,0.6)"/>
+                <ellipse cx="19" cy="15" rx="9" ry="2.2" fill="rgba(167,139,250,0.6)"/>
+              </g>
+              <!-- Body -->
+              <rect id="drone-fuselage" x="-11" y="-7" width="22" height="14" rx="3" fill="#e2e8f0" stroke="#a78bfa" stroke-width="1.3"/>
+              <!-- Camera -->
+              <circle cx="0" cy="2" r="2.5" fill="#1a1530" stroke="#a78bfa" stroke-width="0.8"/>
+              <!-- LED -->
+              <circle id="drone-led" cx="0" cy="-4" r="1.5" fill="#22c55e">
+                <animate attributeName="opacity" values="1;0.4;1" dur="1.2s" repeatCount="indefinite"/>
+              </circle>
+            </g>
+          </g>
+        </svg>
+
+        <div class="sim-status-bar" id="simStatusBar">לחץ "להמראה לחץ כאן" כדי להתחיל</div>
+      </div>
+
+      <!-- ─── CONTROLS ─── -->
+      <div class="sim-controls">
+        <div class="alt-control">
+          <div class="alt-label">
+            <span>גובה RTH</span>
+            <strong>הקפד שיהיה גבוה מהמכשולים</strong>
+          </div>
+          <div class="alt-input-group">
+            <button class="alt-step-btn" onclick="adjustRthAlt(-5)" aria-label="הפחת">−</button>
+            <input type="number" id="rthAlt" value="40" min="10" max="120" step="5">
+            <span class="alt-unit">מ׳</span>
+            <button class="alt-step-btn" onclick="adjustRthAlt(5)" aria-label="הוסף">+</button>
+          </div>
+        </div>
+
+        <div class="sim-buttons">
+          <button class="sim-btn takeoff" id="takeoffBtn" onclick="onTakeoff()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="12" y1="19" x2="12" y2="5"/>
+              <polyline points="5 12 12 5 19 12"/>
+            </svg>
+            <span>להמראה לחץ כאן</span>
+          </button>
+          <button class="sim-btn rth" id="rthBtn" onclick="onActivateRTH()" disabled>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/>
+              <polyline points="9 22 9 12 15 12 15 22"/>
+            </svg>
+            <span>להפעלת RTH לחץ כאן</span>
+          </button>
+          <button class="sim-btn" id="resetBtn" onclick="onReset()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="23 4 23 10 17 10"/>
+              <path d="M20.49 15a9 9 0 11-2.12-9.36L23 10"/>
+            </svg>
+            <span>איפוס</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════ CTA ══════ -->
+<section class="section">
+  <div class="section-inner reveal">
+    <div class="cta-banner">
+      <h2>סיימתם את הפרק. מוכנים לפרק הבא?</h2>
+      <p>הקורס "הרחפן הראשון שלי" כולל 45 פרקים מקצועיים — 14 חינמיים לגמרי. מנגנון ה-RTH הוא רק אחד מהם.</p>
+      <div class="cta-buttons">
+        <a href="guides.html" class="btn-primary">
+          <span>חזרה לכל המדריכים</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M15 18l-6-6 6-6"/>
+          </svg>
+        </a>
+        <a href="https://wa.me/972549902676" target="_blank" class="btn-secondary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/>
+          </svg>
+          <span>שאלה? דברו איתנו</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════ FOOTER ══════ -->
+<footer class="footer">
+  <div class="footer-links">
+    <a href="index.html">דף הבית</a>
+    <a href="guides.html">מדריכים</a>
+    <a href="quiz.html">שאלון רחפנים</a>
+    <a href="index.html#contact">צור קשר</a>
+  </div>
+  <p>&copy; 2026 Flying Mink Drone Solutions — Maor Stoltz</p>
+</footer>
+
+<script>
+/* ════════════════════════════════════════════════════════
+   AMBIENT EFFECTS
+   ════════════════════════════════════════════════════════ */
+(function spawnParticles(){
+  const container = document.getElementById('particles');
+  const count = window.innerWidth < 768 ? 18 : 32;
+  for(let i = 0; i < count; i++){
+    const p = document.createElement('div');
+    p.className = 'particle';
+    p.style.left = (Math.random() * 100) + '%';
+    p.style.animationDuration = (12 + Math.random() * 18) + 's';
+    p.style.animationDelay = (Math.random() * 12) + 's';
+    p.style.transform = 'scale(' + (0.5 + Math.random() * 1.2) + ')';
+    container.appendChild(p);
+  }
+})();
+
+(function setupReveal(){
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -80px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+})();
+
+function loadVideo(){
+  const wrap = document.querySelector('.video-wrap');
+  const thumb = document.getElementById('videoThumb');
+  if(!thumb) return;
+  const iframe = document.createElement('iframe');
+  iframe.className = 'video-iframe';
+  iframe.src = 'https://www.youtube.com/embed/sGDy79xs5rg?autoplay=1&rel=0';
+  iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+  iframe.allowFullscreen = true;
+  iframe.title = 'RTH Demo Video';
+  thumb.remove();
+  wrap.appendChild(iframe);
+}
+
+/* ════════════════════════════════════════════════════════
+   RTH SIMULATION ENGINE
+   ════════════════════════════════════════════════════════ */
+
+// ── Constants ──
+const HOME_X = 130;
+const HOME_Y = 420;
+const GROUND_Y = 420;
+const SCALE = 6;            // 1 meter = 6 svg pixels
+const ALT_TO_Y = (alt) => GROUND_Y - (alt * SCALE);
+const Y_TO_ALT = (y) => (GROUND_Y - y) / SCALE;
+
+// ── DOM ──
+const droneGroup = document.getElementById('drone-group');
+const droneTilt = document.getElementById('drone-tilt');
+const droneFuselage = document.getElementById('drone-fuselage');
+const droneLED = document.getElementById('drone-led');
+const props = document.getElementById('props');
+const trailLine = document.getElementById('trailLine');
+const rthAltLineGroup = document.getElementById('rthAltLine');
+const rthLine = document.getElementById('rthLine');
+const rthLineLabel = document.getElementById('rthLineLabel');
+const rthLineText = document.getElementById('rthLineText');
+const explosionGroup = document.getElementById('explosionGroup');
+const explosion = document.getElementById('explosion');
+const debrisGroup = document.getElementById('debrisGroup');
+const homePadGlow = document.getElementById('homePadGlow');
+
+const statusBar = document.getElementById('simStatusBar');
+const statusText = document.getElementById('simStatusText');
+const takeoffBtn = document.getElementById('takeoffBtn');
+const rthBtn = document.getElementById('rthBtn');
+const altInput = document.getElementById('rthAlt');
+
+// ── State ──
+let state = 'idle';   // idle | takeoff | freeflight | rth_climb | rth_home | rth_land | crashed | landed
+let droneX = HOME_X, droneY = HOME_Y;
+let droneRotation = 0;
+let animFrameId = null;
+let freeFlightTimer = null;
+let waypointIndex = 0;
+let waypointStartX, waypointStartY, waypointTargetX, waypointTargetY;
+let waypointStartTime, waypointDuration;
+
+// ── Free flight waypoints (organic, weaves between obstacles) ──
+const FREE_WAYPOINTS = [
+  { x: 200, y: 280, dur: 1400 },  // climb up and right past tree 1
+  { x: 280, y: 230, dur: 1300 },  // higher right
+  { x: 330, y: 280, dur: 1100 },  // dip toward apt 1 (behind it logically)
+  { x: 460, y: 200, dur: 1500 },  // climb over apt 1
+  { x: 470, y: 320, dur: 1400 },  // dip back down between buildings
+  { x: 650, y: 250, dur: 1600 },  // weave to the right of tower
+  { x: 740, y: 220, dur: 1300 },  // up over palm tree 2
+  { x: 880, y: 280, dur: 1500 },  // far right beside building 2
+  { x: 800, y: 340, dur: 1400 },  // come back lower
+  { x: 660, y: 280, dur: 1600 },  // back left
+  { x: 480, y: 240, dur: 1500 },  // dip up over middle
+  { x: 350, y: 300, dur: 1400 },  // back down toward apt 1
+  { x: 230, y: 270, dur: 1300 },  // back near start area
+  { x: 320, y: 220, dur: 1400 },  // up again
+  { x: 540, y: 290, dur: 1700 },  // weave right
+  { x: 720, y: 250, dur: 1500 },  // continue right
+  { x: 870, y: 310, dur: 1400 },  // far right
+];
+
+// ── Obstacles (extracted from SVG data attributes) ──
+const obstacles = [];
+function loadObstacles(){
+  document.querySelectorAll('.obstacle').forEach(el => {
+    const x = parseFloat(el.dataset.x);
+    const heightM = parseFloat(el.dataset.height);
+    const topY = parseFloat(el.dataset.top);
+    obstacles.push({
+      el, x, heightM, topY,
+      type: el.dataset.type,
+      width: el.dataset.type === 'tree' ? 30 : 80,
+      group: el
+    });
+  });
+  obstacles.sort((a,b) => a.x - b.x);
+}
+loadObstacles();
+
+// ── Helpers ──
+function setDronePosition(x, y, rotation){
+  droneX = x;
+  droneY = y;
+  if(rotation !== undefined) droneRotation = rotation;
+  droneGroup.setAttribute('transform', 'translate(' + x + ',' + y + ')' + (droneRotation ? ' rotate(' + droneRotation + ')' : ''));
+  // Update yellow trail to home
+  if(state === 'idle' || state === 'crashed' || state === 'landed'){
+    // hide trail when on ground or crashed (will be shown again on next takeoff)
+  } else {
+    trailLine.setAttribute('x2', x);
+    trailLine.setAttribute('y2', y);
+  }
+}
+
+function easeInOutCubic(t){
+  return t < 0.5 ? 4*t*t*t : 1 - Math.pow(-2*t+2, 3)/2;
+}
+function easeOutQuad(t){ return 1 - (1-t)*(1-t); }
+function easeInQuad(t){ return t*t; }
+
+function setStatus(text, kind){
+  statusText.textContent = text;
+  statusBar.textContent = text;
+  statusBar.classList.remove('success','danger','active');
+  if(kind) statusBar.classList.add(kind);
+}
+
+function getRthAlt(){
+  const v = parseInt(altInput.value, 10);
+  return isNaN(v) ? 40 : Math.max(10, Math.min(120, v));
+}
+
+function adjustRthAlt(delta){
+  const cur = getRthAlt();
+  altInput.value = Math.max(10, Math.min(120, cur + delta));
+  updateRthAltVisuals();
+}
+
+function updateRthAltVisuals(){
+  const alt = getRthAlt();
+  const y = ALT_TO_Y(alt);
+  rthLine.setAttribute('y1', y);
+  rthLine.setAttribute('y2', y);
+  rthLineLabel.setAttribute('y', y - 10);
+  rthLineText.setAttribute('y', y + 4);
+  rthLineText.textContent = 'RTH ' + alt + 'm';
+
+  // Highlight obstacles taller than RTH alt
+  obstacles.forEach(ob => {
+    const heightLabel = ob.el.querySelector('.height-label');
+    if(ob.heightM > alt){
+      ob.el.style.filter = 'drop-shadow(0 0 6px #ef4444)';
+      if(heightLabel){
+        heightLabel.setAttribute('fill', '#fca5a5');
+        heightLabel.setAttribute('font-weight', '800');
+      }
+    } else {
+      ob.el.style.filter = '';
+      if(heightLabel){
+        heightLabel.setAttribute('fill', '#94a3b8');
+        heightLabel.setAttribute('font-weight', ob.heightM > 20 ? '700' : '600');
+      }
+    }
+  });
+}
+
+altInput.addEventListener('input', updateRthAltVisuals);
+altInput.addEventListener('change', () => {
+  const v = parseInt(altInput.value, 10);
+  if(isNaN(v) || v < 10) altInput.value = 10;
+  else if(v > 120) altInput.value = 120;
+  updateRthAltVisuals();
+});
+
+// ── Smooth tween from current position to target ──
+function tweenTo(targetX, targetY, duration, easeFn, onComplete){
+  const startX = droneX;
+  const startY = droneY;
+  const startTime = performance.now();
+  const ease = easeFn || easeInOutCubic;
+
+  function step(now){
+    const t = Math.min(1, (now - startTime) / duration);
+    const e = ease(t);
+    const x = startX + (targetX - startX) * e;
+    const y = startY + (targetY - startY) * e;
+
+    // Add subtle bobbing during free flight
+    let bob = 0;
+    if(state === 'freeflight'){
+      bob = Math.sin(now/280) * 1.2;
+    }
+
+    // Tilt drone slightly in direction of travel during free flight / RTH home
+    let tilt = 0;
+    if(state === 'freeflight' || state === 'rth_home'){
+      const dx = targetX - startX;
+      tilt = Math.max(-12, Math.min(12, -dx / 12));
+    }
+    droneTilt.setAttribute('transform', 'rotate(' + tilt + ')');
+
+    setDronePosition(x, y + bob);
+
+    if(t < 1){
+      animFrameId = requestAnimationFrame(step);
+    } else {
+      droneTilt.setAttribute('transform', 'rotate(0)');
+      if(onComplete) onComplete();
+    }
+  }
+  animFrameId = requestAnimationFrame(step);
+}
+
+// ── Free flight loop ──
+function startFreeFlight(){
+  state = 'freeflight';
+  setStatus('הרחפן בטיסה חופשית — לחץ "להפעלת RTH" כדי להחזיר אותו', 'active');
+  rthBtn.disabled = false;
+  flyToNextWaypoint();
+}
+
+function flyToNextWaypoint(){
+  if(state !== 'freeflight') return;
+  const wp = FREE_WAYPOINTS[waypointIndex % FREE_WAYPOINTS.length];
+  waypointIndex++;
+  tweenTo(wp.x, wp.y, wp.dur, easeInOutCubic, () => {
+    if(state === 'freeflight'){
+      // Brief pause at waypoint, then continue
+      freeFlightTimer = setTimeout(flyToNextWaypoint, 80 + Math.random() * 200);
+    }
+  });
+}
+
+// ── Takeoff sequence ──
+function onTakeoff(){
+  if(state !== 'idle' && state !== 'landed' && state !== 'crashed') return;
+  if(state === 'landed' || state === 'crashed') onReset();
+
+  state = 'takeoff';
+  takeoffBtn.disabled = true;
+  setStatus('ממריא מנקודת הבית...', 'active');
+
+  // Show trail
+  trailLine.setAttribute('opacity', '0.8');
+  trailLine.setAttribute('x1', HOME_X);
+  trailLine.setAttribute('y1', HOME_Y);
+
+  // Show RTH altitude line
+  rthAltLineGroup.setAttribute('opacity', '0.55');
+
+  // Pulse home pad
+  homePadGlow.setAttribute('r', '28');
+
+  // Climb straight up to ~22m (typical free flight altitude)
+  tweenTo(HOME_X, ALT_TO_Y(22), 1500, easeOutQuad, () => {
+    startFreeFlight();
+  });
+}
+
+// ── RTH activation ──
+function onActivateRTH(){
+  if(state !== 'freeflight') return;
+
+  // Stop free flight loop
+  if(freeFlightTimer){ clearTimeout(freeFlightTimer); freeFlightTimer = null; }
+  if(animFrameId){ cancelAnimationFrame(animFrameId); animFrameId = null; }
+
+  state = 'rth_climb';
+  rthBtn.disabled = true;
+  const rthAlt = getRthAlt();
+  setStatus('מבצע RTH — עולה לגובה ' + rthAlt + ' מטר...', 'active');
+
+  // Make drone LED red briefly to indicate RTH mode
+  droneLED.setAttribute('fill', '#facc15');
+
+  // Make RTH altitude line solid/prominent
+  rthLine.setAttribute('stroke-width', '2');
+  rthLine.setAttribute('opacity', '1');
+  rthAltLineGroup.setAttribute('opacity', '1');
+
+  const targetY = ALT_TO_Y(rthAlt);
+  const climbDuration = Math.max(800, Math.abs(droneY - targetY) * 8);
+
+  // If already above RTH alt, skip climb
+  if(droneY < targetY){
+    // Already above, go directly to homing
+    proceedToHome();
+  } else {
+    tweenTo(droneX, targetY, climbDuration, easeOutQuad, () => {
+      proceedToHome();
+    });
+  }
+}
+
+function proceedToHome(){
+  state = 'rth_home';
+  setStatus('טס בקו ישר חזרה הביתה...', 'active');
+
+  const rthAlt = getRthAlt();
+  const flightY = ALT_TO_Y(rthAlt);
+
+  // Detect collision: any obstacle whose top is ABOVE flightY (i.e. taller than RTH alt)
+  // and whose x is between HOME_X and droneX (path)
+  const minX = Math.min(HOME_X, droneX);
+  const maxX = Math.max(HOME_X, droneX);
+  let collisionTarget = null;
+  for(const ob of obstacles){
+    if(ob.x < minX || ob.x > maxX) continue;
+    if(ob.topY < flightY){
+      // Obstacle taller than RTH altitude — collision!
+      // Pick the FIRST one in flight path (drone going from right to left toward home)
+      // So we want the obstacle with the LARGEST x that's still less than droneX
+      if(ob.x < droneX){
+        if(!collisionTarget || ob.x > collisionTarget.x){
+          collisionTarget = ob;
+        }
+      }
+    }
+  }
+
+  if(collisionTarget){
+    // Fly toward home until we hit the obstacle
+    const collisionX = collisionTarget.x;
+    const collisionY = collisionTarget.topY + 6; // hit just above the top edge
+    const distance = Math.abs(droneX - collisionX);
+    const duration = Math.max(900, distance * 4);
+    tweenTo(collisionX, collisionY, duration, function(t){return t}, () => {
+      crashIntoObstacle(collisionTarget);
+    });
+  } else {
+    // Safe path home
+    const duration = Math.max(1400, Math.abs(droneX - HOME_X) * 4);
+    tweenTo(HOME_X, flightY, duration, easeInOutCubic, () => {
+      proceedToLand();
+    });
+  }
+}
+
+function proceedToLand(){
+  state = 'rth_land';
+  setStatus('מתחיל ירידה ונחיתה מדויקת...', 'active');
+  // Slow descent
+  const descentDuration = Math.max(1500, Math.abs(droneY - HOME_Y) * 6);
+  tweenTo(HOME_X, HOME_Y, descentDuration, easeInQuad, () => {
+    onLanded();
+  });
+}
+
+function onLanded(){
+  state = 'landed';
+  setStatus('✓ נחת בהצלחה! הגדרת ה-RTH הספיקה לחזור בבטחה.', 'success');
+  // Hide trail (drone is home)
+  trailLine.setAttribute('opacity', '0');
+  // Pulse home pad green
+  homePadGlow.setAttribute('r', '50');
+  setTimeout(() => homePadGlow.setAttribute('r', '18'), 800);
+  // Reset LED to green
+  droneLED.setAttribute('fill', '#22c55e');
+  // Re-enable takeoff
+  takeoffBtn.disabled = false;
+}
+
+// ── Crash sequence ──
+function crashIntoObstacle(target){
+  state = 'crashed';
+  if(animFrameId){ cancelAnimationFrame(animFrameId); animFrameId = null; }
+
+  const rthAlt = getRthAlt();
+  setStatus('✕ התרסק! ' + target.heightM + ' מ׳ גבוה מהגדרת ה-RTH (' + rthAlt + ' מ׳). תמיד הגדר גובה גבוה מהמכשול הגבוה ביותר!', 'danger');
+
+  // Explosion effect at impact
+  const impactX = droneX;
+  const impactY = droneY;
+  explosionGroup.setAttribute('opacity', '1');
+  explosionGroup.setAttribute('transform', 'translate(' + impactX + ',' + impactY + ')');
+
+  let expR = 0;
+  let expStart = performance.now();
+  function expStep(now){
+    const t = Math.min(1, (now - expStart) / 400);
+    expR = t * 38;
+    explosion.setAttribute('r', expR);
+    explosion.setAttribute('opacity', 1 - t);
+    if(t < 1) requestAnimationFrame(expStep);
+    else explosion.setAttribute('opacity', '0');
+  }
+  requestAnimationFrame(expStep);
+
+  // Drone visual: turn red, smoke
+  droneFuselage.setAttribute('fill', '#fb923c');
+  droneFuselage.setAttribute('stroke', '#ef4444');
+  droneLED.setAttribute('fill', '#ef4444');
+
+  // Tumble & fall with physics
+  const startTime = performance.now();
+  const fallStartX = droneX;
+  const fallStartY = droneY;
+  const targetY = GROUND_Y - 2;
+  const horizontalDrift = (HOME_X - droneX) * 0.06; // small drift toward home direction
+  let initialVy = -1;     // tiny upward bounce off building
+  const gravity = 0.85;
+  let vy = initialVy;
+  let y = fallStartY;
+  let x = fallStartX;
+  let rot = 0;
+  const rotSpeed = 8 + Math.random() * 6;
+
+  // Stop propeller animation visual
+  props.style.opacity = '0.3';
+
+  function fallStep(){
+    if(state !== 'crashed') return;
+    vy += gravity;
+    y += vy;
+    x += horizontalDrift * 0.04;
+    rot += rotSpeed;
+    if(y >= targetY){
+      y = targetY;
+      droneRotation = rot;
+      droneGroup.setAttribute('transform', 'translate(' + x + ',' + y + ') rotate(' + (rot % 360) + ')');
+      // Spawn smoke debris
+      spawnSmoke(x, y);
+      // Re-enable takeoff
+      takeoffBtn.disabled = false;
+      return;
+    }
+    droneGroup.setAttribute('transform', 'translate(' + x + ',' + y + ') rotate(' + (rot % 360) + ')');
+    droneX = x; droneY = y;
+    requestAnimationFrame(fallStep);
+  }
+  requestAnimationFrame(fallStep);
+}
+
+function spawnSmoke(x, y){
+  // Create animated smoke puffs
+  for(let i = 0; i < 5; i++){
+    const puff = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+    puff.setAttribute('cx', x + (Math.random() - 0.5) * 8);
+    puff.setAttribute('cy', y);
+    puff.setAttribute('r', '4');
+    puff.setAttribute('fill', i % 2 === 0 ? '#94a3b8' : '#64748b');
+    puff.setAttribute('opacity', '0.6');
+    debrisGroup.appendChild(puff);
+
+    const puffStart = performance.now() + i * 80;
+    const driftX = (Math.random() - 0.5) * 30;
+    const driftY = -20 - Math.random() * 30;
+    const startR = 4;
+    const endR = 14 + Math.random() * 6;
+    const duration = 1500 + Math.random() * 600;
+
+    function animatePuff(now){
+      if(now < puffStart){ requestAnimationFrame(animatePuff); return; }
+      const t = Math.min(1, (now - puffStart) / duration);
+      const r = startR + (endR - startR) * t;
+      const cx = parseFloat(puff.getAttribute('cx')) + driftX * 0.02;
+      const cy = y + driftY * t;
+      puff.setAttribute('cx', cx);
+      puff.setAttribute('cy', cy);
+      puff.setAttribute('r', r);
+      puff.setAttribute('opacity', 0.6 * (1 - t));
+      if(t < 1) requestAnimationFrame(animatePuff);
+    }
+    requestAnimationFrame(animatePuff);
+  }
+  debrisGroup.setAttribute('opacity', '1');
+}
+
+// ── Reset ──
+function onReset(){
+  // Cancel everything
+  if(animFrameId){ cancelAnimationFrame(animFrameId); animFrameId = null; }
+  if(freeFlightTimer){ clearTimeout(freeFlightTimer); freeFlightTimer = null; }
+
+  state = 'idle';
+  waypointIndex = 0;
+
+  // Reset drone to home
+  droneRotation = 0;
+  setDronePosition(HOME_X, HOME_Y);
+  droneTilt.setAttribute('transform', 'rotate(0)');
+
+  // Reset visuals
+  droneFuselage.setAttribute('fill', '#e2e8f0');
+  droneFuselage.setAttribute('stroke', '#a78bfa');
+  droneLED.setAttribute('fill', '#22c55e');
+  props.style.opacity = '1';
+
+  // Hide trail
+  trailLine.setAttribute('opacity', '0');
+  trailLine.setAttribute('x1', HOME_X);
+  trailLine.setAttribute('y1', HOME_Y);
+  trailLine.setAttribute('x2', HOME_X);
+  trailLine.setAttribute('y2', HOME_Y);
+
+  // Hide RTH alt line
+  rthAltLineGroup.setAttribute('opacity', '0');
+
+  // Hide explosion
+  explosionGroup.setAttribute('opacity', '0');
+  explosion.setAttribute('r', '0');
+
+  // Clear debris
+  while(debrisGroup.firstChild) debrisGroup.removeChild(debrisGroup.firstChild);
+
+  // Reset home pad
+  homePadGlow.setAttribute('r', '18');
+
+  // Buttons
+  takeoffBtn.disabled = false;
+  rthBtn.disabled = true;
+
+  setStatus('מוכן להמראה — לחץ "להמראה לחץ כאן" כדי להתחיל');
+
+  // Refresh visuals based on current alt input
+  updateRthAltVisuals();
+}
+
+// ── Init ──
+updateRthAltVisuals();
+onReset();
+</script>
+
+</body>
+</html>
