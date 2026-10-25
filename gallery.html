@@ -1,150 +1,539 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>גלריית תמונות - נופים טרופיים</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f0f2f5;
-            margin: 0;
-            padding: 20px;
-            text-align: center;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>גלריית צילומי אוויר | Flying Mink</title>
+<meta name="description" content="גלריית צילומי אוויר של Flying Mink — צילומי רחפן מקצועיים של נופים, חופים, אירועים ונדל״ן.">
+<meta name="author" content="Maor Shtolz">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#0b0a16">
+<link rel="canonical" href="https://flyingmink.com/gallery.html">
 
-        header {
-            background-color: #00897b;
-            color: white;
-            padding: 20px 0;
-            margin-bottom: 30px;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
+<!-- Open Graph / WhatsApp -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://flyingmink.com/gallery.html">
+<meta property="og:title" content="גלריית צילומי אוויר | Flying Mink">
+<meta property="og:description" content="צילומי רחפן מקצועיים — נופים, חופים, אירועים ונדל״ן.">
+<meta property="og:image" content="https://flyingmink.com/assets/gallery/02-kayaks-cliffs.jpg">
+<meta property="og:locale" content="he_IL">
+<meta property="og:site_name" content="Flying Mink">
+<meta name="twitter:card" content="summary_large_image">
 
-        h1 {
-            margin: 0;
-            font-size: 2em;
-        }
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-CP1NCS3G49"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-CP1NCS3G49');
+</script>
 
-        .gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
 
-        .image-card {
-            background-color: white;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0b0a16;--bg2:#100e1e;--bg3:#150f24;
+  --purple:#6d28d9;--purple-light:#a78bfa;--indigo:#4f46e5;
+  --text:#e2e8f0;--text-dim:#94a3b8;--text-muted:#64748b;
+  --card-border:rgba(139,92,246,0.2);--border-h:rgba(167,139,250,0.5);
+  --radius:16px;
+}
+html{scroll-behavior:smooth;color-scheme:dark}
+body{font-family:'Heebo',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;min-height:100vh;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0;background:radial-gradient(ellipse at 50% -10%,rgba(109,40,217,0.22) 0%,transparent 60%);pointer-events:none;z-index:0}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit}
+:focus-visible{outline:2px solid var(--purple-light);outline-offset:3px}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0}
 
-        .image-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-        }
+/* ══════ TOP BAR ══════ */
+.topbar{position:sticky;top:0;z-index:50;display:flex;justify-content:space-between;align-items:center;gap:12px;padding:14px 16px;background:rgba(11,10,22,0.72);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid rgba(139,92,246,0.12)}
+.back-btn{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 18px;border-radius:999px;background:rgba(109,40,217,0.15);border:1px solid var(--card-border);font-size:15px;font-weight:500;transition:background 0.25s,border-color 0.25s,transform 0.25s}
+.back-btn:hover{background:rgba(109,40,217,0.35);border-color:var(--border-h);transform:translateY(-1px)}
+.back-btn svg{width:18px;height:18px;flex-shrink:0}
+[dir="rtl"] .back-btn svg{transform:scaleX(-1)}
+.lang-switch{display:flex;gap:4px;padding:4px;border-radius:999px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);direction:ltr}
+.lang-switch button{min-width:40px;min-height:36px;padding:0 10px;border-radius:999px;border:none;background:transparent;color:var(--text-dim);font-size:13px;font-weight:600;cursor:pointer;transition:background 0.2s,color 0.2s}
+.lang-switch button:hover{color:var(--text);background:rgba(109,40,217,0.2)}
+.lang-switch button[aria-pressed="true"]{background:linear-gradient(135deg,var(--purple),var(--indigo));color:#fff}
 
-        .image-card img {
-            width: 100%;
-            height: 200px; /* גובה קבוע לכרטיסיות - תוכל לשנות */
-            object-fit: cover; /* מונע עיוות */
-            display: block;
-        }
+/* ══════ HEADER ══════ */
+main{position:relative;z-index:1}
+.page-head{max-width:760px;margin:0 auto;padding:3.5rem 1.5rem 2.5rem;text-align:center}
+.section-label{display:inline-block;font-size:14px;font-weight:600;color:var(--purple-light);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:0.6rem}
+.page-head h1{font-size:clamp(2rem,5vw,3rem);font-weight:900;line-height:1.15;margin-bottom:0.75rem;background:linear-gradient(135deg,#fff 30%,var(--purple-light));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.page-head p{font-size:17px;color:var(--text-dim)}
+.photo-count{display:inline-block;margin-top:1rem;font-size:13px;color:var(--text-muted);padding:4px 14px;border-radius:999px;border:1px solid rgba(255,255,255,0.08)}
 
-        .image-card .caption {
-            padding: 15px;
-            text-align: right;
-            border-top: 1px solid #eee;
-        }
+/* ══════ GRID (masonry columns — photos are never cropped) ══════ */
+.gallery{max-width:1200px;margin:0 auto;padding:0 16px 4rem;columns:1;column-gap:16px}
+@media(min-width:600px){.gallery{columns:2;padding:0 24px 4rem}}
+@media(min-width:1000px){.gallery{columns:3}}
+.tile{display:block;width:100%;margin:0 0 16px;break-inside:avoid;position:relative;padding:0;color:var(--text);font:inherit;border:1px solid var(--card-border);border-radius:var(--radius);overflow:hidden;background:var(--bg2);cursor:zoom-in;transition:border-color 0.3s,box-shadow 0.3s,transform 0.3s}
+.tile:hover{border-color:var(--border-h);box-shadow:0 12px 40px rgba(109,40,217,0.28);transform:translateY(-3px)}
+.tile img{display:block;width:100%;height:auto;opacity:0;transition:opacity 0.5s ease,transform 0.6s ease}
+.tile img.is-loaded{opacity:1}
+.tile:hover img{transform:scale(1.04)}
+.tile::before{content:"";position:absolute;inset:0;background:linear-gradient(100deg,transparent 20%,rgba(167,139,250,0.08) 50%,transparent 80%);background-size:200% 100%;animation:shimmer 1.4s linear infinite;pointer-events:none}
+.tile.is-loaded::before{display:none}
+.tile-caption{position:absolute;inset-inline:0;bottom:0;padding:28px 14px 12px;font-size:14px;font-weight:500;text-align:start;background:linear-gradient(0deg,rgba(11,10,22,0.85),transparent);opacity:0;transform:translateY(6px);transition:opacity 0.3s,transform 0.3s;pointer-events:none}
+.tile:hover .tile-caption,.tile:focus-visible .tile-caption{opacity:1;transform:translateY(0)}
+@media(hover:none){.tile-caption{opacity:1;transform:none}}
+.tile.is-broken{aspect-ratio:16/9;display:flex;align-items:center;justify-content:center;cursor:default}
+.tile.is-broken::before{display:none}
+.tile-error{display:flex;flex-direction:column;align-items:center;gap:8px;color:var(--text-muted);font-size:14px}
+.tile-error svg{width:32px;height:32px}
+@keyframes shimmer{from{background-position:200% 0}to{background-position:-200% 0}}
 
-        .image-card .caption h3 {
-            margin: 0 0 5px 0;
-            font-size: 1.1em;
-            color: #333;
-        }
+/* ══════ EMPTY / ERROR STATE ══════ */
+.state{max-width:520px;margin:1rem auto 5rem;padding:3rem 1.5rem;text-align:center;border:1px dashed var(--card-border);border-radius:var(--radius);background:rgba(109,40,217,0.05)}
+.state svg{width:48px;height:48px;color:var(--purple-light);margin-bottom:1rem}
+.state p{color:var(--text-dim);font-size:16px}
 
-        .image-card .caption p {
-            margin: 0;
-            color: #666;
-            font-size: 0.9em;
-        }
+/* ══════ CTA ══════ */
+.cta{max-width:1000px;margin:0 auto 4rem;padding:0 16px}
+.cta-box{background:linear-gradient(135deg,rgba(167,139,250,0.16),rgba(236,72,153,0.1));border:1px solid rgba(196,181,253,0.28);border-radius:var(--radius);padding:2.5rem 1.5rem;text-align:center}
+.cta-box h2{font-size:clamp(1.3rem,3vw,1.7rem);font-weight:700;margin-bottom:0.5rem}
+.cta-box p{color:var(--text-dim);font-size:16px;max-width:560px;margin:0 auto 1.5rem}
+.btn-primary{display:inline-flex;align-items:center;gap:8px;min-height:48px;padding:0 30px;border-radius:12px;background:linear-gradient(135deg,var(--purple),var(--indigo));color:#fff;font-size:17px;font-weight:600;transition:transform 0.25s,box-shadow 0.25s;box-shadow:0 4px 14px rgba(109,40,217,0.35)}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(109,40,217,0.5)}
 
-        @media (max-width: 480px) {
-            .gallery {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
+.footer{position:relative;z-index:1;padding:2rem 1.5rem;text-align:center;border-top:1px solid rgba(139,92,246,0.1);font-size:13px;color:var(--text-muted)}
+.footer a{color:var(--text-dim);transition:color 0.2s}
+.footer a:hover{color:var(--purple-light)}
+
+/* ══════ LIGHTBOX ══════ */
+.lightbox{position:fixed;inset:0;z-index:300;display:flex;flex-direction:column;background:rgba(5,4,12,0.96);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);opacity:0;visibility:hidden;transition:opacity 0.3s,visibility 0.3s}
+.lightbox.open{opacity:1;visibility:visible}
+.lb-bar{display:flex;justify-content:space-between;align-items:center;padding:14px 16px;gap:12px}
+.lb-counter{font-size:14px;color:var(--text-dim);direction:ltr;font-variant-numeric:tabular-nums}
+.lb-stage{flex:1;position:relative;display:flex;align-items:center;justify-content:center;min-height:0;padding:0 64px;touch-action:pan-y}
+.lb-stage img{max-width:100%;max-height:100%;object-fit:contain;border-radius:10px;box-shadow:0 10px 50px rgba(0,0,0,0.6);transition:opacity 0.25s;user-select:none;-webkit-user-drag:none}
+.lb-stage img.is-swapping{opacity:0.35}
+.lb-caption{text-align:center;padding:12px 16px 20px;font-size:15px;color:var(--text);min-height:3.2em}
+.lb-btn{width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.18);color:#fff;cursor:pointer;transition:background 0.2s,border-color 0.2s,transform 0.2s}
+.lb-btn:hover{background:rgba(109,40,217,0.5);border-color:var(--border-h)}
+.lb-btn svg{width:22px;height:22px}
+.lb-nav{position:absolute;top:50%;transform:translateY(-50%)}
+.lb-nav:hover{transform:translateY(-50%) scale(1.06)}
+.lb-prev{inset-inline-start:8px}
+.lb-next{inset-inline-end:8px}
+[dir="rtl"] .lb-nav svg{transform:scaleX(-1)}
+.lb-spinner{position:absolute;width:36px;height:36px;border-radius:50%;border:3px solid rgba(167,139,250,0.25);border-top-color:var(--purple-light);animation:spin 0.8s linear infinite;opacity:0;transition:opacity 0.2s;pointer-events:none}
+.lb-spinner.show{opacity:1}
+@keyframes spin{to{transform:rotate(360deg)}}
+@media(max-width:600px){
+  .lb-stage{padding:0 8px}
+  .lb-nav{width:40px;height:40px;background:rgba(0,0,0,0.5)}
+  .lb-prev{inset-inline-start:14px}
+  .lb-next{inset-inline-end:14px}
+}
+body.lb-open{overflow:hidden}
+
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:0.01ms!important;transition-duration:0.01ms!important;scroll-behavior:auto!important}
+}
+</style>
 </head>
 <body>
 
-    <header>
-        <h1>גלריית נופים טרופיים</h1>
-    </header>
+<header class="topbar">
+  <a class="back-btn" id="backLink" href="index.html">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+    <span data-i18n="back">חזרה לאתר</span>
+  </a>
+  <div class="lang-switch" role="group" aria-label="Language">
+    <button type="button" data-lang="he" aria-pressed="true">עב</button>
+    <button type="button" data-lang="en" aria-pressed="false">EN</button>
+    <button type="button" data-lang="de" aria-pressed="false">DE</button>
+    <button type="button" data-lang="ru" aria-pressed="false">RU</button>
+  </div>
+</header>
 
-    <div class="gallery">
+<main>
+  <section class="page-head" aria-labelledby="pageTitle">
+    <div class="section-label" data-i18n="label">גלריה</div>
+    <h1 id="pageTitle" data-i18n="title">צילומי אוויר</h1>
+    <p data-i18n="desc">צילומי אוויר מקצועיים — אירועים, נדל״ן, נוף ועוד.</p>
+    <span class="photo-count" id="photoCount" hidden></span>
+  </section>
 
-        <div class="image-card">
-            <img src="data:image/jpeg;base64," alt="קייקים אדומים בלגונה טרופית עם מים צלולים וצוקים">
-            <div class="caption">
-                <h3>לגונת קייקים</h3>
-                <p>צילום אוויר של לגונה מהממת בפיליפינים.</p>
-            </div>
-        </div>
-
-        <div class="image-card">
-            <img src="data:image/jpeg;base64," alt="מבט אוויר ישיר על קייקים בלגונת טורקיז מוקפת צוקי גיר">
-            <div class="caption">
-                <h3>מבט אוויר על הלגונה</h3>
-                <p>צוקי הגיר הזקופים מעל המים הצלולים.</p>
-            </div>
-        </div>
-
-        <div class="image-card">
-            <img src="data:image/jpeg;base64," alt="חוף ים ארוך ורחב עם דקלים, כפר קטן ולגונה נוספת">
-            <div class="caption">
-                <h3>חוף פאנוארמי</h3>
-                <p>החוף הלבן עם המעבר ללגונה הנסתרת.</p>
-            </div>
-        </div>
-
-        <div class="image-card">
-            <img src="data:image/jpeg;base64," alt="גולש סאפ בודד על המים הצלולים מעל אלמוגים">
-            <div class="caption">
-                <h3>חתירה על סאפ</h3>
-                <p>רגע של שקט על המים הצלולים.</p>
-            </div>
-        </div>
-
-        <div class="image-card">
-            <img src="data:image/jpeg;base64," alt="גשר ארוך מעבר ללגונה בשקיעה עם עננים דרמטיים">
-            <div class="caption">
-                <h3>גשר מעבר בשקיעה</h3>
-                <p>הצבעים הדרמטיים של הערב בפיליפינים.</p>
-            </div>
-        </div>
-
-        <div class="image-card">
-            <img src="data:image/jpeg;base64," alt="מבט אוויר צר לתוך לגונה נסתרת בין הצוקים">
-            <div class="caption">
-                <h3>הלגונה הנסתרת</h3>
-                <p>מבט נדיר אל תוך הלב הלבן של הצוקים.</p>
-            </div>
-        </div>
-
-        <div class="image-card">
-            <img src="data:image/jpeg;base64," alt="כביש מפותל העובר ביער עבות של דקלי קוקוס">
-            <div class="caption">
-                <h3>כביש ביער הדקלים</h3>
-                <p>הדרך המפותלת אל הלב הירוק של האי.</p>
-            </div>
-        </div>
-
+  <section aria-label="Gallery">
+    <div class="gallery" id="gallery"></div>
+    <div class="state" id="galleryState" hidden>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="8.5" cy="10" r="1.5"/><path d="M21 16l-5-5-9 8"/></svg>
+      <p id="galleryStateText"></p>
     </div>
+    <noscript><div class="state"><p>כדי לצפות בגלריה יש להפעיל JavaScript בדפדפן.</p></div></noscript>
+  </section>
 
+  <section class="cta" aria-labelledby="ctaTitle">
+    <div class="cta-box">
+      <h2 id="ctaTitle" data-i18n="ctaTitle">רוצים צילומי אוויר משלכם?</h2>
+      <p data-i18n="ctaText">אירועים, נדל״ן, נוף ועוד — דברו איתנו ונתאים את הצילום בדיוק למה שאתם צריכים.</p>
+      <a class="btn-primary" id="ctaLink" href="index.html#contact"><span data-i18n="ctaBtn">צרו קשר</span></a>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <p>© Flying Mink · <a href="index.html" id="footerHome">flyingmink.com</a></p>
+</footer>
+
+<!-- ══════ LIGHTBOX ══════ -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-labelledby="lbCaption" aria-hidden="true">
+  <div class="lb-bar">
+    <span class="lb-counter" id="lbCounter"></span>
+    <button type="button" class="lb-btn" id="lbClose" data-i18n-label="close" aria-label="סגירה">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg>
+    </button>
+  </div>
+  <div class="lb-stage" id="lbStage">
+    <button type="button" class="lb-btn lb-nav lb-prev" id="lbPrev" data-i18n-label="prev" aria-label="הקודמת">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
+    </button>
+    <img id="lbImg" src="data:," alt="">
+    <span class="lb-spinner" id="lbSpinner" aria-hidden="true"></span>
+    <button type="button" class="lb-btn lb-nav lb-next" id="lbNext" data-i18n-label="next" aria-label="הבאה">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg>
+    </button>
+  </div>
+  <p class="lb-caption" id="lbCaption"></p>
+</div>
+
+<script>
+/* ══════════════════════════════════════════════════════════════
+   GALLERY PHOTOS — to add a photo:
+   1. Put the large version in   assets/gallery/NAME.jpg
+      and the small version in   assets/gallery/thumbs/NAME.jpg
+   2. Add one line below. w/h = the thumbnail size in pixels
+      (optional — they only prevent the page from jumping while loading).
+      Only "he" is required; missing languages fall back to Hebrew.
+   ══════════════════════════════════════════════════════════════ */
+const GALLERY_PHOTOS = [
+  { file: '01-beach',         w: 720, h: 405,  he: 'חוף טרופי מהאוויר',     en: 'Tropical beach from above',     de: 'Tropischer Strand von oben',      ru: 'Тропический пляж с высоты' },
+  { file: '02-kayaks-cliffs', w: 720, h: 405,  he: 'קייאקים בין צוקים',     en: 'Kayaks between cliffs',         de: 'Kajaks zwischen Felsen',          ru: 'Каяки среди скал' },
+  { file: '03-bay',           w: 720, h: 405,  he: 'מבט עילי על מפרץ',      en: 'Overhead view of a bay',        de: 'Bucht aus der Vogelperspektive',  ru: 'Вид на залив сверху' },
+  { file: '04-clear-sea',     w: 720, h: 405,  he: 'גולש בים צלול',         en: 'Paddler in crystal-clear water', de: 'Paddler im klaren Wasser',       ru: 'Гребец в прозрачной воде' },
+  { file: '05-bridge-sunset', w: 720, h: 405,  he: 'גשר בשקיעה',            en: 'Bridge at sunset',              de: 'Brücke im Sonnenuntergang',       ru: 'Мост на закате' },
+  { file: '06-palm-road',     w: 720, h: 531,  he: 'כביש בין דקלים',        en: 'Road through palm trees',       de: 'Straße zwischen Palmen',          ru: 'Дорога среди пальм' },
+  { file: '07-lagoon',        w: 540, h: 960,  he: 'לגונה צרה בין צוקים',   en: 'Narrow lagoon between cliffs',  de: 'Schmale Lagune zwischen Felsen',  ru: 'Узкая лагуна среди скал' }
+];
+
+const UI_TEXT = {
+  he: { pageTitle: 'גלריית צילומי אוויר | Flying Mink', back: 'חזרה לאתר', label: 'גלריה', title: 'צילומי אוויר', desc: 'צילומי אוויר מקצועיים — אירועים, נדל״ן, נוף ועוד.', count: '{n} צילומים', open: 'הגדלת התמונה: {caption}', close: 'סגירה', prev: 'הקודמת', next: 'הבאה', empty: 'הגלריה מתעדכנת — צילומים חדשים יעלו בקרוב.', error: 'משהו השתבש בטעינת הגלריה. נסו לרענן את הדף.', broken: 'התמונה לא נטענה', ctaTitle: 'רוצים צילומי אוויר משלכם?', ctaText: 'אירועים, נדל״ן, נוף ועוד — דברו איתנו ונתאים את הצילום בדיוק למה שאתם צריכים.', ctaBtn: 'צרו קשר' },
+  en: { pageTitle: 'Aerial Photo Gallery | Flying Mink', back: 'Back to site', label: 'GALLERY', title: 'Aerial Photography', desc: 'Professional aerial photography — events, real estate, landscapes and more.', count: '{n} photos', open: 'Enlarge photo: {caption}', close: 'Close', prev: 'Previous', next: 'Next', empty: 'The gallery is being updated — new photos coming soon.', error: 'Something went wrong loading the gallery. Please refresh the page.', broken: 'Image failed to load', ctaTitle: 'Want aerial shots of your own?', ctaText: 'Events, real estate, landscapes and more — talk to us and we will tailor the shoot to exactly what you need.', ctaBtn: 'Contact us' },
+  de: { pageTitle: 'Luftbild-Galerie | Flying Mink', back: 'Zurück zur Website', label: 'GALERIE', title: 'Luftaufnahmen', desc: 'Professionelle Luftaufnahmen — Events, Immobilien, Landschaften.', count: '{n} Fotos', open: 'Foto vergrößern: {caption}', close: 'Schließen', prev: 'Vorheriges', next: 'Nächstes', empty: 'Die Galerie wird aktualisiert — neue Fotos folgen bald.', error: 'Beim Laden der Galerie ist ein Fehler aufgetreten. Bitte laden Sie die Seite neu.', broken: 'Bild konnte nicht geladen werden', ctaTitle: 'Eigene Luftaufnahmen gewünscht?', ctaText: 'Events, Immobilien, Landschaften und mehr — sprechen Sie mit uns, wir passen die Aufnahmen genau an Ihre Wünsche an.', ctaBtn: 'Kontakt aufnehmen' },
+  ru: { pageTitle: 'Галерея аэросъёмки | Flying Mink', back: 'Назад на сайт', label: 'ГАЛЕРЕЯ', title: 'Аэросъёмка', desc: 'Профессиональная аэросъёмка — мероприятия, недвижимость, пейзажи и многое другое.', count: '{n} фото', open: 'Увеличить фото: {caption}', close: 'Закрыть', prev: 'Предыдущее', next: 'Следующее', empty: 'Галерея обновляется — скоро появятся новые фото.', error: 'Не удалось загрузить галерею. Попробуйте обновить страницу.', broken: 'Не удалось загрузить фото', ctaTitle: 'Хотите собственную аэросъёмку?', ctaText: 'Мероприятия, недвижимость, пейзажи и многое другое — свяжитесь с нами, и мы подберём съёмку под ваши задачи.', ctaBtn: 'Связаться' }
+};
+
+(function () {
+  'use strict';
+
+  const SUPPORTED_LANGS = ['he', 'en', 'de', 'ru'];
+  const PHOTO_DIR = 'assets/gallery/';
+  const THUMB_DIR = 'assets/gallery/thumbs/';
+  const SWIPE_THRESHOLD_PX = 50;
+
+  const galleryEl = document.getElementById('gallery');
+  const stateEl = document.getElementById('galleryState');
+  const stateTextEl = document.getElementById('galleryStateText');
+  const countEl = document.getElementById('photoCount');
+  const lightboxEl = document.getElementById('lightbox');
+  const lbImg = document.getElementById('lbImg');
+  const lbCaption = document.getElementById('lbCaption');
+  const lbCounter = document.getElementById('lbCounter');
+  const lbSpinner = document.getElementById('lbSpinner');
+  const lbStage = document.getElementById('lbStage');
+  const lbClose = document.getElementById('lbClose');
+  const lbPrev = document.getElementById('lbPrev');
+  const lbNext = document.getElementById('lbNext');
+
+  let currentLang = 'he';
+  let currentIndex = -1;
+  let lastFocusedTile = null;
+  let largeLoadToken = 0;
+
+  /* ── Language ── */
+  function t(key) {
+    const dict = UI_TEXT[currentLang] || UI_TEXT.he;
+    return dict[key] !== undefined ? dict[key] : UI_TEXT.he[key];
+  }
+  function captionOf(photo) {
+    return photo[currentLang] || photo.he || '';
+  }
+  function langQuery() {
+    return currentLang === 'he' ? '' : '?lang=' + currentLang;
+  }
+  function readLangFromUrl() {
+    const param = new URLSearchParams(window.location.search).get('lang');
+    return SUPPORTED_LANGS.indexOf(param) >= 0 ? param : 'he';
+  }
+
+  function applyLanguage(lang) {
+    currentLang = lang;
+    document.documentElement.lang = lang;
+    document.documentElement.dir = lang === 'he' ? 'rtl' : 'ltr';
+    document.title = t('pageTitle');
+
+    document.querySelectorAll('[data-i18n]').forEach(function (el) {
+      el.textContent = t(el.getAttribute('data-i18n'));
+    });
+    document.querySelectorAll('[data-i18n-label]').forEach(function (el) {
+      el.setAttribute('aria-label', t(el.getAttribute('data-i18n-label')));
+    });
+    document.querySelectorAll('.lang-switch button').forEach(function (btn) {
+      btn.setAttribute('aria-pressed', String(btn.getAttribute('data-lang') === lang));
+    });
+
+    document.getElementById('backLink').href = 'index.html' + langQuery() + '#gallery';
+    document.getElementById('footerHome').href = 'index.html' + langQuery();
+    document.getElementById('ctaLink').href = 'index.html' + langQuery() + '#contact';
+
+    galleryEl.querySelectorAll('.tile').forEach(function (tile) {
+      const photo = GALLERY_PHOTOS[Number(tile.dataset.index)];
+      const caption = captionOf(photo);
+      const img = tile.querySelector('img');
+      if (img) img.alt = caption;
+      const captionEl = tile.querySelector('.tile-caption');
+      if (captionEl) captionEl.textContent = caption;
+      const errorText = tile.querySelector('.tile-error span');
+      if (errorText) errorText.textContent = t('broken');
+      tile.setAttribute('aria-label', t('open').replace('{caption}', caption));
+    });
+
+    if (GALLERY_PHOTOS.length) {
+      countEl.textContent = t('count').replace('{n}', GALLERY_PHOTOS.length);
+      countEl.hidden = false;
+    }
+    if (!stateEl.hidden) stateTextEl.textContent = t(stateEl.dataset.kind || 'empty');
+    if (currentIndex >= 0) updateLightbox(false);
+
+    const url = new URL(window.location.href);
+    if (lang === 'he') url.searchParams.delete('lang'); else url.searchParams.set('lang', lang);
+    history.replaceState(history.state, '', url);
+  }
+
+  /* ── Grid ── */
+  function showState(kind) {
+    stateEl.dataset.kind = kind;
+    stateTextEl.textContent = t(kind);
+    stateEl.hidden = false;
+  }
+
+  function markBroken(tile) {
+    tile.classList.add('is-broken');
+    tile.disabled = true;
+    tile.innerHTML =
+      '<span class="tile-error"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true">' +
+      '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 3l18 18"/></svg><span></span></span>';
+    tile.querySelector('.tile-error span').textContent = t('broken');
+  }
+
+  function buildTile(photo, index) {
+    const tile = document.createElement('button');
+    tile.type = 'button';
+    tile.className = 'tile';
+    tile.dataset.index = String(index);
+
+    const img = document.createElement('img');
+    img.src = THUMB_DIR + photo.file + '.jpg';
+    img.loading = index < 3 ? 'eager' : 'lazy';
+    img.decoding = 'async';
+    if (photo.w && photo.h) { img.width = photo.w; img.height = photo.h; }
+    img.addEventListener('load', function () {
+      img.classList.add('is-loaded');
+      tile.classList.add('is-loaded');
+    });
+    img.addEventListener('error', function () { markBroken(tile); });
+
+    const caption = document.createElement('span');
+    caption.className = 'tile-caption';
+    caption.setAttribute('aria-hidden', 'true');
+
+    tile.appendChild(img);
+    tile.appendChild(caption);
+    tile.addEventListener('click', function () { openLightbox(index, true); });
+    return tile;
+  }
+
+  function renderGallery() {
+    if (!Array.isArray(GALLERY_PHOTOS) || GALLERY_PHOTOS.length === 0) {
+      showState('empty');
+      return;
+    }
+    const fragment = document.createDocumentFragment();
+    GALLERY_PHOTOS.forEach(function (photo, index) {
+      fragment.appendChild(buildTile(photo, index));
+    });
+    galleryEl.appendChild(fragment);
+  }
+
+  /* ── Lightbox ── */
+  function preload(index) {
+    const photo = GALLERY_PHOTOS[index];
+    if (photo) { const img = new Image(); img.src = PHOTO_DIR + photo.file + '.jpg'; }
+  }
+
+  function wrapIndex(index) {
+    const total = GALLERY_PHOTOS.length;
+    return (index % total + total) % total;
+  }
+
+  function updateLightbox(loadImage) {
+    const photo = GALLERY_PHOTOS[currentIndex];
+    const caption = captionOf(photo);
+    lbCaption.textContent = caption;
+    lbImg.alt = caption;
+    lbCounter.textContent = (currentIndex + 1) + ' / ' + GALLERY_PHOTOS.length;
+    const single = GALLERY_PHOTOS.length < 2;
+    lbPrev.hidden = single;
+    lbNext.hidden = single;
+    if (!loadImage) return;
+
+    // Show the (already cached) thumbnail instantly, then swap in the sharp version.
+    const token = ++largeLoadToken;
+    lbImg.src = THUMB_DIR + photo.file + '.jpg';
+    lbImg.classList.add('is-swapping');
+    lbSpinner.classList.add('show');
+    const large = new Image();
+    large.onload = function () {
+      if (token !== largeLoadToken) return;
+      lbImg.src = large.src;
+      lbImg.classList.remove('is-swapping');
+      lbSpinner.classList.remove('show');
+    };
+    large.onerror = function () {
+      if (token !== largeLoadToken) return;
+      lbImg.classList.remove('is-swapping');
+      lbSpinner.classList.remove('show');
+    };
+    large.src = PHOTO_DIR + photo.file + '.jpg';
+
+    preload(wrapIndex(currentIndex + 1));
+    preload(wrapIndex(currentIndex - 1));
+  }
+
+  function setPhotoHash() {
+    const url = new URL(window.location.href);
+    url.hash = 'photo-' + (currentIndex + 1);
+    return url;
+  }
+
+  function openLightbox(index, pushHistory) {
+    if (!GALLERY_PHOTOS[index]) return;
+    lastFocusedTile = document.activeElement;
+    currentIndex = index;
+    updateLightbox(true);
+    lightboxEl.classList.add('open');
+    lightboxEl.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('lb-open');
+    if (pushHistory) history.pushState({ lightbox: true }, '', setPhotoHash());
+    else history.replaceState(history.state, '', setPhotoHash());
+    lbClose.focus();
+    if (typeof window.gtag === 'function') {
+      window.gtag('event', 'gallery_photo_open', { photo: GALLERY_PHOTOS[index].file });
+    }
+  }
+
+  function hideLightbox() {
+    if (currentIndex < 0) return;
+    currentIndex = -1;
+    largeLoadToken++;
+    lightboxEl.classList.remove('open');
+    lightboxEl.setAttribute('aria-hidden', 'true');
+    document.body.classList.remove('lb-open');
+    lbSpinner.classList.remove('show');
+    if (lastFocusedTile && typeof lastFocusedTile.focus === 'function') lastFocusedTile.focus();
+  }
+
+  function closeLightbox() {
+    // Opening pushed a history entry, so going back closes cleanly (also makes the phone's back button close the viewer).
+    if (history.state && history.state.lightbox) {
+      history.back();
+    } else {
+      hideLightbox();
+      const url = new URL(window.location.href);
+      url.hash = '';
+      history.replaceState(history.state, '', url);
+    }
+  }
+
+  function step(delta) {
+    if (currentIndex < 0 || GALLERY_PHOTOS.length < 2) return;
+    currentIndex = wrapIndex(currentIndex + delta);
+    updateLightbox(true);
+    history.replaceState(history.state, '', setPhotoHash());
+  }
+
+  function isRtl() { return document.documentElement.dir === 'rtl'; }
+
+  lbClose.addEventListener('click', closeLightbox);
+  lbPrev.addEventListener('click', function () { step(-1); });
+  lbNext.addEventListener('click', function () { step(1); });
+  lightboxEl.addEventListener('click', function (e) {
+    if (e.target === lbStage || e.target === lightboxEl) closeLightbox();
+  });
+
+  window.addEventListener('popstate', function () {
+    if (currentIndex >= 0) hideLightbox();
+  });
+
+  document.addEventListener('keydown', function (e) {
+    if (currentIndex < 0) return;
+    if (e.key === 'Escape') { e.preventDefault(); closeLightbox(); return; }
+    if (e.key === 'ArrowRight') { e.preventDefault(); step(isRtl() ? -1 : 1); return; }
+    if (e.key === 'ArrowLeft') { e.preventDefault(); step(isRtl() ? 1 : -1); return; }
+    if (e.key === 'Tab') {
+      const focusables = Array.prototype.filter.call(
+        lightboxEl.querySelectorAll('button'),
+        function (b) { return !b.hidden; }
+      );
+      const first = focusables[0];
+      const last = focusables[focusables.length - 1];
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    }
+  });
+
+  /* Swipe — the "next" direction follows the reading direction */
+  let touchStartX = null;
+  let touchStartY = null;
+  lbStage.addEventListener('touchstart', function (e) {
+    touchStartX = e.touches[0].clientX;
+    touchStartY = e.touches[0].clientY;
+  }, { passive: true });
+  lbStage.addEventListener('touchend', function (e) {
+    if (touchStartX === null) return;
+    const dx = e.changedTouches[0].clientX - touchStartX;
+    const dy = e.changedTouches[0].clientY - touchStartY;
+    touchStartX = null;
+    if (Math.abs(dx) < SWIPE_THRESHOLD_PX || Math.abs(dx) < Math.abs(dy)) return;
+    const swipedLeft = dx < 0;
+    step(swipedLeft === isRtl() ? -1 : 1);
+  }, { passive: true });
+
+  /* ── Language buttons ── */
+  document.querySelectorAll('.lang-switch button').forEach(function (btn) {
+    btn.addEventListener('click', function () { applyLanguage(btn.getAttribute('data-lang')); });
+  });
+
+  /* ── Init ── */
+  try {
+    renderGallery();
+    applyLanguage(readLangFromUrl());
+    const match = window.location.hash.match(/^#photo-(\d+)$/);
+    if (match) openLightbox(Number(match[1]) - 1, false);
+  } catch (err) {
+    galleryEl.innerHTML = '';
+    showState('error');
+    if (window.console) console.error('Gallery failed to initialise:', err);
+  }
+})();
+</script>
 </body>
 </html>

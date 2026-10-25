@@ -1,0 +1,41 @@
+<!-- ══════ HERO ══════ -->
+<section class="hero">
+  <img class="hero-poster-bg" src="assets/img/hero-poster.jpg" alt="" decoding="sync" fetchpriority="high">
+  <video class="hero-video" id="heroVid" muted loop playsinline preload="auto" autoplay>
+    <source src="assets/video/hero.mp4" type="video/mp4">
+  </video>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <h1>FLYING <span class="mink">MINK</span></h1>
+    <p class="hero-tagline" data-he="שירותי רחפנים" data-en="Drone Services" data-de="Drohnen-Dienstleistungen" data-ru="Услуги дронов">שירותי רחפנים</p>
+  </div>
+  <a href="#course" class="hero-cta">
+    <span class="hero-cta-text" data-he="בשביל לקבל ביטחון בהטסה שלך לחץ כאן" data-en="Click here to gain drone flight confidence" data-de="Klicken Sie hier um Flugsicherheit zu gewinnen" data-ru="Нажмите чтобы обрести уверенность в полёте">בשביל לקבל ביטחון בהטסה שלך לחץ כאן</span>
+    <span class="hero-cta-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></span>
+  </a>
+</section>
+
+<script>
+// Hero video: always plays from the start. No seeking, so the browser buffers only once.
+(function(){
+  var v = document.getElementById('heroVid');
+  if(!v) return;
+
+  var revealed = false;
+  function reveal(){
+    if(revealed) return;
+    revealed = true;
+    v.classList.add('loaded');
+  }
+  function tryPlay(){
+    var p = v.play();
+    if(p && p.catch) p.catch(function(){});
+  }
+
+  v.addEventListener('playing', reveal);
+  v.addEventListener('canplay', tryPlay);
+  if(v.readyState >= 3) tryPlay();
+  // Final fallback - reveal after 6s no matter what so the user never sees a blank hero
+  setTimeout(reveal, 6000);
+})();
+</script>
