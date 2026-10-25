@@ -360,6 +360,7 @@ a { color: inherit; text-decoration: none; }
 }
 .topbar-btn svg { width: 16px; height: 16px; flex-shrink: 0; }
 .topbar-btn-text { font-size: 13px; }
+a.topbar-btn { text-decoration: none; }
 
 .sidebar-toggle {
   display: none;
@@ -2041,6 +2042,10 @@ a { color: inherit; text-decoration: none; }
     </div>
 
     <div class="topbar-meta">
+      <a class="topbar-btn" href="index.html" aria-label="חזרה לדף הבית">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"/><path d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+        <span class="topbar-btn-text">דף הבית</span>
+      </a>
       <button class="topbar-btn" id="downloadBtn" aria-label="הורד מפה">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
