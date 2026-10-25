@@ -1,0 +1,33 @@
+<!-- ══════ FLOATING CONTROLS (all screens) ══════ -->
+<div class="float-controls">
+  <div class="fc-right">
+    <div class="fc-hamburger" onclick="toggleSideMenu()"><span></span><span></span><span></span></div>
+  </div>
+  <div class="fc-left">
+    <div class="lang-toggle" id="langToggle">
+      <div class="fc-btn" onclick="toggleLangDropdown()" title="שפה">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
+      </div>
+      <div class="lang-dropdown" id="langDrop">
+        <button class="lang-option active" onclick="setLang('he')">🇮🇱 עברית</button>
+        <button class="lang-option" onclick="setLang('en')">🇺🇸 English</button>
+        <button class="lang-option" onclick="setLang('de')">🇩🇪 Deutsch</button>
+        <button class="lang-option" onclick="setLang('ru')">🇷🇺 Русский</button>
+      </div>
+    </div>
+    <div class="fc-btn" onclick="openProfile()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+    </div>
+  </div>
+</div>
+
+<div class="overlay" id="overlay" onclick="toggleSideMenu()"></div>
+<div class="side-menu" id="sideMenu">
+  <button class="side-close" onclick="toggleSideMenu()">X</button>
+  <a href="#quiz" onclick="toggleSideMenu()" data-he="שאלון רחפנים" data-en="Drone Quiz" data-de="Drohnen-Quiz" data-ru="Тест по дронам">שאלון רחפנים</a>
+  <a href="#services" onclick="toggleSideMenu()" data-he="שירותים" data-en="Services" data-de="Dienste" data-ru="Услуги">שירותים</a>
+  <a href="#course" onclick="toggleSideMenu()" data-he="קורס חינמי" data-en="Free Course" data-de="Gratiskurs" data-ru="Бесплатный курс">קורס חינמי</a>
+  <a href="#schools" onclick="toggleSideMenu()" data-he="בתי ספר" data-en="Schools" data-de="Schulen" data-ru="Школы">בתי ספר</a>
+  <a href="gallery.html" onclick="toggleSideMenu()" data-he="גלריה" data-en="Gallery" data-de="Galerie" data-ru="Галерея">גלריה</a>
+  <a href="#contact" onclick="toggleSideMenu()" data-he="צור קשר" data-en="Contact" data-de="Kontakt" data-ru="Контакт">צור קשר</a>
+</div>
