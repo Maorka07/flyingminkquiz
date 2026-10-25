@@ -20,9 +20,8 @@
 | `_includes/home/contact.html` | צור קשר |
 | `_includes/home/partners.html` | שותפים |
 | `_includes/home/footer.html` | פוטר, כולל הקישור למדיניות הפרטיות |
-| `_includes/home/overlays.html` | הבוט |
 | `assets/css/home.css` | העיצוב של דף הבית |
-| `assets/js/home.js` | החלפת שפה, תפריט, טופס יצירת קשר, בוט |
+| `assets/js/home.js` | החלפת שפה, תפריט, טופס יצירת קשר |
 
 ## עמודים
 
@@ -62,6 +61,10 @@
 
 1. גרסה גדולה (רוחב עד 1920 פיקסלים) נכנסת ל-`assets/gallery/NAME.jpg`, וגרסה קטנה (רוחב 720) ל-`assets/gallery/thumbs/NAME.jpg`.
 2. מוסיפים שורה אחת לרשימה `GALLERY_PHOTOS` בראש הסקריפט ב-`gallery.html`.
+
+## ארכיון
+
+התיקייה `_archive/` שמורה בריפו ולא מתפרסמת באתר. כרגע יש בה את הבוט (`_archive/bot/`), עם הוראות להחזרה.
 
 ## חשוב לדעת
 
