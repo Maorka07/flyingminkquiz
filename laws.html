@@ -1,0 +1,1278 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#F1EFFA">
+<title>איפה מותר להטיס רחפן? מדריך עולמי לתיירים | Flying Mink</title>
+<meta name="description" content="מדריך אינטראקטיבי לתיירים עם רחפן עד 250 גרם: מה בדיוק צריך לעשות כדי להטיס כחוק בכל מדינה — רישום, מבחן, ביטוח, אישורים וקישורים רשמיים.">
+<meta name="author" content="Flying Mink">
+<meta property="og:title" content="איפה מותר להטיס רחפן? מדריך עולמי לתיירים">
+<meta property="og:description" content="גלובוס אינטראקטיבי עם הדרישות המעשיות להטסת רחפן עד 250 גרם בכל מדינה.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="he_IL">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-CP1NCS3G49"></script>
+<script>
+window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+gtag('js',new Date());gtag('config','G-CP1NCS3G49');
+</script>
+<style>
+:root{
+  color-scheme:light;
+  /* one surface for the whole page — page, cards, panel and globe card are
+     the same colour, and everything is separated by a thin purple rule */
+  --bg:#F1EFFA; --bg-2:#F1EFFA; --surface:#F1EFFA; --surface-2:#EAE6F6;
+  --line:#D7D0EC; --line-2:#C2B9E0;
+  /* ink — dark purple, never pure black */
+  --text:#211C35; --muted:#544D70; --faint:#69627E;
+  /* brand */
+  --accent:#5B21B6; --accent-2:#6D28D9; --accent-soft:#E7DFF8; --teal:#0D7A70;
+  --green:#1FB89E; --yellow:#B57A05; --orange:#C24A14; --red:#8E1113; --gray:#8D86A3;
+  --r:14px; --r-sm:9px;
+  --panel-w:min(560px,94vw);
+  --shadow:0 18px 44px rgba(33,28,53,.13);
+  --shadow-sm:0 2px 10px rgba(33,28,53,.05);
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+/* Some embedders (in-app browsers, artifact viewers) inject their own dark
+   background onto html/body after this stylesheet. A fixed element cannot be
+   overridden that way, so the page colour is painted rather than declared. */
+html,body{background-color:var(--bg) !important}
+.page-bg{position:fixed; inset:0; background:var(--bg); z-index:0; pointer-events:none}
+main,footer{position:relative; z-index:1}
+body{
+  background:var(--bg); color:var(--text);
+  font-family:'Heebo',system-ui,-apple-system,sans-serif;
+  font-weight:400; line-height:1.65; -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+a{color:var(--accent-2); text-decoration:none}
+a:hover{text-decoration:underline}
+button{font-family:inherit; cursor:pointer; border:0; background:none; color:inherit}
+h1,h2,h3,h4{font-weight:900; line-height:1.25; margin:0}
+.mono{font-family:'JetBrains Mono',monospace; font-size:.82em; letter-spacing:.02em}
+.wrap{max-width:1500px; margin:0 auto;
+  padding-inline-start:max(clamp(16px,3vw,34px), env(safe-area-inset-left,0px));
+  padding-inline-end:max(clamp(16px,3vw,34px), env(safe-area-inset-right,0px))}
+
+/* ---------- header ---------- */
+.top{position:sticky; top:0; z-index:60; padding-top:env(safe-area-inset-top,0px); background:rgba(241,239,250,.92); backdrop-filter:blur(14px); border-bottom:1px solid var(--line)}
+.top-in{display:flex; align-items:center; justify-content:space-between; gap:16px; height:64px}
+.brand{display:flex; align-items:center; gap:11px; font-weight:900; font-size:1.02rem}
+.brand-mark{width:30px;height:30px;border-radius:8px;background:linear-gradient(135deg,var(--accent),var(--teal));display:grid;place-items:center;font-size:14px;font-weight:900;color:#fff}
+.top-links{display:flex; gap:18px; align-items:center; font-size:.9rem; color:var(--muted)}
+.top-links a{color:var(--muted)}
+.top-links a:hover{color:var(--text); text-decoration:none}
+
+/* ---------- hero ---------- */
+.hero{padding:clamp(26px,4vw,50px) 0 14px}
+.hero-top{display:flex; align-items:center; justify-content:space-between; gap:16px}
+.hero h1{font-size:clamp(1.9rem,4.6vw,3.1rem); letter-spacing:-.02em}
+.scroll-cue{display:inline-flex; align-items:center; gap:7px; flex:0 0 auto; font-size:.82rem; font-weight:500;
+  color:var(--muted); border:1px solid var(--line); border-radius:24px; padding:7px 13px; white-space:nowrap;
+  transition:color .18s,border-color .18s,opacity .3s}
+.scroll-cue:hover{color:var(--text); border-color:var(--accent-2)}
+.scroll-cue svg{animation:nudge 1.9s ease-in-out infinite}
+@keyframes nudge{0%,100%{transform:translateY(-2px)}50%{transform:translateY(2px)}}
+.scroll-cue.gone{opacity:0; pointer-events:none}
+.cta{display:flex; align-items:stretch; gap:11px; margin:14px 0 0; font-size:1.02rem; font-weight:500; line-height:1.6; max-width:72ch}
+.cta::before{content:''; flex:0 0 auto; width:3px; border-radius:2px; background:linear-gradient(180deg,var(--accent-2),var(--teal))}
+.cta-short{display:none}
+.hero .sub{color:var(--muted); font-size:clamp(1rem,1.6vw,1.16rem); margin-top:10px; max-width:64ch}
+.hero .note{margin-top:14px; font-size:.9rem; color:var(--faint); max-width:74ch}
+
+/* ---------- search ---------- */
+.search-wrap{position:relative; margin:22px 0 6px; max-width:620px}
+.search-box{display:flex; align-items:center; gap:12px; background:var(--bg); border:1px solid var(--line-2); border-radius:var(--r); padding:0 16px; transition:border-color .18s, box-shadow .18s}
+.search-box:focus-within{border-color:var(--accent-2); box-shadow:0 0 0 4px rgba(109,40,217,.14)}
+.search-box svg{flex:0 0 auto; opacity:.6}
+#q{flex:1; background:none; border:0; outline:0; color:var(--text); font-family:inherit; font-size:1.02rem; padding:15px 0}
+#q::placeholder{color:var(--faint)}
+.search-clear{padding:8px; border-radius:8px; color:var(--faint); font-size:1.1rem; line-height:1}
+.search-clear:hover{color:var(--text); background:var(--accent-soft)}
+.results{position:absolute; inset-inline:0; top:calc(100% + 8px); background:var(--surface); border:1px solid var(--line-2); border-radius:var(--r); box-shadow:var(--shadow); max-height:340px; overflow-y:auto; z-index:70; display:none}
+.results.open{display:block}
+.res{display:flex; align-items:center; gap:12px; width:100%; padding:11px 15px; text-align:start; border-bottom:1px solid var(--line)}
+.res:last-child{border-bottom:0}
+.res:hover,.res.active{background:var(--accent-soft)}
+.res img{width:26px; height:19px; object-fit:cover; border-radius:3px; flex:0 0 auto; background:var(--surface-2)}
+.res-name{flex:1; min-width:0}
+.res-name b{display:block; font-weight:500; font-size:.98rem}
+.res-name span{display:block; font-size:.76rem; color:var(--faint)}
+.res .dot{width:9px;height:9px;border-radius:50%;flex:0 0 auto}
+.res .nodata{font-size:.72rem; color:var(--faint); border:1px solid var(--line-2); border-radius:20px; padding:2px 9px; white-space:nowrap}
+
+/* ---------- status colors ---------- */
+.st-green {--c:#1FB89E; --c-ink:#0A6B42; --c-soft:#E4F3EA; --c-line:#9BD7CB}
+.st-yellow{--c:#B57A05; --c-ink:#7A5300; --c-soft:#FBF0D4; --c-line:#E8C978}
+.st-orange{--c:#C24A14; --c-ink:#A9380A; --c-soft:#FBE7DC; --c-line:#EBAE8C}
+.st-red   {--c:#8E1113; --c-ink:#8E1113; --c-soft:#F8E4E4; --c-line:#E0A0A0}
+.st-gray  {--c:#8D86A3; --c-ink:#4B4857; --c-soft:#EEEDF2; --c-line:#CFCCD9}
+.badge{display:inline-flex; align-items:center; gap:8px; border-radius:30px; padding:5px 13px;
+  font-size:.84rem; font-weight:700; white-space:nowrap;
+  background:var(--c-soft); color:var(--c-ink); border:1px solid var(--c-line)}
+.badge::before{content:''; width:8px;height:8px;border-radius:50%; background:var(--c)}
+
+/* ---------- layout ---------- */
+.stage{display:grid; grid-template-columns:1fr minmax(250px,330px); gap:clamp(14px,2vw,26px); align-items:start; padding-bottom:40px}
+@media(max-width:940px){.stage{grid-template-columns:1fr}}
+
+.globe-card{position:relative; background:var(--bg); border:1px solid var(--line-2); border-radius:22px; overflow:hidden; min-height:420px}
+#globe{display:block; width:100%; height:clamp(400px,60vh,700px); height:clamp(400px,60dvh,700px); touch-action:none; cursor:grab}
+#globe.dragging{cursor:grabbing}
+#globe.pointing{cursor:pointer}
+@media(max-width:940px){#globe{height:min(52vh,470px); height:min(52dvh,470px); min-height:300px}}
+
+.globe-hint{position:absolute; inset-inline-start:16px; bottom:14px; font-size:.78rem; color:var(--faint); background:rgba(241,239,250,.9); border:1px solid var(--line); border-radius:20px; padding:6px 13px; pointer-events:none; backdrop-filter:blur(6px)}
+.dice{position:absolute; inset-inline-start:14px; top:14px; z-index:6; width:38px; height:38px; border-radius:11px;
+  background:rgba(241,239,250,.94); border:1px solid var(--line-2); color:var(--muted);
+  display:grid; place-items:center; backdrop-filter:blur(6px); transition:color .18s,border-color .18s}
+.dice:hover{color:var(--accent-2); border-color:var(--accent-2)}
+.dice svg{transition:transform .55s cubic-bezier(.3,1.5,.5,1)}
+.dice.roll svg{transform:rotate(360deg)}
+.zoom-btns{position:absolute; inset-inline-end:14px; bottom:14px; display:flex; flex-direction:column; gap:8px; z-index:5}
+.zoom-btns button{width:38px;height:38px;border-radius:11px;background:rgba(241,239,250,.94);border:1px solid var(--line-2);color:var(--text);font-size:1.15rem;line-height:1;display:grid;place-items:center;backdrop-filter:blur(6px)}
+.zoom-btns button:hover{border-color:var(--accent-2); color:var(--accent-2)}
+
+.legend{position:absolute; inset-inline-end:16px; top:14px; display:flex; flex-direction:column; gap:7px; background:rgba(241,239,250,.92); border:1px solid var(--line); border-radius:12px; padding:11px 13px; backdrop-filter:blur(6px); pointer-events:none}
+.legend div{display:flex; align-items:center; gap:9px; font-size:.76rem; color:var(--muted)}
+.legend i{width:10px;height:10px;border-radius:3px;display:block}
+@media(max-width:620px){.legend{display:none}}
+
+#tip{position:fixed; z-index:80; pointer-events:none; display:none; background:rgba(241,239,250,.99); border:1px solid var(--line-2); border-radius:11px; padding:9px 13px; box-shadow:var(--shadow); max-width:250px}
+#tip.show{display:block}
+#tip .t-top{display:flex; align-items:center; gap:9px; margin-bottom:6px}
+#tip img{width:24px;height:17px;object-fit:cover;border-radius:3px}
+#tip b{font-size:.95rem}
+
+.globe-error{position:absolute; inset:0; display:none; place-items:center; text-align:center; padding:30px}
+.globe-error.show{display:grid}
+.globe-error p{color:var(--muted); max-width:44ch; font-size:.94rem}
+
+/* ---------- easy rail ---------- */
+.rail{background:var(--surface); border:1px solid var(--line); border-radius:18px; padding:18px 16px; position:sticky; top:82px}
+@media(max-width:940px){.rail{position:static}}
+.rail h2{font-size:1.02rem; margin-bottom:4px}
+.rail .rail-sub{font-size:.8rem; color:var(--faint); margin-bottom:14px; line-height:1.5}
+.rail-list{display:flex; flex-direction:column; gap:7px; max-height:none}
+.rail-item{display:flex; align-items:center; gap:11px; width:100%; text-align:start; padding:9px 10px; border-radius:11px; border:1px solid transparent; transition:background .15s,border-color .15s}
+.rail-item:hover{background:var(--accent-soft); border-color:var(--line-2)}
+.rail-rank{width:23px;height:23px;flex:0 0 auto;border-radius:7px;background:var(--bg);border:1px solid var(--line-2);display:grid;place-items:center;font-size:.75rem;font-weight:700;color:var(--accent-2)}
+.rail-item .rn{flex:1; min-width:0; font-size:.94rem; font-weight:500}
+.rail-item .rd{width:8px;height:8px;border-radius:50%;flex:0 0 auto}
+
+/* ---------- panel ---------- */
+.scrim{position:fixed; inset:0; background:rgba(33,28,53,.34); backdrop-filter:blur(3px); opacity:0; pointer-events:none; transition:opacity .25s; z-index:88}
+.scrim.open{opacity:1; pointer-events:auto}
+.panel{
+  position:fixed; top:0; right:0; height:100vh; height:100dvh; width:var(--panel-w);
+  background:var(--surface); border-inline-start:1px solid var(--line-2);
+  box-shadow:var(--shadow); z-index:90;
+  transform:translateX(104%); transition:transform .3s cubic-bezier(.22,.8,.3,1);
+  display:flex; flex-direction:column; overscroll-behavior:contain;
+}
+.panel.open{transform:translateX(0)}
+@media(max-width:720px){
+  .panel{top:auto; bottom:0; right:0; left:0; width:100%; height:90vh; height:90dvh; border-inline-start:0; border-top:1px solid var(--line-2); border-radius:20px 20px 0 0; transform:translateY(102%)}
+  .panel.open{transform:translateY(0)}
+}
+.panel-head{flex:0 0 auto; padding:18px 22px 14px; border-bottom:1px solid var(--line-2); background:var(--bg)}
+.grip{display:none}
+@media(max-width:720px){.grip{display:block; width:42px;height:4px;border-radius:4px;background:var(--line-2); margin:0 auto 12px}}
+.panel-head .ph-top{display:flex; align-items:flex-start; gap:13px}
+.panel-head img.flag{width:46px;height:33px;object-fit:cover;border-radius:5px;flex:0 0 auto;border:1px solid var(--line-2)}
+.panel-head h2{font-size:1.42rem; letter-spacing:-.01em}
+.panel-head .en{font-size:.8rem; color:var(--faint)}
+.close-x{margin-inline-start:auto; width:34px;height:34px;border-radius:10px;display:grid;place-items:center;color:var(--muted);font-size:1.3rem;line-height:1;flex:0 0 auto}
+.close-x:hover{background:var(--accent-soft); color:var(--text)}
+.panel-body{flex:1 1 auto; overflow-y:auto; -webkit-overflow-scrolling:touch;
+  padding:20px 22px calc(60px + env(safe-area-inset-bottom,0px))}
+
+.answer{font-size:1.02rem; line-height:1.72; margin:14px 0 0}
+.selfserve{margin-top:16px; border:1px solid var(--line-2); border-radius:var(--r); padding:13px 15px; background:var(--bg-2)}
+.selfserve .lbl{font-size:.76rem; color:var(--faint); margin-bottom:5px}
+.selfserve .val{font-weight:700; font-size:1rem}
+.verified{margin-top:14px; font-size:.78rem; color:var(--faint); display:flex; flex-wrap:wrap; gap:6px 16px}
+
+.micro{margin-top:20px; border:1px solid var(--line-2); border-radius:var(--r); overflow:hidden; background:var(--bg-2)}
+.micro-head{display:flex; align-items:center; gap:10px; padding:13px 16px; background:linear-gradient(135deg,rgba(109,40,217,.09),rgba(13,122,112,.08)); border-bottom:1px solid var(--line)}
+.micro-head .mh-l{font-size:.72rem; color:var(--muted); font-weight:500; letter-spacing:.04em}
+.micro-head .mh-w{font-family:'JetBrains Mono',monospace; font-size:.72rem; color:var(--teal); margin-inline-start:auto; white-space:nowrap}
+.micro-verdict{padding:14px 16px; font-size:1rem; font-weight:700; line-height:1.6; border-bottom:1px solid var(--line)}
+.micro-body{padding:14px 16px}
+.micro-row{margin-bottom:13px}
+.micro-row:last-child{margin-bottom:0}
+.micro-row .mr-l{font-size:.73rem; color:var(--faint); margin-bottom:4px; font-weight:500}
+.micro-row .mr-v{font-size:.9rem; color:var(--muted); line-height:1.66}
+.micro-lists{display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:15px; padding-top:15px; border-top:1px solid var(--line)}
+@media(max-width:560px){.micro-lists{grid-template-columns:1fr}}
+.micro-lists h5{font-size:.78rem; margin:0 0 8px; font-weight:700; display:flex; align-items:center; gap:7px}
+.micro-lists h5::before{content:''; width:7px;height:7px;border-radius:2px}
+.ml-yes h5::before{background:#1FB89E} .ml-no h5::before{background:#C24A14}
+.ml-yes h5{color:#0A6B42} .ml-no h5{color:#A9380A}
+.micro-lists ul{margin:0; padding-inline-start:16px; font-size:.85rem; color:var(--muted); line-height:1.62}
+.micro-lists li{margin-bottom:6px}
+.micro-lists .none{font-size:.85rem; color:var(--faint); padding-inline-start:2px}
+.sec{margin-top:26px}
+.sec > h3{font-size:1.03rem; margin-bottom:12px; padding-bottom:9px; border-bottom:1px solid var(--line); display:flex; align-items:center; gap:9px}
+.sec > h3::before{content:''; width:3px; height:15px; border-radius:2px; background:var(--accent-2)}
+
+.req{display:flex; gap:12px; padding:11px 0; border-bottom:1px solid var(--line)}
+.req:last-child{border-bottom:0}
+.req .rq-l{flex:0 0 128px; font-weight:700; font-size:.9rem}
+.req .rq-v{flex:1; min-width:0; font-size:.92rem; color:var(--muted); line-height:1.62}
+.tag{display:inline-block; font-size:.7rem; font-weight:700; border-radius:20px; padding:2px 9px; margin-inline-start:6px; vertical-align:middle; white-space:nowrap}
+.tag.need{background:#FBF0D4; color:#7A5300; border:1px solid #E8C978}
+.tag.free{background:#E4F3EA; color:#0A6B42; border:1px solid #9BD7CB}
+.tag.chk{background:#EEEDF2; color:#4B4857; border:1px solid #CFCCD9}
+
+.expand-btn{width:100%; margin-top:24px; padding:15px; border-radius:var(--r); background:linear-gradient(135deg,rgba(109,40,217,.10),rgba(13,122,112,.09)); border:1px solid var(--line-2); font-weight:700; font-size:1rem; display:flex; align-items:center; justify-content:center; gap:10px; transition:border-color .18s,transform .12s}
+.expand-btn:hover{border-color:var(--accent-2)}
+.expand-btn:active{transform:scale(.99)}
+.expand-btn .chev{transition:transform .25s; font-size:.8rem}
+.expand-btn.on .chev{transform:rotate(180deg)}
+#detail{display:none}
+#detail.on{display:block}
+
+ol.checklist{margin:0; padding:0; list-style:none; counter-reset:c}
+ol.checklist li{counter-increment:c; position:relative; padding:10px 40px 10px 0; border-bottom:1px solid var(--line); font-size:.93rem; line-height:1.6}
+ol.checklist li:last-child{border-bottom:0}
+ol.checklist li::before{content:counter(c); position:absolute; inset-inline-start:0; top:10px; width:25px;height:25px;border-radius:8px;background:var(--bg);border:1px solid var(--line-2);display:grid;place-items:center;font-size:.76rem;font-weight:700;color:var(--accent-2)}
+
+.step{border:1px solid var(--line); border-radius:var(--r); padding:15px; margin-bottom:12px; background:var(--bg-2)}
+.step h4{font-size:.99rem; margin-bottom:3px}
+.step .auth{font-size:.78rem; color:var(--teal); margin-bottom:9px; font-weight:500}
+.step p{margin:0 0 12px; font-size:.9rem; color:var(--muted); line-height:1.65}
+.kv{display:grid; grid-template-columns:repeat(auto-fit,minmax(148px,1fr)); gap:10px; margin-bottom:11px}
+.kv div{background:var(--bg); border:1px solid var(--line); border-radius:var(--r-sm); padding:7px 10px}
+.kv .k{font-size:.68rem; color:var(--faint); margin-bottom:2px}
+.kv .v{font-size:.83rem; font-weight:500}
+.step .go{display:inline-flex; align-items:center; gap:7px; font-size:.86rem; font-weight:700; border:1px solid var(--line-2); border-radius:9px; padding:8px 13px; color:var(--accent-2)}
+.step .go:hover{border-color:var(--accent-2); text-decoration:none}
+.foreign-ok{font-size:.78rem; font-weight:700}
+.foreign-ok.y{color:#0A6B42} .foreign-ok.n{color:#8E1113}
+
+.auth-item{display:flex; gap:12px; padding:11px 0; border-bottom:1px solid var(--line)}
+.auth-item:last-child{border-bottom:0}
+.auth-item .ai-n{font-weight:700; font-size:.92rem}
+.auth-item .ai-r{font-size:.83rem; color:var(--muted)}
+.auth-item .ai-l{font-size:.8rem}
+
+.warn{border:1px solid #EBAE8C; background:#FDF4EF; border-radius:var(--r); padding:14px 16px; margin-bottom:11px}
+.warn h4{font-size:.95rem; color:#A9380A; margin-bottom:6px}
+.warn p{margin:0; font-size:.89rem; color:var(--muted); line-height:1.65}
+.warn .until{font-size:.76rem; color:var(--faint); margin-top:7px}
+
+.unc{border-inline-start:2px solid var(--line-2); padding:2px 14px; margin-bottom:12px; font-size:.89rem; color:var(--muted); line-height:1.65}
+
+.src{display:flex; gap:11px; align-items:flex-start; padding:10px 0; border-bottom:1px solid var(--line); font-size:.87rem}
+.src:last-child{border-bottom:0}
+.tier{flex:0 0 auto; font-size:.66rem; font-weight:700; border-radius:6px; padding:3px 7px; white-space:nowrap; margin-top:2px}
+.tier.t1{background:#E4F3EA; color:#0A6B42; border:1px solid #9BD7CB}
+.tier.t2{background:#E0F2EF; color:#0A6259; border:1px solid #9BD2C9}
+.tier.t3{background:#FBF0D4; color:#7A5300; border:1px solid #E8C978}
+.tier.t4{background:#EEEDF2; color:#4B4857; border:1px solid #CFCCD9}
+.src .s-meta{font-size:.73rem; color:var(--faint); margin-top:2px}
+
+.homelinks{display:grid; gap:9px; margin-top:4px}
+.homelinks a{display:flex; align-items:center; justify-content:space-between; gap:10px; border:1px solid var(--line-2); border-radius:var(--r-sm); padding:11px 14px; font-size:.9rem; font-weight:500; color:var(--text)}
+.homelinks a:hover{border-color:var(--accent-2); text-decoration:none; color:var(--accent-2)}
+.homelinks a span{font-size:.74rem; color:var(--faint)}
+
+.eu-cols{display:grid; grid-template-columns:1fr 1fr; gap:14px}
+@media(max-width:520px){.eu-cols{grid-template-columns:1fr}}
+.eu-cols ul{margin:0; padding-inline-start:18px; font-size:.87rem; color:var(--muted); line-height:1.7}
+.eu-cols h4{font-size:.86rem; margin-bottom:7px; color:var(--text)}
+
+.nodata-box{text-align:center; padding:40px 20px}
+.nodata-box h3{font-size:1.1rem; margin-bottom:10px}
+.nodata-box p{color:var(--muted); font-size:.93rem; max-width:40ch; margin:0 auto}
+
+/* ---------- content sections ---------- */
+.info{border-top:1px solid var(--line); padding:44px 0}
+.info h2{font-size:1.35rem; margin-bottom:8px}
+.info .lead{color:var(--muted); max-width:76ch; margin-bottom:24px; font-size:.97rem}
+.cards{display:grid; grid-template-columns:repeat(auto-fit,minmax(258px,1fr)); gap:16px}
+.card{background:var(--bg); border:1px solid var(--line); border-radius:var(--r); padding:18px}
+.card h3{font-size:1rem; margin-bottom:8px}
+.card p{margin:0; font-size:.89rem; color:var(--muted); line-height:1.68}
+.card .num{font-family:'JetBrains Mono',monospace; font-size:.75rem; color:var(--accent-2); margin-bottom:9px; display:block}
+.status-key{display:grid; gap:11px; margin-top:6px}
+.status-row{display:flex; gap:13px; align-items:flex-start; padding:12px 14px; background:var(--bg); border:1px solid var(--line); border-radius:var(--r)}
+.status-row .badge{flex:0 0 auto}
+.status-row p{margin:0; font-size:.88rem; color:var(--muted); line-height:1.62}
+
+.disclaimer{border:1px solid var(--line-2); background:var(--bg-2); border-radius:var(--r); padding:18px 20px; margin:30px 0}
+.disclaimer h3{font-size:.95rem; margin-bottom:8px; color:#7A5300}
+.disclaimer p{margin:0; font-size:.88rem; color:var(--muted); line-height:1.7}
+
+footer{border-top:1px solid var(--line); padding:26px 0 46px; font-size:.84rem; color:var(--faint)}
+footer .f-in{display:flex; flex-wrap:wrap; gap:12px 26px; align-items:center; justify-content:space-between}
+
+.skip{position:absolute; inset-inline-start:-9999px; top:0}
+.skip:focus{inset-inline-start:12px; top:12px; z-index:100; background:var(--surface); padding:10px 16px; border-radius:9px; border:1px solid var(--accent-2)}
+:focus-visible{outline:2px solid var(--accent-2); outline-offset:2px}
+@media(prefers-reduced-motion:reduce){*{transition-duration:.01ms !important; animation-duration:.01ms !important}}
+
+/* ---------- opening view: phone portrait ----------
+   The globe has to be reachable without scrolling, so the framing
+   paragraph steps aside on narrow screens. */
+@media(max-width:620px){
+  .hero{padding:18px 0 10px}
+  .hero .note{display:none}
+  .hero .sub{margin-top:7px}
+  .cta{font-size:.93rem; margin-top:11px; gap:9px}
+  .cta-full{display:none}
+  .cta-short{display:inline}
+  .scroll-cue{font-size:.74rem; padding:5px 10px; gap:5px}
+  .search-wrap{margin:14px 0 4px}
+  #q{padding:13px 0; font-size:.98rem}
+  /* the canvas swallows touch, so it steps back from the card edges:
+     the gutters left over are where a thumb can scroll the page */
+  #globe{width:90%; margin-inline:auto;
+    height:min(calc(100vh - 292px),460px); height:min(calc(100dvh - 292px),460px); min-height:270px}
+  .globe-card{border-radius:18px}
+  .zoom-btns button{width:34px;height:34px}
+  .top-in{height:58px}
+  .top-links a:not(:last-child){display:none}
+}
+
+/* ---------- opening view: phone landscape ----------
+   Very little vertical room. Keep the search and the globe,
+   drop everything that is only framing. */
+@media(orientation:landscape) and (max-height:520px){
+  .top-in{height:50px}
+  .hero{padding:8px 0 4px}
+  .hero h1{font-size:1.3rem}
+  .hero .sub,.hero .note{display:none}
+  .cta{font-size:.84rem; margin-top:7px; gap:8px}
+  .cta-full{display:none}
+  .cta-short{display:inline}
+  .scroll-cue{font-size:.72rem; padding:4px 9px}
+  .search-wrap{margin:8px 0 2px}
+  #q{padding:10px 0; font-size:.95rem}
+  .search-box{padding:0 13px}
+  #globe{height:min(calc(100vh - 182px),330px); height:min(calc(100dvh - 182px),330px); min-height:180px}
+  .legend{display:none}
+  .globe-hint{display:none !important}
+  .zoom-btns{inset-inline-end:10px; bottom:10px}
+  .zoom-btns button{width:32px;height:32px}
+  .stage{padding-bottom:22px}
+  .results{max-height:210px}
+  .panel{height:100vh; height:100dvh; width:min(440px,64vw)}
+  .panel-head{padding:12px 18px 10px}
+  .panel-head h2{font-size:1.18rem}
+  .panel-head img.flag{width:38px;height:27px}
+  .panel-body{padding:14px 18px 40px}
+}
+
+/* ---------- tablet landscape ----------
+   iPad keeps the two-column stage; the rail just gets narrower. */
+@media(min-width:941px) and (max-width:1180px){
+  .rail{padding:15px 13px}
+  .rail .rail-sub{font-size:.76rem}
+  #globe{height:clamp(380px,56vh,620px); height:clamp(380px,56dvh,620px)}
+}
+
+/* short desktop windows and laptops */
+@media(min-width:941px) and (max-height:780px){
+  .hero{padding:20px 0 10px}
+  .hero .note{display:none}
+  .cta{font-size:.96rem; margin-top:11px}
+  #globe{height:min(calc(100vh - 340px),540px); height:min(calc(100dvh - 340px),540px); min-height:320px}
+}
+</style>
+</head>
+<body>
+<div class="page-bg" aria-hidden="true"></div>
+<a class="skip" href="#globe-section">דלג לגלובוס</a>
+
+<header class="top">
+  <div class="wrap top-in">
+    <a class="brand" href="index.html">
+      <span class="brand-mark">FM</span>
+      <span>Flying Mink</span>
+    </a>
+    <nav class="top-links">
+      <a href="index.html">חזרה לאתר</a>
+      <a href="israelmap.html">מפת ההטסה בישראל</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<section class="wrap hero">
+  <div class="hero-top">
+    <h1>איפה מותר להטיס רחפן?</h1>
+    <button class="scroll-cue" id="scrollcue" aria-label="גלול למטה">
+      <span>גלול למטה</span>
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14"/><path d="m19 12-7 7-7-7"/></svg>
+    </button>
+  </div>
+  <p class="sub">מדריך עולמי לתיירים להטסת רחפנים עד 250 גרם</p>
+  <p class="cta">
+    <span class="cta-full">לחץ על מדינה בגלובוס או חפש אותה בשורת החיפוש, וגלה בדיוק מה נדרש כדי להטיס שם כחוק.</span>
+    <span class="cta-short">לחץ על מדינה בגלובוס או חפש אותה, וגלה מה נדרש כדי להטיס שם.</span>
+  </p>
+  <p class="note">האתר לא נועד להסביר חקיקה. הוא נועד לענות על שאלה אחת: אני תייר, יש לי רחפן מסדרת מיני — מה בדיוק אני צריך לעשות כדי להטיס אותו כאן כחוק, והאם אני בכלל יכול לסדר את זה בעצמי.</p>
+
+  <div class="search-wrap">
+    <div class="search-box">
+      <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      <input id="q" type="text" placeholder="חפש מדינה" autocomplete="off" role="combobox" aria-expanded="false" aria-controls="results" aria-label="חיפוש מדינה">
+      <button class="search-clear" id="qclear" aria-label="נקה חיפוש" hidden>&times;</button>
+    </div>
+    <div class="results" id="results" role="listbox"></div>
+  </div>
+</section>
+
+<section class="wrap stage" id="globe-section">
+  <div class="globe-card">
+    <canvas id="globe" aria-label="גלובוס אינטראקטיבי של סטטוס הטסת רחפנים"></canvas>
+    <button class="dice" id="dice" aria-label="הצג מדינה אקראית" title="מדינה אקראית">
+      <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+        <rect x="3" y="3" width="18" height="18" rx="4"/>
+        <circle cx="8.5" cy="8.5" r="1.35" fill="currentColor" stroke="none"/>
+        <circle cx="15.5" cy="8.5" r="1.35" fill="currentColor" stroke="none"/>
+        <circle cx="12" cy="12" r="1.35" fill="currentColor" stroke="none"/>
+        <circle cx="8.5" cy="15.5" r="1.35" fill="currentColor" stroke="none"/>
+        <circle cx="15.5" cy="15.5" r="1.35" fill="currentColor" stroke="none"/>
+      </svg>
+    </button>
+    <div class="legend" aria-hidden="true">
+      <div><i style="background:#1FB89E"></i> ניתן להטיס</div>
+      <div><i style="background:#B57A05"></i> בכפוף לדרישות</div>
+      <div><i style="background:#C24A14"></i> בירוקרטיה משמעותית</div>
+      <div><i style="background:#8E1113"></i> לא מעשי לתייר</div>
+      <div><i style="background:#CDC7DE; border:1px solid #928AB0"></i> אין מידע במאגר</div>
+    </div>
+    <div class="zoom-btns">
+      <button id="zin" aria-label="התקרב">+</button>
+      <button id="zout" aria-label="התרחק">&minus;</button>
+    </div>
+    <p class="globe-hint" id="hint">גרור לסיבוב, גלגלת לזום, לחץ על מדינה צבועה</p>
+    <p class="globe-hint" id="hint-touch" style="display:none">גרור לסיבוב, צביטה לזום, הקש על מדינה צבועה</p>
+    <div class="globe-error" id="gerr">
+      <div>
+        <h3>הגלובוס לא נטען</h3>
+        <p>לא הצלחנו לטעון את נתוני המפה. החיפוש ורשימת המדינות בצד עדיין עובדים, ואפשר להגיע לכל מדינה דרכם.</p>
+      </div>
+    </div>
+  </div>
+
+  <aside class="rail">
+    <h2>הכי קל לתייר</h2>
+    <p class="rail-sub">חמש המדינות שבהן תייר עם רחפן עד 250 גרם מגיע למצב חוקי במאמץ המינימלי. הדירוג לפי מה שנדרש בפועל, לא לפי כמה החוק נשמע מקל. שאר המדינות זמינות בחיפוש ובלחיצה על הגלובוס.</p>
+    <div class="rail-list" id="rail"></div>
+  </aside>
+</section>
+
+<section class="wrap info">
+  <h2>איך קוראים את הסטטוסים</h2>
+  <p class="lead">הסטטוס לא עונה על השאלה "האם החוק מתיר", אלא על השאלה "האם תייר רגיל יכול להגיע למצב חוקי בלי לשכנע משרד ממשלתי".</p>
+  <div class="status-key">
+    <div class="status-row st-green"><span class="badge">ניתן להטיס</span><p>אפשר להטיס כחוק אחרי דרישות סבירות, ולעיתים ללא שום דרישה מוקדמת.</p></div>
+    <div class="status-row st-yellow"><span class="badge">בכפוף לדרישות</span><p>חוקי, אבל דורש רישום, מבחן, ביטוח, אישור או דיווח. הכל ניתן להשלמה בעצמך.</p></div>
+    <div class="status-row st-orange"><span class="badge">בירוקרטיה משמעותית</span><p>אפשרי מבחינה משפטית, אבל התהליך מורכב מספיק כדי להיות קשה לתייר רגיל.</p></div>
+    <div class="status-row st-red"><span class="badge">לא מעשי לתייר</span><p>ייתכן שהחוק מאפשר אישור חריג, אבל תייר רגיל לא יכול להסתמך על קבלתו.</p></div>
+    <div class="status-row st-gray"><span class="badge">נדרש בירור נוסף</span><p>המקורות הרשמיים סותרים, חסרים או לא ברורים מספיק כדי לקבוע.</p></div>
+  </div>
+</section>
+
+<section class="wrap info">
+  <h2>איך האתר עובד</h2>
+  <p class="lead">כל מדינה נבדקה מול המקורות הרשמיים שלה — רשות התעופה, רשות התקשורת, רשות הפארקים — ובשפה המקומית כשהיה צורך. כל טענה משפטית מקושרת למקור.</p>
+  <div class="cards">
+    <div class="card"><span class="num">01</span><h3>הפרדה בין רשויות</h3><p>רשות התעופה, רשות התקשורת, בקרת המרחב האווירי ורשות הפארקים הן גופים נפרדים עם דרישות נפרדות. באתר הן לא מאוחדות ל"אישור ממשלתי" כללי.</p></div>
+    <div class="card"><span class="num">02</span><h3>תייר מול תושב</h3><p>לכל דרישה נבדק אם זר יכול בכלל להשלים אותה: האם מתקבל דרכון, האם נדרש מספר טלפון מקומי, תעודת זהות או חשבון בנק.</p></div>
+    <div class="card"><span class="num">03</span><h3>250 גרם זה לא פטור אוטומטי</h3><p>לכל מדינה נבדק אם הסף בכלל קיים, אם הוא "פחות מ-250" או "250 לכל היותר", והאם מצלמה מבטלת אותו. בחלק מהמדינות היא מבטלת.</p></div>
+    <div class="card"><span class="num">04</span><h3>קבוע מול זמני</h3><p>הגבלות זמניות — ביטחוניות, עונתיות או נקודתיות — מסומנות בנפרד, כדי לא להציג אותן כחוק קבוע ולא להפך.</p></div>
+    <div class="card"><span class="num">05</span><h3>דירוג מקורות</h3><p>מקור רשמי, ארגון מקצועי, תעשייה או קהילה. טענה משפטית לא נשענת על מקור קהילתי לבדו — הוא משמש רק לאיתור בעיות בשטח.</p></div>
+    <div class="card"><span class="num">06</span><h3>אי-ודאות מוצהרת</h3><p>כשמקורות סותרים או שהמידע חסר, זה נכתב במפורש בעמוד המדינה במקום להכריע בשקט.</p></div>
+  </div>
+
+  <div class="disclaimer">
+    <h3>הבהרה משפטית</h3>
+    <p>המידע באתר נועד למטרות מידע בלבד ואינו מהווה ייעוץ משפטי או תחליף להנחיות הרשות המקומית. תקנות והגבלות עשויות להשתנות. לפני כל הטסה יש לבדוק את המקורות הרשמיים העדכניים במדינת היעד.</p>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap f-in">
+    <span>Flying Mink — פתרונות רחפנים</span>
+    <span class="mono" id="dbdate"></span>
+  </div>
+</footer>
+
+<div class="scrim" id="scrim"></div>
+<aside class="panel" id="panel" role="dialog" aria-modal="false" aria-labelledby="pname">
+  <div class="panel-head">
+    <div class="grip"></div>
+    <div class="ph-top">
+      <img class="flag" id="pflag" alt="" width="46" height="33">
+      <div style="min-width:0">
+        <h2 id="pname"></h2>
+        <div class="en" id="pen"></div>
+      </div>
+      <button class="close-x" id="pclose" aria-label="סגור">&times;</button>
+    </div>
+    <div style="margin-top:12px"><span id="pbadge"></span></div>
+  </div>
+  <div class="panel-body" id="pbody"></div>
+</aside>
+
+<div id="tip" role="status"></div>
+
+<script id="countries-data" type="application/json">[{"id":"th","num":"764","iso2":"th","nameHe":"תאילנד","nameEn":"Thailand","aliases":["תאילנד","סיאם","Thailand","Siam","בנגקוק","פוקט"],"continent":"אסיה","coords":[100.99,15.87],"status":"orange","shortAnswer":"אין בתאילנד פטור למשקל מתחת ל-250 גרם. כל רחפן עם מצלמה חייב ברישום כפול — ברשות התעופה (CAAT) וברשות התקשורת (NBTC) — בביטוח צד שלישי, ובמבחן מקוון של 40 שאלות. חלק מהשלבים אפשריים רק אחרי הנחיתה בתאילנד, מפני שנדרשים חותמת כניסה ומספר טלפון תאילנדי.","micro":{"verdict":"אין פטור. סף 250 גרם לא קיים ברגולציה התאילנדית.","rule":"הסיווג נקבע לפי קיום מצלמה, לא לפי משקל. סף המשקל 2 ק\"ג רלוונטי אך ורק לכלים ללא מצלמה. רחפן מצולם במשקל 249 גרם מטופל בדיוק כמו רחפן במשקל 2 ק\"ג.","counts":"משקל ההמראה כולל סוללה, מדחפים ואביזרים — אך במקרה של תאילנד זה חסר משמעות מעשית, מפני שהמצלמה מכריעה.","camera":"המצלמה היא הגורם היחיד שקובע. אין דרך לעקוף אותה בהורדת משקל.","exempts":[],"notExempts":["רישום הכלי והמפעיל ב-CAAT","רישום ציוד הרדיו ב-NBTC","ביטוח אחריות במיליון באט","מבחן מקוון של 40 שאלות","רישום כל טיסה מראש באפליקציה","אישור נפרד בפארקים לאומיים"],"tourist":"לא קיים פטור שאפשר להסתמך עליו. תייר עם DJI Mini עובר את אותו מסלול מלא כמו מפעיל מקצועי.","models":"DJI Mini 4 Pro, Mini 3 Pro ו-Mini 4K — כולם מחייבים רישום כפול מלא בגלל המצלמה."},"selfService":"bureaucratic","lastVerified":"2026-09-07","confidence":"גבוהה לגבי מבנה הדרישות; בינונית לגבי משך הטיפול ופרטי ההגבלות הזמניות","tourist":{"allowed":"כן. תייר רשאי להביא רחפן ולהטיס אותו, בתנאי שהשלים את שני הרישומים ומחזיק בביטוח.","recreational":"מותר לאחר השלמת הרישום.","commercial":"מותר רק במסלול נפרד ומחמיר יותר; לא רלוונטי לתייר.","nationality":"אין מגבלת אזרחות. קיים מסלול רישום ייעודי לזרים ב-NBTC.","residency":"אין דרישת תושבות, אך נדרשת כתובת בתאילנד (אישור הזמנת מלון מתקבל) ומספר טלפון תאילנדי."},"drone":{"under250":"אין פטור. הרגולציה התאילנדית חלה על כל רחפן שיש בו מצלמה, ללא קשר למשקל — כולל DJI Mini.","threshold":"סף המשקל (2 ק\"ג ומעלה) רלוונטי רק לרחפנים ללא מצלמה. מצלמה מבטלת בפועל את הפטור.","camera":"המצלמה היא הגורם המכריע. רחפן שקול 249 גרם עם מצלמה נדרש לרישום מלא בדיוק כמו רחפן כבד.","registration":"חובה. רישום כפול: כלי + מפעיל ב-CAAT, ורישום ציוד הרדיו ב-NBTC.","remoteId":"אין חובת Remote ID בנוסח האמריקאי/אירופי, אך יש חובת סימון מספר רישום על גוף הכלי.","marking":"מספר הרישום חייב להיות מוצג על הרחפן בגופן של 3 מ\"מ לפחות (לכלים מתחת ל-25 ק\"ג)."},"pilot":{"registration":"חובה. רישום מטיס נפרד בפורטל UAS של CAAT.","license":"רישיון מטיס רחפן מ-CAAT, תקף לשנתיים.","exam":"מבחן מקוון של 40 שאלות ב-40 דקות. ניתן להיבחן באנגלית. כישלון מחייב המתנה של 24 שעות לפני ניסיון נוסף. סף המעבר מדווח בין 75% ל-80% במקורות שונים.","training":"אין חובת קורס פרונטלי לקטגוריה הרלוונטית לתייר. CAAT מפתחת הסדרת מרכזי הדרכה ובתקופת המעבר מקבלת אישורי הדרכה של יצרנים.","minAge":"לא פורסם סף גיל אחיד לתיירים; הרישום מחייב מסמכי זיהוי."},"insurance":{"required":"כן. ביטוח אחריות כלפי צד שלישי הוא תנאי לאישור CAAT.","applies250":"כן, חל גם על רחפנים מתחת ל-250 גרם עם מצלמה.","minCoverage":"מיליון באט לפחות (כ-27,000 דולר) לנזקי גוף ורכוש.","foreign":"פוליסה זרה עשויה להתקבל אם היא עומדת בדרישות CAAT, אך פוליסה תאילנדית מקצרת משמעותית את הטיפול.","local":"מומלץ בפועל. DJI Care אינו ביטוח אחריות ואינו עונה על הדרישה."},"permissions":{"flightPermit":"כל טיסה חייבת ברישום מראש באפליקציית UAS Portal. באזורים פתוחים האישור מתקבל תוך דקות; באזורים מוגבלים נדרשים לפחות 3 ימים.","notification":"בנוסף לרישום הטיסה, באזורים רגישים נדרש דיווח למרכז האנטי-רחפנים של המשטרה.","airspace":"אישור מרחב אווירי מתקבל דרך אותה מערכת UAS Portal.","telecom":"אישור NBTC נפרד לציוד הרדיו — נדרש גם אם לא מתכוונים להטיס בפועל.","local":"בפארקים לאומיים נדרש אישור נפרד מהנהלת הפארק, ורק לאחר השלמת רישומי CAAT ו-NBTC.","nationalPark":"רוב הפארקים הלאומיים אוסרים הטסה. הפרה נענשת בקנס ובהחרמת הציוד."},"limits":{"altitude":"90 מטר מעל פני הקרקע.","vlos":"חובה לשמור על קשר עין ישיר.","people":"אסור להטיס מעל התקהלויות ומעל אזורים בנויים ללא אישור.","airports":"אסור בקרבת שדות תעופה ללא אישור מפורש.","urban":"הטסה מעל ערים דורשת אישור מיוחד.","night":"אסורה. הטסה מותרת בשעות היום בלבד.","military":"אסור מוחלט מעל מתקנים צבאיים ותשתיות ביטחוניות.","government":"אסור מעל מבני ממשלה, בתי חולים ומתקנים רגישים.","privacy":"חוק הגנת המידע התאילנדי (PDPA) אוסר פרסום תמונות מזהות ללא הסכמה, עם קנסות כבדים."},"authorities":[{"name":"CAAT — רשות התעופה האזרחית של תאילנד","role":"רישום כלי, רישום מטיס, מבחן, אישורי טיסה","url":"https://www.caat.or.th/aviation/remotely-piloted-aircraft-rpa/"},{"name":"NBTC — רשות השידור והתקשורת","role":"רישום ציוד הרדיו והשלט","url":"https://anyregis.nbtc.go.th/sign_up/foreigner/"},{"name":"UAS Portal","role":"מערכת אישורי הטיסה והמפות","url":"https://uasportal.caat.or.th/"},{"name":"DNP — רשות הפארקים הלאומיים","role":"אישורי הטסה בפארקים לאומיים","url":"https://portal.dnp.go.th/"}],"steps":[{"title":"רכישת ביטוח אחריות צד שלישי","authority":"חברת ביטוח","desc":"כיסוי של מיליון באט לפחות. אפשר לסדר מראש מהבית. זהו התנאי המקדים לאישור CAAT.","docs":"פרטי הרחפן והמספר הסידורי","cost":"משתנה; פוליסות תיירים נעות סביב 30–80 דולר","time":"מיידי עד יום עסקים","online":true,"foreigner":true,"url":""},{"title":"רכישת כרטיס SIM תאילנדי עם מספר טלפון","authority":"מפעיל סלולרי מקומי","desc":"נדרש מספר תאילנדי לאימות OTP בפורטל CAAT. SIM נתונים בלבד אינו מספיק. ניתן לרכוש בשדה התעופה או להצטייד מראש ב-eSIM עם מספר מקומי.","docs":"דרכון","cost":"כ-10–20 דולר","time":"מיידי","online":false,"foreigner":true,"url":""},{"title":"רישום ציוד הרדיו ב-NBTC","authority":"NBTC","desc":"מסלול ייעודי לזרים. הרישום תקף למשך תוקף חותמת הכניסה בלבד — ביציאה מהמדינה הוא פוקע, ובכניסה הבאה יש להירשם מחדש. יש להירשם גם אם לא מתכוונים להטיס.","docs":"דרכון וחותמת כניסה, כתובת בתאילנד (אישור מלון מתקבל), תמונות של הרחפן והשלט עם מספרים סידוריים, טופס ODoC","cost":"אגרה ממשלתית נמוכה (מדווח כ-214 באט)","time":"2–3 ימי עסקים, לעיתים עד שבועיים","online":true,"foreigner":true,"url":"https://anyregis.nbtc.go.th/sign_up/foreigner/"},{"title":"פתיחת חשבון בפורטל UAS של CAAT","authority":"CAAT","desc":"אימות זהות באמצעות סיסמה חד-פעמית לטלפון התאילנדי. לא ניתן להשלים לפני הכניסה לתאילנד.","docs":"דרכון, מספר טלפון תאילנדי","cost":"ללא תשלום","time":"מיידי","online":true,"foreigner":true,"url":"https://uasportal.caat.or.th/"},{"title":"מבחן מקוון ורישום מטיס","authority":"CAAT","desc":"40 שאלות ב-40 דקות, זמין באנגלית. כישלון מחייב המתנה של 24 שעות. לאחר המעבר מונפק אישור מטיס בתוקף לשנתיים.","docs":"פרטי חשבון UAS Portal","cost":"ללא תשלום","time":"עד יום","online":true,"foreigner":true,"url":"https://uasportal.caat.or.th/"},{"title":"רישום הרחפן ב-CAAT","authority":"CAAT","desc":"לאחר האישור מונפק מספר רישום שיש להדביק על גוף הרחפן.","docs":"מספר סידורי, פוליסת ביטוח, אישור NBTC","cost":"ללא תשלום","time":"מדווח בין יום למספר ימים; במקרים מסוימים עד 14 יום","online":true,"foreigner":true,"url":"https://uasportal.caat.or.th/"},{"title":"רישום כל טיסה באפליקציית UAS Portal","authority":"CAAT","desc":"לפני כל המראה יש להגדיר אזור, תאריך, שעה ומטרה. באזור פתוח האישור מתקבל תוך דקות; באזור מוגבל נדרשים 3 ימים לפחות.","docs":"אישור מטיס ומספר רישום","cost":"ללא תשלום","time":"דקות עד 3 ימים","online":true,"foreigner":true,"url":"https://uasportal.caat.or.th/"}],"checklist":["לרכוש ביטוח אחריות צד שלישי בכיסוי של מיליון באט לפחות — עוד לפני הטיסה לתאילנד","להצהיר על הרחפן במכס בכניסה למדינה","לרכוש כרטיס SIM תאילנדי עם מספר טלפון","להגיש בקשת רישום ל-NBTC עם חותמת הכניסה בדרכון","לפתוח חשבון בפורטל UAS של CAAT ולאמת אותו במספר התאילנדי","לעבור את מבחן 40 השאלות ולקבל אישור מטיס","לרשום את הרחפן ב-CAAT ולהדביק עליו את מספר הרישום","לבדוק את מפת האזורים באפליקציית UAS Portal","לרשום כל טיסה מראש באפליקציה ולהמתין לאישור","בפארק לאומי — לקבל אישור נפרד מהנהלת הפארק לפני ההגעה"],"temporary":[{"title":"הגבלות באזור הגבול עם קמבודיה","desc":"בעקבות המצב הביטחוני בגבול תאילנד-קמבודיה פרסמה CAAT הודעה מספר 15 שנכנסה לתוקף בפברואר 2026 ותקפה עד להודעה חדשה. במחוזות הגבול נדרש רישום טיסה שלושה ימים מראש, גובה מרבי 90 מטר, הטסה בין 06:00 ל-18:00, ואיסור מוחלט בין חצות ל-04:00. נדרש גם דיווח למרכז האנטי-רחפנים של המשטרה. יש לוודא מול CAAT האם ההודעה עדיין בתוקף.","until":"עד להודעה חדשה","source":"https://www.tatnews.org/2026/02/flying-a-drone-in-thailand-updated-guide-for-tourists/"}],"uncertainties":["סף המעבר במבחן CAAT מדווח 75% במקור אחד ו-80% באחר. יש להיערך לסף הגבוה.","משך אישור הרישום משתנה מאוד בין דיווחים — בין יום אחד לארבעה עשר יום. מומלץ להתחיל שבועיים לפני הנסיעה.","בקיץ 2026 נכנסה לתוקף רגולציה חדשה של CAAT לכלים עד 25 ק\"ג המסדירה הכשרות ואישורים. ההשלכות המדויקות על תייר עם רחפן קל אינן חד-משמעיות בפרסומים.","ההבחנה בין אזורים פתוחים למוגבלים באפליקציה השתנתה במהלך 2026. יש לבדוק את מצב האזור באפליקציה עצמה ולא להסתמך על מדריכים."],"sources":[{"title":"CAAT — שלבי הרישום לכלי בלתי מאויש","url":"https://www.caat.or.th/aviation/remotely-piloted-aircraft-rpa/registration-process/","tier":1,"lang":"תאית","checked":"2026-09-07"},{"title":"CAAT — הודעת רגולציה חדשה לכלים עד 25 ק\"ג","url":"https://www.caat.or.th/do-you-know/201668/","tier":1,"lang":"תאית","checked":"2026-09-07"},{"title":"NBTC — רישום מקוון לזרים","url":"https://anyregis.nbtc.go.th/sign_up/foreigner/","tier":1,"lang":"אנגלית/תאית","checked":"2026-09-07"},{"title":"TAT Newsroom — מדריך רשמי לתיירים, פברואר 2026","url":"https://www.tatnews.org/2026/02/flying-a-drone-in-thailand-updated-guide-for-tourists/","tier":2,"lang":"אנגלית","checked":"2026-09-07"},{"title":"The Nation — הודעה 15 בגבול קמבודיה","url":"https://www.nationthailand.com/news/general/40062191","tier":3,"lang":"אנגלית","checked":"2026-09-07"}]},{"id":"in","num":"356","iso2":"in","nameHe":"הודו","nameEn":"India","aliases":["הודו","India","Bharat","גואה","דלהי"],"continent":"אסיה","coords":[78.96,20.59],"status":"red","shortAnswer":"כללי הרחפנים ההודיים פוטרים כלי עד 250 גרם מרישום, אבל זה לא המחסום האמיתי. מאז פברואר 2022 יבוא רחפנים מוגמרים להודו אסור, כולל בכבודה אישית, ולזרים נדרש אישור ביטחוני ממשרד הפנים. בפועל תייר אינו יכול להכניס רחפן DJI Mini להודו ולהטיס אותו כחוק.","micro":{"verdict":"פטור אמיתי בקטגוריית ננו — אבל הוא חסר ערך לתייר, כי הרחפן לא יכול להיכנס למדינה.","rule":"קטגוריית Nano מוגדרת כ-250 גרם ומטה. זהו סף כולל: 250 גרם עצמו עדיין בתוך הקטגוריה, ו-251 גרם כבר מחייב מספר זיהוי ייחודי.","counts":"משקל ההמראה כולל מטען ואביזרים מחוברים.","camera":"נקודת מחלוקת. נוסח הכללים מבוסס על משקל בלבד, אך מקורות מקצועיים טוענים שמצלמה מחייבת UIN בכל משקל. לא הוכרע.","exempts":["מספר זיהוי ייחודי (UIN)","רישיון מטיס מרחוק","חובת ביטוח"],"notExempts":["היתר יבוא מ-DGFT — זהו החסם האמיתי","אישור ביטחוני ממשרד הפנים לזרים","מגבלת גובה של 15 מטר בלבד לננו ללא UIN","איסור מוחלט באזורים אדומים","איסור באתרי מורשת ובפארקים"],"tourist":"הפטור עוסק ברישום בלבד. הוא לא מקנה זכות להכניס רחפן להודו ולא מחליף את אישור משרד הפנים הנדרש מזר.","models":"אין רלוונטיות לדגם — DJI Mini במשקל 249 גרם כפוף לאיסור היבוא בדיוק כמו כל רחפן אחר."},"selfService":"no","lastVerified":"2026-09-07","confidence":"גבוהה לגבי איסור היבוא ולגבי הפטור לקטגוריית ננו; בינונית לגבי אופן האכיפה בשדות תעופה","tourist":{"allowed":"לא באופן מעשי. איסור היבוא חוסם את הכניסה של הרחפן, ואישור ההטסה לזרים דורש אישור ביטחוני פרטני.","recreational":"לתושבי הודו — מותר בקטגוריית ננו ללא רישום. לתייר — חסום בשלב היבוא.","commercial":"דורש היתר מפעיל, רישיון מטיס ואישור ביטחוני. אינו רלוונטי לתייר.","nationality":"כללי הרחפנים 2021 מחייבים זרים בקבלת אישור ממשרד הפנים ההודי. רישיון מטיס לזר עובר במסלול FATA.","residency":"פתיחת חשבון בפורטל DigitalSky מבוססת על אימות Aadhaar — תעודת זהות הודית. לזר אין דרך רגילה להשלים את השלב."},"drone":{"under250":"קטגוריית Nano מוגדרת כ-250 גרם ומטה וכן פטורה ממספר זיהוי ייחודי (UIN) לשימוש פנאי. הפטור הזה אמיתי — אבל הוא חל על מי שכבר מחזיק ברחפן בהודו כחוק.","threshold":"250 גרם ומטה, כולל מטען ואביזרים. 251 גרם כבר מחייב רישום מלא.","camera":"קיימת סתירה בין מקורות: חלקם טוענים שכל רחפן עם מצלמה מחייב UIN ללא קשר למשקל. הנוסח הרשמי של הכללים מבוסס על משקל בלבד. אין הכרעה ברורה.","registration":"פטור לקטגוריית ננו בשימוש פנאי; חובה לכל השאר דרך פורטל DigitalSky.","remoteId":"נדרש לכלים רשומים כחלק ממערכת NPNT.","marking":"מספר ה-UIN חייב להיות מוטבע על הכלי."},"pilot":{"registration":"לא נדרש לקטגוריית ננו.","license":"לא נדרש לננו. לכלים כבדים יותר — Remote Pilot Certificate.","exam":"לא רלוונטי לקטגוריית ננו.","training":"לא רלוונטי לקטגוריית ננו.","minAge":"18 לרישיון מטיס."},"insurance":{"required":"לא נדרש לקטגוריית ננו בשימוש פנאי.","applies250":"לא.","minCoverage":"לא רלוונטי.","foreign":"לא רלוונטי.","local":"לא רלוונטי."},"permissions":{"flightPermit":"בקטגוריית ננו — לא נדרש אישור טיסה באזור ירוק בגובה נמוך.","notification":"מומלץ ליידע את המשטרה המקומית, בעיקר באזורים רגישים.","airspace":"מפת האזורים מתפרסמת באפליקציית DigitalSky. אזור אדום דורש אישור ידני שאינו ניתן בפועל למטרות פנאי.","telecom":"ציוד רדיו כפוף לאישור אגף WPC במשרד התקשורת.","local":"אתרי מורשת, מונומנטים ופארקים לאומיים אוסרים הטסה גם באזור ירוק.","nationalPark":"אסור ללא אישור נפרד."},"limits":{"altitude":"120 מטר לרוב הקטגוריות; 15 מטר בלבד לננו ללא UIN.","vlos":"חובה.","people":"אסור מעל התקהלויות.","airports":"אסור באזור אדום, כולל רדיוס נרחב סביב שדות תעופה.","urban":"מוגבל לפי צבע האזור במפה.","night":"אסור ללא אישור.","military":"אסור מוחלט.","government":"אסור מוחלט. אזורי גבול רגישים במיוחד.","privacy":"חלים דיני פרטיות מקומיים."},"authorities":[{"name":"DGCA — המנהל הכללי לתעופה אזרחית","role":"רגולציית רחפנים, רישום, רישוי","url":"https://digitalsky.dgca.gov.in/"},{"name":"DGFT — המנהל הכללי לסחר חוץ","role":"מדיניות יבוא רחפנים","url":"https://www.dgft.gov.in/"},{"name":"MHA — משרד הפנים","role":"אישור ביטחוני לזרים","url":"https://www.mha.gov.in/"},{"name":"WPC — אגף תכנון וקואורדינציה אלחוטית","role":"אישור ציוד רדיו","url":"https://dot.gov.in/spectrum-management"}],"steps":[{"title":"היתר יבוא מ-DGFT","authority":"DGFT","desc":"הודעה 54/2015-2020 מ-9 בפברואר 2022 אוסרת יבוא רחפנים מוגמרים או מפורקים. חריגים ניתנים רק למחקר ופיתוח, ביטחון וגופים מוכרים — לא לתיירים. ללא היתר, הכנסת הרחפן לתחומי הודו היא הפרה, ודווחו החרמות בשדות תעופה.","docs":"בקשת היתר יבוא, נימוק מוסדי","cost":"לא רלוונטי לתייר","time":"לא ישים","online":false,"foreigner":false,"url":"https://www.dgft.gov.in/"},{"title":"אישור ביטחוני ממשרד הפנים","authority":"MHA","desc":"כללי הרחפנים 2021 מחייבים אזרח זר בקבלת אישור לפני הפעלת רחפן בהודו. אין מסלול מקוון פתוח לתייר.","docs":"בקשה פרטנית","cost":"לא פורסם","time":"לא ישים לתייר","online":false,"foreigner":false,"url":"https://www.mha.gov.in/"}],"checklist":["לא להביא רחפן להודו ללא היתר יבוא מ-DGFT — הכלי עלול להיתפס בשדה התעופה","אם קיים אינטרס אמיתי בצילום אווירי בהודו — לשכור שירות של מפעיל הודי מורשה בעל UIN ורישיון","לא להסתמך על הפטור לקטגוריית ננו: הוא עוסק ברישום, לא בזכות להכניס רחפן למדינה","לבדוק מול הקונסוליה ההודית האם המדיניות השתנתה לפני נסיעה עם ציוד צילום"],"temporary":[],"uncertainties":["אכיפת איסור היבוא בכבודה אישית של תייר אינה אחידה. יש דיווחים על החרמות בשדות תעופה ויש נוסעים שעברו. הסיכון המשפטי קיים בכל מקרה.","היקף החובה של אישור משרד הפנים לזר המטיס כלי בקטגוריית ננו אינו מנוסח באופן חד-משמעי בפרסומים הרשמיים.","בשנת 2025 החל DGCA בהליכי ביטול רישומים של רחפנים שיובאו ללא היתר — סימן לכך שהאכיפה מתהדקת ולא מתרופפת.","מקורות חלוקים בשאלה האם מצלמה מחייבת UIN גם בקטגוריית ננו."],"sources":[{"title":"DigitalSky — הפורטל הרשמי של DGCA","url":"https://digitalsky.dgca.gov.in/","tier":1,"lang":"אנגלית","checked":"2026-09-07"},{"title":"DGFT — הודעה 54/2015-2020, איסור יבוא רחפנים","url":"https://www.dgft.gov.in/","tier":1,"lang":"אנגלית","checked":"2026-09-07"},{"title":"Nishith Desai Associates — ניתוח משפטי של איסור היבוא","url":"https://nishithdesai.com/NewsDetails/5320","tier":2,"lang":"אנגלית","checked":"2026-09-07"},{"title":"Sigma Chambers — מעמד רחפני DJI בהודו, 2026","url":"https://www.sigmachambers.in/post/are-dji-drones-legal-in-india","tier":2,"lang":"אנגלית","checked":"2026-09-07"}]},{"id":"ph","num":"608","iso2":"ph","nameHe":"הפיליפינים","nameEn":"Philippines","aliases":["הפיליפינים","פיליפינים","Philippines","בורקאי","פלאוואן","מנילה"],"continent":"אסיה","coords":[121.77,12.88],"status":"green","easyRank":5,"easyWhy":"הטסה לפנאי אינה מחייבת רישום ברשות התעופה, אין מבחן ואין ביטוח. כל מה שנדרש הוא לוודא שהשימוש אינו מסחרי ולברר מול הרשות המקומית ביעד — בעיקר באיים התיירותיים.","shortAnswer":"הטסה לפנאי של רחפן קל אינה מחייבת רישום ברשות התעופה. החובה הפדרלית ברישום מתחילה ב-7 ק\"ג לשימוש לא מסחרי, וכל שימוש מסחרי — כולל תוכן ממומן — מחייב רישום ורישיון. המורכבות האמיתית היא מקומית: איים ועיריות כמו בורקאי ואל נידו דורשים אישור נפרד.","micro":{"verdict":"סף 250 גרם לא קיים כאן. הסף הפדרלי גבוה בהרבה — 7 ק\"ג — ולכן רחפן מיני פטור ממילא.","rule":"חובת הרישום ב-CAAT מתחילה ב-7 ק\"ג לשימוש לא מסחרי. רחפן עד 250 גרם נמצא רחוק מתחת לסף. מקורות משניים רבים מצטטים בטעות סף של 250 גרם.","counts":"לא קריטי בפועל, בהינתן המרווח העצום עד הסף.","camera":"המצלמה אינה משנה את חובת הרישום לפנאי. מה שמשנה הוא מה עושים עם הצילום.","exempts":["רישום הכלי","רישיון מטיס","מבחן","ביטוח","אישור טיסה מוקדם"],"notExempts":["היתר עירוני באיים תיירותיים כמו בורקאי","מרחק של 10 ק\"מ משדות תעופה","תקרה של 400 רגל","איסור טיסת לילה ללא היתר","הסיווג המסחרי אם התוכן ממומן"],"tourist":"הפטור חל על תייר בדיוק כמו על מקומי. המכשול היחיד הוא מקומי-עירוני, לא פדרלי.","models":"כל סדרת DJI Mini פטורה מרישום פדרלי לשימוש פנאי."},"selfService":"online","lastVerified":"2026-09-07","confidence":"גבוהה לגבי הסף הפדרלי; בינונית לגבי הדרישות העירוניות המשתנות","tourist":{"allowed":"כן. תייר רשאי להביא רחפן ולהטיס לפנאי ללא רישום מוקדם.","recreational":"מותר. אין חובת רישום לכלי לא מסחרי מתחת ל-7 ק\"ג.","commercial":"מחייב רישום כלי ב-CAAP, רישיון מטיס ואישור מפעיל. כולל צילום בתשלום ותוכן ממומן.","nationality":"אין מגבלת אזרחות. הרישום ב-CAAP פתוח גם לזרים כשהוא נדרש.","residency":"אין דרישת תושבות לשימוש פנאי."},"drone":{"under250":"אין דרישה ייעודית לרחפן מתחת ל-250 גרם — הוא נופל ממילא מתחת לסף ה-7 ק\"ג הפטור מרישום.","threshold":"7 ק\"ג לשימוש לא מסחרי. מעל הסף — רישום חובה. מקורות משניים רבים מצטטים סף של 250 גרם; הנוסח באתר CAAP מדבר על 7 ק\"ג.","camera":"מצלמה אינה משנה את חובת הרישום לשימוש פנאי, אך צילום מסחרי כן.","registration":"לא נדרש לפנאי מתחת ל-7 ק\"ג. נדרש לכל שימוש מסחרי, בכל משקל.","remoteId":"אין חובת Remote ID.","marking":"סימון נדרש רק לכלים רשומים."},"pilot":{"registration":"לא נדרש לפנאי.","license":"RPA Controller Certificate נדרש לשימוש מסחרי או לכלים מעל 7 ק\"ג. תקף לחמש שנים.","exam":"לא נדרש לפנאי.","training":"לא נדרש לפנאי.","minAge":"לא נקבע סף לשימוש פנאי."},"insurance":{"required":"לא נדרש לשימוש פנאי.","applies250":"לא.","minCoverage":"לא רלוונטי.","foreign":"לא רלוונטי.","local":"לא נדרש, אך מומלץ."},"permissions":{"flightPermit":"לא נדרש לטיסה סטנדרטית לפנאי. אישור טיסה מיוחד נדרש להטסה בלילה, מעל אזורים מאוכלסים, מעל 400 רגל או בתוך 10 ק\"מ משדה תעופה.","notification":"לא נדרש דיווח מוקדם לטיסה רגילה.","airspace":"אזורים מבוקרים דורשים אישור CAAP.","telecom":"רשות התקשורת NTC מסדירה ציוד רדיו. בפועל לא נדרש מתייר עם רחפן צרכני, אך ההסמכה הפורמלית של הציוד היא בסמכותה.","local":"זו הנקודה הקריטית. עיריות, ברנגאיים ורשויות איים מטילות הגבלות עצמאיות. בורקאי דורשת היתר עירוני נפרד; באל נידו קיימות מגבלות מקומיות.","nationalPark":"אזורים מוגנים עשויים לדרוש אישור מקומי."},"limits":{"altitude":"400 רגל (כ-120 מטר) מעל פני הקרקע.","vlos":"חובה. משקפי FPV מותרים רק עם תצפיתן.","people":"מרחק מזערי של 30 מטר מאדם שאינו משתתף בהפעלה.","airports":"10 ק\"מ מכל שדה תעופה. המרחק הורחב בחוזר של 2025.","urban":"אסור מעל אזורים מאוכלסים בצפיפות ללא אישור.","night":"אסור ללא היתר טיסה מיוחד.","military":"אסור מעל בסיסים צבאיים ותחנות משטרה.","government":"אסור מעל מבנים רגישים, כולל ארמון מלקניאנג במנילה.","privacy":"חלים דיני פרטיות; נדרש להימנע מצילום אנשים ורכוש פרטי ללא הסכמה."},"authorities":[{"name":"CAAP — רשות התעופה האזרחית של הפיליפינים","role":"רגולציית רחפנים, רישום, רישוי, היתרי טיסה","url":"https://www.caap.gov.ph/rpa-registration-2/"},{"name":"NTC — הוועדה הלאומית לתקשורת","role":"הסמכת ציוד רדיו ותדרים","url":"https://ntc.gov.ph/"},{"name":"רשויות מקומיות (LGU)","role":"היתרים עירוניים באיים ובאתרי תיירות","url":""}],"steps":[{"title":"בדיקת סיווג השימוש","authority":"CAAP","desc":"אם הטיסה היא לפנאי בלבד והרחפן מתחת ל-7 ק\"ג — אין צורך ברישום. אם התוכן ימומן, יימכר או ישמש לקידום עסקי, מדובר בשימוש מסחרי המחייב רישום ורישיון.","docs":"אין","cost":"ללא תשלום","time":"מיידי","online":true,"foreigner":true,"url":"https://www.caap.gov.ph/rpa-registration-2/"},{"title":"בירור מול הרשות המקומית ביעד","authority":"עירייה או ברנגאי","desc":"לפני הטסה בבורקאי, אל נידו, סיארגאו ואתרים תיירותיים נוספים יש לפנות למשרד התיירות העירוני. פקידי ברנגאי מוסמכים להחרים ציוד המופעל ללא היתר מקומי.","docs":"דרכון, פרטי הכלי","cost":"משתנה לפי עירייה","time":"בדרך כלל באותו יום","online":false,"foreigner":true,"url":""},{"title":"היתר טיסה מיוחד — רק אם נדרש","authority":"CAAP","desc":"נדרש להטסה בלילה, מעל אזור מאוכלס, מעל 400 רגל או בתוך 10 ק\"מ משדה תעופה.","docs":"פרטי ההפעלה המבוקשת","cost":"אגרה לפי סוג הבקשה","time":"מספר ימי עסקים","online":false,"foreigner":true,"url":"https://www.caap.gov.ph/"}],"checklist":["לוודא שהשימוש הוא לפנאי בלבד — תוכן ממומן הופך את ההפעלה למסחרית","להצהיר על הרחפן במכס בכניסה ולשמור קבלת רכישה","לפני כל יעד — לבדוק מול העירייה או משרד התיירות המקומי אם נדרש היתר","לשמור על מרחק של 10 ק\"מ משדות תעופה ומנחתים","לא לעבור 400 רגל, לשמור קשר עין ו-30 מטר מאנשים","לבקש רשות מהנהלת מלון או ריזורט לפני המראה מהשטח שלהם","להטיס ביום בלבד"],"temporary":[],"uncertainties":["קיים פער בין הנוסח באתר CAAP, שמדבר על חובת רישום מ-7 ק\"ג לשימוש לא מסחרי, לבין מקורות משניים רבים הטוענים לסף של 250 גרם. האתר הרשמי הוא הקובע, אך מומלץ לשאת את חשבונית הרכישה.","היקף הדרישה של NTC לגבי ציוד רדיו של תייר אינו מוסדר במפורש; בפועל לא מדווחת אכיפה מול תיירים.","הדרישות העירוניות משתנות ואינן מרוכזות במקום אחד. יש לבדוק לכל יעד בנפרד."],"sources":[{"title":"CAAP — רישום כלי בלתי מאויש","url":"https://www.caap.gov.ph/rpa-registration-2/","tier":1,"lang":"אנגלית","checked":"2026-09-07"},{"title":"CAAP — חוזרים ותקנות","url":"https://www.caap.gov.ph/memorandum-circular/","tier":1,"lang":"אנגלית","checked":"2026-09-07"},{"title":"NTC — הוועדה הלאומית לתקשורת","url":"https://ntc.gov.ph/","tier":1,"lang":"אנגלית","checked":"2026-09-07"},{"title":"Respicio & Co — סקירת PCAR חלק 11","url":"https://www.respicio.ph/commentaries/caap-regulations-and-rules-on-drone-operation-in-the-philippines","tier":2,"lang":"אנגלית","checked":"2026-09-07"}]},{"id":"vn","num":"704","iso2":"vn","nameHe":"וייטנאם","nameEn":"Vietnam","aliases":["וייטנאם","ויאטנם","Vietnam","Viet Nam","האנוי","הא לונג"],"continent":"אסיה","coords":[108.28,14.06],"status":"red","shortAnswer":"החוק הווייטנאמי אכן פוטר רחפן מתחת ל-250 גרם לפנאי מהצורך ברישיון טיסה, אבל שני תנאים אחרים חוסמים את התייר: כל כלי טיס בלתי מאויש חייב בתעודת רישום לפני הפעלה, וזר המפעיל כלי טיס בווייטנאם חייב בערב וייטנאמי — גוף או אדם מקומי שלוקח אחריות עליו.","micro":{"verdict":"פטור מרישיון טיסה בלבד. הוא לא פוטר מרישום ולא מחובת הערב הווייטנאמי.","rule":"החוק נוקב במשקל המראה מרבי הקטן מ-0.25 ק\"ג. הניסוח מחריג את 250 גרם עצמו — כלי השוקל בדיוק 250 גרם אינו בתוך הפטור.","counts":"משקל ההמראה המרבי, כולל כל מה שמותקן על הכלי.","camera":"אינה משנה את סף המשקל, אך צילום מתקנים ביטחוניים הוא עבירה פלילית נפרדת.","exempts":["רישיון טיסה ממשרד ההגנה","רישיון הפעלה למפעיל","דרישת גיל מינימלי 18"],"notExempts":["תעודת רישום לכלי — חובה לכל כלי טיס בלתי מאויש","ערבות של גוף או אדם וייטנאמי לכל מפעיל זר","מסמכי יבוא ובעלות חוקית","איסור באזורים אסורים ומוגבלים","חובת קשר עין ותנאי הפנאי"],"tourist":"זו נקודת הכשל. גם כלי במשקל 249 גרם חייב ברישום, והרישום דורש ערב מקומי ומסמכי יבוא — שני דברים שתייר עצמאי לא יכול לספק.","models":"הפטור מרישיון חל על DJI Mini, אבל אינו פותר את חובת הרישום."},"selfService":"no","lastVerified":"2026-09-07","confidence":"גבוהה לגבי נוסח החוק והתקנה; בינונית לגבי אופן היישום בפועל מול תיירים","tourist":{"allowed":"לא באופן מעשי ללא ערב מקומי. התקנה חלה במפורש גם על יחידים זרים.","recreational":"פטור מרישיון טיסה לכלי מתחת ל-250 גרם מחוץ לאזורים אסורים — אך רק לאחר עמידה בדרישות הרישום והערבות.","commercial":"מחייב רישיון טיסה ממשרד ההגנה בכל משקל.","nationality":"סעיף מפורש בתקנה 288/2025: זר המפעיל כלי טיס בווייטנאם חייב בערבות של נציג גוף, ארגון או אדם וייטנאמי.","residency":"אין דרישת תושבות מפורשת, אך הרישום מחייב מסמכי בעלות ויבוא תקינים."},"drone":{"under250":"חוק ההגנה האווירית העממית 2024, שנכנס לתוקף ב-1 ביולי 2025, פוטר מרישיון טיסה כלי במשקל המראה מרבי הקטן מ-0.25 ק\"ג המופעל לפנאי, בקשר עין, מחוץ לאזורים אסורים ומוגבלים.","threshold":"קטן מ-0.25 ק\"ג. כלי השוקל בדיוק 250 גרם אינו בגדר הפטור.","camera":"המצלמה אינה משנה את סף המשקל, אך צילום אזורים ביטחוניים אסור בחומרה.","registration":"חובה. תקנה 288/2025 קובעת שכלי טיס בלתי מאויש חייב בתעודת רישום או רישום זמני בתוקף לפני הפעלה. הרישום מתבצע מול משטרת המחוז לפי חוזר 78/2026 של משרד הביטחון הפנים, שנכנס לתוקף ב-20 ביולי 2026.","remoteId":"חוזר 78/2026 מחייב התקנת אמצעי ניהול פעילות טיסה על הכלי הרשום.","marking":"מבנה מספר רישום נקבע בחוזר 78/2026."},"pilot":{"registration":"נכלל בהליך הרישום מול המשטרה.","license":"רישיון הפעלה נדרש למפעיל כלי במשקל 0.25 ק\"ג ומעלה. מתחת לסף — פטור.","exam":"לא נדרש מתחת ל-0.25 ק\"ג.","training":"לא נדרש מתחת ל-0.25 ק\"ג.","minAge":"18, למעט מפעיל כלי מתחת ל-0.25 ק\"ג שפטור מדרישת הגיל."},"insurance":{"required":"לא נקבעה חובת ביטוח מפורשת לפנאי בתקנה.","applies250":"לא.","minCoverage":"לא רלוונטי.","foreign":"לא רלוונטי.","local":"לא נדרש."},"permissions":{"flightPermit":"פטור לכלי מתחת ל-0.25 ק\"ג לפנאי מחוץ לאזורים אסורים. בכל מקרה אחר — בקשה למחלקת המבצעים במטה הכללי של משרד ההגנה או לפיקוד הצבאי המחוזי.","notification":"פרשנויות מקצועיות מקומיות ממליצות ליידע את הגורם הצבאי או המשטרתי המקומי גם כאשר קיים פטור מרישיון.","airspace":"אזורי איסור והגבלה נקבעים בהחלטה 18/2020 של ראש הממשלה.","telecom":"ציוד רדיו כפוף להסדרה מקומית.","local":"המשטרה המקומית היא הגורם שמבצע את הרישום בפועל.","nationalPark":"אזורים מוגנים וגבולות רגישים במיוחד."},"limits":{"altitude":"פרשנויות מקומיות מציינות סף של 50 מטר להפעלה ללא רישיון.","vlos":"חובה — תנאי מפורש לפטור.","people":"אסור מעל אזורי מגורים צפופים.","airports":"אסור בקרבת שדות תעופה ומרחב אווירי של נמלי תעופה.","urban":"אסור מעל משרדי ממשלה ומתקנים מרכזיים.","night":"אין הסדרה מפורשת לפנאי; בפועל מוגבל.","military":"איסור מוחלט. צילום מתקנים ביטחוניים הוא עבירה פלילית.","government":"איסור מעל מבני ממשלה ומתקנים חיוניים.","privacy":"צילום סמוי או פגיעה בפרטיות עלולים להוביל להליך פלילי ולהחרמת הציוד."},"authorities":[{"name":"משרד ההגנה — מחלקת המבצעים במטה הכללי","role":"רישיונות טיסה","url":""},{"name":"משרד הביטחון הפנים והמשטרה המחוזית","role":"רישום כלי טיס בלתי מאויש לפי חוזר 78/2026","url":""},{"name":"פורטל התקינה הממשלתי","role":"נוסח תקנה 288/2025","url":"https://vanban.chinhphu.vn/?pageid=27160&docid=215810"}],"steps":[{"title":"השגת ערב וייטנאמי","authority":"גוף או אדם וייטנאמי","desc":"סעיף בתקנה 288/2025 קובע שזר המפעיל כלי טיס בווייטנאם חייב בערבות של נציג גוף, ארגון או יחיד וייטנאמי. זהו החסם המרכזי לתייר עצמאי.","docs":"מסמכי ערבות","cost":"לא פורסם","time":"לא ישים לתייר עצמאי","online":false,"foreigner":false,"url":""},{"title":"רישום הכלי מול המשטרה","authority":"משטרת המחוז","desc":"נדרשים מסמכי בעלות חוקית: היתר יבוא והצהרת מכס לכלי מיובא, או חשבונית מגורם מורשה. נדרשת גם עמידה בתקן טכני שפרסם או הכיר משרד ההגנה.","docs":"היתר יבוא, הצהרת מכס, חשבונית, מסמכי זיהוי","cost":"לא פורסם","time":"לא פורסם","online":false,"foreigner":false,"url":""}],"checklist":["לא להניח שהפטור למשקל מתחת ל-250 גרם פותר את הכול — הוא פוטר מרישיון טיסה בלבד, לא מרישום","לברר מראש מול הגורם המארח בווייטנאם אם יש גוף שיכול לשמש ערב","לא להטיס בקרבת גבולות, מתקנים צבאיים או מבני ממשלה בשום מצב","לשקול לוותר על הבאת הרחפן ולהשתמש בשירותי צילום מקומיים","לוודא מול השגרירות מה מצב היישום של חוזר 78/2026 לפני הנסיעה"],"temporary":[],"uncertainties":["אין ערוץ ברור שבו תייר יכול לבצע רישום כלי כשהוא נכנס למדינה לתקופה קצרה. התקנה נכתבה עם מיקוד בבעלי כלים מקומיים.","פרשנויות מקצועיות מקומיות מוסיפות תנאים לפטור — למשל גובה מתחת ל-50 מטר — שאינם מופיעים במפורש בנוסח החוק שהתפרסם.","חוזר 78/2026 נכנס לתוקף ביולי 2026 והיישום בשטח עדיין מתגבש. אכיפת הדרישות מול תיירים אינה ברורה.","בפועל דווח על תיירים שהטיסו רחפני מיני ללא הפרעה, אך זה אינו מבסס חוקיות ואינו מגן מפני החרמה או קנס."],"sources":[{"title":"פורטל הממשלה — תקנה 288/2025 על ניהול כלי טיס בלתי מאוישים","url":"https://vanban.chinhphu.vn/?pageid=27160&docid=215810","tier":1,"lang":"וייטנאמית","checked":"2026-09-07"},{"title":"עיתון הממשלה — תנאי רישום והפעלה, כולל חובת הערב לזרים","url":"https://baochinhphu.vn/quy-dinh-moi-ve-dieu-kien-dang-ky-khai-thac-su-dung-phuong-tien-bay-khong-nguoi-lai-102251107151800489.htm","tier":1,"lang":"וייטנאמית","checked":"2026-09-07"},{"title":"משרד המדע והטכנולוגיה — סקירת תקנה 288/2025","url":"https://mst.gov.vn/ban-hanh-nghi-dinh-ve-quan-ly-tau-bay-khong-nguoi-lai-va-cac-phuong-tien-bay-khac-197251116100109869.htm","tier":1,"lang":"וייטנאמית","checked":"2026-09-07"},{"title":"משטרת ג'יה לאי — חוזר 78/2026 בתוקף מ-20 ביולי 2026","url":"https://congan.gialai.gov.vn/vi/news/tuyen-truyen-pho-bien-phap-luat/tu-ngay-20-7-2026-tau-bay-khong-nguoi-lai-phai-dang-ky-va-gan-thiet-bi-quan-ly-hoat-dong-bay-12690.html","tier":1,"lang":"וייטנאמית","checked":"2026-09-07"}]},{"id":"ar","num":"032","iso2":"ar","nameHe":"ארגנטינה","nameEn":"Argentina","aliases":["ארגנטינה","Argentina","בואנוס איירס","פטגוניה"],"continent":"דרום אמריקה","coords":[-63.62,-38.42],"status":"green","easyRank":4,"easyWhy":"החלטה 550/2025 ביטלה כמעט כל דרישה לכלים מתחת ל-250 גרם: אין רישום, אין רישיון, אין מבחן ואין ביטוח. גם חובת הביטוח הישנה בוטלה. המגבלה היחידה המשמעותית היא איסור הטסה בפארקים לאומיים.","shortAnswer":"מאז החלטה 550/2025 של רשות התעופה הארגנטינית, רחפן במשקל של פחות מ-250 גרם אינו מחייב רישום, רישיון, קורס או ביטוח — לתושבים ולתיירים כאחד. מה שנשאר הוא כללי ההפעלה: 122 מטר גובה, קשר עין, ואיסור מוחלט בפארקים לאומיים ובמרחב מבוקר.","micro":{"verdict":"פטור מלא. זו כנראה ההתייחסות המקלה בעולם לכלי מתחת ל-250 גרם.","rule":"פחות מ-250 גרם. שר הדה-רגולציה הצהיר במפורש שהמדינה אינה מתערבת בהפעלת כלים מתחת לסף הזה בכל שטח המדינה.","counts":"משקל ההמראה כולל אביזרים. מגן מדחפים או מסנן עשויים לחצות את הסף.","camera":"אינה משנה דבר. בניגוד לאירופה, המצלמה אינה מבטלת את הפטור.","exempts":["רישום","רישיון טיס מרחוק","מבחן","ביטוח — חובת הביטוח מ-2019 בוטלה","אישור טיסה מוקדם"],"notExempts":["איסור מוחלט בפארקים לאומיים ובשמורות","תקרת גובה של 122 מטר","מגבלת 43 מטר בתוך 5 ק\"מ מסף מסלול","מרחק ממתקנים ביטחוניים ומבני ממשלה","חובת קשר עין"],"tourist":"הפטור חל על תייר במלואו. אין רישום שצריך להשלים ואין מערכת שצריך להיכנס אליה.","models":"כל סדרת DJI Mini נכנסת לפטור, בתנאי שנשארים מתחת ל-250 גרם עם האביזרים."},"selfService":"online","lastVerified":"2026-09-07","confidence":"גבוהה. המסמך הרשמי של ANAC מפורט וברור","tourist":{"allowed":"כן, ללא הליך מקדים.","recreational":"מותר.","commercial":"גם הפעלה מסחרית פשוטה בקטגוריה הפתוחה אינה מחייבת רישיון טיס. עבודה מורכבת יותר עוברת לקטגוריה הספציפית.","nationality":"אין מגבלת אזרחות בקטגוריה הפתוחה.","residency":"אין דרישת תושבות."},"drone":{"under250":"פטור מלא. שר הדה-רגולציה הצהיר במפורש שהמדינה אינה מתערבת בהפעלת כלים מתחת ל-250 גרם בכל שטח המדינה.","threshold":"פחות מ-250 גרם. כלי במשקל 250 גרם ומעלה שאינו פועל בקטגוריה הפתוחה עובר לקטגוריה הספציפית.","camera":"המצלמה אינה משנה את הסיווג.","registration":"לא נדרש מתחת ל-250 גרם. בקטגוריה הפתוחה עצמה קיימת הצהרה דיגיטלית חינמית ברישום הלאומי לכלי טיס — נוהל הצהרתי, ומקורות רשמיים מציינים כי כלי מתחת ל-250 גרם פטורים ממנו.","remoteId":"אין חובה.","marking":"אין חובת סימון לכלי פטור."},"pilot":{"registration":"לא נדרש.","license":"אין צורך ברישיון טיס מרחוק בקטגוריה הפתוחה. המפעיל נדרש להכיר את כללי המרחב האווירי, וחומר הלימוד זמין חינם ומקוון באתר ANAC.","exam":"לא נדרש.","training":"לא נדרש.","minAge":"לא נקבע סף בקטגוריה הפתוחה."},"insurance":{"required":"לא. החלטה 880/2019, שחייבה ביטוח, בוטלה. כיום אין חובת כיסוי ביטוחי לרחפן בארגנטינה.","applies250":"לא.","minCoverage":"לא רלוונטי.","foreign":"לא רלוונטי.","local":"לא נדרש. עדיין קיימת אחריות אזרחית מלאה לנזק, ולכן ביטוח נסיעות עם כיסוי אחריות מומלץ."},"permissions":{"flightPermit":"לא נדרש אישור מוקדם בקטגוריה הפתוחה.","notification":"לא נדרש.","airspace":"מרחב אווירי אסור, מוגבל או מסוכן מפורסם ב-AIP של ANAC.","telecom":"לא נדרש הליך נפרד לתייר.","local":"רשויות מקומיות ומחוזיות עשויות להגביל אתרים מסוימים.","nationalPark":"הטסה מעל פארקים לאומיים, שמורות ואזורים מוגנים אסורה אלא בהתערבות מנהל הפארקים הלאומיים. זו המגבלה החשובה ביותר בפטגוניה ובאזורי הטיולים."},"limits":{"altitude":"122 מטר במרחב אווירי לא מבוקר.","vlos":"חובה לשמור על קשר עין, כולל בעזרת אמצעי תצפית או מפעיל נוסף.","people":"אסור להטיס מעל אנשים או בקרבתם, למעט משתתפים ישירים בהפעלה. אסור מעל התקהלויות.","airports":"בתוך רדיו של 5 ק\"מ מסף המסלול מותר להטיס עד 43 מטר בלבד ללא אישור מוקדם. חריגה מכך מחייבת אישור של ספק שירותי הניווט האווירי.","urban":"הטסה באזור עירוני עלולה להיכנס לקטגוריה הספציפית לפי אופי ההפעלה.","night":"אסורה ללא אישור, למעט קטגוריה פתוחה באזורים כפריים.","military":"אסור במרחק של פחות ממייל ימי אחד ממתקני הכוחות המזוינים, כוחות הביטחון ושירות בתי הסוהר.","government":"אסור מעל מבני ציבור, בית הנשיא, מעונות ראש הממשלה, שגרירויות ונציגויות רשמיות.","infrastructure":"אסור מעל כבישים ראשונים ומסילות בגובה נמוך מ-50 מטר או במרחק אופקי של פחות מ-25 מטר, ומעל קווי מתח גבוה במרחק של פחות מ-25 מטר."},"authorities":[{"name":"ANAC — המנהל הלאומי לתעופה אזרחית","role":"רגולציית רחפנים","url":"https://www.argentina.gob.ar/anac/nuevo-marco-normativo-para-la-operacion-de-drones"},{"name":"מנהל הפארקים הלאומיים","role":"אישורים באזורים מוגנים","url":"https://www.argentina.gob.ar/parquesnacionales"}],"steps":[{"title":"קריאת חומר ההכרות של ANAC","authority":"ANAC","desc":"המפעיל בקטגוריה הפתוחה נדרש להוכיח ידע בסיסי בכללי המרחב האווירי. החומר זמין באופן מקוון וללא תשלום. אין מבחן ואין תעודה.","docs":"אין","cost":"ללא תשלום","time":"כשעה","online":true,"foreigner":true,"url":"https://www.argentina.gob.ar/anac/nuevo-marco-normativo-para-la-operacion-de-drones"},{"title":"בדיקת מרחב אווירי ב-AIP","authority":"ANAC / ספק שירותי ניווט","desc":"לפני הטיסה יש לוודא שהאזור אינו אסור, מוגבל או מסוכן, ואינו נמצא בתוך אזור בקרה.","docs":"אין","cost":"ללא תשלום","time":"מספר דקות","online":true,"foreigner":true,"url":"https://www.argentina.gob.ar/anac"}],"checklist":["לוודא שמשקל ההמראה כולל אביזרים נמוך מ-250 גרם","לקרוא את מדריך המשתמש של ANAC לקטגוריה הפתוחה","לבדוק ב-AIP אם האזור אסור, מוגבל או מסוכן","לא להטיס בשום מקרה מעל פארק לאומי או שמורת טבע ללא אישור מנהל הפארקים","לשמור על גובה מרבי של 122 מטר ועל קשר עין רציף","ליד שדה תעופה — לא להתקרב לפחות מ-5 ק\"מ מסף המסלול, ואם כן, לא לעלות מעל 43 מטר","להתרחק מאנשים שאינם משתתפים בהפעלה"],"temporary":[],"uncertainties":["מקורות משניים חלוקים בשאלה האם ההצהרה הדיגיטלית ברישום הלאומי חלה גם על כלים מתחת ל-250 גרם. המסמך הרשמי של ANAC מציג אותה כדרישה של הקטגוריה הפתוחה, ופרשנויות מקצועיות מציינות פטור מלא מתחת ל-250 גרם. הצהרה זו חינמית וניתן לבצע אותה למען הזהירות.","הדה-רגולציה מ-2025 עדיין נטמעת. חלק מהאתרים המקומיים מציגים מידע מהתקנות הישנות משנת 2019."],"sources":[{"title":"ANAC — מסגרת רגולטורית חדשה להפעלת רחפנים, מדריך שאלות ותשובות","url":"https://www.argentina.gob.ar/anac/nuevo-marco-normativo-para-la-operacion-de-drones","tier":1,"lang":"ספרדית","checked":"2026-09-07"},{"title":"ממשלת ארגנטינה — הודעה על החלטה 550/2025","url":"https://www.argentina.gob.ar/noticias/mas-libertad-para-la-operacion-de-drones-en-argentina","tier":1,"lang":"ספרדית","checked":"2026-09-07"}]},{"id":"br","num":"076","iso2":"br","nameHe":"ברזיל","nameEn":"Brazil","aliases":["ברזיל","Brazil","Brasil","ריו","סאו פאולו"],"continent":"דרום אמריקה","coords":[-51.93,-14.24],"status":"orange","shortAnswer":"רשות התעופה הברזילאית פוטרת רחפן עד 250 גרם מרישום, אבל מאז 1 ביולי 2026 מחייבת רשות המרחב האווירי אישור טיסה לכל המראה בשמיים פתוחים — כולל לרחפנים מתחת ל-250 גרם. מכיוון שמערכת האישורים מושכת כלים רק ממערכת הרישום, הפטור הפך תיאורטי. שתי המערכות בנויות סביב מספר זהות ברזילאי.","micro":{"verdict":"פטור מרישום בלבד — וגם הוא הפך תיאורטי מאז יולי 2026.","rule":"עד 250 גרם פטור מרישום SISANT. הניסוח כולל את 250 גרם עצמו. אבל הפטור הזה לא חל על אישור המרחב האווירי.","counts":"משקל ההמראה המרבי כפי שהוגדר על ידי היצרן.","camera":"אינה משנה את הפטור מרישום.","exempts":["רישום הכלי במערכת SISANT","ביטוח RETA","רישיון מטיס"],"notExempts":["אישור מרחב אווירי ב-SARPAS — סעיף 19 ב-ICA 100-40 מחיל אותו במפורש גם על כלים עד 250 גרם","חשבון gov.br ומספר CPF","מרחק של 4 ק\"מ משדות תעופה","תקרת 120 מטר וקשר עין"],"tourist":"הפטור מרישום נשמע טוב אבל לא עוזר: מערכת אישורי הטיסה מציגה רק כלים שסונכרנו מ-SISANT, ולכן בפועל נרשמים בכל זאת. ושתי המערכות בנויות סביב מספר זהות ברזילאי.","models":"DJI Mini במשקל 249 גרם — פטור מרישום, חייב באישור טיסה."},"selfService":"unclear","lastVerified":"2026-09-07","confidence":"גבוהה לגבי שינוי הרגולציה ביולי 2026; בינונית לגבי הדרך המעשית של תייר להירשם ללא CPF","tourist":{"allowed":"מבחינה משפטית כן, אך הרישום המעשי מציב מחסום.","recreational":"מותר בכפוף לאישור מרחב אווירי.","commercial":"מחייב רישום, ביטוח אחריות וסיווג לפי משקל.","nationality":"אין איסור על זרים, אך שתי המערכות הממשלתיות בנויות סביב מספר CPF.","residency":"הנחיית ANAC לזרים מציעה לבצע את הרישום על שם אדם המחזיק ב-CPF פעיל, או להוציא CPF — הליך אפשרי לזרים אך מסורבל."},"drone":{"under250":"ANAC פוטרת מרישום SISANT כלי במשקל המראה מרבי של עד 250 גרם, וההוראה נשמרה גם ב-RBAC 100 החדש. אלא שהפטור אינו חל על אישור המרחב האווירי.","threshold":"עד 250 גרם לפטור הרישום.","camera":"אינה משנה את הסיווג.","registration":"פורמלית פטור. מעשית — מכיוון שמערכת SARPAS מציגה רק כלים שמסונכרנים מ-SISANT, בעל כלי מתחת ל-250 גרם נדרש להירשם בכל זאת כדי לבקש אישור טיסה. קיים גם דיווח על אפשרות להזין כלי ידנית ב-SARPAS, והמצב אינו אחיד.","remoteId":"אין חובה כללית.","marking":"מספר הרישום נדרש על הכלי רק לכלים רשומים."},"pilot":{"registration":"נדרש חשבון gov.br במערכת SARPAS.","license":"לא נדרש רישיון מטיס לכלים קלים בהפעלה לא מסחרית.","exam":"לא נדרש.","training":"לא נדרש.","minAge":"18 להפעלה עצמאית."},"insurance":{"required":"ביטוח RETA נדרש לכלים מעל 250 גרם, בעיקר בהפעלה מסחרית ובאזורים עירוניים.","applies250":"לא חל על כלים מתחת ל-250 גרם.","minCoverage":"נקבע לפי סוג ההפעלה.","foreign":"לא רלוונטי לכלי פטור.","local":"לא נדרש לכלי פטור."},"permissions":{"flightPermit":"כן. ICA 100-40 במהדורת 2026, שנכנסה לתוקף ב-1 ביולי 2026, מחייבת אישור גישה למרחב האווירי לכל טיסה בשמיים פתוחים. סעיף 19 בתקנה מחיל את החובה במפורש גם על כלים עד 250 גרם, ומבטל את הפטור שהיה קיים במהדורה הקודמת.","notification":"הבקשה עצמה משמשת גם כהודעה.","airspace":"האישור ניתן דרך מערכת SARPAS של DECEA, חינם. באזור פשוט האישור אוטומטי ומיידי; באזור מורכב נדרשת בדיקה ידנית.","telecom":"ANATEL מסדירה את הסמכת ציוד הרדיו. רחפנים צרכניים מוכרים בברזיל מגיעים מוסמכים.","local":"רשויות מוניציפליות עשויות להוסיף הגבלות.","nationalPark":"אזורים מוגנים דורשים בדיקה נפרדת."},"limits":{"altitude":"120 מטר מעל פני הקרקע בהפעלה סטנדרטית.","vlos":"חובה.","people":"מרחק בטוח מאנשים שאינם משתתפים בהפעלה.","airports":"אסור להתקרב לשדות תעופה ללא אישור. כלל 4 הק\"מ חל בכל משקל.","urban":"הטסה עירונית מחייבת אישור מתאים ולעיתים ביטוח.","night":"מחייבת בקשה ייעודית.","military":"אסור.","government":"אסור מעל מתקנים ממשלתיים ורגישים.","privacy":"חוק הגנת המידע הברזילאי (LGPD) חל על צילום ופרסום."},"authorities":[{"name":"ANAC — הסוכנות הלאומית לתעופה אזרחית","role":"רישום הכלי במערכת SISANT","url":"https://www.gov.br/anac/pt-br/assuntos/drones"},{"name":"DECEA — מחלקת בקרת המרחב האווירי","role":"אישור גישה למרחב האווירי דרך SARPAS","url":"https://www.decea.mil.br/drone/"},{"name":"ANATEL — הסוכנות הלאומית לתקשורת","role":"הסמכת ציוד רדיו","url":"https://www.gov.br/anatel/pt-br"}],"steps":[{"title":"הוצאת מספר CPF או רישום על שם מחזיק CPF","authority":"רשות המסים הברזילאית","desc":"מסמך ההנחיה של ANAC לזרים קובע שהמערכת דורשת CPF פעיל, ומציע לבצע את הרישום על שם אדם בעל CPF או להוציא CPF. זר יכול להוציא CPF, בין היתר בקונסוליה ברזילאית בחו\"ל, אך זה הליך נפרד שיש להתחיל שבועות מראש.","docs":"דרכון, טופס בקשה","cost":"בדרך כלל ללא תשלום","time":"ימים עד שבועות","online":true,"foreigner":true,"url":"https://www.gov.br/anac/pt-br/assuntos/drones"},{"title":"פתיחת חשבון gov.br","authority":"ממשלת ברזיל","desc":"חשבון הזדהות ממשלתי הוא תנאי לשימוש ב-SARPAS.","docs":"CPF, מסמך מזהה עם תמונה","cost":"ללא תשלום","time":"מיידי","online":true,"foreigner":true,"url":"https://www.gov.br/"},{"title":"רישום הכלי ב-SISANT","authority":"ANAC","desc":"רשמית אין חובה מתחת ל-250 גרם, אך בפועל זהו התנאי לכך שהכלי יופיע במערכת אישורי הטיסה. הרישום חינם ותקף ל-24 חודשים.","docs":"יצרן, דגם, מספר סידורי, משקל המראה מרבי","cost":"ללא תשלום","time":"מיידי ברוב המקרים","online":true,"foreigner":true,"url":"https://www.gov.br/anac/pt-br/sistemas/sisant"},{"title":"בקשת אישור טיסה ב-SARPAS","authority":"DECEA","desc":"לפני כל טיסה יש להגיש בקשה עם מיקום, גובה, תאריך ומשך. באזור פשוט האישור אוטומטי. הפטור היחיד הוא הפעלה בשטח סגור.","docs":"כלי מסונכרן מ-SISANT","cost":"ללא תשלום","time":"מיידי עד 24 שעות; באזור מורכב יותר","online":true,"foreigner":true,"url":"https://servicos.decea.mil.br/sarpas/"}],"checklist":["לבדוק מול הקונסוליה הברזילאית אפשרות להוצאת CPF לפני הנסיעה","לפתוח חשבון gov.br","לרשום את הרחפן ב-SISANT גם אם הוא מתחת ל-250 גרם — אחרת לא ניתן לבקש אישור טיסה","לפתוח חשבון ב-SARPAS ולסנכרן את הכלי","להגיש בקשת אישור לכל טיסה, גם בחוף ובפארק","לא להטיס במרחק של פחות מ-4 ק\"מ משדה תעופה ללא אישור","לשמור על 120 מטר גובה וקשר עין"],"temporary":[{"title":"שינוי משמעותי מיולי 2026","desc":"מהדורת 2026 של ICA 100-40, שאושרה בהוראת DECEA מספר 2094 ופורסמה במרץ 2026, נכנסה לתוקף ב-1 ביולי 2026. היא ביטלה את ההערה שפטרה כלים מתחת ל-250 גרם מאישור מרחב אווירי. מדריכים ישנים יותר עדיין מציגים את המצב הקודם.","until":"בתוקף","source":"https://publicacoes.decea.mil.br/publicacao/ICA-100-40"}],"uncertainties":["מקורות מקצועיים חלוקים בשאלה האם ניתן להזין כלי ידנית ב-SARPAS ללא רישום SISANT. אחד מציין שהמערכת מושכת כלים רק מ-SISANT, ואחר מתאר קליטה ידנית. יש לבדוק במערכת עצמה.","לא ברור האם ניתן להשלים רישום SISANT עם דרכון בלבד ללא CPF. ההנחיה הרשמית מפנה לפתרון של CPF.","היישום בפועל של חובת SARPAS לכלים קלים עדיין נטמע, וההשלכות על אכיפה מול תיירים אינן ידועות."],"sources":[{"title":"DECEA — פורטל הרחפנים והסבר על חובת SARPAS לכלים עד 250 גרם","url":"https://www.decea.mil.br/drone/","tier":1,"lang":"פורטוגזית","checked":"2026-09-07"},{"title":"ANAC — הנחיות למשתמשי SISANT","url":"https://www.gov.br/anac/pt-br/assuntos/drones/orientacoes-aos-usuarios-do-sisant","tier":1,"lang":"פורטוגזית","checked":"2026-09-07"},{"title":"ANAC — מסמך הנחיה לרישום זרים ב-SISANT","url":"https://www.gov.br/anac/pt-br/assuntos/drones","tier":1,"lang":"פורטוגזית","checked":"2026-09-07"},{"title":"DECEA — נוסח ICA 100-40","url":"https://publicacoes.decea.mil.br/publicacao/ICA-100-40","tier":1,"lang":"פורטוגזית","checked":"2026-09-07"},{"title":"gov.br — שירות בקשת אישור טיסה","url":"https://www.gov.br/pt-br/servicos/solicitar-autorizacao-para-voo-de-aeronaves-remotamente-pilotadas","tier":1,"lang":"פורטוגזית","checked":"2026-09-07"}]},{"id":"us","num":"840","iso2":"us","nameHe":"ארצות הברית","nameEn":"United States","aliases":["ארצות הברית","ארהב","אמריקה","USA","United States","America","ניו יורק","קליפורניה"],"continent":"צפון אמריקה","coords":[-98.5,39.8],"status":"yellow","easyRank":6,"easyWhy":"הרישום אינו נדרש מתחת ל-250 גרם. מה שנשאר הוא מבחן TRUST חינמי שלוקח דקות והודעת זיהוי חד-פעמית — שניהם מקוונים ואפשר להשלים אותם מהבית לפני הנסיעה.","shortAnswer":"רחפן מתחת ל-250 גרם המוטס לפנאי פטור מרישום ב-FAA, אבל התייר עדיין נדרש לשני דברים: מבחן הבטיחות המקוון TRUST, שהוא חינמי ולוקח דקות, והגשת הודעת זיהוי (NOI) לרחפן הרשום מחוץ לארצות הברית. כל שאר החובה היא בבדיקת המרחב האווירי לפני כל טיסה.","micro":{"verdict":"פטור מרישום ומזיהוי מרחוק — אבל רק בהטסה לפנאי.","rule":"הסף הוא 0.55 ליברות, כלומר 250 גרם. הניסוח מחריג את הסף עצמו: כלי במשקל 250 גרם בדיוק כבר מחייב רישום. הפטור חל על הטסה לפנאי בלבד — תחת Part 107 כל כלי חייב ברישום בכל משקל.","counts":"משקל ההמראה כולל כל דבר המחובר לכלי.","camera":"אינה משנה את חובת הרישום.","exempts":["רישום הכלי ב-FAA","חובת שידור Remote ID","סימון מספר רישום"],"notExempts":["מבחן TRUST — נדרש מכל מטיס פנאי, כולל תייר","הודעת זיהוי לכלי הרשום מחוץ לארצות הברית","אישור LAANC במרחב מבוקר","איסור המראה ונחיתה בפארקים לאומיים","הגבלות טיסה זמניות","חוקי מדינה ועיר"],"tourist":"הפטור חל על תייר. מה שנשאר — TRUST והודעת הזיהוי — הוא חינמי, מקוון, וניתן להשלמה מהבית.","models":"DJI Mini 4 Pro במשקל 249 גרם פטור מרישום לפנאי. תוספת מגני מדחפים עלולה לחצות את הסף ולחייב רישום מלא."},"selfService":"online","lastVerified":"2026-09-07","confidence":"גבוהה. המידע מפורסם ישירות באתר FAA","tourist":{"allowed":"כן. FAA מפרסם דף ייעודי למפעילים בינלאומיים.","recreational":"מותר לאחר TRUST והגשת NOI.","commercial":"מחייב רישיון Part 107 אמריקאי, ולעיתים גם היתר כלי טיס זר מטעם משרד התחבורה לפי Part 375. רישיון זר אינו מוכר.","nationality":"אין מגבלת אזרחות להטסה לפנאי. רישום כלי ב-FAA מוגבל לאזרחים ולתושבי קבע, ולכן זר מקבל אישור הכרה בבעלות במקום רישום רגיל.","residency":"אין דרישת תושבות להטסה לפנאי עם כלי מתחת ל-250 גרם."},"drone":{"under250":"פטור מרישום להטסה לפנאי בלבד. כלי הפטור מרישום פטור גם מחובת Remote ID.","threshold":"0.55 ליברות, כלומר 250 גרם, כולל כל דבר המחובר לכלי. כלי במשקל 250 גרם בדיוק כבר מחייב רישום.","camera":"המצלמה אינה משנה את חובת הרישום.","registration":"לא נדרש מתחת ל-250 גרם לפנאי. נדרש לכל הפעלה תחת Part 107, בכל משקל.","remoteId":"לרחפן הרשום במדינה אחרת ובעל יכולת Remote ID — יש להגיש הודעת זיהוי ל-FAA לפני הטיסה. אם הרחפן אינו רשום בחו\"ל ואין לו Remote ID, ההטסה מותרת רק בתוך אזור FRIA מוכר.","marking":"נדרש רק לכלים רשומים."},"pilot":{"registration":"לא נדרש רישום מטיס לפנאי.","license":"לא נדרש לפנאי. להפעלה מסחרית — תעודת מטיס מרחוק של FAA, הכרוכה במבחן במרכז בחינות בארצות הברית.","exam":"TRUST — מבחן בטיחות מקוון, חינמי, ללא אפשרות כישלון (לומדים ועונים עד שנכון). התעודה חייבת להיות זמינה בשעת ההטסה.","training":"לא נדרשת הכשרה נוספת לפנאי.","minAge":"אין סף גיל להטסה לפנאי; 16 לרישיון Part 107."},"insurance":{"required":"לא נדרש ביטוח להטסה לפנאי.","applies250":"לא.","minCoverage":"לא רלוונטי.","foreign":"לא רלוונטי.","local":"לא נדרש, אך מומלץ."},"permissions":{"flightPermit":"אין צורך באישור לטיסה במרחב אווירי לא מבוקר (Class G) מתחת ל-400 רגל.","notification":"הגשת NOI היא חד-פעמית לרחפן, לא לכל טיסה.","airspace":"במרחב מבוקר נדרש אישור. מטיסי פנאי מקבלים אותו דרך מערכת LAANC או דרך הפורטל של FAA. האישור לרוב מיידי.","telecom":"אין הליך נפרד לתייר.","local":"מדינות, ערים ורשויות פארקים מוסיפות איסורים משלהן. שירות הפארקים הלאומיים אוסר המראה ונחיתה בשטחי הפארקים הלאומיים.","nationalPark":"אסור בפארקים לאומיים. זו הטעות הנפוצה ביותר של תיירים."},"limits":{"altitude":"400 רגל (כ-120 מטר) מעל פני הקרקע במרחב לא מבוקר.","vlos":"חובה. מותר להיעזר בתצפיתן.","people":"אין להטיס באופן מסוכן מעל אנשים.","airports":"במרחב מבוקר סביב שדות תעופה נדרש אישור מוקדם דרך LAANC.","urban":"אין איסור גורף, בכפוף למרחב האווירי ולחוקים מקומיים.","night":"מותר לפנאי עם תאורת התנגשות הנראית למרחק של 3 מיילים סטטוטוריים.","military":"אסור מעל מתקנים ביטחוניים; קיימות הגבלות קבועות סביבם.","government":"קיימות הגבלות קבועות מעל מתקנים פדרליים ואתרים רגישים.","tfr":"הגבלות טיסה זמניות (TFR) מתפרסמות באתר ייעודי ומשתנות תדיר — כולל סביב אירועי ספורט ותנועת נשיא."},"authorities":[{"name":"FAA — מנהל התעופה הפדרלי","role":"רגולציית רחפנים, רישום, אישורי מרחב אווירי","url":"https://www.faa.gov/uas"},{"name":"FAADroneZone","role":"פורטל הרישום והגשת הודעת הזיהוי","url":"https://faadronezone.faa.gov/"},{"name":"משרד התחבורה — DOT","role":"היתר כלי טיס זר להפעלה מסחרית","url":"https://www.transportation.gov/policy/aviation-policy/licensing/foreign-carriers"},{"name":"שירות הפארקים הלאומיים","role":"איסור הטסה בפארקים לאומיים","url":"https://www.nps.gov/"}],"steps":[{"title":"מעבר מבחן TRUST","authority":"FAA דרך ספק מאושר","desc":"מבחן בטיחות מקוון חינמי לכל מטיס פנאי, כולל תיירים. אי אפשר להיכשל: כל תשובה שגויה מוסברת ומוצגת מחדש. יש לשמור את התעודה בטלפון.","docs":"אין","cost":"ללא תשלום","time":"20–30 דקות","online":true,"foreigner":true,"url":"https://www.faa.gov/uas/recreational_fliers"},{"title":"הגשת הודעת זיהוי (NOI)","authority":"FAA","desc":"נדרש כאשר הרחפן רשום במדינה אחרת ויש לו יכולת שידור Remote ID. ההגשה מתבצעת בפורטל FAADroneZone לפני הטיסה הראשונה.","docs":"פרטי הרחפן ומדינת הרישום","cost":"ללא תשלום","time":"מיידי","online":true,"foreigner":true,"url":"https://faadronezone.faa.gov/"},{"title":"בדיקת המרחב האווירי לפני כל טיסה","authority":"FAA","desc":"שימוש באפליקציית B4UFLY או במפות המרחב. במרחב מבוקר יש לבקש אישור דרך LAANC, בדרך כלל בתגובה מיידית.","docs":"אין","cost":"ללא תשלום","time":"דקות","online":true,"foreigner":true,"url":"https://www.faa.gov/uas/getting_started/b4ufly"}],"checklist":["לעבור את מבחן TRUST ולשמור את התעודה בטלפון","אם הרחפן רשום בישראל או במדינה אחרת — להגיש הודעת זיהוי בפורטל FAADroneZone","לוודא שמשקל ההמראה נמוך מ-250 גרם, אחרת נדרש רישום מלא","לבדוק את המרחב האווירי באפליקציית B4UFLY לפני כל טיסה","לבקש אישור LAANC כשמטיסים במרחב מבוקר","לבדוק הגבלות טיסה זמניות באתר ה-TFR","לא להמריא ולא לנחות בשטח פארק לאומי","לבדוק חוקים מקומיים של המדינה והעיר"],"temporary":[{"title":"הגבלות טיסה זמניות","desc":"ארצות הברית מפרסמת מספר רב של הגבלות זמניות, בין היתר סביב אירועי ספורט גדולים, שריפות, ותנועת בכירים. הגבלות אלה גוברות על כל היתר אחר ומשתנות יומית.","until":"משתנה","source":"https://tfr.faa.gov/"}],"uncertainties":["הצורך בהודעת זיהוי תלוי בשאלה האם הרחפן רשום במדינה זרה. תייר ישראלי עם רחפן מתחת ל-250 גרם אינו חייב ברישום בישראל לפי תקנות הטיסן, ולכן מעמדו בהקשר הזה אינו חד-משמעי. הגשת ההודעה היא הדרך הזהירה.","חוקי מדינות וערים משתנים מאוד ואינם מרוכזים במקום אחד.","משטר יבוא וציוד תקשורת בארצות הברית נמצא בתנועה רגולטורית; יש לבדוק לפני נסיעה עם ציוד לא סטנדרטי."],"sources":[{"title":"FAA — מידע למפעילים בינלאומיים בארצות הברית","url":"https://www.faa.gov/uas/resources/foreign_operators","tier":1,"lang":"אנגלית","checked":"2026-09-07"},{"title":"FAA — מטיסי פנאי וארגוני מודלים","url":"https://www.faa.gov/uas/recreational_flyers","tier":1,"lang":"אנגלית","checked":"2026-09-07"},{"title":"FAA — Remote ID","url":"https://www.faa.gov/uas/getting_started/remote_id","tier":1,"lang":"אנגלית","checked":"2026-09-07"},{"title":"FAA — הגבלות טיסה זמניות","url":"https://tfr.faa.gov/","tier":1,"lang":"אנגלית","checked":"2026-09-07"}]},{"id":"eu","num":"eu","iso2":"eu","isFramework":true,"memberNums":["040","056","191","196","203","208","233","246","250","276","300","348","372","380","428","440","442","470","528","616","620","642","703","705","724","752"],"nameHe":"מסגרת האיחוד האירופי","nameEn":"European Union — EASA framework","aliases":["האיחוד האירופי","אירופה","EASA","European Union","EU","צרפת","גרמניה","איטליה","ספרד","יוון","פורטוגל","הולנד","קפריסין","אוסטריה","קרואטיה","פולין","רומניה","צ'כיה","הונגריה"],"continent":"אירופה","coords":[10,50],"status":"yellow","shortAnswer":"באיחוד האירופי חלים כללים אחידים. רחפן מתחת ל-250 גרם עם מצלמה, כמו כל DJI Mini, מחייב רישום מפעיל — לא רישום של הכלי. תייר שאינו תושב האיחוד נרשם ברשות התעופה של המדינה הראשונה שבה הוא מתכוון להטיס, והרישום תקף בכל מדינות האיחוד. אין צורך במבחן לקטגוריה A1 עם כלי כזה, אבל ביטוח, אזורים גיאוגרפיים ומגבלות מקומיות נקבעים בכל מדינה בנפרד.","micro":{"verdict":"אין פטור לרחפן עם מצלמה. זו הטעות הנפוצה ביותר של תיירים באירופה.","rule":"הפטור מרישום מפעיל חל על כלי מתחת ל-250 גרם רק אם אין בו מצלמה או חיישן הקולט מידע אישי, או אם הוא מסווג כצעצוע לפי הדירקטיבה האירופית. DJI Mini אינו עומד באף אחד משני התנאים. EASA מתייחסת לכך במפורש בתשובה ייעודית על הדגם.","counts":"משקל ההמראה כולל מטען.","camera":"המצלמה היא בדיוק מה שמבטל את הפטור. זהו ההבדל המהותי בין אירופה לארצות הברית, קנדה ואוסטרליה.","exempts":["תעודת כשירות ומבחן בתת-קטגוריה A1","חובת שידור זיהוי מרחוק — כלי C0 פטור","רישום של הכלי עצמו — נרשם המפעיל ולא הכלי"],"notExempts":["רישום מפעיל ברשות הלאומית","סימון מספר המפעיל על הרחפן","ביטוח אחריות — נדרש ברוב מדינות האיחוד, בהסדרה לאומית","האזורים הגיאוגרפיים האסורים","תקרת 120 מטר וקשר עין"],"tourist":"תושב מחוץ לאיחוד נרשם ברשות התעופה של המדינה הראשונה שבה בכוונתו להטיס, והרישום תקף אחר כך בכל האיחוד. אי אפשר להירשם בשתי מדינות במקביל.","models":"היתרון האמיתי של DJI Mini באירופה אינו פטור מרישום, אלא הכניסה לתת-קטגוריה A1 — שמתירה טיסה מעל אנשים שאינם מעורבים וללא מבחן."},"selfService":"online","lastVerified":"2026-09-07","confidence":"גבוהה לגבי המסגרת המשותפת; נמוכה יותר לגבי הפרטים הלאומיים שמשתנים ממדינה למדינה","harmonized":["הגדרת הקטגוריות: פתוחה, ספציפית ומאושרת","חלוקת הקטגוריה הפתוחה לתת-קטגוריות A1, A2 ו-A3","מחלקות הכלים C0 עד C6 והמאפיינים הטכניים שלהן","חובת רישום המפעיל וקבלת מספר מפעיל אחד התקף בכל האיחוד","גובה מרבי של 120 מטר מעל פני הקרקע","חובת קשר עין","איסור הטסה מעל התקהלויות"],"national":["רישום המפעיל מתבצע ברשות הלאומית, כל מדינה עם פורטל ואגרה משלה","חובת ביטוח אחריות כלפי צד שלישי — רוב מדינות האיחוד מחייבות, וההסדרה לאומית","האזורים הגיאוגרפיים שבהם אסור או מוגבל להטיס — נקבעים ומפורסמים לאומית","פארקים לאומיים ואזורים מוגנים — הסדרה לאומית או אזורית","גיל מינימלי למטיס — כל מדינה רשאית להוריד את הרף","אכיפה, קנסות והגבלות עירוניות"],"tourist":{"allowed":"כן. תקנת הרחפנים חלה על כל הפעלה בשטח מדינות EASA, ללא קשר לאזרחות המפעיל.","recreational":"מותר בקטגוריה הפתוחה לאחר רישום מפעיל.","commercial":"אותה מסגרת בקטגוריה הפתוחה; פעילות מורכבת עוברת לקטגוריה הספציפית עם הצהרה או אישור מבצעי.","nationality":"אין מגבלת אזרחות. תושב מחוץ לאיחוד נרשם ברשות הלאומית של המדינה הראשונה שבה בכוונתו להטיס.","residency":"אין דרישת תושבות. חשוב: אי אפשר להירשם בשתי מדינות במקביל."},"drone":{"under250":"אין פטור גורף. הפטור מרישום מפעיל חל רק על כלי מתחת ל-250 גרם ללא מצלמה או חיישן הקולט מידע אישי, או על כלי שהוא צעצוע לפי הדירקטיבה האירופית לצעצועים. DJI Mini אינו עומד באף אחד מהתנאים ולכן מחייב רישום מפעיל.","threshold":"פחות מ-250 גרם כולל מטען.","camera":"המצלמה היא בדיוק מה שמבטל את הפטור. EASA מציינת זאת במפורש בתשובה ייעודית על DJI Mini.","registration":"נרשם המפעיל, לא הכלי. מספר המפעיל מודבק על כל הרחפנים שבבעלותך ומוזן למערכת הזיהוי מרחוק של הכלי אם קיימת.","remoteId":"כלי במחלקה C1 ומעלה מחויבים בשידור זיהוי מרחוק. כלי C0 מתחת ל-250 גרם — לא.","marking":"מספר המפעיל חייב להופיע כמדבקה על גוף הכלי."},"pilot":{"registration":"רישום מפעיל חובה כאמור.","license":"אין צורך בתעודת כשירות לתת-קטגוריה A1 עם כלי C0 מתחת ל-250 גרם.","exam":"לא נדרש מבחן לכלי כזה. EASA ממליצה בכל זאת לעבור את ההדרכה המקוונת A1/A3 — היא חינמית ברוב המדינות.","training":"מספיקה היכרות עם הוראות היצרן.","minAge":"16 כברירת מחדל, אך מדינות רשאיות להוריד את הגיל, ולעיתים עד 12."},"insurance":{"required":"משתנה לפי מדינה. EASA מציינת שרוב מדינות האיחוד מחייבות ביטוח אחריות כלפי צד שלישי.","applies250":"בחלק מהמדינות החובה חלה גם על כלים קלים. יש לבדוק במדינת היעד.","minCoverage":"נקבע לאומית.","foreign":"פוליסות נסיעות מסוימות כוללות אחריות צד שלישי; יש לוודא שהכיסוי חל על הפעלת רחפן.","local":"בחלק מהמדינות פוליסה מקומית נוחה יותר."},"permissions":{"flightPermit":"לא נדרש אישור טיסה בקטגוריה הפתוחה מחוץ לאזורים גיאוגרפיים מוגבלים.","notification":"לא נדרש כברירת מחדל.","airspace":"כל מדינה מפרסמת מפת אזורים גיאוגרפיים. חובה לבדוק לפני כל טיסה.","telecom":"רחפנים צרכניים הנמכרים באירופה עומדים בתקינת CE.","local":"רשויות מקומיות, ערים ואתרי מורשת מוסיפות איסורים.","nationalPark":"פארקים לאומיים ושמורות אוסרים לרוב הטסה, בהסדרה לאומית."},"limits":{"altitude":"120 מטר מעל פני הקרקע.","vlos":"חובה.","people":"בתת-קטגוריה A1 עם כלי C0 מותר לעבור מעל אנשים שאינם מעורבים, אך אסור מעל התקהלויות.","airports":"אסור באזורי שדות תעופה; מפורסם במפות הגיאוגרפיות הלאומיות.","urban":"מותר עקרונית בקטגוריה A1 עם כלי C0, בכפוף לאזורים גיאוגרפיים.","night":"מותרת עקרונית בקטגוריה הפתוחה, בכפוף לכללים לאומיים ולתאורה.","military":"אסור.","government":"אסור מעל מתקנים רגישים.","privacy":"תקנת GDPR חלה על צילום ופרסום."},"authorities":[{"name":"EASA — סוכנות הבטיחות האווירית האירופית","role":"המסגרת הרגולטורית המשותפת","url":"https://www.easa.europa.eu/domains/civil-drones"},{"name":"רשימת רשויות התעופה הלאומיות","role":"רישום המפעיל בכל מדינה","url":"https://www.easa.europa.eu/domains/civil-drones/naa"},{"name":"שאלות ותשובות של EASA לתייר שאינו תושב האיחוד","role":"מקור רשמי לשאלת הרישום","url":"https://www.easa.europa.eu/en/the-agency/faqs/i-am-non-eu-visitor-drone-operator-open-category"}],"steps":[{"title":"בחירת מדינת הרישום","authority":"המטיס","desc":"יש להירשם ברשות התעופה של המדינה הראשונה שבה בכוונתך להטיס. הרישום תקף לאחר מכן בכל מדינות האיחוד, ואי אפשר להירשם בשתי מדינות במקביל.","docs":"אין","cost":"ללא תשלום","time":"מיידי","online":true,"foreigner":true,"url":"https://www.easa.europa.eu/domains/civil-drones/naa"},{"title":"רישום כמפעיל ברשות הלאומית","authority":"רשות התעופה הלאומית","desc":"רישום מקוון. חלק מהמדינות גובות אגרה סמלית, חלק לא. בסיום מתקבל מספר מפעיל.","docs":"דרכון, כתובת דוא\"ל","cost":"משתנה לפי מדינה; לרוב 0–30 אירו","time":"מיידי עד ימים ספורים","online":true,"foreigner":true,"url":"https://www.easa.europa.eu/domains/civil-drones/naa"},{"title":"סימון הרחפן","authority":"המפעיל","desc":"יש להדביק את מספר המפעיל על גוף הרחפן ולהזין אותו למערכת הזיהוי מרחוק אם קיימת בכלי.","docs":"מספר המפעיל","cost":"ללא תשלום","time":"מיידי","online":false,"foreigner":true,"url":""},{"title":"בדיקת ביטוח ואזורים גיאוגרפיים במדינת היעד","authority":"רשות התעופה הלאומית","desc":"שני הדברים שאינם אחידים באיחוד. יש לבדוק אם נדרש ביטוח ואיפה אסור להטיס.","docs":"אין","cost":"משתנה","time":"דקות","online":true,"foreigner":true,"url":"https://www.easa.europa.eu/domains/civil-drones/naa"}],"checklist":["לבחור את המדינה הראשונה שבה תטיס — שם נרשמים","להירשם כמפעיל ברשות התעופה של אותה מדינה ולקבל מספר מפעיל","להדביק את מספר המפעיל על הרחפן","לבדוק אם מדינת היעד מחייבת ביטוח אחריות צד שלישי","לעבור את ההדרכה המקוונת A1/A3 — לא חובה לכלי C0, אך מומלץ","לבדוק את מפת האזורים הגיאוגרפיים של כל מדינה שבה תטיס","לא לחצות 120 מטר, לשמור קשר עין, ולא להטיס מעל התקהלויות"],"temporary":[],"uncertainties":["פרטי הביטוח, האגרות והגיל המינימלי שונים בין מדינות ואינם מרוכזים במקום אחד. הדף הזה מציג את המסגרת המשותפת בלבד.","חלק ממדינות האיחוד מחילות מגבלות מחמירות באתרי מורשת ובאזורי חוף שאינן מופיעות במפות הארציות.","מדינות EASA שאינן חברות באיחוד — נורווגיה, איסלנד, שווייץ, ליכטנשטיין — מיישמות את אותה מסגרת, אך אינן מסומנות במפה בשלב זה.","בריטניה אינה חלק מהמסגרת מאז הפרישה ויש לה דף נפרד באתר."],"sources":[{"title":"EASA — האם תייר שאינו תושב האיחוד צריך להירשם","url":"https://www.easa.europa.eu/en/the-agency/faqs/i-am-non-eu-visitor-drone-operator-open-category","tier":1,"lang":"אנגלית","checked":"2026-09-07"},{"title":"EASA — דרישות הרישום והפטור לכלי מתחת ל-250 גרם","url":"https://www.easa.europa.eu/the-agency/faqs/registration-requirements","tier":1,"lang":"אנגלית","checked":"2026-09-07"},{"title":"EASA — כיצד להפעיל DJI Mini במשקל 249 גרם","url":"https://www.easa.europa.eu/en/faq/136863","tier":1,"lang":"אנגלית","checked":"2026-09-07"},{"title":"EASA — רשימת רשויות התעופה הלאומיות","url":"https://www.easa.europa.eu/domains/civil-drones/naa","tier":1,"lang":"אנגלית","checked":"2026-09-07"}]},{"id":"bg","num":"100","iso2":"bg","nameHe":"בולגריה","nameEn":"Bulgaria","aliases":["בולגריה","Bulgaria","סופיה","בורגס","ורנה","בנסקו"],"continent":"אירופה","coords":[25.49,42.73],"status":"yellow","shortAnswer":"בולגריה חברה באיחוד האירופי ומיישמת את כללי EASA. רחפן מתחת ל-250 גרם עם מצלמה מחייב רישום מפעיל אצל רשות התעופה האזרחית הבולגרית, ולא רישום של הכלי. אין צורך במבחן לקטגוריה A1. שתי נקודות שדורשות תשומת לב מיוחדת בבולגריה: ביטוח אחריות כלפי צד שלישי, והקרבה לגבול — בולגריה גובלת בטורקיה, בסרביה, בצפון מקדוניה, ביוון וברומניה, ואזורי הגבול מוגבלים.","micro":{"verdict":"אין פטור לרחפן עם מצלמה, בדיוק כמו בשאר האיחוד.","rule":"בולגריה מיישמת את מסגרת EASA. כלי מתחת ל-250 גרם עם מצלמה מחייב רישום מפעיל; הפטור שמור לכלים ללא מצלמה או לצעצועים.","counts":"משקל ההמראה כולל מטען ואביזרים.","camera":"מבטלת את הפטור מרישום המפעיל.","exempts":["מבחן ותעודת כשירות בתת-קטגוריה A1","שידור זיהוי מרחוק — כלי C0 פטור"],"notExempts":["רישום מפעיל אצל רשות התעופה הבולגרית","סימון מספר המפעיל","ביטוח אחריות — יש לאמת מול הרשות","אזורי גבול, ובמיוחד הגבול עם טורקיה","פארקים לאומיים כמו רילה ופירין"],"tourist":"אם כבר נרשמת במדינה אחרת באיחוד, הרישום הקיים תקף בבולגריה ואין להירשם שוב.","models":"DJI Mini נכנס למחלקה C0 ולתת-קטגוריה A1 — הקטגוריה המקלה ביותר, אך עדיין עם רישום מפעיל."},"selfService":"online","lastVerified":"2026-09-07","confidence":"גבוהה לגבי מסגרת EASA החלה בבולגריה; בינונית לגבי פרטי האגרה, הביטוח והאזורים הלאומיים — מומלץ לאמת ישירות מול רשות התעופה הבולגרית לפני הנסיעה","tourist":{"allowed":"כן. אין מגבלת אזרחות בקטגוריה הפתוחה.","recreational":"מותר לאחר רישום מפעיל.","commercial":"אותה מסגרת בקטגוריה הפתוחה; פעילות מורכבת עוברת לקטגוריה הספציפית.","nationality":"אין מגבלה. תושב מחוץ לאיחוד רשאי להירשם בבולגריה אם זו המדינה הראשונה שבה יטיס.","residency":"אין דרישת תושבות. אם כבר נרשמת במדינה אחרת באיחוד — הרישום שלך תקף גם בבולגריה ואין להירשם שוב."},"drone":{"under250":"אין פטור לכלי עם מצלמה. הפטור מרישום חל רק על כלי מתחת ל-250 גרם ללא מצלמה או ללא חיישן הקולט מידע אישי.","threshold":"פחות מ-250 גרם כולל מטען ואביזרים.","camera":"המצלמה מחייבת רישום מפעיל, בדיוק כמו בשאר מדינות האיחוד.","registration":"נרשם המפעיל, לא הכלי. מספר המפעיל תקף בכל מדינות האיחוד.","remoteId":"כלי C0 מתחת ל-250 גרם פטור משידור זיהוי מרחוק.","marking":"מספר המפעיל חייב להופיע כמדבקה על גוף הרחפן."},"pilot":{"registration":"רישום מפעיל חובה.","license":"אין צורך בתעודת כשירות לתת-קטגוריה A1 עם כלי מתחת ל-250 גרם.","exam":"לא נדרש לכלי כזה. הדרכת A1/A3 המקוונת מומלצת ולרוב חינמית.","training":"מספיקה היכרות עם הוראות היצרן.","minAge":"16 כברירת מחדל באיחוד. בולגריה רשאית להוריד את הגיל — יש לאמת מול הרשות."},"insurance":{"required":"יש לבדוק ישירות מול רשות התעופה הבולגרית. רוב מדינות האיחוד מחייבות ביטוח אחריות כלפי צד שלישי גם בקטגוריה הפתוחה, ובולגריה נוהגת להחיל דרישה כזו.","applies250":"לא הצלחתי לאמת ממקור רשמי האם החובה חלה גם על כלים מתחת ל-250 גרם. יש לברר לפני הנסיעה.","minCoverage":"נקבע לאומית. תקנה אירופית 785/2004 מחייבת כיסוי מזערי לכלים מ-20 ק\"ג ומעלה; מתחת לכך ההסדרה לאומית.","foreign":"פוליסת נסיעות עם אחריות צד שלישי עשויה להתאים. יש לוודא שהיא מכסה במפורש הפעלת רחפן.","local":"ניתן לרכוש פוליסה מקומית."},"permissions":{"flightPermit":"לא נדרש אישור טיסה בקטגוריה הפתוחה מחוץ לאזורים גיאוגרפיים מוגבלים.","notification":"לא נדרש כברירת מחדל.","airspace":"האזורים הגיאוגרפיים מפורסמים על ידי רשות התעופה הבולגרית ובשירותי הניווט האוויריים. חובה לבדוק לפני כל טיסה.","telecom":"רחפן צרכני עם תקינת CE אינו דורש הליך נפרד.","local":"עיריות ואתרי מורשת מוסיפים איסורים משלהם, בעיקר בסופיה, בפלובדיב ובאתרי אונסק\"ו.","nationalPark":"פארקים לאומיים ושמורות טבע — כמו רילה, פירין וסרברנה — מגבילים או אוסרים הטסה. יש לפנות להנהלת הפארק."},"limits":{"altitude":"120 מטר מעל פני הקרקע.","vlos":"חובה.","people":"בתת-קטגוריה A1 עם כלי C0 מותר לעבור מעל אנשים שאינם מעורבים, אך אסור מעל התקהלויות.","airports":"אסור באזורי שדות תעופה. סופיה, בורגס וורנה מוקפות באזורים מוגבלים.","urban":"מותר עקרונית בקטגוריה A1, בכפוף לאזורים גיאוגרפיים ולתקנות עירוניות.","night":"מותרת עקרונית בקטגוריה הפתוחה בכפוף לכללים לאומיים.","military":"אסור. לבולגריה נוכחות צבאית ובסיסי נאט\"ו, והאזורים סביבם סגורים.","government":"אסור מעל מבנים ממשלתיים ומתקנים רגישים.","border":"אזורי הגבול, ובעיקר הגבול עם טורקיה, רגישים במיוחד. אין להטיס בקרבתם.","privacy":"תקנת GDPR חלה על צילום ופרסום."},"authorities":[{"name":"רשות התעופה האזרחית של בולגריה (ГД ГВА)","role":"רישום מפעיל, אישורים, אזורים גיאוגרפיים","url":"https://www.caa.bg/"},{"name":"EASA — רשימת רשויות התעופה הלאומיות","role":"קישור ישיר לפורטל הרישום הבולגרי","url":"https://www.easa.europa.eu/domains/civil-drones/naa"},{"name":"BULATSA — שירותי הניווט האווירי","role":"מידע על מרחב אווירי ואזורים מוגבלים","url":"https://www.bulatsa.com/"}],"steps":[{"title":"רישום כמפעיל ברשות התעופה הבולגרית","authority":"ГД ГВА","desc":"אם בולגריה היא המדינה הראשונה באיחוד שבה תטיס — נרשמים כאן. אם כבר נרשמת במדינה אחרת באיחוד, אין להירשם שוב; המספר הקיים תקף.","docs":"דרכון, כתובת דוא\"ל","cost":"אגרה לאומית — יש לאמת בפורטל","time":"מיידי עד ימים ספורים","online":true,"foreigner":true,"url":"https://www.caa.bg/"},{"title":"סימון הרחפן במספר המפעיל","authority":"המפעיל","desc":"מדבקה על גוף הכלי.","docs":"מספר המפעיל","cost":"ללא תשלום","time":"מיידי","online":false,"foreigner":true,"url":""},{"title":"הסדרת ביטוח אחריות כלפי צד שלישי","authority":"חברת ביטוח","desc":"יש לוודא מול הרשות הבולגרית אם הביטוח נדרש לכלי מתחת ל-250 גרם, ולהצטייד בפוליסה מתאימה.","docs":"פרטי הכלי","cost":"משתנה","time":"מיידי עד יום","online":true,"foreigner":true,"url":""},{"title":"בדיקת מפת האזורים הגיאוגרפיים","authority":"ГД ГВА / BULATSA","desc":"לפני כל טיסה. תשומת לב מיוחדת לאזורי גבול, לבסיסים צבאיים ולפארקים לאומיים.","docs":"אין","cost":"ללא תשלום","time":"דקות","online":true,"foreigner":true,"url":"https://www.caa.bg/"}],"checklist":["לבדוק אם כבר נרשמת כמפעיל במדינה אחרת באיחוד — אם כן, אין להירשם שוב","אם בולגריה היא המדינה הראשונה — להירשם כמפעיל אצל רשות התעופה הבולגרית","להדביק את מספר המפעיל על הרחפן","לברר מול הרשות הבולגרית אם נדרש ביטוח אחריות לכלי מתחת ל-250 גרם, ולהצטייד בפוליסה","לבדוק את מפת האזורים הגיאוגרפיים לפני כל טיסה","לא להטיס בקרבת אזורי גבול, ובמיוחד לא בגבול עם טורקיה","לפנות להנהלת הפארק לפני הטסה ברילה, בפירין או בשמורות טבע","לשמור על 120 מטר גובה וקשר עין רציף"],"temporary":[],"uncertainties":["לא הצלחתי לאמת ממקור רשמי בולגרי את פרטי חובת הביטוח לכלים מתחת ל-250 גרם ואת גובה האגרה לרישום מפעיל. מסגרת EASA ודאית; הפרטים הלאומיים דורשים אימות ישיר מול caa.bg.","הגיל המינימלי בבולגריה עשוי להיות נמוך מ-16, שכן מדינות האיחוד רשאיות להוריד את הרף.","מפות האזורים הגיאוגרפיים בבולגריה אינן תמיד זמינות באנגלית. מומלץ להיעזר באפליקציה מוכרת ולאמת מול הפרסום הרשמי.","אזורי הגבול והמתקנים הביטחוניים אינם תמיד מסומנים במפות מסחריות."],"sources":[{"title":"רשות התעופה האזרחית של בולגריה","url":"https://www.caa.bg/","tier":1,"lang":"בולגרית","checked":"2026-09-07"},{"title":"EASA — רשימת רשויות התעופה הלאומיות ופורטלי הרישום","url":"https://www.easa.europa.eu/domains/civil-drones/naa","tier":1,"lang":"אנגלית","checked":"2026-09-07"},{"title":"EASA — תייר שאינו תושב האיחוד בקטגוריה הפתוחה","url":"https://www.easa.europa.eu/en/the-agency/faqs/i-am-non-eu-visitor-drone-operator-open-category","tier":1,"lang":"אנגלית","checked":"2026-09-07"},{"title":"BULATSA — שירותי הניווט האווירי הבולגריים","url":"https://www.bulatsa.com/","tier":1,"lang":"אנגלית/בולגרית","checked":"2026-09-07"}]},{"id":"ge","num":"268","iso2":"ge","nameHe":"גאורגיה","nameEn":"Georgia","aliases":["גאורגיה","גרוזיה","Georgia","טביליסי","בטומי","קזבגי"],"continent":"אסיה","coords":[43.36,42.32],"status":"yellow","easyRank":7,"easyWhy":"הרישום מקוון, חינמי וניתן להשלמה לפני ההגעה. הפורטל באנגלית והמפה הרשמית זמינה. אין מבחן לכלי מתחת ל-250 גרם ולא נמצאה חובת ביטוח לקטגוריה הפתוחה.","shortAnswer":"גאורגיה אימצה את מסגרת EASA כמעט במלואה. רחפן מתחת ל-250 גרם מסווג כמחלקה C0 בתת-קטגוריה A1 — הקטגוריה המקלה ביותר, שאינה מחייבת מבחן. נדרש רישום מפעיל בפורטל uas.gov.ge וסימון מספר הרישום על גוף הכלי. הרישום פתוח לזרים ואפשר להשלים אותו לפני ההגעה.","micro":{"verdict":"מחלקה C0 — הקטגוריה המקלה ביותר. בלי מבחן ובלי זיהוי מרחוק.","rule":"מחלקה C0 מוגדרת כמשקל המראה מרבי של פחות מ-250 גרם כולל מטען, מהירות מרבית של 19 מטר לשנייה וגובה מרבי של 120 מטר. הניסוח מחריג את 250 גרם עצמו.","counts":"משקל ההמראה כולל מטען.","camera":"כאן נשארה אי-ודאות. במסגרת האירופית שגאורגיה אימצה, מצלמה מבטלת את הפטור מרישום. הפורטל הגאורגי אינו מנסח זאת חד-משמעית ומקורות משניים סותרים.","exempts":["מבחן תיאורטי — נדרש רק ממחלקה C1 ומעלה","שידור זיהוי מרחוק","תעודת כשירות מטיס"],"notExempts":["רישום בפורטל uas.gov.ge — ההמלצה היא להירשם בכל מקרה","סימון מספר הרישום בצורה עמידה","איסור באזורים מוגבלים, אסורים ומסוכנים","אישור מיוחד להטסה בקרבת אירוע ציבורי","קווי ההפרדה של אבחזיה ודרום אוסטיה"],"tourist":"הרישום מקוון, חינמי, פתוח לזרים וניתן להשלמה לפני ההגעה. הדרישה היחידה למטיס C0 בתת-קטגוריה A1 היא היכרות עם הוראות היצרן.","models":"DJI Mini נכנס במדויק להגדרת C0 — כולל מגבלת המהירות של 19 מטר לשנייה."},"selfService":"online","lastVerified":"2026-09-07","confidence":"גבוהה לגבי מבנה הקטגוריות והפורטל הרשמי; בינונית לגבי השאלה האם כלי מתחת ל-250 גרם עם מצלמה חייב ברישום","tourist":{"allowed":"כן. הפורטל הרשמי כולל הרשמה פתוחה ואינו מגביל לפי אזרחות.","recreational":"מותר בקטגוריה הפתוחה.","commercial":"בקטגוריה הפתוחה אין הבחנה בין פנאי למסחרי. פעילות מורכבת עוברת לקטגוריה הספציפית עם הצהרה או אישור מבצעי מ-GCAA.","nationality":"אין מגבלת אזרחות בקטגוריה הפתוחה.","residency":"אין דרישת תושבות. הרישום מקוון ואינו מחייב כתובת מקומית."},"drone":{"under250":"מחלקה C0: משקל המראה מרבי של פחות מ-250 גרם כולל מטען, מהירות מרבית של 19 מטר לשנייה וגובה מרבי של 120 מטר. זו הקטגוריה המקלה ביותר.","threshold":"פחות מ-250 גרם כולל כל דבר המחובר לכלי.","camera":"כאן נמצאת אי-הוודאות. במסגרת האירופית המקורית מצלמה מבטלת את הפטור מרישום. מקורות משניים על גאורגיה חלוקים: חלקם מציינים סף רישום של 5 ק\"ג מהתקנות הישנות, אחרים מציינים שכל כלי עם מצלמה מחייב רישום מפעיל. הגישה הזהירה היא להירשם.","registration":"רישום המפעיל מתבצע בפורטל uas.gov.ge. הפורטל כולל הוראות סימון מפורשות.","remoteId":"כלי C0 פטור משידור זיהוי מרחוק. מחלקה C1 ומעלה — חובה.","marking":"חובה. מספר הרישום חייב להופיע על החלק החיצוני של הכלי, בצורה שאינה ניתנת להסרה, לפגיעה או למחיקה בקלות."},"pilot":{"registration":"רישום משתמש בפורטל uas.gov.ge.","license":"אין צורך ברישיון לתת-קטגוריה A1 עם כלי C0.","exam":"מבחן תיאורטי מקוון של GCAA נדרש לכלי מחלקה C1, לא לכלי C0 מתחת ל-250 גרם. לקטגוריה A2 נדרש מבחן נוסף של 30 שאלות לפחות.","training":"מספיקה היכרות עם הוראות היצרן. זה התנאי המפורש היחיד למטיס כלי C0 בקטגוריה A1.","minAge":"מקורות משניים מציינים גיל 14 בהשגחת מבוגר ואיסור מתחת לגיל 13. לא אומת בפרסום הרשמי."},"insurance":{"required":"לא נמצאה חובת ביטוח לקטגוריה הפתוחה בפרסום הרשמי. מקורות משניים מציינים שביטוח מומלץ לכולם וחובה למפעילים מסחריים.","applies250":"לא נמצאה חובה מפורשת.","minCoverage":"לא פורסם לקטגוריה הפתוחה.","foreign":"עשוי להידרש כאסמכתא בבקשות אישור לאזורים מוגבלים.","local":"לא נדרש לקטגוריה הפתוחה."},"permissions":{"flightPermit":"לא נדרש בקטגוריה הפתוחה מחוץ לאזורים מוגבלים.","notification":"לא נדרש כברירת מחדל.","airspace":"הטסה באזורים מוגבלים, אסורים ומסוכנים אסורה ללא אישור. המידע מתפרסם באתר airspace.gov.ge.","telecom":"לא נמצאה דרישה נפרדת לתייר.","local":"אירועים ציבוריים: הטסה בקרבת אירוע ציבורי אסורה אלא באישור מיוחד מ-GCAA.","nationalPark":"פארקים לאומיים ואתרי מורשת דורשים אישור נפרד לפי מקורות משניים. יש לבדוק מול הנהלת האתר."},"limits":{"altitude":"120 מטר מעל הנקודה הקרובה ביותר על פני הקרקע.","vlos":"חובה, למעט מצב עקיבה או בעזרת תצפיתן.","people":"בכלי C0 בתת-קטגוריה A1 מותר לעבור מעל אנשים שאינם מעורבים, אך אסור מעל התקהלויות.","airports":"מקורות משניים מציינים איסור ברדיוס של 6 ק\"מ משדות תעופה. יש לאמת מול airspace.gov.ge.","urban":"רחובות עירוניים סואנים והתקהלויות אסורים.","night":"לא נמצאה הסדרה מפורשת לקטגוריה הפתוחה בפרסום הרשמי.","military":"אסור. אזורים מוגבלים ואסורים מסומנים במפה הרשמית.","government":"אסור מעל מבני ממשלה ומתקנים רגישים.","border":"גאורגיה גובלת באזורים שנויים במחלוקת — אבחזיה ודרום אוסטיה. אין להתקרב לקווי ההפרדה בשום מצב.","privacy":"חלים דיני פרטיות מקומיים."},"authorities":[{"name":"GCAA — סוכנות התעופה האזרחית של גאורגיה","role":"רגולציית רחפנים, רישום, מבחנים, אישורים","url":"https://gcaa.ge/"},{"name":"פורטל UAS הרשמי","role":"רישום מפעיל, הוראות סימון, כללי בטיחות","url":"https://uas.gov.ge/EN"},{"name":"מפת המרחב האווירי","role":"אזורים אסורים, מוגבלים ומסוכנים","url":"https://airspace.gov.ge"},{"name":"מחלקת הכלים הבלתי מאוישים ב-GCAA","role":"פניות ואישורים פרטניים","url":"https://uas.gov.ge/EN"}],"steps":[{"title":"רישום בפורטל UAS של GCAA","authority":"GCAA","desc":"הרשמה מקוונת בפורטל uas.gov.ge. ניתן להשלים לפני ההגעה לגאורגיה. בסיום מתקבל מספר רישום משתמש.","docs":"דרכון, כתובת דוא\"ל, פרטי הכלי","cost":"לא פורסמה אגרה","time":"מיידי עד ימים ספורים","online":true,"foreigner":true,"url":"https://uas.gov.ge/users/register"},{"title":"סימון הרחפן במספר הרישום","authority":"המפעיל","desc":"הפורטל מפרסם הוראות סימון מפורשות: המספר חייב להיות על החלק החיצוני של הכלי ובצורה שאינה ניתנת להסרה או למחיקה בקלות.","docs":"מספר הרישום","cost":"ללא תשלום","time":"מיידי","online":false,"foreigner":true,"url":"https://uas.gov.ge/EN"},{"title":"בדיקת המרחב האווירי","authority":"GCAA","desc":"לפני כל טיסה יש לבדוק באתר airspace.gov.ge שהאזור אינו אסור, מוגבל או מסוכן.","docs":"אין","cost":"ללא תשלום","time":"דקות","online":true,"foreigner":true,"url":"https://airspace.gov.ge"}],"checklist":["להירשם בפורטל uas.gov.ge — אפשר לפני הנסיעה","להדביק את מספר הרישום על גוף הרחפן בצורה עמידה","לקרוא את הוראות היצרן — זו דרישה פורמלית למטיס בקטגוריה A1","לבדוק את המפה ב-airspace.gov.ge לפני כל טיסה","לא להתקרב לקווי ההפרדה של אבחזיה ודרום אוסטיה","לשמור על 120 מטר גובה, קשר עין, ולא להטיס מעל התקהלויות","באירוע ציבורי — לא להטיס ללא אישור מיוחד מ-GCAA","בפארק לאומי או באתר מורשת — לברר מול הנהלת האתר"],"temporary":[],"uncertainties":["השאלה המרכזית שנותרה פתוחה: האם כלי מתחת ל-250 גרם עם מצלמה מחייב רישום. תקנות ישנות דיברו על סף של 5 ק\"ג, והאימוץ של מסגרת EASA מוריד את הסף בפועל. הפורטל אינו מנסח זאת חד-משמעית. הרישום חינמי ומהיר, ולכן הגישה הזהירה היא להירשם בכל מקרה.","רדיוס האיסור סביב שדות תעופה מצוטט כ-6 ק\"מ במקורות משניים ולא אומת בפרסום רשמי.","כללי ההטסה בלילה בקטגוריה הפתוחה אינם מנוסחים בפרסום הרשמי שנבדק.","הגיל המינימלי מצוטט במקורות משניים בלבד."],"sources":[{"title":"פורטל UAS הרשמי של GCAA — קטגוריות, מחלקות וסימון","url":"https://uas.gov.ge/EN","tier":1,"lang":"אנגלית","checked":"2026-09-07"},{"title":"GCAA — סוכנות התעופה האזרחית של גאורגיה","url":"https://gcaa.ge/","tier":1,"lang":"גאורגית/אנגלית","checked":"2026-09-07"},{"title":"מפת המרחב האווירי הרשמית","url":"https://airspace.gov.ge","tier":1,"lang":"אנגלית","checked":"2026-09-07"},{"title":"Legal.ge — סקירת רגולציית הרחפנים בגאורגיה","url":"https://legal.ge/en/service/technology-and-digital-law-en/drone-regulations-740-en","tier":2,"lang":"אנגלית","checked":"2026-09-07"}]},{"id":"il","num":"376","iso2":"il","isHome":true,"nameHe":"ישראל","nameEn":"Israel","aliases":["ישראל","Israel","תל אביב","ירושלים","הבית","יהודה ושומרון","יו\"ש","רמת הגולן","הגולן","Judea","Samaria","Golan"],"continent":"אסיה","coords":[34.85,31.5],"status":"yellow","shortAnswer":"בישראל רחפן עד 250 גרם פטור מרישום — אבל לא מרישיון. מאז תקנות הטיס 2024 נדרש רישיון מטיסן גם להטסה לפנאי, והוא ניתן מגיל 12 לאחר מבחן בידע תעופתי מטעם רת\"א. הגובה המרבי לפנאי הוא 50 מטר בלבד, וכל טיסה מחייבת בדיקת פמ\"ת וגם NOTAM. לתייר זר אין מסלול מעשי: הרישוי עובר במערכת ההזדהות הלאומית.","micro":{"verdict":"פטור מרישום, אבל לא מרישיון. זה ההבדל שרוב המטיסים מפספסים.","rule":"טיסן זעיר וכטב\"ם זעיר מוגדרים שניהם כמסת המראה של 250 גרם לכל היותר, כולל כל דבר שהוא נושא וכל דבר שמחובר אליו. שים לב לניסוח: ההגדרה הישראלית כוללת את 250 גרם עצמו, בשונה מאירופה ומארצות הברית שבהן הסף הוא פחות מ-250 גרם.","counts":"מסת ההמראה כולל כל דבר שהכלי נושא וכל דבר שמחובר אליו — סוללה, מגנים, מסננים.","camera":"אינה משנה את חובת הרישום. אבל דיני הגנת הפרטיות חלים על הצילום ועל הפרסום בנפרד מחוקיות הטיסה עצמה.","exempts":["רישום הכלי וסימונו — אך רק בהטסת טיסן לספורט ולפנאי"],"notExempts":["רישיון מטיסן — נדרש מאז תקנות 2024 גם לפנאי, מגיל 12 ולאחר מבחן בידע תעופתי","תקרת גובה של 50 מטר בהטסה לפנאי","מרחק של עד 500 מטר מהמטיס וקשר עין ישיר","בדיקת פמ\"ת וגם NOTAM לפני כל טיסה","איסור במרחק קטן מ-2 ק\"מ ממסלול שדה תעופה או מנחת","איסור הטסה מעל תשתית ללא הסכמת הבעלים","רישום הכלי בהפעלה מסחרית — שם גם כטב\"ם זעיר חייב ברישום"],"tourist":"מסלול הרישוי עובר במערכת ההזדהות הלאומית, ולכן לתייר זר אין דרך מעשית להשלים אותו.","models":"DJI Mini 4 Pro במשקל 249 גרם הוא טיסן זעיר ופטור מרישום — אבל המטיס עדיין חייב ברישיון מטיסן. תוספת אביזר שמעלה את המשקל מעל 250 גרם מחייבת גם רישום וסימון."},"selfService":"bureaucratic","lastVerified":"2026-09-07","confidence":"גבוהה. התקנות פורסמו באוגוסט 2024 והנוסח המלא זמין","tourist":{"allowed":"לתושבי ישראל — כן, לאחר הוצאת רישיון מטיסן. לתייר זר — אין מסלול מעשי, שכן הרישוי והרישום מתבצעים במערכת ההזדהות הלאומית.","recreational":"מסלול הטיסן: ספורט ופנאי בלבד. מחייב רישיון מטיסן.","commercial":"מסלול הכטב\"ם הקטן: כל שימוש שאינו פנאי, כולל צילום בתשלום. מחייב רישיון מטיס מגיל 16 ורישום הכלי — גם לכלי זעיר מתחת ל-250 גרם.","nationality":"אין איסור מפורש, אך התשתית הטכנית של הרישוי סגורה בפני מי שאין לו זהות ישראלית.","residency":"בפועל נדרשת גישה למערכת ההזדהות הלאומית."},"drone":{"under250":"טיסן זעיר וכטב\"ם זעיר מוגדרים שניהם ככלי שמסת ההמראה שלו, כולל כל דבר שהוא נושא וכל דבר שמחובר אליו, היא 250 גרם לכל היותר.","threshold":"250 גרם לכל היותר — כלומר בדיוק 250 גרם עדיין נחשב זעיר. שים לב שההגדרה הישראלית שונה מהאירופית והאמריקאית, שבהן הסף הוא פחות מ-250 גרם.","camera":"המצלמה אינה משנה את חובת הרישום, אך דיני הגנת הפרטיות חלים על הצילום ועל הפרסום בנפרד מחוקיות הטיסה.","registration":"טיסן זעיר פטור מרישום ומסימון. כטב\"ם זעיר בהפעלה מסחרית או כללית — חייב ברישום, גם מתחת ל-250 גרם.","remoteId":"יש לבדוק את מצב חובת החיבור למערכת ניהול התנועה (UTM) לכלים מ-200 גרם ומעלה מול רת\"א. הדרישה מוזכרת במקורות קהילתיים ולא אומתה בנוסח התקנות שנבדק.","marking":"נדרש לכלים רשומים בלבד."},"pilot":{"registration":"הרישיון מונפק ונרשם ברת\"א.","license":"רישיון מטיסן להטסה לפנאי, מגיל 12. רישיון מטיס להפעלה מסחרית או כללית, מגיל 16.","exam":"מבחן בידע תעופתי מטעם רת\"א. נדרש גם לשמור על ידע תעופתי עדכני, כולל שינויים בדיני התעופה.","training":"אין חובת קורס פרונטלי, אך קיימות הכשרות מסחריות לקראת המבחן.","minAge":"12 לרישיון מטיסן. ילד מתחת לגיל 12 רשאי להטיס רק בהשגחה צמודה של בעל רישיון מטיסן בן 16 ומעלה, הנמצא במרחק של עד 2 מטרים ויכול ליטול שליטה מיידית."},"insurance":{"required":"אין חובת ביטוח כללית בתקנות להטסה לפנאי.","applies250":"לא.","minCoverage":"לא רלוונטי.","foreign":"לא רלוונטי.","local":"מומלץ בחום להפעלה מסחרית."},"permissions":{"flightPermit":"לא נדרש אישור פרטני להטסה לפנאי בתוך מעטפת התקנות. חריגה מהתקנות דורשת הרשאה להפעלה מיוחדת מרת\"א בליווי מסמך ניהול סיכונים.","notification":"לא נדרש דיווח מוקדם להטסה סטנדרטית.","airspace":"אסור להטיס באזור פיקוח, אזור פיקוח שדה או אזור שדה. תקנת המרחבים האוויריים אינה ניתנת לחריגה במסלול ההרשאה המיוחדת.","telecom":"לא נדרש הליך נפרד לרחפן צרכני.","local":"אסור להטיס מעל תשתית, ובכלל זה מבנים ואזורים מאוכלסים, אלא בהסכמת הבעלים או המחזיק. לכלי זעיר קיים חריג מצומצם.","nationalPark":"רשות הטבע והגנים מגבילה הטסה בשמורות ובגנים לאומיים. יש לפנות אליה בנפרד."},"limits":{"altitude":"50 מטר מעל פני השטח בהטסה לפנאי לפי תקנות הטיסן. 100 מטר בהפעלת כטב\"ם קטן, או 60 מטר אם כך נקבע בפמ\"ת לאותו מקום.","vlos":"חובה. קשר עין ישיר לאורך כל ההפעלה, או תצפיתן בן 16 ומעלה בקשר רציף עם המטיס.","distance":"עד 500 מטר מהמטיס בהטסה לפנאי.","people":"50 מטר מאדם שאינו משתתף ישיר בהפעלה, לפי תקנות הטיסן.","infrastructure":"150 מטר מתשתית לפי תקנות הטיסן.","airports":"אסור במרחק קטן מ-2 ק\"מ מכל נקודה על מסלול של שדה תעופה או מנחת. בהפעלת כטב\"ם קטן — גם 3 ק\"מ ממסלול של תשתית צבאית.","emergency":"אסור במרחק קטן מ-5 ק\"מ מאתר אירוע כבאות, הצלה או תאונת דרכים, ומ-1 ק\"מ מאירוע של שירות בתי הסוהר.","night":"אסורה בהטסה לפנאי, אלא אם המטיס מחזיק גם ברישיון מטיס.","speed":"87 קשר.","visibility":"ראות טיסה של 3 ק\"מ לפחות ומרחק אנכי של 150 מטר לפחות מענן.","privacy":"דיני הגנת הפרטיות חלים על צילום ועל פרסום, גם כשהטיסה עצמה חוקית."},"authorities":[{"name":"רת\"א — רשות התעופה האזרחית","role":"רישיונות, רישום כלים, הרשאות מיוחדות","url":"https://www.gov.il/he/service/uav-license-registration"},{"name":"מערכת הרישוי והרישום המקוונת","role":"הוצאת רישיון ורישום כלי","url":"https://caaidrone.mot.gov.il"},{"name":"פמ\"ת — פרסום מידע תעופתי","role":"אזורים אסורים, מוגבלים ומסוכנים","url":"https://www.gov.il/he/departments/topics/aeronautical_information_publication"},{"name":"רשות שדות התעופה — NOTAM","role":"הודעות והגבלות זמניות","url":"https://www.iaa.gov.il/"},{"name":"רשות הטבע והגנים","role":"הגבלות בשמורות ובגנים לאומיים","url":"https://www.parks.org.il/"}],"steps":[{"title":"הוצאת רישיון מטיסן","authority":"רת\"א","desc":"נדרש גם להטסה לפנאי בלבד. הרישיון ניתן מגיל 12 לאחר מבחן בידע תעופתי. הבקשה מוגשת דרך מערכת ההזדהות הלאומית.","docs":"תעודת זהות, הזדהות במערכת הלאומית","cost":"אגרה לפי תעריפי רת\"א","time":"משתנה","online":true,"foreigner":false,"url":"https://www.gov.il/he/service/uav-license-registration"},{"title":"רישום הכלי — רק אם נדרש","authority":"רת\"א","desc":"טיסן זעיר עד 250 גרם בהטסה לפנאי פטור מרישום. בהפעלה מסחרית או כללית — כל כטב\"ם קטן חייב ברישום, כולל כלי זעיר.","docs":"יצרן, דגם, משקל, מספר סידורי","cost":"אגרה לפי תעריפי רת\"א","time":"משתנה","online":true,"foreigner":false,"url":"https://caaidrone.mot.gov.il"},{"title":"בדיקת פמ\"ת וגם NOTAM לפני כל טיסה","authority":"רת\"א ורשות שדות התעופה","desc":"בדיקת פמ\"ת לבדה אינה מספיקה. יש לבדוק גם NOTAM לאזור ההטסה ולמועד הטיסה. מפות עזר, כולל המפה של Flying Mink, הן כלי עזר בלבד ואינן מהוות אסמכתא.","docs":"אין","cost":"ללא תשלום","time":"דקות","online":true,"foreigner":true,"url":"https://www.gov.il/he/departments/topics/aeronautical_information_publication"}],"checklist":["להוציא רישיון מטיסן ברת\"א — נדרש גם לפנאי","לוודא שמסת ההמראה כולל אביזרים אינה עולה על 250 גרם, אחרת נדרש גם רישום וסימון","לבדוק פמ\"ת וגם NOTAM לפני כל טיסה — שניהם, לא אחד מהם","לא לעבור 50 מטר גובה בהטסה לפנאי","לשמור על 500 מטר מרחק מהמטיס ועל קשר עין ישיר","לשמור על 50 מטר מאדם שאינו משתתף ישיר ועל 150 מטר מתשתית","לא להטיס במרחק של פחות מ-2 ק\"מ ממסלול שדה תעופה או מנחת","לא להטיס מעל שטח או מבנה פרטי ללא הסכמת הבעלים","לא להטיס בלילה ללא רישיון מטיס","בשמורת טבע או בגן לאומי — לבדוק מול רשות הטבע והגנים"],"temporary":[{"title":"המצב הביטחוני והגבלות משתנות","desc":"בישראל מתפרסמות הגבלות זמניות תכופות ב-NOTAM, בין היתר בעקבות המצב הביטחוני, אירועים ופעילות אווירית. הגבלות אלה גוברות על הכללים הרגילים ומשתנות מיום ליום.","until":"משתנה","source":"https://www.iaa.gov.il/"}],"uncertainties":["חובת החיבור למערכת ניהול התנועה האווירית לרחפנים (UTM) לכלים מ-200 גרם ומעלה מוזכרת במקורות קהילתיים. לא אומתה בנוסח התקנות שנבדק ויש לוודא מול רת\"א.","ההגדרה הישראלית של כלי זעיר היא 250 גרם לכל היותר — כלומר כוללת את המשקל 250 גרם עצמו. במרבית המדינות הסף הוא פחות מ-250 גרם. ההבדל חשוב כשמשתמשים באביזרים.","לתייר זר אין מסלול רישוי מעשי, ולא מצאתי הליך חלופי המפורסם ברת\"א."],"sources":[{"title":"תקנות הטיס (הפעלת טיסן), התשפ\"ד-2024 — נוסח מלא","url":"https://www.nevo.co.il/law_html/law00/229445.htm","tier":1,"lang":"עברית","checked":"2026-09-07"},{"title":"תקנות הטיס (הפעלת מערכת כטב\"ם קטן), התשפ\"ד-2024 — נוסח מלא","url":"https://www.nevo.co.il/law_html/law00/229444.htm","tier":1,"lang":"עברית","checked":"2026-09-07"},{"title":"רת\"א — הוצאת רישיון מטיס ורישום כטב\"ם קטן","url":"https://www.gov.il/he/service/uav-license-registration","tier":1,"lang":"עברית","checked":"2026-09-07"},{"title":"רת\"א — נוסח תקנות הטיס (הפעלת טיסן) להורדה","url":"https://www.gov.il/BlobFolder/generalpage/1-proposals-licenses-uav/he/%D7%AA%D7%A7%D7%A0%D7%95%D7%AA%20%D7%94%D7%98%D7%99%D7%A1%20(%D7%94%D7%A4%D7%A2%D7%9C%D7%AA%20%D7%98%D7%99%D7%A1%D7%9F),%20%D7%94%D7%AA%D7%A9%D7%A4%D7%93-2024.pdf","tier":1,"lang":"עברית","checked":"2026-09-07"},{"title":"פרופלור דרונס — סיכום הכללים לפי תקנות 2024","url":"https://propeller-drones.com/%D7%94%D7%98%D7%A1%D7%AA-%D7%A8%D7%97%D7%A4%D7%9F-%D7%91%D7%99%D7%A9%D7%A8%D7%90%D7%9C/","tier":3,"lang":"עברית","checked":"2026-09-07"}],"extraNums":["275"]},{"id":"nz","num":"554","iso2":"nz","nameHe":"ניו זילנד","nameEn":"New Zealand","aliases":["ניו זילנד","ניוזילנד","New Zealand","אוקלנד","קווינסטאון"],"continent":"אוקיאניה","coords":[174,-41],"status":"green","easyRank":1,"easyWhy":"אין רישום, אין רישיון, אין מבחן, אין ביטוח ואין אגרה. אותם כללים בדיוק חלים על תייר ועל תושב. כל מה שנדרש הוא להכיר את חוקי Part 101 ולבדוק אם היעד נמצא בשטח שמורה.","shortAnswer":"ניו זילנד היא ככל הנראה המדינה הפשוטה בעולם לתייר עם רחפן. אין מערכת רישום כלל — לא לכלי ולא למפעיל — וההסדרה כולה מבוססת על כללי הפעלה. בתמורה יש שתי דרישות ייחודיות שתופסות תיירים לא מוכנים: חובה לקבל רשות מבעל הקרקע שממנה ממריאים, וחובה לקבל הסכמה מכל אדם שעוברים מעליו.","micro":{"verdict":"אין קטגוריית 250 גרם בכלל, ואין מה לחפש בה — אין רישום לשום כלי.","rule":"כללי Part 101 חלים באופן זהה על כל כלי מתחת ל-25 ק\"ג. אין הבחנת משקל בסף 250 גרם ואין מערכת רישום במדינה.","counts":"לא רלוונטי.","camera":"אינה משנה דבר בחובות הרישום, אך משפיעה על חובות הפרטיות וההסכמה.","exempts":["רישום כלי או מפעיל — לא קיים במדינה","רישיון מטיס","מבחן","ביטוח","אגרה"],"notExempts":["רשות מבעל הקרקע להמראה ולנחיתה","הסכמה מכל אדם שעוברים מעליו — דרישה ייחודית לניו זילנד","היתר DOC בשטחי שימור, שם נמצאים חלק מהאתרים המפורסמים","4 ק\"מ משדות תעופה","איסורי מועצות מקומיות, כמו קווינסטאון","איסור טיסת לילה"],"tourist":"אותם כללים בדיוק חלים על תייר ועל תושב. אין שום הליך מקדים.","models":"אין הבדל בין דגמים. DJI Mini וכלי כבד יותר כפופים לאותם כללים."},"selfService":"online","lastVerified":"2026-09-07","confidence":"גבוהה. מאומת מול אתר רשות התעופה הניו זילנדית","tourist":{"allowed":"כן, ללא כל הליך מקדים.","recreational":"מותר תחת Part 101.","commercial":"Part 101 אינו מבחין בין פנאי למסחרי. אפשר למכור צילומים ללא רישיון, כל עוד ההפעלה נשארת בתוך מגבלות Part 101.","nationality":"אין מגבלת אזרחות ואין הבחנה בין מבקרים לתושבים.","residency":"אין דרישת תושבות."},"drone":{"under250":"אין קטגוריית משקל נפרדת ל-250 גרם. Part 101 חל על כל כלי מתחת ל-25 ק\"ג באופן זהה.","threshold":"25 ק\"ג — מעבר לכך נדרש מסלול אחר.","camera":"המצלמה אינה משנה דבר בחובות הרישום, אך משפיעה על חובות הפרטיות וההסכמה.","registration":"אין מערכת רישום בניו זילנד. רשות התעופה ציינה שמערכת כזו צפויה בעתיד, אך לא נקבע מועד.","remoteId":"אין חובה.","marking":"אין חובה."},"pilot":{"registration":"לא נדרש.","license":"לא נדרש. תעודת Part 102 נדרשת רק להפעלה שחורגת מ-Part 101 — טיסת לילה, מרחב מבוקר או מעבר לטווח ראייה.","exam":"לא נדרש.","training":"לא נדרשת. רשות התעופה ממליצה על קורס מטיסים.","minAge":"לא נקבע סף."},"insurance":{"required":"לא נדרש.","applies250":"לא.","minCoverage":"לא רלוונטי.","foreign":"לא רלוונטי.","local":"לא נדרש, אך מומלץ."},"permissions":{"flightPermit":"לא נדרש להפעלה בתוך מגבלות Part 101.","notification":"לא נדרש. הפלטפורמה AirShare משמשת לתכנון טיסה ולבקשות אישור במרחב מבוקר, והשימוש בה חינמי אך אינו רישום חובה.","airspace":"טיסה במרחב מבוקר מחייבת אישור מפקח התנועה האווירית. קווינסטאון, למשל, נמצאת כולה במרחב מבוקר.","telecom":"אין הליך נפרד.","local":"מועצות מקומיות אוסרות הטסה בפארקים עירוניים, בשמורות ובכבישים. מועצת קווינסטאון אוסרת הטסה בכל הפארקים והשמורות שבניהולה.","nationalPark":"שטחי DOC — מחלקת השימור — מחייבים היתר. זו ההפרה הנפוצה ביותר של תיירים, וחלק מהאתרים המפורסמים ביותר נמצאים בשטחי DOC."},"limits":{"altitude":"120 מטר מעל פני הקרקע.","vlos":"חובה, ובאור יום בלבד.","people":"חובה לקבל הסכמה מכל אדם שעוברים מעליו. בפועל אי אפשר להטיס מעל חוף עם אנשים או מעל רחוב סואן.","property":"חובה לקבל רשות מבעל הקרקע או המחזיק בה, גם להמראה וגם לנחיתה.","airports":"4 ק\"מ משדות תעופה ומנחתים, אלא בהפעלה מוגנת.","urban":"מותר בכפוף להסכמות ולמרחב האווירי.","night":"אסורה תחת Part 101, למעט הפעלה מוגנת — בטווח של עד 100 מטר ממבנה ומתחת לגובהו.","military":"אסור.","government":"אסור מעל מתקנים רגישים.","wildlife":"הטרדת בעלי חיים היא עבירה נפרדת עם קנסות."},"authorities":[{"name":"CAA NZ — רשות התעופה האזרחית","role":"כללי Part 101 ותעודות Part 102","url":"https://www.aviation.govt.nz/drones/"},{"name":"AirShare","role":"תכנון טיסה, מפות ובקשות אישור במרחב מבוקר","url":"https://www.airshare.co.nz/"},{"name":"DOC — מחלקת השימור","role":"היתרים בשטחי שימור ובפארקים לאומיים","url":"https://www.doc.govt.nz/"},{"name":"מועצות מקומיות","role":"איסורים בפארקים עירוניים ובשמורות מקומיות","url":""}],"steps":[{"title":"קריאת כללי Part 101","authority":"CAA NZ","desc":"אין רישום ואין מבחן, ולכן זו הדרישה המעשית היחידה. החוזר המנחה AC101-1 מסביר את הכללים לכלים מתחת ל-25 ק\"ג.","docs":"אין","cost":"ללא תשלום","time":"כשעה","online":true,"foreigner":true,"url":"https://www.aviation.govt.nz/drones/regulations/part-101-rules-for-drones/"},{"title":"בדיקת היעד מול DOC","authority":"DOC","desc":"אם היעד נמצא בשטח שימור — מילפורד סאונד, טונגרירו, הקרחונים — נדרש היתר. הבקשה מוגשת מראש ואינה מיידית.","docs":"פרטי ההפעלה המבוקשת","cost":"משתנה לפי סוג ההיתר","time":"שבועות. יש להגיש מראש","online":true,"foreigner":true,"url":"https://www.doc.govt.nz/"},{"title":"בדיקת מרחב אווירי ב-AirShare","authority":"AirShare / CAA","desc":"לתכנון הטיסה ולבקשת אישור אם היעד נמצא במרחב מבוקר.","docs":"אין","cost":"ללא תשלום","time":"דקות עד ימים","online":true,"foreigner":true,"url":"https://www.airshare.co.nz/"}],"checklist":["לקרוא את כללי Part 101 — אין רישום ואין מבחן, אבל הכללים מחייבים","לבדוק אם היעד נמצא בשטח DOC, ואם כן — להגיש בקשת היתר שבועות מראש","לבדוק מול המועצה המקומית — קווינסטאון, למשל, אוסרת הטסה בכל הפארקים שלה","לקבל רשות מבעל הקרקע שממנה ממריאים ושעליה נוחתים","לקבל הסכמה מכל אדם שעוברים מעליו — לא להטיס מעל חוף מלא באנשים","לשמור על 4 ק\"מ משדות תעופה ומנחתים","לא לעבור 120 מטר, להטיס באור יום ובקשר עין","לא להטריד בעלי חיים"],"temporary":[],"uncertainties":["רשות התעופה הניו זילנדית עדכנה את כללי Part 101 ופרסמה חוזר מנחה בגרסת ניסיון לתחילת 2026. הכללים המרכזיים לא השתנו, אך מומלץ לקרוא את הגרסה העדכנית.","חלק מהמדריכים באינטרנט טוענים שרישום ב-AirShare הוא חובה. זה אינו נכון — AirShare היא פלטפורמת תכנון, ורשות התעופה מציינת במפורש שאין מערכת רישום בניו זילנד.","כללי המועצות המקומיות אינם מרוכזים במקום אחד ומשתנים בין אזורים."],"sources":[{"title":"CAA NZ — עמוד הרחפנים הרשמי","url":"https://www.aviation.govt.nz/drones/","tier":1,"lang":"אנגלית","checked":"2026-09-07"},{"title":"CAA NZ — מבוא לכללי Part 101","url":"https://www.aviation.govt.nz/drones/regulations/part-101-rules-for-drones/","tier":1,"lang":"אנגלית","checked":"2026-09-07"},{"title":"CAA NZ — עדכון כללי הרחפנים והתעופה המתקדמת","url":"https://www.aviation.govt.nz/about-us/media-releases/show/updated-civil-aviation-rules-advanced-aviation/","tier":1,"lang":"אנגלית","checked":"2026-09-07"},{"title":"DOC — מחלקת השימור הניו זילנדית","url":"https://www.doc.govt.nz/","tier":1,"lang":"אנגלית","checked":"2026-09-07"},{"title":"AirShare — פלטפורמת תכנון הטיסה","url":"https://www.airshare.co.nz/","tier":2,"lang":"אנגלית","checked":"2026-09-07"}]},{"id":"au","num":"036","iso2":"au","nameHe":"אוסטרליה","nameEn":"Australia","aliases":["אוסטרליה","Australia","סידני","מלבורן","אוליירס"],"continent":"אוקיאניה","coords":[133,-25],"status":"green","easyRank":2,"easyWhy":"הטסה לפנאי בכל משקל אינה מחייבת רישום, רישיון או הסמכה — וזה חל על תיירים בדיוק כמו על תושבים. מתחת ל-250 גרם מתווסף יתרון: מותר להתקרב לשדות תעופה מבוקרים יותר מכלים כבדים. אתר CASA באנגלית ומסודר.","shortAnswer":"להטסה לפנאי באוסטרליה אין חובת רישום, רישיון או הסמכה — בשום משקל. רחפן מתחת ל-250 גרם נהנה גם מהקלה ייחודית: מותר להטיס אותו בגובה של עד 45 מטר בתוך 5.5 ק\"מ משדה תעופה מבוקר, מה שאסור לכלים כבדים יותר. המכשול היחיד הוא מדינתי: פארקים לאומיים אוסרים הטסה בכמעט כל מדינה.","micro":{"verdict":"פטור מלא בהטסה לפנאי — ובנוסף יתרון ייחודי בקרבת שדות תעופה.","rule":"הטסה לפנאי אינה מחייבת רישום או הסמכה בשום משקל. סף 250 גרם נכנס לתמונה בשני מקומות: הוא הופך את הכלי לקטגוריית מיקרו לצורך כללי שדות התעופה, והוא רלוונטי לשימוש מסחרי.","counts":"משקל ההמראה כולל אביזרים.","camera":"אינה משנה את חובת הרישום. מה שמשנה הוא אם התוכן ממומן או נמכר.","exempts":["רישום הכלי","הסמכת מפעיל","רישיון מטיס","ביטוח","גיל מינימלי"],"notExempts":["איסור בפארקים לאומיים — ההגבלה האמיתית, והיא מדינתית ולא פדרלית","תקרת 120 מטר","מרחק של 30 מטר מאנשים שאינם מעורבים","איסור טיסת לילה","איסור הטסת יותר מרחפן אחד בו זמנית","רישום והסמכה אם השימוש מסחרי — גם מתחת ל-250 גרם"],"tourist":"תייר פטור בדיוק כמו תושב. אין רישום ואין הסמכה.","models":"היתרון המעשי של DJI Mini באוסטרליה: מותר להטיס אותו עד גובה 45 מטר בתוך 5.5 ק\"מ משדה תעופה מבוקר, מה שאסור לכלים כבדים יותר. יש להישאר מחוץ לגבול השדה ולפנות דרך לכלי טיס מאוישים."},"selfService":"online","lastVerified":"2026-09-07","confidence":"גבוהה לגבי המסגרת הפדרלית; בינונית לגבי הפירוט המדינתי המשתנה","tourist":{"allowed":"כן, ללא הליך מקדים להטסה לפנאי.","recreational":"מותר. אין רישום, אין הסמכה ואין גיל מינימלי.","commercial":"כל שימוש עסקי — כולל צילום בתשלום ותוכן ממומן — מחייב רישום הכלי והסמכת מפעיל, בכל משקל, גם מתחת ל-250 גרם. ההסמכה היא מבחן מקוון חינמי של כ-30 דקות.","nationality":"אין מגבלת אזרחות להטסה לפנאי.","residency":"אין דרישת תושבות."},"drone":{"under250":"קטגוריית מיקרו. הפטור מרישום קיים ממילא לכל הטסה לפנאי, אך המשקל משפיע על כללי הקרבה לשדות תעופה.","threshold":"250 גרם ומטה נחשב מיקרו.","camera":"המצלמה אינה משנה את חובת הרישום. השימוש בתוצרי הצילום כן.","registration":"לא נדרש להטסה לפנאי. נדרש לכל שימוש מסחרי, בכל משקל, דרך פורטל myCASA.","remoteId":"אין חובה נכון להיום.","marking":"נדרש לכלים רשומים בלבד."},"pilot":{"registration":"לא נדרש לפנאי.","license":"לא נדרש לפנאי. לשימוש מסחרי מתחת ל-250 גרם נדרשת הסמכת מפעיל בלבד, ולא רישיון מטיס מרחוק.","exam":"לא נדרש לפנאי. הסמכת המפעיל למסחרי היא מבחן מקוון חינמי.","training":"לא נדרשת.","minAge":"אין סף גיל להטסה לפנאי."},"insurance":{"required":"לא נדרש לפנאי.","applies250":"לא.","minCoverage":"לא רלוונטי.","foreign":"לא רלוונטי.","local":"לא נדרש, אך מומלץ."},"permissions":{"flightPermit":"לא נדרש בתנאי ההפעלה הסטנדרטיים.","notification":"לא נדרש.","airspace":"אזורים מוגבלים ואסורים מוצגים באפליקציות המאושרות על ידי CASA.","telecom":"אין הליך נפרד.","local":"מדינות, שטחי חבר ורשויות מקומיות מוסיפות איסורים משלהן. זו ההגבלה המשמעותית ביותר בפועל.","nationalPark":"ניו סאות' ויילס אוסרת הטסה בכל הפארקים הלאומיים ללא היתר. ויקטוריה אוסרת ללא היתר, עם אזורי הטסה מוגדרים בחלק מהפארקים. יש לבדוק לכל מדינה בנפרד."},"limits":{"altitude":"120 מטר מעל פני הקרקע.","vlos":"חובה. הטסת FPV מחייבת תצפיתן.","people":"30 מטר מאדם שאינו מעורב בהפעלה. אסור מעל התקהלויות.","airports":"כלים מעל 250 גרם — 5.5 ק\"מ משדה תעופה מבוקר. כלי מתחת ל-250 גרם רשאי לפעול בתוך המרחק הזה עד גובה 45 מטר, בתנאי שנשארים מחוץ לגבול השדה ומפנים את הדרך לכלי טיס מאוישים.","urban":"מותר בכפוף לכללי המרחק מאנשים ולחוקים מקומיים.","night":"אסורה בהטסה לפנאי. מותרת רק בין זריחה לשקיעה.","military":"אסור.","government":"אסור מעל מתקנים רגישים.","emergency":"אסור להטיס באזור אירוע חירום — שריפה, תאונה או חילוץ.","single":"אסור להטיס יותר מרחפן אחד בו זמנית."},"authorities":[{"name":"CASA — רשות בטיחות התעופה האזרחית","role":"רגולציית רחפנים, רישום והסמכה","url":"https://www.casa.gov.au/drones"},{"name":"myCASA","role":"פורטל רישום והסמכה — נדרש רק לשימוש מסחרי","url":"https://www.casa.gov.au/drones/register-your-drone"},{"name":"רשויות הפארקים המדינתיות","role":"איסורי הטסה בפארקים לאומיים","url":""}],"steps":[{"title":"לוודא שההטסה היא לפנאי בלבד","authority":"CASA","desc":"אם התוכן ימומן, יימכר או ישמש לקידום עסקי — נדרשים רישום הכלי והסמכת מפעיל, גם מתחת ל-250 גרם. להטסה לפנאי אין דרישה כלל.","docs":"אין","cost":"ללא תשלום","time":"מיידי","online":true,"foreigner":true,"url":"https://www.casa.gov.au/drones"},{"title":"התקנת אפליקציית בטיחות מאושרת","authority":"CASA","desc":"CASA מפרסמת רשימת אפליקציות מאושרות שמציגות אזורים אסורים ומוגבלים. זו הדרך המעשית לבדוק היכן מותר להטיס.","docs":"אין","cost":"ללא תשלום","time":"דקות","online":true,"foreigner":true,"url":"https://www.casa.gov.au/drones/drone-safety-apps"},{"title":"בדיקת כללי המדינה או הפארק","authority":"רשות הפארקים המדינתית","desc":"החוקים הפדרליים מתירים, אבל המדינות אוסרות. יש לבדוק לכל פארק לאומי בנפרד — בעיקר בניו סאות' ויילס ובוויקטוריה.","docs":"משתנה","cost":"משתנה","time":"משתנה","online":true,"foreigner":true,"url":""}],"checklist":["לוודא שההטסה היא לפנאי בלבד — תוכן ממומן הופך אותה למסחרית ומחייב רישום והסמכה","להתקין אפליקציית בטיחות מאושרת של CASA ולבדוק לפני כל טיסה","לבדוק את כללי הפארק הלאומי או המדינה — כאן נמצא האיסור האמיתי","לא לעבור 120 מטר ולשמור על קשר עין","לשמור על 30 מטר מאנשים שאינם מעורבים בהפעלה","ליד שדה תעופה מבוקר — עם כלי מתחת ל-250 גרם מותר עד 45 מטר בתוך 5.5 ק\"מ, מחוץ לגבול השדה","להטיס ביום בלבד, רחפן אחד בכל פעם","לא להתקרב לאזור אירוע חירום או שריפה"],"temporary":[],"uncertainties":["כללי הפארקים הלאומיים משתנים בין מדינות ואף בין פארקים, ואינם מרוכזים במקום אחד.","ההקלה לכלים מתחת ל-250 גרם בקרבת שדות תעופה מדווחת במקורות תעשייה. מומלץ לאמת מול אתר CASA לפני הטסה בקרבת שדה.","הגדרת 'שימוש מסחרי' באוסטרליה רחבה וכוללת תוכן ממומן ברשתות חברתיות."],"sources":[{"title":"CASA — עמוד הרחפנים הרשמי","url":"https://www.casa.gov.au/drones","tier":1,"lang":"אנגלית","checked":"2026-09-07"},{"title":"CASA — רישום רחפן","url":"https://www.casa.gov.au/drones/register-your-drone","tier":1,"lang":"אנגלית","checked":"2026-09-07"},{"title":"CASA — כללי ההטסה הסטנדרטיים","url":"https://www.casa.gov.au/drones/drone-rules","tier":1,"lang":"אנגלית","checked":"2026-09-07"},{"title":"CASA — אפליקציות בטיחות מאושרות","url":"https://www.casa.gov.au/drones/drone-safety-apps","tier":1,"lang":"אנגלית","checked":"2026-09-07"}]},{"id":"ca","num":"124","iso2":"ca","nameHe":"קנדה","nameEn":"Canada","aliases":["קנדה","Canada","טורונטו","ונקובר","בנף"],"continent":"צפון אמריקה","coords":[-106,56],"status":"green","easyRank":3,"easyWhy":"רחפן מתחת ל-250 גרם מוגדר מיקרו-דרון ופטור מרישום ומתעודת מטיס — גם לזרים. אין אגרה, אין מבחן ואין ביטוח. האתר של Transport Canada באנגלית ובצרפתית וברור מאוד.","shortAnswer":"קנדה מגדירה רחפן מתחת ל-250 גרם כמיקרו-דרון, והוא פטור מרישום ומתעודת מטיס — כולל למבקרים זרים. שתי אזהרות: מאז אפריל 2025 נדרש אישור הפעלה מיוחד להטסת מיקרו-דרון באירוע מפורסם, ויש לוודא את המשקל המדויק של הדגם — לא כל רחפן מסדרת Mini נשאר מתחת ל-250 גרם בקנדה.","micro":{"verdict":"מיקרו-דרון — פטור מרישום ומתעודת מטיס, גם לזרים.","rule":"פחות מ-250 גרם. הניסוח מחריג את הסף עצמו: 250 גרם בדיוק כבר אינו מיקרו-דרון. קנדה מודדת משקל הפעלה, כלומר משקל הכלי בכל נקודה בטיסה.","counts":"משקל ההפעלה כולל מטען וציוד בטיחות המחובר לכלי — הגדרה רחבה יותר ממשקל המראה נומינלי.","camera":"אינה משנה את הסיווג.","exempts":["רישום הכלי","תעודת מטיס בסיסית או מתקדמת","אגרה","ביטוח"],"notExempts":["מרחב מוגבל מסוג Class F","הודעות NOTAM המגבילות הטסה — חלות גם על מיקרו-דרון","אישור הפעלה מיוחד להטסה באירוע מפורסם, מאז אפריל 2025","היתר בפארקים לאומיים","תקרת 400 רגל וקשר עין"],"tourist":"מבקר זר פטור בדיוק כמו תושב. חשוב לדעת: אם הכלי חוצה את 250 גרם, רישום זר או רישיון זר אינם מוכרים בקנדה ויש להירשם מחדש ולעבור מבחן קנדי.","models":"נקודת תשומת לב: לא כל דגם בסדרת Mini נשאר מתחת ל-250 גרם בקנדה. מקור תעשייה קנדי מציין במפורש שדגם Mini 5 חורג מהסף. יש לשקול את הכלי בפועל ולא להסתמך על השיווק."},"selfService":"online","lastVerified":"2026-09-07","confidence":"גבוהה. מאומת מול פרסומי Transport Canada","tourist":{"allowed":"כן. מבקרים זרים רשאים להטיס מיקרו-דרון ללא רישום ותעודה.","recreational":"מותר.","commercial":"מיקרו-דרון בעבודה עשוי לחייב אישור הפעלה מיוחד או התייחסות כאל כלי בקטגוריה כבדה יותר. יש לבדוק לפי אופי המשימה.","nationality":"אין מגבלת אזרחות למיקרו-דרון. לכלי מ-250 גרם ומעלה: רישיון או רישום זר אינם מוכרים בקנדה, ויש להירשם מחדש ולעבור מבחן קנדי.","residency":"אין דרישת תושבות. מערכת הרישום מקבלת כתובות שאינן קנדיות."},"drone":{"under250":"פחות מ-250 גרם — מיקרו-דרון. פטור מרישום ומתעודת מטיס.","threshold":"משקל ההפעלה, כלומר משקל הכלי בכל נקודה בטיסה, כולל מטען וציוד בטיחות המחובר אליו. 250 גרם בדיוק כבר אינו מיקרו-דרון.","camera":"אינה משנה את הסיווג.","registration":"לא נדרש למיקרו-דרון. מ-250 גרם ומעלה — רישום דרך פורטל ניהול הרחפנים בעלות של 5 דולר קנדי לכלי.","remoteId":"קנדה טרם יישמה חובת Remote ID.","marking":"נדרש לכלים רשומים בלבד."},"pilot":{"registration":"לא נדרש למיקרו-דרון.","license":"לא נדרש למיקרו-דרון. מ-250 גרם ומעלה נדרשת תעודת מטיס — בסיסית או מתקדמת. את המבחן הבסיסי אפשר לעבור מקוון עוד לפני הנסיעה; התעודה המתקדמת מחייבת מבחן מעשי בקנדה.","exam":"לא נדרש למיקרו-דרון.","training":"לא נדרשת. Transport Canada ממליצה על תוכנית לימוד עצמי.","minAge":"לא נקבע סף למיקרו-דרון."},"insurance":{"required":"לא נדרש.","applies250":"לא.","minCoverage":"לא רלוונטי.","foreign":"לא רלוונטי.","local":"לא נדרש, אך מומלץ."},"permissions":{"flightPermit":"לא נדרש להפעלה רגילה של מיקרו-דרון.","notification":"לא נדרש.","airspace":"מרחב אווירי מוגבל מסוג Class F סגור בפני מיקרו-דרונים ללא אישור. גם הודעות NOTAM המגבילות הטסה חלות על מיקרו-דרונים.","telecom":"אין הליך נפרד.","local":"מחוזות, ערים ורשויות פארקים מוסיפים איסורים.","nationalPark":"פארקים לאומיים בקנדה אוסרים בדרך כלל הטסה ללא היתר. יש לבדוק מול Parks Canada."},"limits":{"altitude":"400 רגל (כ-120 מטר) מעל פני הקרקע, אלא באישור Transport Canada.","vlos":"חובה.","people":"יש לשמור מרחק מאנשים שאינם מעורבים בהפעלה.","airports":"אין להטיס בקרבת שדות תעופה ומנחתים.","urban":"מותר בכפוף לכללי הבטיחות ולחוקים מקומיים.","night":"מותר בכפוף לתאורה מתאימה ולכללי הבטיחות.","military":"אסור.","emergency":"אסור להטיס בקרבת אירוע חירום או אירוע מיוחד ללא אישור.","events":"מאז 1 באפריל 2025 נדרש אישור הפעלה מיוחד להטסת מיקרו-דרון באירוע מפורסם — פסטיבל, מצעד או קונצרט."},"authorities":[{"name":"Transport Canada — בטיחות רחפנים","role":"רגולציה, רישום, תעודות מטיס","url":"https://tc.canada.ca/en/aviation/drone-safety"},{"name":"פורטל ניהול הרחפנים","role":"רישום כלים מ-250 גרם ומעלה","url":"https://tc.canada.ca/en/aviation/drone-safety/drone-management-portal"},{"name":"Parks Canada","role":"היתרים בפארקים לאומיים","url":"https://parks.canada.ca/"},{"name":"NAV CANADA","role":"מידע על מרחב אווירי ו-NOTAM","url":"https://www.navcanada.ca/"}],"steps":[{"title":"אימות משקל ההפעלה של הרחפן","authority":"המפעיל","desc":"יש לשקול את הכלי עם כל האביזרים המחוברים. הגדרת משקל ההפעלה בקנדה כוללת מטען וציוד בטיחות. חלק מהדגמים החדשים בסדרת Mini עוברים את 250 גרם, ואז נדרשים רישום ותעודת מטיס.","docs":"אין","cost":"ללא תשלום","time":"דקות","online":false,"foreigner":true,"url":"https://tc.canada.ca/en/aviation/drone-safety"},{"title":"בדיקת מרחב אווירי ו-NOTAM","authority":"NAV CANADA","desc":"מיקרו-דרון אינו פטור ממרחב מוגבל מסוג Class F ואינו פטור מ-NOTAM המגביל הטסה.","docs":"אין","cost":"ללא תשלום","time":"דקות","online":true,"foreigner":true,"url":"https://www.navcanada.ca/"},{"title":"אישור הפעלה מיוחד — רק לאירועים","authority":"Transport Canada","desc":"נדרש להטסת מיקרו-דרון באירוע מפורסם. יש להגיש מראש.","docs":"פרטי ההפעלה והאירוע","cost":"לפי סוג הבקשה","time":"שבועות. יש להגיש מראש","online":true,"foreigner":true,"url":"https://tc.canada.ca/en/aviation/drone-safety"}],"checklist":["לשקול את הרחפן עם כל האביזרים ולוודא שהוא מתחת ל-250 גרם","אם הכלי חוצה את הסף — להירשם בפורטל בעלות של 5 דולר קנדי ולעבור את מבחן התעודה הבסיסית מקוון לפני הנסיעה","לבדוק מרחב אווירי ו-NOTAM לפני כל טיסה","לא להטיס באירוע מפורסם ללא אישור הפעלה מיוחד","לבדוק מול Parks Canada לפני הטסה בפארק לאומי","לא לעבור 400 רגל ולשמור על קשר עין","להתרחק משדות תעופה ומאירועי חירום"],"temporary":[],"uncertainties":["משקל מדויק של דגמים חדשים בסדרת Mini משתנה בין שווקים. מקור תעשייה קנדי מציין במפורש שדגם Mini 5 חורג מ-250 גרם. יש לשקול את הכלי בפועל ולא להסתמך על שיווק.","היקף הדרישה לאישור הפעלה מיוחד למיקרו-דרון בעבודה — למשל צילום נדל\"ן — אינו חד-משמעי. יש לפנות ל-Transport Canada אם ההטסה אינה לפנאי.","כללי הפארקים והערים משתנים בין מחוזות."],"sources":[{"title":"Transport Canada — בטיחות רחפנים","url":"https://tc.canada.ca/en/aviation/drone-safety","tier":1,"lang":"אנגלית/צרפתית","checked":"2026-09-07"},{"title":"Transport Canada — עלון Drone Zone, מאי 2026, הגדרת מיקרו-דרון ומשקל הפעלה","url":"https://tc.canada.ca/en/aviation/drone-safety/drone-zone/drone-zone-issue-7-may-2026","tier":1,"lang":"אנגלית","checked":"2026-09-07"},{"title":"Transport Canada — פורטל ניהול הרחפנים","url":"https://tc.canada.ca/en/aviation/drone-safety/drone-management-portal","tier":1,"lang":"אנגלית","checked":"2026-09-07"},{"title":"Osler — סקירה משפטית של רגולציית הרחפנים בקנדה","url":"https://www.osler.com/en/insights/updates/drone-law-in-canada-new-rules-and-current-regulatory-environment/","tier":2,"lang":"אנגלית","checked":"2026-09-07"}]},{"id":"gb","num":"826","iso2":"gb","nameHe":"בריטניה","nameEn":"United Kingdom","aliases":["בריטניה","אנגליה","United Kingdom","UK","Britain","England","לונדון","סקוטלנד"],"continent":"אירופה","coords":[-2,54],"status":"yellow","easyRank":8,"easyWhy":"התהליך כולו מקוון, באנגלית, ומסתיים בדקות. אפשר להשלים אותו מהבית לפני הנסיעה. החיסרון: מאז ינואר 2026 נדרשות שתי הרשמות ולא אחת, ואחת מהן כרוכה באגרה שנתית.","shortAnswer":"בריטניה יצאה ממסגרת האיחוד האירופי ובנתה מערכת משלה. ב-1 בינואר 2026 ירד סף הרישום מ-250 גרם ל-100 גרם, ולכן כל DJI Mini מחייב היום שתי הרשמות: מספר מפעיל בתשלום שנתי, ומספר מטיס המתקבל אחרי מבחן מקוון חינמי. שתיהן מקוונות וניתן להשלים אותן מראש.","micro":{"verdict":"סף 250 גרם כבר לא רלוונטי. מ-1 בינואר 2026 הסף הוא 100 גרם.","rule":"רחפן עם מצלמה במשקל 100 גרם ומעלה מחייב גם מספר מפעיל וגם מספר מטיס. בטווח 100 עד 250 גרם ללא מצלמה נדרש מספר מטיס בלבד. מתחת ל-100 גרם וללא מצלמה — אין חובה.","counts":"משקל הכלי כפי שהוא מוטס.","camera":"המצלמה היא שמחייבת את מספר המפעיל בטווח שבין 100 ל-250 גרם.","exempts":["הסמכה נוספת מעבר למבחן הבסיסי — לא נדרשת בתת-קטגוריה A1","ביטוח בהטסה לפנאי","הגבלת אזורים בנויים — כלי מתחת ל-250 גרם רשאי לטוס בהם"],"notExempts":["מספר מפעיל בתשלום שנתי","מספר מטיס לאחר מבחן מקוון","סימון מספר המפעיל באותיות בגובה 3 מ\"מ לפחות","אזורי הגבלת טיסה סביב שדות תעופה","איסור מעל התקהלויות"],"tourist":"שני ההליכים מקוונים, באנגלית, וניתן להשלים אותם מהבית. שים לב לדרישת הגיל: מספר מפעיל ניתן רק מגיל 18.","models":"DJI Mini חוצה בקלות את סף 100 גרם ולכן מחייב היום את שני המספרים. מדריכים רבים באינטרנט עדיין מציגים את הכלל הישן של 250 גרם."},"selfService":"online","lastVerified":"2026-09-07","confidence":"גבוהה. הסף החדש מאומת מול אתר רשות התעופה הבריטית","tourist":{"allowed":"כן. התהליך מקוון ופתוח.","recreational":"מותר לאחר קבלת שני המספרים.","commercial":"פעילות מסחרית מחייבת ביטוח אחריות כלפי צד שלישי. פעילות מורכבת מחייבת הסמכה נוספת.","nationality":"אין מגבלת אזרחות.","residency":"אין דרישת תושבות. יש לשים לב לדרישת גיל: מספר מפעיל ניתן רק מגיל 18."},"drone":{"under250":"אין יותר פטור בסף 250 גרם. הסף הרלוונטי היום הוא 100 גרם, וכל רחפן עם מצלמה במשקל 100 גרם ומעלה מחייב את שני המספרים.","threshold":"100 גרם. מתחת ל-100 גרם וללא מצלמה — אין חובת רישום.","camera":"המצלמה היא הגורם שמחייב את מספר המפעיל בטווח שבין 100 ל-250 גרם. ללא מצלמה בטווח הזה נדרש רק מספר מטיס.","registration":"נרשם המפעיל ולא הכלי. מספר אחד מכסה את כל הרחפנים שבאחריותך.","remoteId":"חובת שידור זיהוי מרחוק מוחלת בהדרגה על כלים עם סימון מחלקה בריטי. כלים ותיקים מ-100 גרם ומעלה עם מצלמה — מ-2028.","marking":"מספר המפעיל חייב להופיע על גוף הכלי באותיות דפוס בגובה של 3 מ\"מ לפחות, במקום גלוי מבחוץ או בתא שנפתח ללא כלי עבודה. חשוב: מדביקים את מספר המפעיל בלבד — לא את מספר המטיס."},"pilot":{"registration":"מספר מטיס נדרש לכל כלי מ-100 גרם ומעלה.","license":"לא נדרשת הסמכה נוספת לכלי מתחת ל-250 גרם בתת-קטגוריה A1.","exam":"מבחן תיאוריה מקוון חינמי — 20 שאלות, נדרשות 16 תשובות נכונות. התעודה תקפה לחמש שנים.","training":"לימוד עצמי מתוך קוד הרחפנים של הרשות.","minAge":"13 למבחן המטיס באופן עצמאי; מתחת לגיל 13 עם הורה או אפוטרופוס. 18 למספר מפעיל."},"insurance":{"required":"לא נדרש להטסה לפנאי.","applies250":"לא.","minCoverage":"לא רלוונטי לפנאי.","foreign":"לא רלוונטי לפנאי.","local":"חובה לכל טיסה מסחרית או במסגרת עבודה."},"permissions":{"flightPermit":"לא נדרש בקטגוריה הפתוחה מחוץ לאזורי הגבלה.","notification":"לא נדרש.","airspace":"סביב שדות תעופה קיימים אזורי הגבלת טיסה. יש לבדוק לפני כל טיסה.","telecom":"אין הליך נפרד.","local":"רשויות מקומיות, פארקים מלכותיים ואתרי מורשת אוסרים הטסה. בלונדון קיימות הגבלות נרחבות.","nationalPark":"פארקים לאומיים ואתרי National Trust מגבילים או אוסרים הטסה והמראה משטחם."},"limits":{"altitude":"120 מטר מעל פני הקרקע.","vlos":"חובה.","people":"בתת-קטגוריה A1 עם כלי מתחת ל-250 גרם מותר להטיס באזורים בנויים, אך אסור מעל התקהלויות.","airports":"אזורי הגבלת טיסה סביב שדות תעופה — כניסה אליהם מחייבת אישור.","urban":"מותר לכלים מתחת ל-250 גרם בתת-קטגוריה A1.","night":"מותרת עם אור ירוק מהבהב.","military":"אסור.","government":"אסור מעל מתקנים רגישים.","privacy":"חלים דיני הגנת מידע על צילום ופרסום."},"authorities":[{"name":"CAA — רשות התעופה האזרחית הבריטית","role":"רגולציה, רישום, מבחן המטיס","url":"https://www.caa.co.uk/drones/"},{"name":"פורטל הרישום","role":"הוצאת מספר מפעיל ומספר מטיס","url":"https://register-drones.caa.co.uk/"},{"name":"קוד הרחפנים והמודלים","role":"כללי ההפעלה המלאים","url":"https://www.caa.co.uk/drones/open-category/drone-code/getting-what-you-need-to-fly-legally/"}],"steps":[{"title":"מעבר מבחן התיאוריה וקבלת מספר מטיס","authority":"CAA","desc":"מבחן מקוון חינמי של 20 שאלות; נדרשות 16 תשובות נכונות. התעודה תקפה לחמש שנים. ניתן להשלים לפני הנסיעה.","docs":"כתובת דוא\"ל","cost":"ללא תשלום","time":"כשעה כולל לימוד","online":true,"foreigner":true,"url":"https://register-drones.caa.co.uk/"},{"title":"הרשמה וקבלת מספר מפעיל","authority":"CAA","desc":"נדרש לרחפן עם מצלמה במשקל 100 גרם ומעלה. אגרה שנתית של 12.34 ליש\"ט. הרשמה מגיל 18.","docs":"כתובת דוא\"ל, אמצעי תשלום","cost":"12.34 ליש\"ט לשנה","time":"מיידי","online":true,"foreigner":true,"url":"https://register-drones.caa.co.uk/"},{"title":"סימון הרחפן","authority":"המפעיל","desc":"מדבקה עם מספר המפעיל בלבד, באותיות דפוס בגובה 3 מ\"מ לפחות, במקום גלוי או בתא שנפתח ללא כלי עבודה.","docs":"מספר המפעיל","cost":"ללא תשלום","time":"מיידי","online":false,"foreigner":true,"url":""},{"title":"בדיקת אזורי הגבלת טיסה","authority":"CAA","desc":"לפני כל טיסה. יש לשים לב שאמינות אחת מאפליקציות המפה הנפוצות הוטלה בספק בהתראות הרשות במהלך 2025 ו-2026, ולכן מומלץ לאמת מול המידע התעופתי הרשמי.","docs":"אין","cost":"ללא תשלום","time":"דקות","online":true,"foreigner":true,"url":"https://www.caa.co.uk/drones/"}],"checklist":["לעבור את מבחן התיאוריה המקוון ולקבל מספר מטיס — חינם, אפשר מהבית","להירשם ולקבל מספר מפעיל בתשלום שנתי של 12.34 ליש\"ט — נדרש לכל רחפן עם מצלמה מ-100 גרם","להדביק על הרחפן את מספר המפעיל בלבד, באותיות בגובה 3 מ\"מ לפחות","לבדוק אזורי הגבלת טיסה לפני כל טיסה, ולאמת מול המידע התעופתי הרשמי","לא לעבור 120 מטר ולשמור על קשר עין","לא להטיס מעל התקהלויות","לבדוק מגבלות של פארקים מלכותיים, אתרי מורשת ו-National Trust","בהטסת לילה — אור ירוק מהבהב"],"temporary":[{"title":"שינוי הסף בינואר 2026","desc":"עד סוף 2025 רחפן מתחת ל-250 גרם עם מצלמה חייב היה רק במספר מפעיל. מ-1 בינואר 2026 ירד הסף ל-100 גרם ונדרשים גם מספר מטיס וגם מספר מפעיל. מדריכים רבים באינטרנט עדיין מציגים את הכלל הישן.","until":"בתוקף","source":"https://www.caa.co.uk/drones/open-category/drone-code/getting-what-you-need-to-fly-legally/"}],"uncertainties":["האגרה השנתית למספר המפעיל מצוטטת במקורות שונים בין 10.33 ל-12.34 ליש\"ט. יש לבדוק את הסכום המעודכן בפורטל.","לוחות הזמנים ליישום חובת שידור זיהוי מרחוק לכלים ותיקים עדיין מתגבשים.","דרישת הגיל 18 למספר מפעיל עלולה להפתיע משפחות. מטיס צעיר יכול להחזיק במספר מטיס, אך ההורה חייב להיות המפעיל הרשום."],"sources":[{"title":"CAA — מה נדרש כדי להטיס כחוק","url":"https://www.caa.co.uk/drones/open-category/drone-code/getting-what-you-need-to-fly-legally/","tier":1,"lang":"אנגלית","checked":"2026-09-07"},{"title":"CAA — הרשמה להטסת רחפנים ומודלים","url":"https://www.caa.co.uk/drones/open-category/getting-started-with-drones-and-model-aircraft/registering-to-fly-drones-and-model-aircraft/","tier":1,"lang":"אנגלית","checked":"2026-09-07"},{"title":"CAA — פורטל הרישום","url":"https://register-drones.caa.co.uk/","tier":1,"lang":"אנגלית","checked":"2026-09-07"},{"title":"CAA — עמוד הרחפנים הראשי","url":"https://www.caa.co.uk/drones/","tier":1,"lang":"אנגלית","checked":"2026-09-07"}]}]</script>
+<script id="names-data" type="application/json">{"100":"בולגריה","104":"מיאנמר","108":"בורונדי","112":"בלארוס","116":"קמבודיה","120":"קמרון","124":"קנדה","140":"הרפובליקה המרכז אפריקאית","144":"סרי לנקה","148":"צ'אד","152":"צ'ילה","156":"סין","158":"טייוואן","170":"קולומביה","178":"רפובליקת קונגו","180":"הרפובליקה הדמוקרטית של קונגו","188":"קוסטה ריקה","191":"קרואטיה","192":"קובה","196":"קפריסין","203":"צ'כיה","204":"בנין","208":"דנמרק","214":"הרפובליקה הדומיניקנית","218":"אקוודור","222":"אל סלוודור","226":"גינאה המשוונית","231":"אתיופיה","232":"אריתריאה","233":"אסטוניה","238":"איי פוקלנד","246":"פינלנד","250":"צרפת","254":"גיאנה הצרפתית","260":"אדמות דרומיות של צרפת","262":"ג'יבוטי","266":"גבון","268":"גאורגיה","270":"גמביה","275":"פלסטין","276":"גרמניה","288":"גאנה","300":"יוון","304":"גרינלנד","320":"גואטמלה","324":"גינאה","328":"גיאנה","332":"האיטי","340":"הונדורס","348":"הונגריה","352":"איסלנד","356":"הודו","360":"אינדונזיה","364":"איראן","368":"עיראק","372":"אירלנד","376":"ישראל","380":"איטליה","384":"חוף השנהב","388":"ג'מייקה","392":"יפן","398":"קזחסטן","400":"ירדן","404":"קניה","408":"צפון קוריאה","410":"דרום קוריאה","414":"כווית","417":"קירגיזסטן","418":"לאוס","422":"לבנון","426":"לסוטו","428":"לטביה","430":"ליבריה","434":"לוב","440":"ליטא","442":"לוקסמבורג","450":"מדגסקר","454":"מלאווי","458":"מלזיה","466":"מאלי","470":"מלטה","478":"מאוריטניה","484":"מקסיקו","496":"מונגוליה","498":"מולדובה","499":"מונטנגרו","504":"מרוקו","508":"מוזמביק","512":"עומאן","516":"נמיביה","524":"נפאל","528":"הולנד","540":"קלדוניה החדשה","548":"ונואטו","554":"ניו זילנד","558":"ניקרגואה","562":"ניז'ר","566":"ניגריה","578":"נורווגיה","586":"פקיסטן","591":"פנמה","598":"פפואה גינאה החדשה","600":"פרגוואי","604":"פרו","608":"הפיליפינים","616":"פולין","620":"פורטוגל","624":"גינאה ביסאו","626":"טימור לסטה","630":"פורטו ריקו","634":"קטאר","642":"רומניה","643":"רוסיה","646":"רואנדה","682":"ערב הסעודית","686":"סנגל","688":"סרביה","694":"סיירה לאונה","702":"סינגפור","703":"סלובקיה","704":"וייטנאם","705":"סלובניה","706":"סומליה","710":"דרום אפריקה","716":"זימבבואה","724":"ספרד","728":"דרום סודן","729":"סודן","732":"סהרה המערבית","740":"סורינאם","748":"אסוואטיני","752":"שוודיה","756":"שווייץ","760":"סוריה","762":"טג'יקיסטן","764":"תאילנד","768":"טוגו","780":"טרינידד וטובגו","784":"איחוד האמירויות","788":"תוניסיה","792":"טורקיה","795":"טורקמניסטן","800":"אוגנדה","804":"אוקראינה","807":"צפון מקדוניה","818":"מצרים","826":"בריטניה","834":"טנזניה","840":"ארצות הברית","854":"בורקינה פאסו","858":"אורוגוואי","860":"אוזבקיסטן","862":"ונצואלה","887":"תימן","894":"זמביה","004":"אפגניסטן","008":"אלבניה","012":"אלג'יריה","024":"אנגולה","032":"ארגנטינה","051":"ארמניה","036":"אוסטרליה","040":"אוסטריה","031":"אזרבייג'ן","044":"איי בהאמה","050":"בנגלדש","056":"בלגיה","084":"בליז","064":"בהוטן","068":"בוליביה","070":"בוסניה והרצגובינה","072":"בוצואנה","076":"ברזיל","096":"ברוניי","090":"איי שלמה","010":"אנטארקטיקה","-99":"שטח לא מוגדר"}</script>
+
+<script type="module">
+const DB = JSON.parse(document.getElementById('countries-data').textContent);
+const NAMES_HE = JSON.parse(document.getElementById('names-data').textContent);
+const DB_UPDATED = '2026-09-07';
+
+if (matchMedia('(hover:none)').matches){
+  document.getElementById('hint').style.display = 'none';
+  document.getElementById('hint-touch').style.display = '';
+}
+
+/* color is the map/dot fill; the badge takes its ink and background
+   from the matching .st-* class in CSS. The fills are spread across
+   the lightness range so the map still reads in grayscale. */
+const STATUS = {
+  green:  {label:'ניתן להטיס', color:'#1FB89E'},
+  yellow: {label:'ניתן להטיס בכפוף לדרישות', color:'#B57A05'},
+  orange: {label:'בירוקרטיה משמעותית', color:'#C24A14'},
+  red:    {label:'לא ניתן באופן מעשי לתייר', color:'#8E1113'},
+  gray:   {label:'נדרש בירור נוסף', color:'#8D86A3'}
+};
+const SELF = {
+  online:'כן, באופן מקוון',
+  bureaucratic:'כן, אך נדרש תהליך בירוקרטי',
+  individual:'כן, אך נדרש אישור פרטני',
+  offline:'לא ניתן להסדיר באופן מקוון',
+  unclear:'לא ברור',
+  no:'לא ניתן לתייר באופן מעשי'
+};
+const TIER = {1:'מקור רשמי',2:'ארגון מקצועי',3:'מקור תעשייה',4:'מקור קהילתי'};
+
+/* EU member states resolve to the shared framework profile,
+   but keep their own flag and name in the UI. */
+const MEMBER_ISO = {
+  '040':'at','056':'be','191':'hr','196':'cy','203':'cz','208':'dk','233':'ee','246':'fi',
+  '250':'fr','276':'de','300':'gr','348':'hu','372':'ie','380':'it','428':'lv','440':'lt',
+  '442':'lu','470':'mt','528':'nl','616':'pl','620':'pt','642':'ro','703':'sk','705':'si',
+  '724':'es','752':'se'
+};
+const flagUrl = iso => 'https://flagcdn.com/w80/' + iso + '.png';
+/* Deep links are a nice-to-have. Inside a sandboxed iframe (artifact preview,
+   about:srcdoc) the History API throws a SecurityError, so it degrades quietly. */
+let hashOK = true;
+function setHash(h){
+  if (!hashOK) return;
+  try {
+    history.replaceState(null, '', h || (location.pathname + location.search));
+  } catch (e) {
+    hashOK = false;
+  }
+}
+const esc = s => String(s==null?'':s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+
+/* ---- index: numeric id -> profile ---- */
+const byNum = new Map();
+DB.forEach(c => {
+  if (c.num && c.num !== 'eu') byNum.set(c.num, c);
+  (c.memberNums || []).forEach(n => byNum.set(n, c));
+  /* territories the dataset draws as separate polygons but that share the profile */
+  (c.extraNums || []).forEach(n => byNum.set(n, c));
+});
+const byId = new Map(DB.map(c => [c.id, c]));
+
+/* ================= panel ================= */
+const panel = document.getElementById('panel');
+const scrim = document.getElementById('scrim');
+const pbody = document.getElementById('pbody');
+let current = null;
+
+function reqTag(v){
+  const t = String(v||'');
+  if (/^לא\b|^אין\b|פטור|לא נדרש|אין צורך|אין חובה|לא נמצאה חובה/.test(t)) return '<span class="tag free">לא נדרש</span>';
+  if (/^כן\b|חובה|נדרש|חייב/.test(t)) return '<span class="tag need">נדרש</span>';
+  return '<span class="tag chk">לבדוק</span>';
+}
+function reqRow(label, val){
+  if (!val) return '';
+  return '<div class="req"><div class="rq-l">'+esc(label)+reqTag(val)+'</div><div class="rq-v">'+esc(val)+'</div></div>';
+}
+function kvBlock(s){
+  const items = [
+    ['עלות', s.cost], ['משך טיפול', s.time],
+    ['מסמכים', s.docs], ['מקוון', s.online ? 'כן' : 'לא']
+  ].filter(x => x[1]);
+  let h = '<div class="kv">';
+  items.forEach(([k,v]) => h += '<div><div class="k">'+esc(k)+'</div><div class="v">'+esc(v)+'</div></div>');
+  h += '<div><div class="k">זר יכול לבצע</div><div class="v foreign-ok '+(s.foreigner?'y':'n')+'">'+(s.foreigner?'כן':'לא')+'</div></div>';
+  return h + '</div>';
+}
+
+function microBlock(c){
+  const m = c.micro;
+  if (!m) return '';
+  let h = '<div class="micro"><div class="micro-head">'
+    + '<span class="mh-l">הכלל של 250 גרם, במדויק</span>'
+    + '<span class="mh-w">MTOM &lt; 250 g</span></div>'
+    + '<div class="micro-verdict">'+esc(m.verdict)+'</div><div class="micro-body">';
+  const rows = [['הניסוח המדויק', m.rule], ['מה נספר במשקל', m.counts], ['השפעת המצלמה', m.camera],
+                ['האם זה חל על תייר', m.tourist], ['רלוונטי לדגם שלך', m.models]];
+  rows.forEach(([l,v]) => { if (v) h += '<div class="micro-row"><div class="mr-l">'+esc(l)+'</div><div class="mr-v">'+esc(v)+'</div></div>'; });
+  h += '<div class="micro-lists">'
+    + '<div class="ml-yes"><h5>ממה זה כן פוטר</h5>'
+    + ((m.exempts && m.exempts.length) ? '<ul>'+m.exempts.map(x=>'<li>'+esc(x)+'</li>').join('')+'</ul>' : '<div class="none">משום דבר</div>')
+    + '</div><div class="ml-no"><h5>ממה זה לא פוטר</h5>'
+    + ((m.notExempts && m.notExempts.length) ? '<ul>'+m.notExempts.map(x=>'<li>'+esc(x)+'</li>').join('')+'</ul>' : '<div class="none">אין דרישות נוספות</div>')
+    + '</div></div>';
+  return h + '</div></div>';
+}
+
+function renderCountry(c, ctxNum){
+  current = c;
+  const isMember = c.isFramework && ctxNum && MEMBER_ISO[ctxNum];
+  const title = isMember ? (NAMES_HE[ctxNum] || c.nameHe) : c.nameHe;
+  const f = document.getElementById('pflag');
+  f.style.visibility = 'visible';
+  f.src = flagUrl(isMember ? MEMBER_ISO[ctxNum] : c.iso2);
+  f.alt = 'דגל ' + title;
+  document.getElementById('pname').textContent = title;
+  document.getElementById('pen').textContent = isMember ? 'חברה באיחוד האירופי — חלים כללי EASA' : c.nameEn;
+  document.getElementById('pbadge').outerHTML =
+    '<span id="pbadge" class="st-'+c.status+'"><span class="badge">'+esc(STATUS[c.status].label)+'</span></span>';
+
+  let h = '';
+  if (isMember){
+    h += '<div class="warn" style="border-color:rgba(109,40,217,.35);background:rgba(109,40,217,.1)">'
+      + '<h4 style="color:var(--accent-2)">עמוד מסגרת, לא עמוד מדינה</h4>'
+      + '<p>מוצגים כאן הכללים המשותפים לכל מדינות האיחוד האירופי. הרישום, הביטוח והאזורים האסורים נקבעים בכל מדינה בנפרד — יש לבדוק אותם באתר רשות התעופה של '+esc(title)+'.</p></div>';
+  }
+  h += '<p class="answer">'+esc(c.shortAnswer)+'</p>';
+  h += microBlock(c);
+  h += '<div class="selfserve"><div class="lbl">האם תייר יכול להסדיר הכל בעצמו?</div><div class="val">'+esc(SELF[c.selfService]||'לא ברור')+'</div></div>';
+  h += '<div class="verified"><span>נבדק לאחרונה: '+esc(c.lastVerified)+'</span><span>רמת ודאות: '+esc(c.confidence||'')+'</span></div>';
+
+  /* summary requirements */
+  h += '<div class="sec"><h3>לפני ההטסה</h3>';
+  h += reqRow('רישום הכלי', c.drone && c.drone.registration);
+  h += reqRow('רישום מטיס', c.pilot && c.pilot.registration);
+  h += reqRow('מבחן', c.pilot && c.pilot.exam);
+  h += reqRow('ביטוח', c.insurance && c.insurance.required);
+  h += reqRow('אישור טיסה', c.permissions && c.permissions.flightPermit);
+  h += reqRow('דיווח מראש', c.permissions && c.permissions.notification);
+  h += reqRow('אישור תקשורת', c.permissions && c.permissions.telecom);
+  h += reqRow('פארקים לאומיים', c.permissions && c.permissions.nationalPark);
+  h += '</div>';
+
+  if (c.temporary && c.temporary.length){
+    h += '<div class="sec"><h3>הגבלות זמניות ושינויים אחרונים</h3>';
+    c.temporary.forEach(t => {
+      h += '<div class="warn"><h4>'+esc(t.title)+'</h4><p>'+esc(t.desc)+'</p>'
+        + (t.until ? '<div class="until">בתוקף: '+esc(t.until)+'</div>' : '')
+        + (t.source ? '<div class="until"><a href="'+esc(t.source)+'" target="_blank" rel="noopener">מקור</a></div>' : '')
+        + '</div>';
+    });
+    h += '</div>';
+  }
+
+  h += '<button class="expand-btn" id="expand" aria-expanded="false" aria-controls="detail"><span>הצג את המדריך המלא</span><span class="chev">&#9660;</span></button>';
+  h += '<div id="detail">';
+
+  if (c.isHome){
+    h += '<div class="sec"><h3>קישורים חיוניים לפני הטסה בישראל</h3><div class="homelinks">'
+      + '<a href="israelmap.html">מפת אזורי ההטסה של Flying Mink <span>כלי עזר בלבד</span></a>'
+      + '<a href="https://www.gov.il/he/departments/topics/aeronautical_information_publication" target="_blank" rel="noopener">פמ&quot;ת — פרסום מידע תעופתי <span>אסמכתא רשמית</span></a>'
+      + '<a href="https://www.iaa.gov.il/" target="_blank" rel="noopener">NOTAM — רשות שדות התעופה <span>הגבלות זמניות</span></a>'
+      + '<a href="https://caaidrone.mot.gov.il" target="_blank" rel="noopener">מערכת הרישוי והרישום של רת&quot;א <span>רישיון ורישום</span></a>'
+      + '</div></div>';
+  }
+
+  if (c.isFramework){
+    h += '<div class="sec"><h3>מה אחיד ומה לאומי</h3><div class="eu-cols">'
+      + '<div><h4>אחיד בכל האיחוד</h4><ul>' + (c.harmonized||[]).map(x=>'<li>'+esc(x)+'</li>').join('') + '</ul></div>'
+      + '<div><h4>נקבע בכל מדינה בנפרד</h4><ul>' + (c.national||[]).map(x=>'<li>'+esc(x)+'</li>').join('') + '</ul></div>'
+      + '</div></div>';
+  }
+
+  if (c.checklist && c.checklist.length){
+    h += '<div class="sec"><h3>מה צריך לעשות בפועל?</h3><ol class="checklist">'
+      + c.checklist.map(x=>'<li>'+esc(x)+'</li>').join('') + '</ol></div>';
+  }
+
+  if (c.steps && c.steps.length){
+    h += '<div class="sec"><h3>התהליך שלב אחר שלב</h3>';
+    c.steps.forEach(s => {
+      h += '<div class="step"><h4>'+esc(s.title)+'</h4>'
+        + (s.authority ? '<div class="auth">'+esc(s.authority)+'</div>' : '')
+        + '<p>'+esc(s.desc)+'</p>' + kvBlock(s)
+        + (s.url ? '<a class="go" href="'+esc(s.url)+'" target="_blank" rel="noopener">לאתר הרשמי &#8599;</a>' : '')
+        + '</div>';
+    });
+    h += '</div>';
+  }
+
+  /* tourist eligibility */
+  if (c.tourist){
+    h += '<div class="sec"><h3>תייר מול תושב</h3>';
+    h += reqRow('תייר זר רשאי', c.tourist.allowed);
+    h += reqRow('שימוש פנאי', c.tourist.recreational);
+    h += reqRow('שימוש מסחרי', c.tourist.commercial);
+    h += reqRow('מגבלות אזרחות', c.tourist.nationality);
+    h += reqRow('מגבלות תושבות', c.tourist.residency);
+    h += '</div>';
+  }
+
+  /* drone + pilot + insurance detail */
+  h += '<div class="sec"><h3>הרחפן והמטיס</h3>';
+  if (c.drone){
+    h += reqRow('מעמד עד 250 גרם', c.drone.under250);
+    h += reqRow('סף המשקל המדויק', c.drone.threshold);
+    h += reqRow('השפעת המצלמה', c.drone.camera);
+    h += reqRow('זיהוי מרחוק', c.drone.remoteId);
+    h += reqRow('סימון', c.drone.marking);
+  }
+  if (c.pilot){
+    h += reqRow('רישיון', c.pilot.license);
+    h += reqRow('הכשרה', c.pilot.training);
+    h += reqRow('גיל מינימלי', c.pilot.minAge);
+  }
+  h += '</div>';
+
+  if (c.insurance){
+    h += '<div class="sec"><h3>ביטוח</h3>';
+    h += reqRow('חובה', c.insurance.required);
+    h += reqRow('חל על עד 250 גרם', c.insurance.applies250);
+    h += reqRow('כיסוי מזערי', c.insurance.minCoverage);
+    h += reqRow('ביטוח זר מתקבל', c.insurance.foreign);
+    h += reqRow('פוליסה מקומית', c.insurance.local);
+    h += '</div>';
+  }
+
+  if (c.limits){
+    h += '<div class="sec"><h3>מגבלות הפעלה</h3>';
+    const LMAP = {altitude:'גובה מרבי',vlos:'קשר עין',distance:'מרחק מהמטיס',people:'אנשים',property:'קרקע פרטית',
+      airports:'שדות תעופה',urban:'אזור עירוני',night:'טיסת לילה',military:'מתקנים צבאיים',
+      government:'מבני ממשלה',infrastructure:'תשתיות',border:'אזורי גבול',emergency:'אירועי חירום',
+      events:'אירועים',wildlife:'בעלי חיים',speed:'מהירות',visibility:'ראות',single:'מספר כלים',
+      tfr:'הגבלות זמניות',privacy:'פרטיות'};
+    Object.keys(LMAP).forEach(k => { if (c.limits[k]) h += reqRow(LMAP[k], c.limits[k]); });
+    h += '</div>';
+  }
+
+  if (c.permissions){
+    h += '<div class="sec"><h3>אישורים נוספים</h3>';
+    h += reqRow('מרחב אווירי', c.permissions.airspace);
+    h += reqRow('רשות מקומית', c.permissions.local);
+    h += '</div>';
+  }
+
+  if (c.authorities && c.authorities.length){
+    h += '<div class="sec"><h3>הרשויות הרלוונטיות</h3>';
+    c.authorities.forEach(a => {
+      h += '<div class="auth-item"><div style="flex:1;min-width:0"><div class="ai-n">'+esc(a.name)+'</div>'
+        + '<div class="ai-r">'+esc(a.role)+'</div>'
+        + (a.url ? '<div class="ai-l"><a href="'+esc(a.url)+'" target="_blank" rel="noopener">'+esc(a.url.replace(/^https?:\/\//,'').replace(/\/$/,''))+'</a></div>' : '')
+        + '</div></div>';
+    });
+    h += '</div>';
+  }
+
+  if (c.uncertainties && c.uncertainties.length){
+    h += '<div class="sec"><h3>אי-ודאויות ידועות</h3>'
+      + c.uncertainties.map(u=>'<div class="unc">'+esc(u)+'</div>').join('') + '</div>';
+  }
+
+  if (c.sources && c.sources.length){
+    h += '<div class="sec"><h3>מקורות</h3>';
+    c.sources.forEach(s => {
+      h += '<div class="src"><span class="tier t'+(s.tier||4)+'">'+esc(TIER[s.tier]||'מקור')+'</span>'
+        + '<div style="flex:1;min-width:0"><a href="'+esc(s.url)+'" target="_blank" rel="noopener">'+esc(s.title)+'</a>'
+        + '<div class="s-meta">'+esc(s.lang||'')+(s.checked ? ' · נבדק '+esc(s.checked) : '')+'</div></div></div>';
+    });
+    h += '</div>';
+  }
+
+  h += '<div class="disclaimer" style="margin-top:28px"><h3>הבהרה</h3><p>המידע באתר נועד למטרות מידע בלבד ואינו מהווה ייעוץ משפטי או תחליף להנחיות הרשות המקומית. תקנות והגבלות עשויות להשתנות. לפני כל הטסה יש לבדוק את המקורות הרשמיים העדכניים במדינת היעד.</p></div>';
+  h += '</div>';
+
+  pbody.innerHTML = h;
+  pbody.scrollTop = 0;
+  const btn = document.getElementById('expand');
+  const det = document.getElementById('detail');
+  btn.addEventListener('click', () => {
+    const on = det.classList.toggle('on');
+    btn.classList.toggle('on', on);
+    btn.setAttribute('aria-expanded', on ? 'true' : 'false');
+    btn.querySelector('span').textContent = on ? 'הסתר את המדריך המלא' : 'הצג את המדריך המלא';
+    if (on) requestAnimationFrame(() => det.scrollIntoView({behavior:'smooth', block:'start'}));
+  });
+}
+
+function renderNoData(name, iso){
+  current = null;
+  const f = document.getElementById('pflag');
+  if (iso){ f.src = flagUrl(iso); f.style.visibility='visible'; } else { f.style.visibility='hidden'; }
+  document.getElementById('pname').textContent = name;
+  document.getElementById('pen').textContent = '';
+  document.getElementById('pbadge').outerHTML = '<span id="pbadge" class="st-gray"><span class="badge">אין מידע במאגר עדיין</span></span>';
+  pbody.innerHTML = '<div class="nodata-box"><h3>המדינה הזו עדיין לא נחקרה</h3>'
+    + '<p>המאגר נבנה מדינה אחרי מדינה, כל אחת מול המקורות הרשמיים שלה. עדיף להשאיר כאן ריק מאשר להציג מידע שלא נבדק.</p></div>'
+    + '<div class="disclaimer"><h3>הבהרה</h3><p>המידע באתר נועד למטרות מידע בלבד ואינו מהווה ייעוץ משפטי או תחליף להנחיות הרשות המקומית. לפני כל הטסה יש לבדוק את המקורות הרשמיים העדכניים במדינת היעד.</p></div>';
+}
+
+function openPanel(){
+  panel.classList.add('open');
+  scrim.classList.add('open');
+}
+function closePanel(){
+  panel.classList.remove('open');
+  scrim.classList.remove('open');
+  selected = null;
+  setHash('');
+  draw();
+}
+document.getElementById('pclose').addEventListener('click', closePanel);
+scrim.addEventListener('click', closePanel);
+document.addEventListener('keydown', e => { if (e.key === 'Escape' && panel.classList.contains('open')) closePanel(); });
+
+/* ================= selection ================= */
+let selected = null;
+
+function selectCountry(c, opts){
+  opts = opts || {};
+  const ctxNum = c.isFramework ? (opts.num || null) : c.num;
+  selected = c.isFramework ? (opts.num || null) : c.num;
+  renderCountry(c, ctxNum);
+  openPanel();
+  document.getElementById('q').value = (c.isFramework && ctxNum && NAMES_HE[ctxNum]) ? NAMES_HE[ctxNum] : c.nameHe;
+  document.getElementById('qclear').hidden = false;
+  setHash('#/'+c.id);
+  let target = c.coords;
+  if (c.isFramework && ctxNum && geoCentroid){
+    const feat = features.find(f => f.id === ctxNum);
+    if (feat){
+      const ct = geoCentroid(feat);
+      if (ct && !isNaN(ct[0])) target = ct;
+    }
+  }
+  if (target && projection) rotateTo(target);
+  if (window.gtag) gtag('event','country_open',{country:c.id});
+  closeResults();
+  draw();
+}
+function selectUnresearched(num, name, iso){
+  selected = null;
+  renderNoData(name, iso);
+  openPanel();
+  const feat = features.find(f => f.id === num);
+  if (feat && projection){
+    const ctr = geoCentroid(feat);
+    if (ctr && !isNaN(ctr[0])) rotateTo(ctr);
+  }
+  closeResults();
+  draw();
+}
+
+/* ================= search ================= */
+const qEl = document.getElementById('q');
+const qClear = document.getElementById('qclear');
+const resEl = document.getElementById('results');
+let searchIndex = [];
+let activeIdx = -1;
+
+function buildIndex(){
+  const idx = [];
+  const covered = new Set();
+  DB.forEach(c => {
+    idx.push({kind:'db', c, terms:[c.nameHe, c.nameEn].concat(c.isFramework ? ['EASA','האיחוד האירופי','אירופה'] : (c.aliases||[])),
+              name:c.nameHe, sub:c.nameEn, iso:c.iso2, status:c.status});
+    if (c.num !== 'eu') covered.add(c.num);
+    (c.extraNums || []).forEach(n => covered.add(n));
+    /* each EU member gets its own searchable entry pointing at the framework */
+    (c.memberNums||[]).forEach(n => {
+      covered.add(n);
+      const feat = features.find(f => f.id === n);
+      const en = feat && feat.properties ? feat.properties.name : '';
+      idx.push({kind:'db', c, num:n, terms:[NAMES_HE[n], en].filter(Boolean),
+                name:NAMES_HE[n]||en, sub:'כללי האיחוד האירופי', iso:MEMBER_ISO[n], status:c.status});
+    });
+  });
+  Object.keys(NAMES_HE).forEach(num => {
+    if (covered.has(num)) return;
+    const he = NAMES_HE[num];
+    const feat = features.find(f => f.id === num);
+    const en = feat && feat.properties ? feat.properties.name : '';
+    idx.push({kind:'none', num, terms:[he, en].filter(Boolean), name:he, sub:en, iso:null});
+  });
+  searchIndex = idx;
+}
+
+function normalize(s){ return String(s||'').toLowerCase().replace(/[׳״'"`\-–—]/g,'').trim(); }
+function search(qs){
+  const n = normalize(qs);
+  if (!n) return [];
+  const out = [];
+  searchIndex.forEach(item => {
+    let best = 99;
+    item.terms.forEach(t => {
+      const tn = normalize(t);
+      if (!tn) return;
+      if (tn === n) best = Math.min(best, 0);
+      else if (tn.startsWith(n)) best = Math.min(best, 1);
+      else if (tn.includes(n)) best = Math.min(best, 2);
+    });
+    if (best < 99) out.push({item, score: best + (item.kind === 'db' ? 0 : 3)});
+  });
+  out.sort((a,b) => a.score - b.score || a.item.name.localeCompare(b.item.name,'he'));
+  return out.slice(0, 12).map(x => x.item);
+}
+
+function renderResults(list){
+  if (!list.length){ closeResults(); return; }
+  resEl.innerHTML = list.map((it,i) => {
+    const flag = it.iso ? '<img src="'+flagUrl(it.iso)+'" alt="" loading="lazy">' : '<img alt="" style="visibility:hidden">';
+    const right = it.kind === 'db'
+      ? '<span class="dot" style="background:'+STATUS[it.status].color+'"></span>'
+      : '<span class="nodata">אין מידע עדיין</span>';
+    return '<button class="res" role="option" data-i="'+i+'">'+flag
+      + '<span class="res-name"><b>'+esc(it.name)+'</b>'+(it.sub?'<span>'+esc(it.sub)+'</span>':'')+'</span>'+right+'</button>';
+  }).join('');
+  resEl.classList.add('open');
+  qEl.setAttribute('aria-expanded','true');
+  activeIdx = -1;
+  [...resEl.querySelectorAll('.res')].forEach(b => {
+    b.addEventListener('click', () => choose(list[+b.dataset.i]));
+  });
+  currentList = list;
+}
+let currentList = [];
+function closeResults(){ resEl.classList.remove('open'); qEl.setAttribute('aria-expanded','false'); activeIdx = -1; }
+function choose(item){
+  if (!item) return;
+  if (item.kind === 'db') selectCountry(item.c, {num: item.num});
+  else selectUnresearched(item.num, item.name, null);
+}
+
+qEl.addEventListener('input', () => {
+  qClear.hidden = !qEl.value;
+  renderResults(search(qEl.value));
+});
+qEl.addEventListener('keydown', e => {
+  if (!resEl.classList.contains('open')) return;
+  const items = [...resEl.querySelectorAll('.res')];
+  if (e.key === 'ArrowDown'){ e.preventDefault(); activeIdx = Math.min(activeIdx+1, items.length-1); }
+  else if (e.key === 'ArrowUp'){ e.preventDefault(); activeIdx = Math.max(activeIdx-1, 0); }
+  else if (e.key === 'Enter'){ e.preventDefault(); choose(currentList[activeIdx < 0 ? 0 : activeIdx]); return; }
+  else if (e.key === 'Escape'){ closeResults(); return; }
+  items.forEach((b,i) => b.classList.toggle('active', i === activeIdx));
+  if (items[activeIdx]) items[activeIdx].scrollIntoView({block:'nearest'});
+});
+qClear.addEventListener('click', () => { qEl.value=''; qClear.hidden=true; closeResults(); qEl.focus(); });
+document.addEventListener('click', e => { if (!e.target.closest('.search-wrap')) closeResults(); });
+
+/* ================= easy rail ================= */
+(function buildRail(){
+  const rail = document.getElementById('rail');
+  const easy = DB.filter(c => c.easyRank).sort((a,b) => a.easyRank - b.easyRank).slice(0, 5);
+  rail.innerHTML = easy.map(c =>
+    '<button class="rail-item" data-id="'+c.id+'" title="'+esc(c.easyWhy||'')+'">'
+    + '<span class="rail-rank">'+c.easyRank+'</span>'
+    + '<span class="rn">'+esc(c.nameHe)+'</span>'
+    + '<span class="rd" style="background:'+STATUS[c.status].color+'"></span></button>'
+  ).join('');
+  rail.querySelectorAll('.rail-item').forEach(b => {
+    b.addEventListener('click', () => selectCountry(byId.get(b.dataset.id)));
+  });
+})();
+document.getElementById('dbdate').textContent = 'עדכון אחרון של המאגר: ' + DB_UPDATED;
+
+/* ---- random country ---- */
+let lastRandom = null;
+const diceBtn = document.getElementById('dice');
+function randomCountry(){
+  const pool = [];
+  DB.forEach(c => {
+    if (c.isFramework) (c.memberNums || []).forEach(n => pool.push({c, num:n}));
+    else pool.push({c, num:c.num});
+  });
+  if (!pool.length) return;
+  let pick = pool[0];
+  for (let i = 0; i < 14; i++){
+    pick = pool[Math.floor(Math.random() * pool.length)];
+    if (pick.num !== lastRandom) break;
+  }
+  lastRandom = pick.num;
+  selectCountry(pick.c, {num: pick.num});
+  if (window.gtag) gtag('event','random_country',{country:pick.c.id});
+}
+diceBtn.addEventListener('click', () => {
+  diceBtn.classList.add('roll');
+  setTimeout(() => diceBtn.classList.remove('roll'), 560);
+  randomCountry();
+});
+
+/* ---- scroll cue ---- */
+const cue = document.getElementById('scrollcue');
+cue.addEventListener('click', () => {
+  window.scrollBy({top: Math.round(window.innerHeight * 0.82), behavior:'smooth'});
+});
+window.addEventListener('scroll', () => {
+  cue.classList.toggle('gone', window.scrollY > 170);
+}, {passive:true});
+
+/* ================= globe ================= */
+let projection = null, path = null, features = [], land = null, geoCentroid = null, geoContains = null;
+const canvas = document.getElementById('globe');
+const ctx = canvas.getContext('2d');
+let W = 0, H = 0, baseScale = 1, userZoom = 1, hoverZoom = 1, hoverZoomTarget = 1;
+let rotation = [-34, -25];
+let hovered = null, autorotate = true, dragging = false, animating = false;
+
+function resize(){
+  if (hovered){ hovered = null; hoverZoomTarget = 1; tip.classList.remove('show'); }
+  const r = canvas.getBoundingClientRect();
+  const dpr = Math.min(window.devicePixelRatio || 1, 2);
+  W = r.width; H = r.height;
+  canvas.width = Math.round(W * dpr);
+  canvas.height = Math.round(H * dpr);
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  /* the canvas is inset by 10% on phone portrait, so the sphere is scaled
+     against a tighter divisor to keep the same on-screen diameter */
+  const narrow = window.innerWidth <= 620;
+  baseScale = Math.min(W / (narrow ? 1.935 : 2.15), H / 2.15);
+  if (projection) projection.translate([W/2, H/2]);
+  draw();
+}
+
+function draw(){
+  if (!ctx) return;
+  ctx.clearRect(0, 0, W, H);
+  if (!projection) return;
+  projection.scale(baseScale * userZoom * hoverZoom).rotate(rotation);
+
+  const cx = W/2, cy = H/2, R = baseScale * userZoom * hoverZoom;
+
+  const glowR = Math.min(R*1.13, Math.min(W, H)/2);
+  const glow = ctx.createRadialGradient(cx, cy, Math.min(R*0.94, glowR*0.9), cx, cy, glowR);
+  glow.addColorStop(0, 'rgba(109,40,217,0.16)');
+  glow.addColorStop(1, 'rgba(109,40,217,0)');
+  ctx.fillStyle = glow;
+  ctx.beginPath(); ctx.arc(cx, cy, glowR, 0, Math.PI*2); ctx.fill();
+
+  const oc = ctx.createRadialGradient(cx - R*0.3, cy - R*0.34, R*0.1, cx, cy, R);
+  oc.addColorStop(0, '#E8EDFB');
+  oc.addColorStop(1, '#D6DEF3');
+  ctx.beginPath(); path({type:'Sphere'}); ctx.fillStyle = oc; ctx.fill();
+
+  ctx.beginPath(); path(graticule); ctx.strokeStyle = 'rgba(84,77,112,0.16)'; ctx.lineWidth = 0.6; ctx.stroke();
+
+  features.forEach(f => {
+    const c = byNum.get(f.id);
+    ctx.beginPath(); path(f);
+    if (c){
+      const col = STATUS[c.status].color;
+      const isSel = selected === f.id || (selected === c.num && (c.extraNums||[]).indexOf(f.id) > -1);
+      const isHov = hovered && hovered.id === f.id;
+      ctx.fillStyle = hexA(col, isSel ? 0.95 : isHov ? 0.82 : 0.62);
+      ctx.fill();
+      ctx.strokeStyle = hexA(col, isSel || isHov ? 1 : 0.9);
+      ctx.lineWidth = isSel ? 1.6 : 0.85;
+      ctx.stroke();
+    } else {
+      ctx.fillStyle = '#CDC7DE';
+      ctx.fill();
+      ctx.strokeStyle = 'rgba(146,138,176,0.95)';
+      ctx.lineWidth = 0.5;
+      ctx.stroke();
+    }
+  });
+
+  ctx.beginPath(); path({type:'Sphere'});
+  ctx.strokeStyle = 'rgba(91,33,182,0.42)'; ctx.lineWidth = 1.2; ctx.stroke();
+}
+function hexA(hex, a){
+  const n = parseInt(hex.slice(1), 16);
+  return 'rgba('+((n>>16)&255)+','+((n>>8)&255)+','+(n&255)+','+a+')';
+}
+
+let graticule = null;
+function tick(){
+  if (autorotate && !dragging && !animating && !hovered && !panel.classList.contains('open')){
+    rotation[0] += 0.11;
+    draw();
+  }
+  const d = hoverZoomTarget - hoverZoom;
+  if (Math.abs(d) > 0.002){ hoverZoom += d * 0.16; draw(); }
+  requestAnimationFrame(tick);
+}
+
+function pickAt(x, y){
+  if (!projection || !geoContains) return null;
+  const inv = projection.invert([x, y]);
+  if (!inv || isNaN(inv[0])) return null;
+  const cx = W/2, cy = H/2, R = baseScale * userZoom * hoverZoom;
+  if ((x-cx)*(x-cx) + (y-cy)*(y-cy) > R*R) return null;
+  for (const f of features){
+    if (!byNum.has(f.id)) continue;
+    if (geoContains(f, inv)) return f;
+  }
+  return null;
+}
+
+function rotateTo(coords){
+  if (!projection) return;
+  const start = rotation.slice();
+  const end = [-coords[0], -coords[1]];
+  let d0 = ((end[0] - start[0]) % 360 + 540) % 360 - 180;
+  const t0 = performance.now(), dur = 620;
+  animating = true; autorotate = false;
+  (function step(now){
+    const t = Math.min(1, (now - t0) / dur);
+    const e = t < .5 ? 4*t*t*t : 1 - Math.pow(-2*t+2, 3)/2;
+    rotation = [start[0] + d0*e, start[1] + (end[1]-start[1])*e];
+    draw();
+    if (t < 1) requestAnimationFrame(step); else animating = false;
+  })(t0);
+}
+
+/* pointer interaction */
+const tip = document.getElementById('tip');
+let ptrs = new Map(), lastPos = null, moved = 0, pinchStart = 0, pinchZoom0 = 1;
+
+canvas.addEventListener('pointerdown', e => {
+  canvas.setPointerCapture(e.pointerId);
+  ptrs.set(e.pointerId, [e.clientX, e.clientY]);
+  if (ptrs.size === 1){ dragging = true; moved = 0; lastPos = [e.clientX, e.clientY]; canvas.classList.add('dragging'); }
+  else if (ptrs.size === 2){
+    const p = [...ptrs.values()];
+    pinchStart = Math.hypot(p[0][0]-p[1][0], p[0][1]-p[1][1]);
+    pinchZoom0 = userZoom;
+  }
+});
+canvas.addEventListener('pointermove', e => {
+  const rect = canvas.getBoundingClientRect();
+  if (ptrs.has(e.pointerId)) ptrs.set(e.pointerId, [e.clientX, e.clientY]);
+
+  if (ptrs.size === 2){
+    const p = [...ptrs.values()];
+    const d = Math.hypot(p[0][0]-p[1][0], p[0][1]-p[1][1]);
+    if (pinchStart > 0){ userZoom = clamp(pinchZoom0 * (d / pinchStart), 0.85, 4.5); draw(); }
+    return;
+  }
+  if (dragging && lastPos){
+    const dx = e.clientX - lastPos[0], dy = e.clientY - lastPos[1];
+    moved += Math.abs(dx) + Math.abs(dy);
+    const k = 70 / (baseScale * userZoom * hoverZoom);
+    rotation[0] += dx * k;
+    rotation[1] = clamp(rotation[1] - dy * k, -89, 89);
+    lastPos = [e.clientX, e.clientY];
+    autorotate = false;
+    draw();
+    return;
+  }
+  if (e.pointerType !== 'mouse') return;
+  const f = pickAt(e.clientX - rect.left, e.clientY - rect.top);
+  if (f !== hovered){
+    hovered = f;
+    canvas.classList.toggle('pointing', !!f);
+    hoverZoomTarget = f ? 1.07 : 1;
+    draw();
+  }
+  if (f){
+    const c = byNum.get(f.id);
+    const nm = (c.isFramework && NAMES_HE[f.id]) ? NAMES_HE[f.id] : c.nameHe;
+    const fi = (c.isFramework && MEMBER_ISO[f.id]) ? MEMBER_ISO[f.id] : c.iso2;
+    tip.innerHTML = '<div class="t-top"><img src="'+flagUrl(fi)+'" alt=""><b>'+esc(nm)+'</b></div>'
+      + '<span class="st-'+c.status+'"><span class="badge">'+esc(STATUS[c.status].label)+'</span></span>';
+    tip.classList.add('show');
+    const tw = tip.offsetWidth, th = tip.offsetHeight;
+    tip.style.left = clamp(e.clientX + 16, 8, window.innerWidth - tw - 8) + 'px';
+    tip.style.top = clamp(e.clientY - th - 12, 8, window.innerHeight - th - 8) + 'px';
+  } else tip.classList.remove('show');
+});
+function endPtr(e){
+  ptrs.delete(e.pointerId);
+  if (ptrs.size < 2) pinchStart = 0;
+  if (ptrs.size === 0){
+    canvas.classList.remove('dragging');
+    if (dragging && moved < 7){
+      const rect = canvas.getBoundingClientRect();
+      const f = pickAt(e.clientX - rect.left, e.clientY - rect.top);
+      if (f){
+        const c = byNum.get(f.id);
+        selectCountry(c, {num: f.id});
+      }
+    }
+    dragging = false; lastPos = null;
+  }
+}
+canvas.addEventListener('pointerup', endPtr);
+canvas.addEventListener('pointercancel', endPtr);
+canvas.addEventListener('pointerleave', () => {
+  if (hovered){ hovered = null; hoverZoomTarget = 1; canvas.classList.remove('pointing'); draw(); }
+  tip.classList.remove('show');
+});
+canvas.addEventListener('wheel', e => {
+  e.preventDefault();
+  userZoom = clamp(userZoom * (e.deltaY < 0 ? 1.12 : 0.89), 0.85, 4.5);
+  autorotate = false;
+  draw();
+}, {passive:false});
+document.getElementById('zin').addEventListener('click', () => { userZoom = clamp(userZoom*1.25, .85, 4.5); autorotate=false; draw(); });
+document.getElementById('zout').addEventListener('click', () => { userZoom = clamp(userZoom*0.8, .85, 4.5); draw(); });
+function clamp(v,a,b){ return v < a ? a : v > b ? b : v; }
+let resizeTimer = null;
+function scheduleResize(){
+  clearTimeout(resizeTimer);
+  resizeTimer = setTimeout(resize, 90);
+}
+window.addEventListener('resize', scheduleResize);
+window.addEventListener('orientationchange', () => setTimeout(resize, 220));
+if (window.visualViewport) window.visualViewport.addEventListener('resize', scheduleResize);
+
+/* ================= boot ================= */
+(async function boot(){
+  try {
+    const [geo, topo] = await Promise.all([
+      import('https://cdn.jsdelivr.net/npm/d3-geo@3/+esm'),
+      import('https://cdn.jsdelivr.net/npm/topojson-client@3/+esm')
+    ]);
+    const res = await fetch('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json');
+    if (!res.ok) throw new Error('atlas');
+    const world = await res.json();
+    const fc = topo.feature(world, world.objects.countries);
+    features = fc.features.map(f => ({...f, id: String(f.id).padStart(3,'0')}));
+    geoCentroid = geo.geoCentroid;
+    geoContains = geo.geoContains;
+    graticule = geo.geoGraticule10();
+    projection = geo.geoOrthographic().clipAngle(90).precision(0.4);
+    path = geo.geoPath(projection, ctx);
+    buildIndex();
+    resize();
+    tick();
+  } catch (err){
+    document.getElementById('gerr').classList.add('show');
+    document.getElementById('hint').style.display = 'none';
+    document.getElementById('hint-touch').style.display = 'none';
+    buildIndex();
+  }
+  try {
+    const m = location.hash.match(/^#\/([a-z]{2})$/i);
+    if (m && byId.has(m[1].toLowerCase())) selectCountry(byId.get(m[1].toLowerCase()));
+  } catch (e) { /* no deep link available */ }
+})();
+</script>
+</body>
+</html>
