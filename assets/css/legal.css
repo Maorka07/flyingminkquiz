@@ -56,22 +56,7 @@ a:hover{color:var(--purple-2)}
 /* Cards */
 .card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-lg);box-shadow:var(--shadow-1);padding:22px 20px}
 @media(min-width:700px){.card{padding:28px 32px}}
-.summary{margin-top:26px;background:linear-gradient(180deg,#FFFFFF 0%,#FBFAFE 100%)}
-.summary h2{font-size:18px;font-weight:800;margin:0 0 10px;display:flex;align-items:center;gap:10px}
-.summary h2 svg{width:22px;height:22px;color:var(--teal);flex:none}
-.summary ul{margin:0;padding:0;list-style:none;display:grid;gap:10px}
-.summary li{position:relative;padding-inline-start:26px;color:var(--ink-2)}
-.summary li::before{content:"";position:absolute;inset-inline-start:2px;top:.62em;width:10px;height:10px;border-radius:50%;background:var(--teal)}
-.summary b{color:var(--ink)}
 
-/* Table of contents */
-.toc{margin-top:18px}
-.toc h2{font-size:15px;font-weight:700;color:var(--ink-3);margin:0 0 8px}
-.toc ol{margin:0;padding:0;list-style:none;display:grid;grid-template-columns:1fr;gap:6px}
-@media(min-width:620px){.toc ol{grid-template-columns:1fr 1fr}}
-.toc a{display:flex;gap:10px;align-items:baseline;text-decoration:none;color:var(--ink);padding:8px 12px;border-radius:12px;font-weight:500;font-size:15.5px;transition:background .2s,color .2s}
-.toc a:hover{background:var(--purple-soft);color:var(--purple)}
-.toc .n{font-family:var(--mono);font-size:12px;color:var(--teal);font-weight:700;direction:ltr}
 
 /* Sections */
 .doc{padding:8px 0 24px}
@@ -85,14 +70,8 @@ a:hover{color:var(--purple-2)}
 .doc-sec li{margin-bottom:6px}
 .doc-sec li::marker{color:var(--purple)}
 .doc-sec b,.doc-sec strong{color:var(--ink)}
-.note{margin:14px 0 0;padding:14px 16px;border-radius:var(--radius-md);background:var(--amber-soft);border:1px solid var(--amber-line);color:var(--amber-ink);font-size:15.5px}
-.note b{color:var(--amber-ink)}
 .ltr{direction:ltr;unicode-bidi:isolate;display:inline-block}
 
-/* Vendor list */
-.vendors{display:grid;gap:10px;margin:6px 0 12px;padding:0;list-style:none}
-.vendors li{background:var(--surface-2);border:1px solid var(--line);border-radius:14px;padding:12px 14px;margin:0;color:var(--ink-2)}
-.vendors li b{display:block;color:var(--ink);font-size:16px}
 
 /* Contact card */
 .contact{margin-top:22px;border-color:var(--line-2);box-shadow:var(--shadow-2);scroll-margin-top:84px}
@@ -118,7 +97,7 @@ a:hover{color:var(--purple-2)}
 
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
 @media print{
-  .topbar,.skip,.toc,.page-foot nav{display:none}
+  .topbar,.skip,.page-foot nav{display:none}
   body,html{background:#fff}
   .card{box-shadow:none;border-color:#ccc}
   a{color:inherit}
