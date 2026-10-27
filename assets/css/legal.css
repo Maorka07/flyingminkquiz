@@ -33,7 +33,7 @@ a:hover{color:var(--purple-2)}
 :focus-visible{outline:3px solid var(--purple-2);outline-offset:3px;border-radius:8px}
 .skip{position:absolute;inset-inline-start:16px;top:-60px;background:var(--purple);color:#fff;padding:10px 16px;border-radius:12px;z-index:100;text-decoration:none;font-weight:700;transition:top .2s}
 .skip:focus{top:12px;color:#fff}
-.wrap{width:100%;max-width:880px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left));padding-right:max(16px,env(safe-area-inset-right))}
+.wrap{width:100%;max-width:880px;margin:0 auto;padding-left:max(20px,env(safe-area-inset-left));padding-right:max(20px,env(safe-area-inset-right))}
 @media(min-width:768px){.wrap{padding-left:28px;padding-right:28px}}
 
 /* Top bar */

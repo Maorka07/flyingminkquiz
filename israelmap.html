@@ -360,6 +360,7 @@ a { color: inherit; text-decoration: none; }
 }
 .topbar-btn svg { width: 16px; height: 16px; flex-shrink: 0; }
 .topbar-btn-text { font-size: 13px; }
+a.topbar-btn { text-decoration: none; }
 
 .sidebar-toggle {
   display: none;
@@ -2004,14 +2005,105 @@ a { color: inherit; text-decoration: none; }
   }
 }
 </style>
+<style>
+/* site-nav page fit */
+:root{--fmn-h:74px}
+body > .fmn{position:fixed;top:0;left:0;right:0;padding-top:8px}
+.app{top:var(--fmn-h)}
+@media (max-width:860px){
+  .sidebar{top:calc(var(--fmn-h) + var(--topbar-h))}
+  .sidebar-backdrop{inset:calc(var(--fmn-h) + var(--topbar-h)) 0 0 0}
+}
+</style>
+<link rel="stylesheet" href="assets/css/site-nav.css">
+<style>
+/* disclaimer dialog */
+.map-notice{width:min(560px,calc(100vw - 32px));max-height:calc(100dvh - 32px);overflow:auto;margin:auto;padding:26px 24px 22px;border:1.5px solid rgba(245,158,11,0.6);border-radius:18px;background:linear-gradient(180deg,rgba(17,20,44,0.98),rgba(7,8,22,0.98));color:var(--text-100);font-family:'Heebo',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;direction:rtl;text-align:right;box-shadow:0 24px 60px rgba(0,0,0,0.55),0 0 0 1px rgba(245,158,11,0.14)}
+.map-notice::backdrop{background:rgba(7,8,22,0.78);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+.map-notice.mn-fallback{position:fixed;inset:0;z-index:1000;height:fit-content}
+.mn-close{position:absolute;top:12px;left:12px;width:44px;height:44px;display:grid;place-items:center;border-radius:50%;border:1px solid rgba(255,255,255,0.22);background:rgba(255,255,255,0.08);color:#fff;cursor:pointer;transition:background .2s,border-color .2s}
+.mn-close:hover{background:rgba(255,255,255,0.16);border-color:rgba(255,255,255,0.4)}
+.mn-close:focus-visible{outline:3px solid #fbbf24;outline-offset:2px}
+.mn-close svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:2.4;stroke-linecap:round}
+.mn-head{display:flex;align-items:center;gap:10px;margin:0 0 14px;padding-left:52px}
+.mn-icon{flex-shrink:0;width:26px;height:26px;fill:none;stroke:#fbbf24;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.map-notice h2{margin:0;font-size:1.2rem;line-height:1.35;font-weight:800;color:#fde68a}
+.mn-list{margin:0;padding:0 18px 0 0;display:grid;gap:10px;font-size:15px;line-height:1.6;color:var(--text-200)}
+.mn-list li::marker{color:#fbbf24}
+.mn-list strong{color:#fff;font-weight:700}
+@media (max-width:480px){.map-notice{padding:22px 18px 18px}.mn-list{font-size:14.5px}}
+</style>
 </head>
 <body>
+
+<!-- FM-NAV:START -->
+<nav class="fmn" aria-label="ניווט באתר">
+  <div class="fmn-in">
+    <a class="fmn-brand" href="index.html" aria-label="Flying Mink, לדף הבית">
+      <img src="assets/img/mink-mark.webp" alt="" width="72" height="34" decoding="async">
+      <span class="fmn-word">Flying <b>Mink</b></span>
+    </a>
+    <div class="fmn-actions">
+      <a class="fmn-pill fmn-home" href="index.html" aria-label="חזרה לדף הבית">
+        <svg class="fmn-chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg>
+        <svg class="fmn-house" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/><path d="M10 21v-6h4v6"/></svg>
+        <span class="fmn-long" data-fmn-label="home">חזרה לדף הבית</span><span class="fmn-short" data-fmn-label="home-short">דף הבית</span>
+      </a>
+      <a class="fmn-icon fmn-wa" href="https://wa.me/972549902676?text=%D7%94%D7%99%D7%99%2C%20%D7%94%D7%92%D7%A2%D7%AA%D7%99%20%D7%9E%D7%94%D7%90%D7%AA%D7%A8%20%D7%A9%D7%9C%20Flying%20Mink%20%D7%95%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A9%D7%90%D7%95%D7%9C%20%D7%A9%D7%90%D7%9C%D7%94" target="_blank" rel="noopener" aria-label="שליחת הודעה בוואטסאפ" title="וואטסאפ">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
+      </a>
+      <a class="fmn-icon fmn-ig" href="https://instagram.com/flyingmink" target="_blank" rel="noopener" aria-label="Flying Mink באינסטגרם" title="אינסטגרם">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="2.5" width="19" height="19" rx="5.5"/><circle cx="12" cy="12" r="4.2"/><path d="M17.6 6.4h.01"/></svg>
+      </a>
+    </div>
+  </div>
+</nav>
+<!-- FM-NAV:END -->
+
+<!-- Disclaimer shown on every visit; closes only with the X (or Esc for keyboard users) -->
+<dialog class="map-notice" id="mapNotice" aria-labelledby="mapNoticeTitle" aria-describedby="mapNoticeBody">
+  <button type="button" class="mn-close" id="mapNoticeClose" aria-label="סגירה: קראתי והבנתי" title="סגירה">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>
+  </button>
+  <div class="mn-head">
+    <svg class="mn-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><path d="M12 9v4M12 17h.01"/></svg>
+    <h2 id="mapNoticeTitle">חשוב לקרוא לפני השימוש במפה</h2>
+  </div>
+  <div id="mapNoticeBody">
+    <ul class="mn-list">
+      <li>המפה נועדה לעזור בהבנת המקרא ובהתמצאות בלבד. <strong>היא אינה קובעת איפה מותר ואיפה אסור להטיס.</strong></li>
+      <li><strong>בוודאות יש במפה טעויות.</strong> היא עדיין עוברת שיפורים, <strong>ואין להסתמך עליה.</strong></li>
+      <li><strong>Flying Mink</strong> אינה אחראית לכל נזק, קנס או עבירה שייגרמו משימוש במפה.</li>
+      <li>לפני כל טיסה חובה לבדוק פמ״ת ו־NOTAM עדכניים באתר רשות התעופה האזרחית. האחריות החוקית מוטלת על המטיס בלבד.</li>
+    </ul>
+  </div>
+</dialog>
+<script>
+(function () {
+  var dlg = document.getElementById('mapNotice');
+  var closeBtn = document.getElementById('mapNoticeClose');
+  if (!dlg || !closeBtn) return;
+  function show() {
+    try {
+      if (typeof dlg.showModal === 'function') { dlg.showModal(); }
+      else { dlg.setAttribute('open', ''); dlg.classList.add('mn-fallback'); }
+    } catch (e) { dlg.setAttribute('open', ''); dlg.classList.add('mn-fallback'); }
+    closeBtn.focus();
+  }
+  closeBtn.addEventListener('click', function () {
+    if (typeof dlg.close === 'function' && dlg.open) dlg.close();
+    dlg.removeAttribute('open');
+    dlg.classList.remove('mn-fallback');
+  });
+  show();
+})();
+</script>
 
 <div class="app" id="app">
 
   <!-- ===================== TOPBAR ===================== -->
   <header class="topbar" role="banner">
-    <a class="brand" href="https://flyingmink.com" target="_blank" rel="noopener" aria-label="Flying Mink - דף הבית">
+    <div class="brand">
       <span class="brand-mark" aria-hidden="true">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
           <path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5z"/>
@@ -2021,7 +2113,7 @@ a { color: inherit; text-decoration: none; }
         <span class="brand-title">מפת תעופה ספורטיבית</span>
         <span class="brand-subtitle">ISRAEL · LOW ALT VFR</span>
       </span>
-    </a>
+    </div>
 
     <!-- search bar -->
     <div class="search-wrap">
@@ -2041,6 +2133,7 @@ a { color: inherit; text-decoration: none; }
     </div>
 
     <div class="topbar-meta">
+      
       <button class="topbar-btn" id="downloadBtn" aria-label="הורד מפה">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
