@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://flyingmink.com/sitemap.xml

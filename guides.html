@@ -6,7 +6,7 @@
 <title>Flying Mink — מדריכים ותוכן</title>
 <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;900&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#0a0b16;--bg2:#111827;--bg3:#1a2332;--purple:#6d28d9;--purple-l:#a78bfa;--purple-g:rgba(109,40,217,0.15);--border:rgba(139,92,246,0.2);--border-h:rgba(167,139,250,0.5);--t1:#f1f5f9;--t2:#94a3b8;--t3:#64748b;--gold:#f59e0b;}
+:root{--bg:#0a0b16;--bg2:#111827;--bg3:#1a2332;--purple:#6d28d9;--purple-l:#a78bfa;--purple-g:rgba(109,40,217,0.15);--border:rgba(139,92,246,0.2);--border-h:rgba(167,139,250,0.5);--t1:#f1f5f9;--t2:#94a3b8;--t3:#8390a5;--gold:#f59e0b;}
 *{margin:0;padding:0;box-sizing:border-box;}
 html{scroll-behavior:smooth;}
 body{font-family:'Heebo',sans-serif;background:var(--bg);color:var(--t1);min-height:100vh;overflow-x:hidden;line-height:1.7;}
@@ -61,6 +61,22 @@ body{font-family:'Heebo',sans-serif;background:var(--bg);color:var(--t1);min-hei
 .hero{padding-top:28px}
 </style>
 <link rel="stylesheet" href="assets/css/site-nav.css">
+
+<!-- icons + share preview -->
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32.png">
+<link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+<meta name="description" content="הקורס החינמי של Flying Mink: מדריכים לרחפנים — מה לעשות אחרי שקניתם רחפן, חוקים ואזורי טיסה, תפעול בסיסי, RTH, GPS ועוד.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Flying Mink">
+<meta property="og:locale" content="he_IL">
+<meta property="og:title" content="Flying Mink — מדריכים ותוכן">
+<meta property="og:description" content="הקורס החינמי של Flying Mink: מדריכים לרחפנים — מה לעשות אחרי שקניתם רחפן, חוקים ואזורי טיסה, תפעול בסיסי, RTH, GPS ועוד.">
+<meta property="og:url" content="https://flyingmink.com/guides.html">
+<meta property="og:image" content="https://flyingmink.com/assets/img/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
 </head>
 <body>
 
@@ -106,7 +122,7 @@ body{font-family:'Heebo',sans-serif;background:var(--bg);color:var(--t1);min-hei
 
 <div class="main" id="mainContent"></div>
 
-<footer class="footer">&copy; 2025 Flying Mink Drone Solutions</footer>
+<footer class="footer">&copy; 2026 Flying Mink Drone Solutions</footer>
 
 <script>
 const GUIDES = [
@@ -119,7 +135,7 @@ const GUIDES = [
   {id:"gnss",icon:"",title:"GPS ו-GNSS: איך הרחפן יודע איפה הוא",desc:"לוויינים, מצב ATTI ו-RTK, עם הדמיה אינטראקטיבית",free:true,tags:["beginner"],link:"gnss.html"},
   {id:"lift",icon:"",title:"כוח העילוי: למה רחפן עף",desc:"מעבדה אינטראקטיבית על פרופלורים ועילוי",free:true,tags:["beginner"],link:"lift.html"},
   {id:"emergency",icon:"",title:"מה עושים במקרה חירום?",desc:"אובדן קשר, איזון, זיכרון, נקודות ועוגנים",free:true,tags:["beginner","safety"]},
-  {id:"gallery",icon:"",title:"גלריה",desc:"תמונות רחפן, תמונות שלט, מיון לפי קטגוריה",free:true,tags:["beginner"]},
+  {id:"gallery",icon:"",title:"גלריה",desc:"צילומי אוויר מקצועיים — אירועים, נדל״ן, נוף ועוד",free:true,tags:["beginner"],link:"gallery.html"},
   {id:"license",icon:"",title:"איך להוציא רשיון מטיסן",desc:"מדריך צעד אחר צעד — מהאתר ועד הרישיון ביד",free:true,tags:["beginner"]},
   {id:"compare",icon:"",title:"השוואת רחפנים 2026",desc:"טבלת השוואה מעודכנת — כל הדגמים זה מול זה",free:true,tags:["beginner"]},
   {id:"fpv-intro",icon:"",title:"FPV למתחילים",desc:"מה זה FPV, איך מתחילים, ומה צריך לקנות",free:true,tags:["beginner","advanced"]},
