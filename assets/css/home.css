@@ -66,27 +66,48 @@ a{color:inherit;text-decoration:none}
 .btn-primary{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,var(--purple),var(--indigo));color:#fff;padding:14px 32px;border-radius:11px;font-size:17px;font-weight:600;font-family:inherit;border:none;cursor:pointer;transition:all 0.25s}
 .btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 30px var(--purple-glow)}
 
-.quiz-banner{background:linear-gradient(135deg,rgba(109,40,217,0.2),rgba(79,70,229,0.2));border:1px solid rgba(167,139,250,0.25);border-radius:16px;padding:2.5rem 2rem;text-align:center;position:relative;overflow:hidden}
-.quiz-banner .drone-illust{position:absolute;top:12px;left:12px;width:80px;height:80px;opacity:0.4;direction:ltr;pointer-events:none}
-.quiz-banner h2{font-size:clamp(1.3rem,3vw,1.7rem);font-weight:700;margin-bottom:0.5rem}
-.quiz-banner p{font-size:16px;color:var(--text-dim);margin-bottom:1.75rem}
+/* ── Home bubbles: quiz, FAQ, map, checklist. One shared layout so all four are the same size, evenly spaced; each keeps its own colors ── */
+.bubbles{display:grid;grid-template-columns:1fr;grid-auto-rows:1fr;gap:1.5rem}
+@media(min-width:760px){.bubbles{grid-template-columns:1fr 1fr}}
+.bubble{position:relative;overflow:hidden;display:flex;flex-direction:column;align-items:center;text-align:center;padding:2.25rem 1.75rem 2rem;border-radius:18px;border:1px solid var(--bubble-line);background:var(--bubble-bg)}
+.bubble::before{content:"";position:absolute;top:-130px;left:50%;width:300px;height:300px;transform:translateX(-50%);background:radial-gradient(circle,var(--bubble-glow) 0%,transparent 70%);pointer-events:none}
+.bubble>*{position:relative}
+.bubble-icon{display:block;width:64px;height:56px;margin-bottom:1rem;flex-shrink:0;direction:ltr;opacity:0.9}
+.bubble-title{display:flex;align-items:center;justify-content:center;min-height:calc(2 * 1.35 * clamp(1.3rem,3vw,1.55rem));margin-bottom:0.6rem}
+.bubble h2{display:inline-block;font-size:clamp(1.3rem,3vw,1.55rem);font-weight:700;line-height:1.35}
+.bubble p{font-size:16px;line-height:1.6;color:var(--text-dim);max-width:34ch;margin-bottom:1.75rem}
+.bubble-btn{margin-top:auto;display:inline-flex;align-items:center;justify-content:center;gap:10px;width:min(100%,260px);min-height:54px;padding:0 1.25rem;border-radius:12px;color:#fff;font-weight:600;font-size:17px;font-family:inherit;text-decoration:none;transition:transform 0.25s,box-shadow 0.25s}
+.bubble-btn:hover{transform:translateY(-2px)}
+.bubble-btn:focus-visible{outline:3px solid #fff;outline-offset:3px}
+.bubble-btn svg{width:18px;height:18px;flex-shrink:0}
+[dir="rtl"] .bubble-btn svg{transform:scaleX(-1)}
+/* narrow widths where the longest title would wrap to 3 lines: keep every title in the same 2-line slot */
+@media(max-width:379px){.bubble{padding:2rem 1.25rem 1.75rem}.bubble h2{font-size:1.2rem}.bubble-title{min-height:calc(2 * 1.35 * 1.2rem)}}
+@media(max-width:339px){.bubble{padding-left:1rem;padding-right:1rem}.bubble h2{font-size:1.1rem}.bubble-title{min-height:calc(2 * 1.35 * 1.1rem)}}
+@media(min-width:760px) and (max-width:839px){.bubble{padding-left:1.25rem;padding-right:1.25rem}.bubble h2{font-size:1.25rem}.bubble-title{min-height:calc(2 * 1.35 * 1.25rem)}}
+@media(prefers-reduced-motion:reduce){.bubble-btn{transition:none}.bubble-btn:hover{transform:none}}
 
-.map-banner{background:linear-gradient(135deg,rgba(20,184,166,0.18),rgba(34,197,94,0.15));border:1px solid rgba(94,234,212,0.3);border-radius:16px;padding:2.5rem 2rem;text-align:center;position:relative;overflow:hidden;margin-top:1.5rem}
-.map-banner::before{content:"";position:absolute;top:-30%;right:-10%;width:240px;height:240px;background:radial-gradient(circle,rgba(94,234,212,0.18) 0%,transparent 70%);pointer-events:none}
-.map-banner .map-icon{position:absolute;top:14px;left:14px;width:64px;height:64px;opacity:0.5;direction:ltr;pointer-events:none}
-.map-banner h2{font-size:clamp(1.3rem,3vw,1.7rem);font-weight:700;margin-bottom:0.5rem;background:linear-gradient(135deg,#5eead4,#a78bfa);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;display:inline-block}
-.map-banner p{font-size:16px;color:var(--text-dim);margin-bottom:1.75rem;position:relative}
-.map-banner .btn-map{display:inline-block;padding:0.95rem 2.2rem;border-radius:10px;background:linear-gradient(135deg,#0d9488,#7c3aed);color:#fff;font-weight:600;font-size:17px;transition:all 0.25s;box-shadow:0 4px 14px rgba(20,184,166,0.3)}
-.map-banner .btn-map:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(20,184,166,0.5)}
-.map-banner .pulse-dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:#10b981;margin-left:8px;animation:pulse 1.8s ease-in-out infinite}
+.quiz-banner{--bubble-bg:linear-gradient(135deg,rgba(109,40,217,0.2),rgba(79,70,229,0.2));--bubble-line:rgba(167,139,250,0.28);--bubble-glow:rgba(167,139,250,0.16)}
+.btn-quiz{background:linear-gradient(135deg,var(--purple),var(--indigo));box-shadow:0 4px 14px rgba(109,40,217,0.35)}
+.btn-quiz:hover{box-shadow:0 8px 24px var(--purple-glow)}
+
+.faq-banner{--bubble-bg:linear-gradient(135deg,rgba(245,158,11,0.15),rgba(239,68,68,0.12));--bubble-line:rgba(251,191,36,0.3);--bubble-glow:rgba(251,191,36,0.14)}
+.faq-banner h2{color:#fbbf24}
+.btn-faq{background:linear-gradient(135deg,#f59e0b,#dc2626);box-shadow:0 4px 14px rgba(245,158,11,0.3)}
+.btn-faq:hover{box-shadow:0 8px 24px rgba(245,158,11,0.45)}
+
+.map-banner{--bubble-bg:linear-gradient(135deg,rgba(20,184,166,0.18),rgba(34,197,94,0.15));--bubble-line:rgba(94,234,212,0.3);--bubble-glow:rgba(94,234,212,0.16)}
+.map-banner h2{background:linear-gradient(135deg,#5eead4,#a78bfa);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.btn-map{background:linear-gradient(135deg,#0d9488,#7c3aed);box-shadow:0 4px 14px rgba(20,184,166,0.3)}
+.btn-map:hover{box-shadow:0 8px 24px rgba(20,184,166,0.5)}
+
+.check-banner{--bubble-bg:linear-gradient(135deg,rgba(34,211,238,0.14),rgba(99,102,241,0.16));--bubble-line:rgba(103,232,249,0.28);--bubble-glow:rgba(103,232,249,0.14)}
+.check-banner h2{background:linear-gradient(135deg,#67e8f9,#a5b4fc);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.btn-check{background:linear-gradient(135deg,#0891b2,#4f46e5);box-shadow:0 4px 14px rgba(8,145,178,0.3)}
+.btn-check:hover{box-shadow:0 8px 24px rgba(8,145,178,0.5)}
+
 @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.6;transform:scale(1.3)}}
 
-.faq-banner{background:linear-gradient(135deg,rgba(245,158,11,0.15),rgba(239,68,68,0.12));border:1px solid rgba(251,191,36,0.3);border-radius:16px;padding:2.5rem 2rem;text-align:center;position:relative;overflow:hidden;margin-top:1.5rem}
-.faq-banner::before{content:"?";position:absolute;top:-30px;right:20px;font-size:160px;font-weight:900;color:rgba(251,191,36,0.1);font-family:Georgia,serif;line-height:1;pointer-events:none}
-.faq-banner h2{font-size:clamp(1.3rem,3vw,1.7rem);font-weight:700;margin-bottom:0.5rem;color:#fbbf24}
-.faq-banner p{font-size:16px;color:var(--text-dim);margin-bottom:1.75rem;position:relative}
-.faq-banner .btn-faq{display:inline-block;padding:0.95rem 2.2rem;border-radius:10px;background:linear-gradient(135deg,#f59e0b,#dc2626);color:#fff;font-weight:600;font-size:17px;transition:all 0.25s;box-shadow:0 4px 14px rgba(245,158,11,0.3);position:relative}
-.faq-banner .btn-faq:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(245,158,11,0.4)}
 
 .intl-banner{background:linear-gradient(135deg,rgba(59,130,246,0.18),rgba(99,102,241,0.15));border:1px solid rgba(96,165,250,0.3);border-radius:16px;padding:2.5rem 2rem;text-align:center;position:relative;overflow:hidden;margin-top:2rem}
 .intl-banner::before{content:"";position:absolute;top:-30%;left:-10%;width:240px;height:240px;background:radial-gradient(circle,rgba(96,165,250,0.18) 0%,transparent 70%);pointer-events:none}
@@ -127,15 +148,6 @@ a{color:inherit;text-decoration:none}
 @media(max-width:768px){.schools-grid{grid-template-columns:1fr}}
 
 /* Checklist banner (check.html) */
-.check-banner{background:linear-gradient(135deg,rgba(34,211,238,0.14),rgba(99,102,241,0.16));border:1px solid rgba(103,232,249,0.28);border-radius:16px;padding:2.5rem 2rem;text-align:center;position:relative;overflow:hidden;margin-top:1.5rem}
-.check-banner::before{content:"";position:absolute;bottom:-30%;left:-10%;width:240px;height:240px;background:radial-gradient(circle,rgba(103,232,249,0.14) 0%,transparent 70%);pointer-events:none}
-.check-banner .check-icon{position:absolute;top:14px;right:14px;width:64px;height:64px;opacity:0.5;direction:ltr;pointer-events:none}
-.check-banner h2{font-size:clamp(1.3rem,3vw,1.7rem);font-weight:700;margin-bottom:0.5rem;background:linear-gradient(135deg,#67e8f9,#a5b4fc);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;display:inline-block}
-.check-banner p{font-size:16px;color:var(--text-dim);margin-bottom:1.75rem;position:relative}
-.check-banner .btn-check{display:inline-flex;align-items:center;gap:10px;padding:0.95rem 2.2rem;border-radius:10px;background:linear-gradient(135deg,#0891b2,#4f46e5);color:#fff;font-weight:600;font-size:17px;transition:all 0.25s;box-shadow:0 4px 14px rgba(8,145,178,0.3);position:relative}
-.check-banner .btn-check:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(8,145,178,0.5)}
-.check-banner .btn-check svg{width:18px;height:18px;flex-shrink:0}
-[dir="rtl"] .check-banner .btn-check svg{transform:scaleX(-1)}
 
 /* Gallery banner (the full gallery lives in gallery.html) */
 .gallery-banner-wrap{padding:0 1.5rem 4rem}

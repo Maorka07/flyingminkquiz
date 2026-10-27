@@ -12,7 +12,7 @@
 | `_includes/home/loader.html` | מסך הטעינה |
 | `_includes/home/menu.html` | כפתורים צפים, בחירת שפה, סמל נגישות, תפריט צד |
 | `_includes/home/hero.html` | וידאו הפתיחה |
-| `_includes/home/quiz-and-map.html` | הבועות הראשונות: שאלון הרחפנים, שאלות נפוצות, המפה, הצ׳קליסט |
+| `_includes/home/quiz-and-map.html` | ארבע הבועות הראשונות: שאלון הרחפנים, שאלות נפוצות, המפה, הצ׳קליסט. כולן באותו מבנה (`bubble`) ובאותו גודל |
 | `_includes/home/services-and-faq.html` | שירותים (באנר השאלות הנפוצות עבר ל-quiz-and-map) |
 | `_includes/home/free-course.html` | הקורס החינמי |
 | `_includes/home/workshops-and-laws.html` | סדנאות ובתי ספר + באנר החוקים בחו״ל |
@@ -23,6 +23,8 @@
 | `_includes/home/whatsapp-fab.html` | כפתור הוואטסאפ הצף (במקום הבוט) |
 | `assets/css/home.css` | העיצוב של דף הבית |
 | `assets/js/home.js` | החלפת שפה, תפריט, טופס יצירת קשר |
+
+כשמשנים את `home.css` או את `home.js`, מעדכנים את המספר שאחרי `?v=` בקישור אליהם (ב-`head.html` וב-`index.html`). כך הדפדפנים טוענים את הגרסה החדשה ולא עותק ישן מהזיכרון.
 
 ## עמודים
 
