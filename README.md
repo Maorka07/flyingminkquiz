@@ -12,14 +12,15 @@
 | `_includes/home/loader.html` | מסך הטעינה |
 | `_includes/home/menu.html` | כפתורים צפים, בחירת שפה, סמל נגישות, תפריט צד |
 | `_includes/home/hero.html` | וידאו הפתיחה |
-| `_includes/home/quiz-and-map.html` | שאלון הרחפנים + באנר המפה |
-| `_includes/home/services-and-faq.html` | שירותים + באנר שאלות נפוצות |
+| `_includes/home/quiz-and-map.html` | הבועות הראשונות: שאלון הרחפנים, שאלות נפוצות, המפה, הצ׳קליסט |
+| `_includes/home/services-and-faq.html` | שירותים (באנר השאלות הנפוצות עבר ל-quiz-and-map) |
 | `_includes/home/free-course.html` | הקורס החינמי |
 | `_includes/home/workshops-and-laws.html` | סדנאות ובתי ספר + באנר החוקים בחו״ל |
 | `_includes/home/gallery-banner.html` | הבועה שמובילה לגלריה |
 | `_includes/home/contact.html` | צור קשר |
 | `_includes/home/partners.html` | שותפים |
 | `_includes/home/footer.html` | פוטר, כולל הקישור למדיניות הפרטיות |
+| `_includes/home/whatsapp-fab.html` | כפתור הוואטסאפ הצף (במקום הבוט) |
 | `assets/css/home.css` | העיצוב של דף הבית |
 | `assets/js/home.js` | החלפת שפה, תפריט, טופס יצירת קשר |
 
@@ -45,6 +46,19 @@
 | `privacy.html` | תקנון, תנאי שימוש ומדיניות פרטיות (קישור מהפוטר ומטופס יצירת הקשר) |
 | `accessibility.html` | הצהרת נגישות (קישור מסמל הנגישות בראש דף הבית) |
 | `assets/css/legal.css` | העיצוב המשותף לשני העמודים האלה |
+
+## סרגל הניווט האחיד
+
+כל עמוד חוץ מדף הבית מתחיל באותו סרגל: תמונת המינק מהלוגו, חזרה לקורס (רק בעמודי הקורס), חזרה לדף הבית, וואטסאפ ואינסטגרם.
+
+| קובץ | מה יש בו |
+|---|---|
+| `assets/css/site-nav.css` | העיצוב של הסרגל ושל כפתור הוואטסאפ הצף |
+| `assets/img/mink-mark.webp` | המינק מהלוגו, חתוך על רקע שקוף |
+| `_tools/site-nav.html` | הקוד של הסרגל (מקור אחד לכל העמודים) |
+| `_tools/sync_site_nav.py` | מעתיק את הסרגל לכל העמודים: `python3 _tools/sync_site_nav.py` |
+
+בכל עמוד הסרגל נמצא בין `<!-- FM-NAV:START -->` ל-`<!-- FM-NAV:END -->`. בעמודי הקורס כתוב `FM-NAV:START course`, וזה מה שמוסיף את כפתור החזרה לקורס. עמוד חדש מקבל את הסרגל כשמוסיפים לו את שתי השורות האלה ומריצים את הסקריפט.
 
 עמודי הקורס מקושרים מ-`guides.html`. הצ׳קליסט מקושר גם מבאנר בדף הבית, מתחת לבאנר המפה.
 

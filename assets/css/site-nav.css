@@ -1,0 +1,225 @@
+/* ==========================================================================
+   Flying Mink — shared site chrome
+   1. Unified top nav (.fmn) on every sub-page: mink logo, back to course
+      (course pages only), back to home, WhatsApp, Instagram.
+   2. Floating WhatsApp button (.fm-wa-fab) where the chat bot used to be.
+
+   The nav markup lives in _tools/site-nav.html and is copied into each page
+   between <!-- FM-NAV:START --> and <!-- FM-NAV:END --> by
+   _tools/sync_site_nav.py. Change the look here, the markup there.
+
+   Every rule is prefixed .fmn / .fm-wa-fab so page styles cannot leak in
+   and these rules cannot leak out.
+   ========================================================================== */
+
+.fmn {
+  all: initial;
+  display: block;
+  position: relative;
+  z-index: 60;
+  box-sizing: border-box;
+  width: 100%;
+  direction: rtl;
+  padding: 12px max(16px, env(safe-area-inset-right, 0px)) 0 max(16px, env(safe-area-inset-left, 0px));
+  font-family: "Heebo", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+.fmn *, .fmn *::before, .fmn *::after { box-sizing: border-box; }
+/* pages that switch to an LTR language (gallery) mirror the nav */
+html[dir="ltr"] .fmn { direction: ltr; }
+html[dir="ltr"] .fmn .fmn-chev { transform: scaleX(-1); }
+
+.fmn .fmn-in {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  max-width: 1120px;
+  min-height: 58px;
+  margin: 0 auto;
+  padding: 7px 14px 7px 8px;
+  background: #ffffff;
+  border: 1px solid rgba(91, 33, 182, 0.14);
+  border-radius: 999px;
+  box-shadow: 0 10px 28px -16px rgba(33, 28, 53, 0.35), 0 1px 2px rgba(33, 28, 53, 0.06);
+}
+
+/* ---- brand: mink from the logo ---- */
+.fmn .fmn-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+  min-height: 44px;
+  margin: 0;
+  padding: 0 4px;
+  border-radius: 999px;
+  color: #211C35;
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+}
+.fmn .fmn-brand:hover { opacity: 0.8; }
+.fmn .fmn-brand img {
+  display: block;
+  width: auto;
+  height: 34px;
+  max-width: none;
+  margin: 0;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  background: none;
+}
+.fmn .fmn-word {
+  font-size: 17px;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  line-height: 1;
+  white-space: nowrap;
+  color: #211C35;
+  direction: ltr;
+}
+.fmn .fmn-word b { font-weight: 800; color: #5B21B6; }
+
+/* ---- actions ---- */
+.fmn .fmn-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+}
+
+.fmn .fmn-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  height: 40px;
+  margin: 0;
+  padding: 0 12px 0 14px;
+  border: 1px solid #E4DCFB;
+  border-radius: 999px;
+  background: #F5F3FF;
+  color: #4C1D95;
+  font: 600 14.5px/1 "Heebo", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+.fmn .fmn-pill:hover { background: #EDE9FE; border-color: #C4B5FD; transform: translateY(-1px); }
+.fmn .fmn-pill svg {
+  display: block;
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+  margin: 0;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.fmn .fmn-short { display: none; }
+
+.fmn .fmn-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  margin: 0;
+  padding: 0;
+  border: 1px solid #E4DCFB;
+  border-radius: 50%;
+  background: #ffffff;
+  text-decoration: none;
+  transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+.fmn .fmn-icon:hover { transform: translateY(-1px); }
+.fmn .fmn-icon svg { display: block; width: 20px; height: 20px; margin: 0; }
+.fmn .fmn-wa svg { fill: #128C7E; }
+.fmn .fmn-wa:hover { background: #E8F8EF; border-color: #A7E3C1; }
+.fmn .fmn-ig svg { fill: none; stroke: #C2185B; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.fmn .fmn-ig:hover { background: #FDEEF4; border-color: #F5B6CF; }
+
+.fmn a:focus-visible {
+  outline: 3px solid #7C3AED;
+  outline-offset: 2px;
+}
+
+/* ---- responsive ---- */
+@media (max-width: 760px) {
+  .fmn .fmn-word { display: none; }
+  .fmn .fmn-long { display: none; }
+  .fmn .fmn-short { display: inline; }
+}
+@media (max-width: 440px) {
+  .fmn { padding-left: 12px; padding-right: 12px; }
+  .fmn .fmn-in { padding: 6px 10px 6px 6px; gap: 6px; }
+  .fmn .fmn-brand img { height: 30px; }
+  .fmn .fmn-pill { padding: 0 10px 0 11px; font-size: 14px; }
+  .fmn .fmn-icon { width: 38px; height: 38px; }
+}
+/* narrow phones on course pages: home becomes a house icon so everything fits */
+@media (max-width: 389px) {
+  .fmn.fmn-course .fmn-home .fmn-short { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+  .fmn.fmn-course .fmn-home { padding: 0; width: 38px; justify-content: center; }
+  .fmn.fmn-course .fmn-home .fmn-chev { display: none; }
+  .fmn.fmn-course .fmn-home .fmn-house { display: block; }
+}
+.fmn .fmn-pill .fmn-house { display: none; }
+/* smallest phones (320px) */
+@media (max-width: 340px) {
+  .fmn { padding-left: 10px; padding-right: 10px; }
+  .fmn .fmn-in { padding: 5px 8px 5px 5px; gap: 4px; }
+  .fmn .fmn-actions { gap: 5px; }
+  .fmn .fmn-brand { padding: 0 2px; }
+  .fmn .fmn-brand img { height: 26px; }
+  .fmn .fmn-pill { height: 36px; padding: 0 9px 0 10px; font-size: 13.5px; }
+  .fmn .fmn-icon { width: 36px; height: 36px; }
+  .fmn .fmn-icon svg { width: 18px; height: 18px; }
+  .fmn.fmn-course .fmn-home { width: 36px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fmn .fmn-pill, .fmn .fmn-icon, .fmn .fmn-brand { transition: none; }
+  .fmn .fmn-pill:hover, .fmn .fmn-icon:hover { transform: none; }
+}
+
+@media print {
+  .fmn, .fm-wa-fab { display: none !important; }
+}
+
+/* ==========================================================================
+   Floating WhatsApp button (replaces the old chat-bot bubble, bottom-left)
+   ========================================================================== */
+.fm-wa-fab {
+  all: initial;
+  position: fixed;
+  left: max(20px, env(safe-area-inset-left, 0px));
+  bottom: calc(20px + env(safe-area-inset-bottom, 0px));
+  z-index: 95;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  background: #25D366;
+  box-shadow: 0 8px 24px -6px rgba(18, 140, 126, 0.55), 0 2px 6px rgba(0, 0, 0, 0.18);
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+.fm-wa-fab:hover { transform: translateY(-2px) scale(1.04); box-shadow: 0 12px 28px -6px rgba(18, 140, 126, 0.65), 0 2px 6px rgba(0, 0, 0, 0.2); }
+.fm-wa-fab:focus-visible { outline: 3px solid #128C7E; outline-offset: 3px; }
+.fm-wa-fab svg { display: block; width: 31px; height: 31px; fill: #ffffff; }
+@media (max-width: 480px) {
+  .fm-wa-fab { width: 54px; height: 54px; left: max(16px, env(safe-area-inset-left, 0px)); bottom: calc(16px + env(safe-area-inset-bottom, 0px)); }
+  .fm-wa-fab svg { width: 29px; height: 29px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .fm-wa-fab { transition: none; }
+  .fm-wa-fab:hover { transform: none; }
+}
