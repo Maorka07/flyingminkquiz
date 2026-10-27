@@ -196,6 +196,22 @@ display:none;flex-direction:column;overflow:hidden;
 .main{padding-top:24px;min-height:calc(100vh - 82px)}
 </style>
 <link rel="stylesheet" href="assets/css/site-nav.css">
+
+<!-- icons + share preview -->
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32.png">
+<link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+<meta name="description" content="הזמנת צילום אווירי ברחפן מ-Flying Mink: אירועים, נדל״ן, בנייה, תדמית ותוכן לרשתות. ממלאים פרטים וממשיכים בוואטסאפ.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Flying Mink">
+<meta property="og:locale" content="he_IL">
+<meta property="og:title" content="Flying Mink — הזמנת צילום אווירי">
+<meta property="og:description" content="הזמנת צילום אווירי ברחפן מ-Flying Mink: אירועים, נדל״ן, בנייה, תדמית ותוכן לרשתות. ממלאים פרטים וממשיכים בוואטסאפ.">
+<meta property="og:url" content="https://flyingmink.com/photography.html">
+<meta property="og:image" content="https://flyingmink.com/assets/img/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
 </head>
 <body>
 
@@ -382,15 +398,8 @@ function submitForm(){
     "\nנשלח מאתר Flying Mink"
   );
 
-  // Save lead locally
-  try{
-    const leads=JSON.parse(localStorage.getItem('fm_photo_leads')||'[]');
-    leads.push({name,phone,type:typeText,date,duration:durText,desc,ts:new Date().toLocaleString('he-IL')});
-    localStorage.setItem('fm_photo_leads',JSON.stringify(leads));
-  }catch(e){}
-
   msg.className='form-msg success';
-  msg.textContent='✓ הפרטים נשמרו! מעביר לוואטסאפ...';
+  msg.textContent='✓ מעביר לוואטסאפ...';
 
   setTimeout(()=>{
     window.open("https://wa.me/"+WA+"?text="+waMsg,"_blank");

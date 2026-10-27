@@ -38,7 +38,7 @@ gtag('config', 'G-CP1NCS3G49');
 :root{
   --bg:#0b0a16;--bg2:#100e1e;--bg3:#150f24;
   --purple:#6d28d9;--purple-light:#a78bfa;--indigo:#4f46e5;
-  --text:#e2e8f0;--text-dim:#94a3b8;--text-muted:#64748b;
+  --text:#e2e8f0;--text-dim:#94a3b8;--text-muted:#8390a5;
   --card-border:rgba(139,92,246,0.2);--border-h:rgba(167,139,250,0.5);
   --radius:16px;
 }
@@ -143,6 +143,11 @@ body.lb-open{overflow:hidden}
 .topbar{justify-content:flex-end}
 </style>
 <link rel="stylesheet" href="assets/css/site-nav.css">
+
+<!-- icons + share preview -->
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32.png">
+<link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
 </head>
 <body>
 
@@ -242,10 +247,18 @@ body.lb-open{overflow:hidden}
    ══════════════════════════════════════════════════════════════ */
 const GALLERY_PHOTOS = [
   { file: '01-beach',         w: 720, h: 405,  he: 'חוף טרופי מהאוויר',     en: 'Tropical beach from above',     de: 'Tropischer Strand von oben',      ru: 'Тропический пляж с высоты' },
+  { file: '13-rocky-coast',   w: 540, h: 960,  he: 'חוף סלעי ובריכות גאות', en: 'Rocky coast and tide pools',    de: 'Felsküste mit Gezeitenbecken',    ru: 'Скалистый берег и приливные заводи' },
+  { file: '08-rooftops',      w: 720, h: 540,  he: 'גגות העיר ממבט עילי',   en: 'City rooftops from above',      de: 'Dächer der Stadt von oben',       ru: 'Крыши города сверху' },
   { file: '02-kayaks-cliffs', w: 720, h: 405,  he: 'קייאקים בין צוקים',     en: 'Kayaks between cliffs',         de: 'Kajaks zwischen Felsen',          ru: 'Каяки среди скал' },
+  { file: '10-beach-sunset',  w: 540, h: 720,  he: 'חוף בשקיעה',            en: 'Beach at sunset',               de: 'Strand bei Sonnenuntergang',      ru: 'Пляж на закате' },
   { file: '03-bay',           w: 720, h: 405,  he: 'מבט עילי על מפרץ',      en: 'Overhead view of a bay',        de: 'Bucht aus der Vogelperspektive',  ru: 'Вид на залив сверху' },
+  { file: '11-surfers-wave',  w: 540, h: 960,  he: 'גולשים על גל',          en: 'Surfers riding a wave',         de: 'Surfer auf einer Welle',          ru: 'Серферы на волне' },
+  { file: '09-mountain-view', w: 720, h: 540,  he: 'תצפית על הרים וסלעים',  en: 'Overlooking rocky mountains',   de: 'Blick über felsige Berge',        ru: 'Вид на скалистые горы' },
   { file: '04-clear-sea',     w: 720, h: 405,  he: 'גולש בים צלול',         en: 'Paddler in crystal-clear water', de: 'Paddler im klaren Wasser',       ru: 'Гребец в прозрачной воде' },
+  { file: '14-coastal-road',  w: 540, h: 960,  he: 'כביש לאורך החוף',       en: 'Coastal road',                  de: 'Küstenstraße',                    ru: 'Прибрежная дорога' },
+  { file: '12-surfers-reef',  w: 720, h: 405,  he: 'גולשים מעל שונית',      en: 'Surfers over the reef',         de: 'Surfer über dem Riff',            ru: 'Серферы над рифом' },
   { file: '05-bridge-sunset', w: 720, h: 405,  he: 'גשר בשקיעה',            en: 'Bridge at sunset',              de: 'Brücke im Sonnenuntergang',       ru: 'Мост на закате' },
+  { file: '15-bridge-dusk',   w: 540, h: 960,  he: 'גשר ארוך בדמדומים',     en: 'Long bridge at dusk',           de: 'Lange Brücke in der Dämmerung',   ru: 'Длинный мост в сумерках' },
   { file: '06-palm-road',     w: 720, h: 531,  he: 'כביש בין דקלים',        en: 'Road through palm trees',       de: 'Straße zwischen Palmen',          ru: 'Дорога среди пальм' },
   { file: '07-lagoon',        w: 540, h: 960,  he: 'לגונה צרה בין צוקים',   en: 'Narrow lagoon between cliffs',  de: 'Schmale Lagune zwischen Felsen',  ru: 'Узкая лагуна среди скал' }
 ];
