@@ -1,69 +1,71 @@
-<!-- ══════ LOADING SCREEN (FOUC fix) ══════ -->
+<!-- ══════ MINK INTRO — first visit only (scripts: assets/js/intro/) ══════
+     Skipped on return visits, with Save-Data or a 2G connection, and with reduced motion.
+     Testing: add ?intro=1 to the address to force it, ?intro=0 to skip it. -->
 <style>
-#loadingScreen{position:fixed;inset:0;z-index:99999;background:linear-gradient(135deg,#0b0a16,#150f24);display:flex;flex-direction:column;align-items:center;justify-content:center;transition:opacity 0.4s cubic-bezier(0.4,0,0.2,1),visibility 0.4s;overflow:hidden}
-#loadingScreen.hidden{opacity:0;visibility:hidden;pointer-events:none}
-#loadingScreen::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(109,40,217,0.25) 0%,transparent 60%);animation:pulseBg 3s ease-in-out infinite}
-@keyframes pulseBg{0%,100%{opacity:0.6}50%{opacity:1}}
-.loader-logo{width:120px;height:120px;border-radius:50%;background:rgba(255,255,255,0.05);border:2px solid rgba(167,139,250,0.4);display:flex;align-items:center;justify-content:center;position:relative;animation:logoFloat 2.5s ease-in-out infinite;backdrop-filter:blur(10px);z-index:2}
-@keyframes logoFloat{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-12px) scale(1.05)}}
-.loader-logo svg{width:80px;height:80px}
-.loader-orbit{position:absolute;width:200px;height:200px;border:1px dashed rgba(167,139,250,0.3);border-radius:50%;animation:orbit 8s linear infinite;z-index:1}
-.loader-orbit::before{content:"";position:absolute;top:-6px;left:50%;width:12px;height:12px;border-radius:50%;background:#a78bfa;box-shadow:0 0 20px #a78bfa;transform:translateX(-50%)}
-@keyframes orbit{to{transform:rotate(360deg)}}
-.loader-orbit-2{position:absolute;width:280px;height:280px;border:1px dashed rgba(94,234,212,0.2);border-radius:50%;animation:orbit 12s linear infinite reverse;z-index:1}
-.loader-orbit-2::before{content:"";position:absolute;bottom:-5px;left:50%;width:10px;height:10px;border-radius:50%;background:#5eead4;box-shadow:0 0 16px #5eead4;transform:translateX(-50%)}
-.loader-text{margin-top:48px;color:#e2e8f0;font-family:'Heebo',sans-serif;font-size:18px;font-weight:600;letter-spacing:2px;z-index:2;animation:textFade 1.8s ease-in-out infinite}
-@keyframes textFade{0%,100%{opacity:0.5}50%{opacity:1}}
-.loader-subtext{margin-top:8px;color:#94a3b8;font-family:'Heebo',sans-serif;font-size:13px;letter-spacing:1px;z-index:2}
-.loader-progress{position:absolute;bottom:60px;width:200px;height:2px;background:rgba(167,139,250,0.15);border-radius:2px;overflow:hidden;z-index:2}
-.loader-progress::before{content:"";position:absolute;left:-30%;top:0;width:30%;height:100%;background:linear-gradient(90deg,transparent,#a78bfa,transparent);animation:progressSlide 1.5s ease-in-out infinite}
-@keyframes progressSlide{0%{left:-30%}100%{left:130%}}
+html.fm-intro-lock,html.fm-intro-lock body{overflow:hidden}
+.fm-intro{position:fixed;inset:0;z-index:99999;overflow:hidden;cursor:pointer;
+  background:radial-gradient(120% 80% at 50% 40%,#1d1747 0%,#151034 55%,#0e0a26 100%);
+  display:grid;place-items:center;will-change:transform}
+.fm-intro::after{content:"";position:absolute;inset:calc(14px + env(safe-area-inset-top,0px)) calc(14px + env(safe-area-inset-right,0px)) calc(14px + env(safe-area-inset-bottom,0px)) calc(14px + env(safe-area-inset-left,0px));border:1px solid rgba(255,255,255,.22);border-radius:22px;pointer-events:none}
+.fm-fx{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:3}
+.fm-scene{position:relative;width:min(560px,78%);display:grid;justify-items:center;gap:22px;margin-top:6%}
+.fm-track{position:relative;width:75%;height:clamp(80px,12.5vw,115px);margin-bottom:-22px}
+.fm-runner{position:absolute;bottom:-3px;left:0;width:clamp(150px,22vw,210px);will-change:transform}
+.fm-cv{display:block;width:100%;height:auto;aspect-ratio:2/1;filter:drop-shadow(0 0 8px rgba(167,139,250,.45))}
+.fm-plat{position:relative;width:75%;height:3px;border-radius:3px;background:rgba(167,139,250,.22)}
+.fm-fill{position:absolute;inset:0 auto 0 0;width:0;border-radius:3px;background:linear-gradient(90deg,#6d28d9,#a78bfa 70%,#fff);box-shadow:0 0 14px rgba(167,139,250,.6)}
+.fm-mark{display:grid;justify-items:center;gap:6px;direction:ltr}
+.fm-mark b{font-family:'Michroma','Heebo',system-ui,sans-serif;font-weight:400;font-size:clamp(.95rem,2.4vw,1.25rem);letter-spacing:.24em;color:#fff}
+.fm-mark small{font-family:'Michroma','Heebo',system-ui,sans-serif;font-size:clamp(.55rem,1.3vw,.68rem);letter-spacing:.42em;color:#a59fc4}
 </style>
 
-<div id="loadingScreen">
-  <div class="loader-orbit-2"></div>
-  <div class="loader-orbit"></div>
-  <div class="loader-logo">
-    <svg viewBox="0 0 140 100" fill="none" xmlns="http://www.w3.org/2000/svg" style="direction:ltr">
-      <g stroke="#a78bfa" stroke-width="1.5" fill="none">
-        <line x1="52" y1="45" x2="20" y2="28" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="88" y1="45" x2="120" y2="28" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="52" y1="55" x2="25" y2="72" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="88" y1="55" x2="115" y2="72" stroke-width="2.5" stroke-linecap="round"/>
-        <circle cx="20" cy="28" r="4" fill="rgba(167,139,250,0.3)" stroke-width="1.5"/>
-        <circle cx="120" cy="28" r="4" fill="rgba(167,139,250,0.3)" stroke-width="1.5"/>
-        <circle cx="25" cy="72" r="4" fill="rgba(167,139,250,0.3)" stroke-width="1.5"/>
-        <circle cx="115" cy="72" r="4" fill="rgba(167,139,250,0.3)" stroke-width="1.5"/>
-        <path d="M5 28 A15 4 0 0 1 35 28" stroke-width="1" opacity="0.6"><animate attributeName="opacity" values="0.6;1;0.6" dur="0.4s" repeatCount="indefinite"/></path>
-        <path d="M105 28 A15 4 0 0 1 135 28" stroke-width="1" opacity="0.6"><animate attributeName="opacity" values="0.6;1;0.6" dur="0.4s" repeatCount="indefinite" begin="0.1s"/></path>
-        <path d="M10 72 A15 4 0 0 1 40 72" stroke-width="1" opacity="0.6"><animate attributeName="opacity" values="0.6;1;0.6" dur="0.4s" repeatCount="indefinite" begin="0.2s"/></path>
-        <path d="M100 72 A15 4 0 0 1 130 72" stroke-width="1" opacity="0.6"><animate attributeName="opacity" values="0.6;1;0.6" dur="0.4s" repeatCount="indefinite" begin="0.3s"/></path>
-        <rect x="48" y="40" width="44" height="20" rx="8" fill="rgba(167,139,250,0.25)" stroke-width="1.8"/>
-        <rect x="62" y="60" width="16" height="8" rx="3" fill="rgba(167,139,250,0.2)" stroke-width="1.2"/>
-        <circle cx="70" cy="64" r="3" fill="rgba(167,139,250,0.4)" stroke-width="1"/>
-      </g>
-    </svg>
+<template id="fmIntroTpl">
+  <div class="fm-intro" id="fmIntro" role="status" aria-label="Flying Mink נטען">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Michroma&display=swap">
+    <div class="fm-scene">
+      <div class="fm-track">
+        <div class="fm-runner"><canvas class="fm-cv" width="340" height="170" aria-hidden="true"></canvas></div>
+      </div>
+      <div class="fm-plat"><div class="fm-fill"></div></div>
+      <div class="fm-mark"><b>FLYING MINK</b><small>DRONE SOLUTIONS</small></div>
+    </div>
+    <canvas class="fm-fx" aria-hidden="true"></canvas>
   </div>
-  <div class="loader-text">FLYING MINK</div>
-  <div class="loader-subtext">Drone Solutions</div>
-  <div class="loader-progress"></div>
-</div>
+</template>
 
 <script>
-(function(){
-  function hideLoader(){
-    var ls = document.getElementById('loadingScreen');
-    if(ls){
-      ls.classList.add('hidden');
-      setTimeout(function(){ if(ls.parentNode) ls.parentNode.removeChild(ls); }, 600);
-    }
+(function () {
+  var q = location.search;
+  var force = /[?&]intro=1(&|$)/.test(q);
+  var show = !/[?&]intro=0(&|$)/.test(q);
+  try { if (!force && localStorage.getItem('fm-intro-seen')) show = false; } catch (e) { if (!force) show = false; }
+  if (!force && show) {
+    if (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) show = false;
+    var c = navigator.connection;
+    if (c && (c.saveData || /2g$/.test(c.effectiveType || ''))) show = false;
   }
-  if(document.readyState === 'complete' || document.readyState === 'interactive'){
-    setTimeout(hideLoader, 100);
-  } else {
-    document.addEventListener('DOMContentLoaded', function(){
-      setTimeout(hideLoader, 100);
-    });
-  }
+  if (!show) return;
+
+  try { localStorage.setItem('fm-intro-seen', String(Date.now())); } catch (e) {}
+  window.fmIntroActive = true;                     // the hero video waits for the jump
+  document.documentElement.classList.add('fm-intro-lock');
+  var tpl = document.getElementById('fmIntroTpl');
+  document.body.appendChild(tpl.content.cloneNode(true));
+
+  ['mink-rig.js', 'drone-chase.js', 'mink-intro.js'].forEach(function (f) {
+    var s = document.createElement('script');
+    s.src = 'assets/js/intro/' + f + '?v=20261028a';
+    s.async = false;                               // keep execution order
+    document.head.appendChild(s);
+  });
+
+  // safety net: if the scripts never arrive, hand the page back after 4 s
+  setTimeout(function () {
+    if (!window.fmIntroActive || window.fmIntroStarted) return;
+    var el = document.getElementById('fmIntro'); if (el) el.remove();
+    window.fmIntroActive = false;
+    document.documentElement.classList.remove('fm-intro-lock');
+    window.dispatchEvent(new Event('fm:intro-done'));
+  }, 4000);
 })();
 </script>

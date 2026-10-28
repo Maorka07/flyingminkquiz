@@ -1,6 +1,6 @@
 /* Video autoplay */
 var v=document.getElementById("heroVid");
-if(v){v.muted=true;v.setAttribute("playsinline","");v.setAttribute("webkit-playsinline","");var tryPlay=function(){v.play().catch(function(){})};tryPlay();document.addEventListener("touchstart",tryPlay,{once:true});document.addEventListener("click",tryPlay,{once:true});document.addEventListener("scroll",tryPlay,{once:true});setTimeout(tryPlay,500);setTimeout(tryPlay,1500);}
+if(v){v.muted=true;v.setAttribute("playsinline","");v.setAttribute("webkit-playsinline","");var tryPlay=function(){if(window.fmIntroActive)return;v.play().catch(function(){})};window.addEventListener("fm:intro-done",tryPlay);tryPlay();document.addEventListener("touchstart",tryPlay,{once:true});document.addEventListener("click",tryPlay,{once:true});document.addEventListener("scroll",tryPlay,{once:true});setTimeout(tryPlay,500);setTimeout(tryPlay,1500);}
 
 /* Side menu */
 function toggleSideMenu(){document.getElementById("sideMenu").classList.toggle("open");document.getElementById("overlay").classList.toggle("open")}

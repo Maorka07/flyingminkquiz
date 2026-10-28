@@ -9,7 +9,7 @@
 | קובץ | מה יש בו |
 |---|---|
 | `_includes/home/head.html` | כותרת הדף, תיאור, SEO, Schema.org, Google Analytics, גופנים |
-| `_includes/home/loader.html` | מסך הטעינה |
+| `_includes/home/loader.html` | פתיחת המינק והרחפן — רק בכניסה הראשונה. לבדיקה: `?intro=1` מציג, `?intro=0` מדלג |
 | `_includes/home/menu.html` | כפתורים צפים, בחירת שפה, סמל נגישות, תפריט צד |
 | `_includes/home/hero.html` | וידאו הפתיחה |
 | `_includes/home/quiz-and-map.html` | ארבע הבועות הראשונות: שאלון הרחפנים, שאלות נפוצות, המפה, הצ׳קליסט. כולן באותו מבנה (`bubble`) ובאותו גודל |
@@ -24,6 +24,7 @@
 | `_includes/home/whatsapp-fab.html` | כפתור הוואטסאפ הצף (במקום הבוט) |
 | `assets/css/home.css` | העיצוב של דף הבית |
 | `assets/js/home.js` | החלפת שפה, תפריט, טופס יצירת קשר |
+| `assets/js/intro/` | הפתיחה: `mink-rig.js` (המינק הרץ), `drone-chase.js` (הרחפן והלייזרים), `mink-intro.js` (תזמון לפי מהירות הטעינה) |
 
 כשמשנים את `home.css` או את `home.js`, מעדכנים את המספר שאחרי `?v=` בקישור אליהם (ב-`head.html` וב-`index.html`). כך הדפדפנים טוענים את הגרסה החדשה ולא עותק ישן מהזיכרון.
 
