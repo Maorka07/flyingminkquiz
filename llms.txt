@@ -1,0 +1,36 @@
+# Flying Mink Drone Solutions (פליינג מינק)
+
+> Israeli drone services and drone education business operating across Israel, with most instructors in the Center and Sharon regions. Founded and run by Maor Shtolz, a commercial-licensed drone operator with an operational background as a drone operator in an elite IDF unit. The site is in Hebrew and offers a free online drone course, a "which drone should I buy" quiz, drone laws by country, an interactive Israeli flight-zone map, drone workshops for schools, private flying lessons and aerial photography.
+
+Contact: WhatsApp +972-54-990-2676 · maorshtolz@gmail.com · Instagram @flyingmink · https://flyingmink.com
+
+## Services
+
+- [Drone workshops for schools](https://flyingmink.com/schools.html): workshops for elementary schools, middle schools, high schools and pre-military academies (מכינות קדם-צבאיות), from a single session up to a five-session program; also peak days (ימי שיא) and drone activities for groups of all ages. Students learn how drones fly, fly themselves under instructor supervision, and learn aerial photography, FPV and safety.
+- [Private drone flying lessons](https://flyingmink.com/program.html): one-on-one lessons anywhere in Israel (most instructors in the Center and Sharon regions), on the student's drone or Flying Mink's, including simulator setup and preparation for the Israeli recreational drone license test (רישיון מטיסן). No FPV lessons.
+- [Aerial photography](https://flyingmink.com/photography.html): drone photography for weddings, events, sports events, municipal events, real estate, construction and marketing content.
+
+## Free drone course (Hebrew)
+
+- [Course index](https://flyingmink.com/guides.html)
+- [Which drone should I buy? — interactive quiz](https://flyingmink.com/quiz.html): personal recommendation by budget, experience and use, with Israeli prices (DJI Neo 2, Lito 1, Lito X1, Mini 5 Pro, Air 3S, Mavic 4 Pro, Avata 2, FPV whoops).
+- [Drone laws abroad, by country](https://flyingmink.com/laws.html): what a tourist with a sub-250 g drone must do in Thailand, India, the Philippines, Vietnam, Argentina, Brazil, the USA, the EU, Bulgaria, Georgia, Israel, New Zealand, Australia, Canada and the UK.
+- [Interactive Israeli flight-zone map](https://flyingmink.com/israelmap.html): where drones may fly in Israel — restricted and prohibited zones, airfields, flight bubbles, weather and flight planning.
+- [Drone FAQ — 67 questions](https://flyingmink.com/faq.html): licensing in Israel, prices, FPV, military drones, thermal drones, workshops.
+- [Pre-flight checklist](https://flyingmink.com/check.html)
+- [Basic drone operation](https://flyingmink.com/operation.html): power on/off, motor stop, status lights.
+- [RTH — Return to Home](https://flyingmink.com/rth-lesson.html)
+- [GPS and GNSS in drones](https://flyingmink.com/gnss.html): satellites, ATTI mode, RTK.
+- [Lift: how planes and drones stay in the air](https://flyingmink.com/lift.html): four forces, Bernoulli, angle of attack, stall.
+- [Buying a used drone](https://flyingmink.com/used-drone.html)
+- [Aerial photo gallery](https://flyingmink.com/gallery.html)
+
+## Key facts — flying a drone in Israel
+
+- Since November 2024 everyone who flies a drone in Israel needs a license: a recreational license (רישיון מטיסן) for leisure, or a small-UAS pilot license (רישיון מטיס כטב"ם קטן) for any commercial flying. This applies to drones under 250 g too.
+- The recreational license is an online test through the Civil Aviation Authority system: 15 questions, 12 correct answers to pass. Available from age 12; children under 12 fly only under close supervision of a licensed person aged 16+.
+- Drones over 250 g must be registered for recreational flying; for commercial operation every drone is registered.
+- Maximum height 50 m above ground unless the AIP (פמ"ת) says otherwise; keep within 500 m and direct line of sight.
+- No flying in prohibited, restricted or dangerous zones published in the AIP or NOTAMs, near airfields, or within set distances of military sites. Check the official sport-aviation map before each flight.
+
+Details and sources: https://flyingmink.com/faq.html
