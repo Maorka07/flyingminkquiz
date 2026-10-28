@@ -3,8 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>מנגנון RTH - חזרה אוטומטית הביתה | Flying Mink</title>
-<meta name="description" content="המדריך המלא למנגנון ה-RTH ברחפני DJI - איך זה עובד, איך מגדירים אותו נכון, ומה חשוב לשים לב.">
+<title>RTH ברחפן DJI: איך עובדת חזרה אוטומטית הביתה ואיך מגדירים | Flying Mink</title>
+<link rel="canonical" href="https://flyingmink.com/rth-lesson.html">
+<meta name="keywords" content="RTH, Return to Home, חזרה הביתה רחפן, גובה RTH, Failsafe, איבוד קשר עם רחפן, Home Point, הגדרות DJI Fly">
+<meta name="description" content="המדריך המלא ל-RTH ברחפני DJI: מתי הרחפן חוזר הביתה לבד, איך מגדירים גובה חזרה, Smart RTH, Failsafe ו-Low Battery — עם סימולטור.">
 <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
@@ -697,6 +699,98 @@ gtag('config', 'G-CP1NCS3G49');
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
+<!-- SEO:LD:START -->
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "Organization",
+   "@id": "https://flyingmink.com/#org",
+   "name": "Flying Mink Drone Solutions",
+   "alternateName": [
+    "פליינג מינק",
+    "Flying Mink"
+   ],
+   "url": "https://flyingmink.com/",
+   "logo": "https://flyingmink.com/assets/img/logo-square.png",
+   "founder": {
+    "@type": "Person",
+    "name": "Maor Shtolz",
+    "alternateName": "מאור שטולץ"
+   },
+   "sameAs": [
+    "https://www.instagram.com/flyingmink"
+   ]
+  },
+  {
+   "@type": "LearningResource",
+   "name": "RTH — חזרה אוטומטית הביתה",
+   "description": "איך עובד מנגנון החזרה הביתה ברחפני DJI ואיך מגדירים אותו.",
+   "url": "https://flyingmink.com/rth-lesson.html",
+   "inLanguage": "he",
+   "learningResourceType": "שיעור אינטראקטיבי",
+   "educationalLevel": "מתחילים",
+   "isAccessibleForFree": true,
+   "about": "בטיחות טיסה",
+   "isPartOf": {
+    "@type": "Course",
+    "name": "קורס הרחפנים של Flying Mink",
+    "url": "https://flyingmink.com/guides.html"
+   },
+   "publisher": {
+    "@id": "https://flyingmink.com/#org"
+   }
+  },
+  {
+   "@type": "FAQPage",
+   "mainEntity": [
+    {
+     "@type": "Question",
+     "name": "מה זה RTH ברחפן?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "RTH (Return to Home) הוא מנגנון שמחזיר את הרחפן אוטומטית לנקודת ההמראה (Home Point) ומנחית אותו: הרחפן מטפס לגובה החזרה שהוגדר, טס בחזרה לפי הלוויינים ונוחת."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "מתי RTH מופעל אוטומטית?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "בשלושה מצבים: כשהמטיס לוחץ על כפתור החזרה (Smart RTH), כשהקשר עם השלט אובד (Failsafe RTH), וכשהסוללה מגיעה לרמה שמספיקה רק כדי לחזור (Low Battery RTH)."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "לאיזה גובה להגדיר RTH?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "גבוה מהמכשול הגבוה ביותר באזור הטיסה — עצים, בניינים ועמודי חשמל — כדי שהרחפן לא יפגע בהם בדרך חזרה. בישראל הגובה המרבי בהטסת פנאי הוא 50 מטר מעל פני השטח, אלא אם נקבע אחרת לאזור."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "RTH עובד גם בלי GPS?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "לא באופן אמין. RTH מבוסס על המיקום מהלוויינים ועל נקודת בית שנרשמה לפני ההמראה. במצב ATTI או בלי קליטת לוויינים הרחפן לא יודע לאן לחזור."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "יש RTH ברחפני FPV?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "ברוב רחפני ה-FPV אין חזרה הביתה מובנית, ואובדן קליטה עלול להסתיים בנפילה. ברחפני DJI כמו Avata 2 ו-Neo 2 יש מנגנון חזרה."
+     }
+    }
+   ]
+  }
+ ]
+}
+</script>
+<!-- SEO:LD:END -->
 </head>
 <body>
 
@@ -1421,6 +1515,34 @@ gtag('config', 'G-CP1NCS3G49');
   </div>
 </section>
 
+<!-- SEO:FAQ:START -->
+<style>
+.fm-faq{max-width:820px;margin:48px auto;padding:0 16px;color:inherit;font-family:inherit;direction:rtl;text-align:right}
+.fm-faq h2{font-size:clamp(1.3rem,3.5vw,1.7rem);font-weight:900;margin:0 0 16px;line-height:1.3}
+.fm-faq details{border:1px solid color-mix(in srgb,currentColor 18%,transparent);border-radius:14px;margin:0 0 10px;
+  background:color-mix(in srgb,currentColor 4%,transparent);transition:background .2s}
+.fm-faq details[open]{background:color-mix(in srgb,currentColor 7%,transparent)}
+.fm-faq summary{cursor:pointer;padding:14px 18px;font-weight:700;font-size:1rem;line-height:1.5;list-style:none;display:flex;gap:10px;justify-content:space-between;align-items:center}
+.fm-faq summary::-webkit-details-marker{display:none}
+.fm-faq summary::after{content:"+";font-size:1.3rem;line-height:1;opacity:.6;flex-shrink:0;transition:transform .2s}
+.fm-faq details[open] summary::after{transform:rotate(45deg)}
+.fm-faq summary:hover{opacity:.85}
+.fm-faq summary:focus-visible{outline:2px solid currentColor;outline-offset:2px;border-radius:14px}
+.fm-faq .fm-faq-a{padding:0 18px 16px;line-height:1.75;opacity:.88;font-size:.95rem}
+.fm-faq .fm-faq-a p{margin:0}
+.fm-faq-more{margin:18px 0 0;font-weight:700}
+.fm-faq-more a{color:inherit;text-decoration:underline;text-underline-offset:3px}
+</style>
+<section class="fm-faq" aria-labelledby="fm-faq-title">
+<h2 id="fm-faq-title">שאלות נפוצות</h2>
+<details><summary>מה זה RTH ברחפן?</summary><div class="fm-faq-a"><p>RTH (Return to Home) הוא מנגנון שמחזיר את הרחפן אוטומטית לנקודת ההמראה (Home Point) ומנחית אותו: הרחפן מטפס לגובה החזרה שהוגדר, טס בחזרה לפי הלוויינים ונוחת.</p></div></details>
+<details><summary>מתי RTH מופעל אוטומטית?</summary><div class="fm-faq-a"><p>בשלושה מצבים: כשהמטיס לוחץ על כפתור החזרה (Smart RTH), כשהקשר עם השלט אובד (Failsafe RTH), וכשהסוללה מגיעה לרמה שמספיקה רק כדי לחזור (Low Battery RTH).</p></div></details>
+<details><summary>לאיזה גובה להגדיר RTH?</summary><div class="fm-faq-a"><p>גבוה מהמכשול הגבוה ביותר באזור הטיסה — עצים, בניינים ועמודי חשמל — כדי שהרחפן לא יפגע בהם בדרך חזרה. בישראל הגובה המרבי בהטסת פנאי הוא 50 מטר מעל פני השטח, אלא אם נקבע אחרת לאזור.</p></div></details>
+<details><summary>RTH עובד גם בלי GPS?</summary><div class="fm-faq-a"><p>לא באופן אמין. RTH מבוסס על המיקום מהלוויינים ועל נקודת בית שנרשמה לפני ההמראה. במצב ATTI או בלי קליטת לוויינים הרחפן לא יודע לאן לחזור.</p></div></details>
+<details><summary>יש RTH ברחפני FPV?</summary><div class="fm-faq-a"><p>ברוב רחפני ה-FPV אין חזרה הביתה מובנית, ואובדן קליטה עלול להסתיים בנפילה. ברחפני DJI כמו Avata 2 ו-Neo 2 יש מנגנון חזרה.</p></div></details>
+<p class="fm-faq-more"><a href="faq.html">לכל השאלות הנפוצות על רחפנים ←</a></p>
+</section>
+<!-- SEO:FAQ:END -->
 <!-- ══════ FOOTER ══════ -->
 <footer class="footer">
   <div class="footer-links">

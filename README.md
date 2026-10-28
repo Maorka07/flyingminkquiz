@@ -59,6 +59,8 @@
 | `assets/img/mink-mark.webp` | המינק מהלוגו, חתוך על רקע שקוף |
 | `_tools/site-nav.html` | הקוד של הסרגל (מקור אחד לכל העמודים) |
 | `_tools/sync_site_nav.py` | מעתיק את הסרגל לכל העמודים: `python3 _tools/sync_site_nav.py` |
+| `_tools/sync_seo.py` | כותרות, תיאורים, מילות מפתח, נתונים מובנים (JSON-LD) ובלוקי "שאלות נפוצות" לכל העמודים. אחרי שינוי במדינה ב-laws.html או בתשובות — להריץ: `python3 _tools/sync_seo.py` |
+| `llms.txt` | תקציר האתר לכלי AI (ChatGPT, Claude, Perplexity) |
 
 בכל עמוד הסרגל נמצא בין `<!-- FM-NAV:START -->` ל-`<!-- FM-NAV:END -->`. בעמודי הקורס כתוב `FM-NAV:START course`, וזה מה שמוסיף את כפתור החזרה לקורס. עמוד חדש מקבל את הסרגל כשמוסיפים לו את שתי השורות האלה ומריצים את הסקריפט.
 
