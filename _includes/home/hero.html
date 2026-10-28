@@ -28,9 +28,15 @@
     v.classList.add('loaded');
   }
   function tryPlay(){
+    if(window.fmIntroActive) return;               // first visit: wait for the mink to jump
     var p = v.play();
     if(p && p.catch) p.catch(function(){});
   }
+  if(window.fmIntroActive){
+    v.removeAttribute('autoplay'); v.autoplay = false;
+    v.addEventListener('play', function(){ if(window.fmIntroActive) v.pause(); });
+  }
+  window.addEventListener('fm:intro-done', tryPlay);
 
   v.addEventListener('playing', reveal);
   v.addEventListener('canplay', tryPlay);
