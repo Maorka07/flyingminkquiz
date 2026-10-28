@@ -10,7 +10,8 @@
   swings forward. Joints are solved from the paw position: elbows bend back, hind knees
   bend forward with the hock behind. The head stays level, as a cheetah's does.
 
-  draw(p, leap) — leap 0..1 blends into the logo's flying pose with wings open.
+  draw(p, leap, kick) — leap 0..1 blends into the logo's flying pose with wings open;
+  kick 0..1 swings the near front paw forward and up (the goal scene).
 */
 class MinkRig {
   constructor(canvas) {
@@ -45,7 +46,7 @@ class MinkRig {
     return { joint, end: { x: R.x + dx, y: R.y + dy } };
   }
 
-  pose(p, leap) {
+  pose(p, leap, kick = 0) {
     const TAU = Math.PI * 2, c = Math.cos, s = Math.sin;
     const lerp = (a, b, t) => a + (b - a) * t;
     const smooth = (t) => t * t * (3 - 2 * t);
@@ -76,13 +77,17 @@ class MinkRig {
     };
     const fRoot = { x: sho.x - 4, y: sho.y + 12 };
     const hRoot = { x: hip.x + 6, y: hip.y + 8 };
-    const front = (start) => {
+    const front = (start, near) => {
       const t = paw(fRoot, start, 0.25, 10, 20);
       let toe = { x: t.x, y: t.y };
       let ang = lerp(18, -125, t.fold);                      // paw flips back as it folds
       // leap: reach forward like the logo
       toe = { x: lerp(toe.x, fRoot.x + 40, leap), y: lerp(toe.y, fRoot.y + 38, leap) };
       ang = lerp(ang, 70, leap);
+      if (near && kick) {
+        toe = { x: lerp(toe.x, fRoot.x + 46, kick), y: lerp(toe.y, fRoot.y + 22, kick) };
+        ang = lerp(ang, 85, kick);
+      }
       const wrist = MinkRig.polar(toe, -9, ang);
       const { joint } = MinkRig.ik(fRoot, wrist, 23, 24, true);
       return { root: fRoot, elbow: joint, wrist, toe };
@@ -99,19 +104,19 @@ class MinkRig {
     };
     return {
       E: ext, hip, sho, arch, pitch,
-      fFar: front(0.48), fNear: front(0.55),
+      fFar: front(0.48, false), fNear: front(0.55, true),
       hFar: hind(0.00), hNear: hind(0.08),
       wing: lerp(6 + 7 * ext, 18, leap)                       // wing lift in degrees
     };
   }
 
-  draw(p, leap = 0) {
+  draw(p, leap = 0, kick = 0) {
     const g = this.off.getContext('2d');
     const d = this.dpr;
     g.setTransform(d, 0, 0, d, 0, 0);
     g.clearRect(0, 0, this.W, this.H);
     g.lineCap = 'round'; g.lineJoin = 'round';
-    const P = this.pose(p, leap);
+    const P = this.pose(p, leap, kick);
     const LW = 2.1;                                           // outline weight
     const W = '#ffffff';
 

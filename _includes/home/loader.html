@@ -1,6 +1,8 @@
-<!-- ══════ MINK INTRO — first visit only (scripts: assets/js/intro/) ══════
+<!-- ══════ MINK INTRO — first visit only, random scene (scripts: assets/js/intro/) ══════
+     Scenes: chase (drone + lasers), hoops (dunk), goal (kick + backflip), race (race car).
      Skipped on return visits, with Save-Data or a 2G connection, and with reduced motion.
-     Testing: add ?intro=1 to the address to force it, ?intro=0 to skip it. -->
+     Testing: ?intro=1 forces a random scene, ?intro=hoops (or chase / goal / race) forces that one,
+     ?intro=0 skips it. -->
 <style>
 html.fm-intro-lock,html.fm-intro-lock body{overflow:hidden}
 .fm-intro{position:fixed;inset:0;z-index:99999;overflow:hidden;cursor:pointer;
@@ -36,7 +38,8 @@ html.fm-intro-lock,html.fm-intro-lock body{overflow:hidden}
 <script>
 (function () {
   var q = location.search;
-  var force = /[?&]intro=1(&|$)/.test(q);
+  var m = q.match(/[?&]intro=(1|chase|hoops|goal|race)(&|$)/);
+  var force = !!m;
   var show = !/[?&]intro=0(&|$)/.test(q);
   try { if (!force && localStorage.getItem('fm-intro-seen')) show = false; } catch (e) { if (!force) show = false; }
   if (!force && show) {
@@ -52,9 +55,14 @@ html.fm-intro-lock,html.fm-intro-lock body{overflow:hidden}
   var tpl = document.getElementById('fmIntroTpl');
   document.body.appendChild(tpl.content.cloneNode(true));
 
-  ['mink-rig.js', 'drone-chase.js', 'mink-intro.js'].forEach(function (f) {
+  var scenes = ['chase', 'hoops', 'goal', 'race'];
+  var scene = m && m[1] !== '1' ? m[1] : scenes[Math.floor(Math.random() * scenes.length)];
+  window.fmIntroScene = scene;
+  var files = ['mink-rig.js', 'intro-scenes.js', 'mink-intro.js'];
+  if (scene === 'chase') files.splice(1, 0, 'drone-chase.js');   // only the chase needs the drone
+  files.forEach(function (f) {
     var s = document.createElement('script');
-    s.src = 'assets/js/intro/' + f + '?v=20261028a';
+    s.src = 'assets/js/intro/' + f + '?v=20261028b';
     s.async = false;                               // keep execution order
     document.head.appendChild(s);
   });
