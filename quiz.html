@@ -206,6 +206,9 @@ const Q=[
 
 const D={
   neo:{name:"DJI Neo",badge:"הרחפן הכי קל להתחיל איתו",fpv:false,desc:"כף יד, אוטומטי לגמרי, עף בלי שלט. מושלם לכיף מיידי ולסלפי אווירי.",tags:["135 גרם","ללא רישיון","4K","FPV מצב"],warn:null,note:"רוצה להתקדם ל-FPV אמיתי? השלב הבא הוא DJI Avata 2.",price:"כ-600–900 ₪",zap:"DJI+Neo",ksp:"DJI+Neo"},
+  neo2:{name:"DJI Neo 2",badge:"הדור החדש של ה-Neo — חכם ובטוח יותר",fpv:false,desc:"151 גרם, חיישני מכשולים מכל הכיוונים כולל LiDAR, 4K/100fps. שליטה במחוות וקול, ועם שלט או Motion Controller — טווח ארוך ו-FPV עם משקפיים.",tags:["151 גרם","ללא רישיון","4K/100fps","LiDAR"],warn:null,note:"רחפן בלבד בלי שלט — כ-1,000 ₪. קומבו עם שלט RC-N3 ו-2 סוללות — כ-1,900 ₪.",price:"כ-1,000–1,900 ₪",zap:"DJI+Neo+2",ksp:"DJI+Neo+2"},
+  lito1:{name:"DJI Lito 1",badge:"הכניסה החדשה של DJI לצילום",fpv:false,desc:"פחות מ-249 גרם, 4K/100fps, חיישני מכשולים מכל הכיוונים ועד 36 דקות טיסה. מגיע עם שלט RC-N3.",tags:["249 גרם","ללא רישיון","4K/100fps","36 דק׳"],warn:null,note:null,price:"כ-1,450–2,300 ₪",zap:"DJI+Lito+1",ksp:"DJI+Lito+1"},
+  litox1:{name:"DJI Lito X1",badge:"סנסור גדול במחיר של מתחילים",fpv:false,desc:"סנסור 1/1.3 אינץ׳, וידאו 10 ביט עם D-Log M ו-LiDAR קדמי. קפיצת איכות משמעותית מעל ה-Lito 1.",tags:["249 גרם","ללא רישיון","1/1.3 אינץ׳","D-Log M"],warn:null,note:"רוצה מסך מובנה? קומבו עם שלט RC 2 — כ-3,500 ₪.",price:"כ-3,000–3,500 ₪",zap:"DJI+Lito+X1",ksp:"DJI+Lito+X1"},
   flip:{name:"DJI Flip",badge:"מתחיל-בינוני לצילום פנאי",fpv:false,desc:"קומפקטי, מתקפל, פחות מ-250 גרם. תמונות וסרטונים יפים בלי ציוד כבד.",tags:["249 גרם","ללא רישיון","4K","מתקפל"],warn:null,note:null,price:"כ-1,500–2,200 ₪",zap:"DJI+Flip",ksp:"DJI+Flip"},
   mini3_no:{name:"DJI Mini 3 Pro",badge:"נקודת כניסה מוכחת",fpv:false,desc:"249 גרם, ללא רישיון, 4K HDR ואיכות שמפתיעה לפי המחיר.",tags:["249 גרם","ללא רישיון","4K HDR","34 דק׳"],warn:null,note:null,price:"כ-2,800–3,200 ₪",zap:"DJI+Mini+3+Pro",ksp:"DJI+Mini+3+Pro"},
   mini3_screen:{name:"DJI Mini 3 Pro + RC2",badge:"נקודת כניסה מוכחת",fpv:false,desc:"אותו Mini 3 Pro עם שלט RC2 — מסך מובנה, נוח בשמש.",tags:["249 גרם","ללא רישיון","4K HDR","שלט עם מסך"],warn:null,note:null,price:"כ-3,800–4,200 ₪",zap:"DJI+Mini+3+Pro+RC2",ksp:"DJI+Mini+3+Pro"},
@@ -226,7 +229,7 @@ const D={
   matrice4:{name:"DJI Matrice 4 Pro",badge:"רמה תעשייתית",fpv:false,desc:"Payload גדול, RTK, תרמי, IP55. לארגונים שצריכים יכולת מקסימלית.",tags:["תעשייתי","RTK+תרמי","IP55","Payload"],warn:"לארגונים ויחידות מקצועיות בלבד.",note:null,price:"כ-35,000 ₪ ומעלה",zap:"DJI+Matrice+4+Pro",ksp:"DJI+Matrice+4+Pro"}
 };
 
-const WHY={neo:"קטן, זול וקל — נקודת כניסה אידיאלית",flip:"קומפקטי וללא רישיון — מחיר לאיכות מעולה",mini3_no:"הנמכר ביותר בישראל — אמינות מוכחת",mini3_screen:"Mini 3 Pro עם מסך נוח בשמש",mini4:"OA מכל כיוון ו-4K/100fps",mini5:"הדור הכי חדש — סנסור משודרג",air3:"סנסור 1 אינץ׳ ושתי עדשות",avata1:"FPV בתקציב — עדיין עובד מצוין",avata2:"ה-FPV הסינמטי המאוזן ביותר",mobula8:"הכי סלחני למתחילים — בטוח ללמידה",air65:"Whoop קטן עם אפשרות O3",pavo_pico:"הנמכר ביותר בקטגוריה — בנייה מהודקת",pavo20:"2 אינץ׳ — הצעד הבא מה-Whoop",air75:"Whoop בינוני עם DJI O3 לחוץ ופנים",freestyle5:"בנה בעצמך — מותאם אישית וזול יותר",mavic4:"הכי טוב לצילום — ללא פשרות",mavic3e:"RTK מדויק — הסטנדרט המקצועי",matrice4:"יכולת מקסימלית לכל משימה"};
+const WHY={neo2:"Neo משודרג — LiDAR, 4K/100fps ושליטה בשלט",lito1:"החדש של DJI — הכי משתלם למתחילים",litox1:"סנסור 1/1.3 אינץ׳ ו-10 ביט בפחות מ-249 גרם",neo:"קטן, זול וקל — נקודת כניסה אידיאלית",flip:"קומפקטי וללא רישיון — מחיר לאיכות מעולה",mini3_no:"הנמכר ביותר בישראל — אמינות מוכחת",mini3_screen:"Mini 3 Pro עם מסך נוח בשמש",mini4:"OA מכל כיוון ו-4K/100fps",mini5:"הדור הכי חדש — סנסור משודרג",air3:"סנסור 1 אינץ׳ ושתי עדשות",avata1:"FPV בתקציב — עדיין עובד מצוין",avata2:"ה-FPV הסינמטי המאוזן ביותר",mobula8:"הכי סלחני למתחילים — בטוח ללמידה",air65:"Whoop קטן עם אפשרות O3",pavo_pico:"הנמכר ביותר בקטגוריה — בנייה מהודקת",pavo20:"2 אינץ׳ — הצעד הבא מה-Whoop",air75:"Whoop בינוני עם DJI O3 לחוץ ופנים",freestyle5:"בנה בעצמך — מותאם אישית וזול יותר",mavic4:"הכי טוב לצילום — ללא פשרות",mavic3e:"RTK מדויק — הסטנדרט המקצועי",matrice4:"יכולת מקסימלית לכל משימה"};
 
 const MEDALS=[{icon:"🥇",label:"הכי מתאים עבורך"},{icon:"🥈",label:"אלטרנטיבה טובה"},{icon:"🥉",label:"אפשרות נוספת"}];
 const SMALL_BEGINNER=["mobula8","pavo_pico","air65"];
@@ -259,9 +262,9 @@ function recommend(ans){
     if(budget==="t4") return screen==="yes"?"mini3_screen":"mini4";
     return "mini3_no";
   }
-  if(budget==="t1") return "neo";
-  if(budget==="t2") return "flip";
-  if(budget==="t3") return screen==="yes"?"mini3_screen":"mini3_no";
+  if(budget==="t1") return "neo2";
+  if(budget==="t2") return "lito1";
+  if(budget==="t3") return "litox1";
   if(budget==="t4") return screen==="yes"?"mini3_screen":"mini4";
   if(budget==="t5") return "mini5";
   if(budget==="t6") return exp==="none"?"mini5":"air3";
@@ -271,15 +274,15 @@ function recommend(ans){
 function getTop3(ans){
   const fpv=isFpvPath(ans);
   if(fpv){
-    if(ans.fpv_purpose==="photo") return ["avata2","avata1","neo"];
-    if(ans.fpv_purpose==="fun") return ["neo","avata1","avata2"];
+    if(ans.fpv_purpose==="photo") return ["avata2","avata1","neo2"];
+    if(ans.fpv_purpose==="fun") return ["neo2","neo","avata1"];
     if(ans.fpv_purpose==="acro"){
       if(ans.fpv_size==="big") return ["freestyle5","pavo20","air75"];
       if(ans.fpv_size==="small") return ans.fpv_exp==="beginner"?SMALL_BEGINNER:SMALL_ADVANCED;
     }
   }
   const first=recommend(ans);
-  const A={neo:["flip","avata1"],flip:["mini3_no","neo"],mini3_no:["flip","mini4"],mini3_screen:["mini3_no","mini4"],mini4:["mini3_screen","mini5"],mini5:["mini4","air3"],air3:["mini5","mavic4"],avata1:["neo","avata2"],avata2:["avata1","neo"],mavic4:["air3","mini5"],mavic3e:["matrice4"],matrice4:["mavic3e"]};
+  const A={neo2:["neo","flip"],lito1:["flip","neo2"],litox1:[ans.screen==="yes"?"mini3_screen":"mini3_no","lito1"],neo:["flip","avata1"],flip:["mini3_no","neo"],mini3_no:["flip","mini4"],mini3_screen:["mini3_no","mini4"],mini4:["mini3_screen","mini5"],mini5:["mini4","air3"],air3:["mini5","mavic4"],avata1:["neo","avata2"],avata2:["avata1","neo"],mavic4:["air3","mini5"],mavic3e:["matrice4"],matrice4:["mavic3e"]};
   return [first,...(A[first]||[]).slice(0,2)];
 }
 
