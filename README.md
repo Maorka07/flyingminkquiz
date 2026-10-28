@@ -14,8 +14,9 @@
 | `_includes/home/hero.html` | וידאו הפתיחה |
 | `_includes/home/quiz-and-map.html` | ארבע הבועות הראשונות: שאלון הרחפנים, שאלות נפוצות, המפה, הצ׳קליסט. כולן באותו מבנה (`bubble`) ובאותו גודל |
 | `_includes/home/services-and-faq.html` | שירותים (באנר השאלות הנפוצות עבר ל-quiz-and-map) |
+| `_includes/home/workshops.html` | סדנאות, ימי שיא וחוגים |
 | `_includes/home/free-course.html` | הקורס החינמי |
-| `_includes/home/workshops-and-laws.html` | סדנאות ובתי ספר + באנר החוקים בחו״ל |
+| `_includes/home/laws-banner.html` | באנר החוקים בחו״ל (אחרי הקורס) |
 | `_includes/home/gallery-banner.html` | הבועה שמובילה לגלריה |
 | `_includes/home/contact.html` | צור קשר |
 | `_includes/home/partners.html` | שותפים |
